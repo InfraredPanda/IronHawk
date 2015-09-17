@@ -15,6 +15,10 @@ import javax.swing.JFrame;
 import com.game.src.main.classes.EntityA;
 import com.game.src.main.classes.EntityB;
 
+/**
+ * @author InfraredPanda
+ */
+
 public class Game extends Canvas implements Runnable {
 
 	public static final int WIDTH = 320;
