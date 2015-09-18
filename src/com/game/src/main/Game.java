@@ -17,6 +17,7 @@ import com.game.src.main.classes.EntityB;
 
 /**
  * @author InfraredPanda
+ * A 2D Game, fight the enemies!
  */
 
 public class Game extends Canvas implements Runnable {
