@@ -35,7 +35,13 @@ public class MouseInput implements MouseListener {
 				Game.State = Game.STATE.GAME;
 			}
 		}
-		// Play Button
+		if (mx >= Game.WIDTH / 2 + 120 && mx <= Game.WIDTH / 2 + 220) {
+			if (my >= 250 && my <= 300) {
+				// Pressed hELP
+				Game.State = Game.STATE.HELP;
+			}
+		}
+		// Quit Button
 		if (mx >= Game.WIDTH / 2 + 120 && mx <= Game.WIDTH / 2 + 220) {
 			if (my >= 350 && my <= 400) {
 				// Pressed Play
