@@ -17,8 +17,10 @@ public class GameOver {
 		Font fnt1 = new Font("arial", Font.BOLD, 30);
 		g.setFont(fnt1);
 		g.setColor(Color.white);
-		g.drawString("Play Again", playAgain.x +19, playAgain.y + 30);
+		g.drawString("Again!", playAgain.x +19, playAgain.y + 30);
 		g2d.draw(playAgain);
+		g.drawString("Quit", quitButton.x + 19, quitButton.y + 30);
+		g2d.draw(quitButton);
 	}
 
 }

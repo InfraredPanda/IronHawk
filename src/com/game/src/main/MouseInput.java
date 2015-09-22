@@ -42,24 +42,42 @@ public class MouseInput implements MouseListener
 				Game.State = Game.STATE.GAME;
 			}
 		}
-		if (mx >= Game.WIDTH / 2 + 120 && mx <= Game.WIDTH / 2 + 220)
+		if (Game.State == Game.STATE.MENU)
 		{
-			if (my >= 250 && my <= 300)
+			if (mx >= Game.WIDTH / 2 + 120 && mx <= Game.WIDTH / 2 + 220)
 			{
-				// Pressed Help
-				Game.State = Game.STATE.HELP;
+				if (my >= 250 && my <= 300)
+				{
+					// Pressed Help
+					Game.State = Game.STATE.HELP;
+				}
 			}
 		}
 		// Quit Button
-		if (mx >= Game.WIDTH / 2 + 120 && mx <= Game.WIDTH / 2 + 220)
+		if (Game.State == Game.STATE.GAME || Game.State == Game.STATE.GAMEOVER)
 		{
-			if (my >= 350 && my <= 400)
+			if (mx >= Game.WIDTH / 2 + 120 && mx <= Game.WIDTH / 2 + 220)
 			{
-				// Pressed Play
-				System.exit(1);
+				if (my >= 350 && my <= 400)
+				{
+					// Pressed Quit
+					System.exit(1);
+				}
+				if (Game.State == Game.STATE.GAMEOVER)
+				{
+					if (mx >= Game.WIDTH / 2 + 120 && mx <= Game.WIDTH / 2 + 250)
+					{
+						if (my >= 250 && my <= 300)
+						{
+							// Pressed Play Again
+							Game.HEALTH = 200;
+							Game.State = Game.STATE.GAME;
+						}
+					}
+				}
 			}
-
 		}
+
 	}
 
 	@Override
