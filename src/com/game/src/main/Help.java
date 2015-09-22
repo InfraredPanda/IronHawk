@@ -14,15 +14,16 @@ public class Help {
 		Graphics2D g2d = (Graphics2D) g;
 		
 		
-		Font fnt0 = new Font("arial", Font.PLAIN, 30);
+		Font fnt0 = new Font("arial", Font.BOLD, 30);
 		g.setFont(fnt0);
 		g.setColor(Color.WHITE);
-		g.drawString("Help Menu", 175, 100);
+		g.drawString("Help Menu", Game.WIDTH/2, 50);
 		
 		Font fnt1 = new Font("arial", Font.BOLD, 30);
 		g.setFont(fnt1);
 		g.drawString("Back", backButton.x +19, backButton.y + 30);
 		g2d.draw(backButton);
+		
 		
 	}
 

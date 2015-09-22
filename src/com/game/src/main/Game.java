@@ -16,12 +16,10 @@ import com.game.src.main.classes.EntityA;
 import com.game.src.main.classes.EntityB;
 
 /**
- * @author InfraredPanda
- * A 2D Game, fight the enemies!
+ * @author InfraredPanda A 2D Game, fight the enemies!
  */
 
-public class Game extends Canvas implements Runnable
-{
+public class Game extends Canvas implements Runnable {
 
 	public static final int WIDTH = 320;
 	public static final int HEIGHT = WIDTH / 12 * 9;
@@ -52,26 +50,20 @@ public class Game extends Canvas implements Runnable
 
 	public static int HEALTH = 100 * 2;
 
-	public static enum STATE
-	{
+	public static enum STATE {
 		MENU, GAME, HELP, GAMEOVER
 	};
 
 	public static STATE State = STATE.MENU;
 	public static STATE State1 = STATE.HELP;
 	public static STATE State2 = STATE.GAMEOVER;
-	
 
-	public void init()
-	{
+	public void init() {
 		BufferedImageLoader loader = new BufferedImageLoader();
-		try
-		{
+		try {
 			spriteSheet = loader.loadImage("/spriteSheet.png");
 			background = loader.loadImage("/background.png");
-		}
-		catch (IOException e)
-		{
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
@@ -92,8 +84,7 @@ public class Game extends Canvas implements Runnable
 		c.createEnemy(enemyCount);
 	}
 
-	private synchronized void start()
-	{
+	private synchronized void start() {
 		if (running)
 			return;
 
@@ -103,18 +94,14 @@ public class Game extends Canvas implements Runnable
 
 	}
 
-	private synchronized void stop()
-	{
+	private synchronized void stop() {
 		if (!running)
 			return;
 
 		running = false;
-		try
-		{
+		try {
 			thread.join();
-		}
-		catch (InterruptedException e)
-		{
+		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -123,8 +110,7 @@ public class Game extends Canvas implements Runnable
 	}
 
 	// Game Loop
-	public void run()
-	{
+	public void run() {
 		init();
 		long lastTime = System.nanoTime();
 		final double amountOfTicks = 60.0;
@@ -134,13 +120,11 @@ public class Game extends Canvas implements Runnable
 		int frames = 0;
 		long timer = System.currentTimeMillis();
 
-		while (running)
-		{
+		while (running) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 			lastTime = now;
-			if (delta >= 1)
-			{
+			if (delta >= 1) {
 				tick();
 				updates++;
 				delta--;
@@ -148,8 +132,7 @@ public class Game extends Canvas implements Runnable
 			render();
 			frames++;
 
-			if (System.currentTimeMillis() - timer > 1000)
-			{
+			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
 				System.out.println(updates + " Ticks, Fps " + frames);
 				updates = 0;
@@ -160,15 +143,12 @@ public class Game extends Canvas implements Runnable
 		stop();
 	}
 
-	private void tick()
-	{
-		if (State == STATE.GAME)
-		{
+	private void tick() {
+		if (State == STATE.GAME) {
 			p.tick();
 			c.tick();
 		}
-		if (enemyKilled >= enemyCount)
-		{
+		if (enemyKilled >= enemyCount) {
 			enemyCount += 2;
 			enemyKilled += 0;
 			c.createEnemy(enemyCount);
@@ -176,13 +156,11 @@ public class Game extends Canvas implements Runnable
 
 	}
 
-	private void render()
-	{
+	private void render() {
 
 		BufferStrategy bs = this.getBufferStrategy();
 
-		if (bs == null)
-		{
+		if (bs == null) {
 
 			createBufferStrategy(3);
 			return;
@@ -194,8 +172,7 @@ public class Game extends Canvas implements Runnable
 
 		g.drawImage(background, 0, 0, this);
 
-		if (State == STATE.GAME)
-		{
+		if (State == STATE.GAME) {
 			p.render(g);
 			c.render(g);
 
@@ -207,17 +184,11 @@ public class Game extends Canvas implements Runnable
 
 			g.setColor(Color.white);
 			g.drawRect(5, 5, 200, 50);
-		}
-		else if (State == STATE.MENU)
-		{
+		} else if (State == STATE.MENU) {
 			menu.render(g);
-		}
-		else if (State == STATE.GAMEOVER)
-		{
+		} else if (State == STATE.GAMEOVER) {
 			gameover.render(g);
-		}
-		else if (State == STATE.HELP)
-		{
+		} else if (State == STATE.HELP) {
 			help.render(g);
 		}
 		// break
@@ -225,30 +196,19 @@ public class Game extends Canvas implements Runnable
 		bs.show();
 	}
 
-	public void keyPressed(KeyEvent e)
-	{
+	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 
-		if (State == STATE.GAME)
-		{
-			if (key == KeyEvent.VK_RIGHT)
-			{
+		if (State == STATE.GAME) {
+			if (key == KeyEvent.VK_RIGHT) {
 				p.setVelX(5);
-			}
-			else if (key == KeyEvent.VK_LEFT)
-			{
+			} else if (key == KeyEvent.VK_LEFT) {
 				p.setVelX(-5);
-			}
-			else if (key == KeyEvent.VK_DOWN)
-			{
+			} else if (key == KeyEvent.VK_DOWN) {
 				p.setVelY(5);
-			}
-			else if (key == KeyEvent.VK_UP)
-			{
+			} else if (key == KeyEvent.VK_UP) {
 				p.setVelY(-5);
-			}
-			else if (key == KeyEvent.VK_SPACE && !isShooting)
-			{
+			} else if (key == KeyEvent.VK_SPACE && !isShooting) {
 				isShooting = true;
 				c.addEntity(new Bullet(p.getX(), p.getY(), tex, this));
 			}
@@ -256,35 +216,24 @@ public class Game extends Canvas implements Runnable
 
 	}
 
-	public void keyReleased(KeyEvent e)
-	{
+	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
 
-		if (key == KeyEvent.VK_RIGHT)
-		{
+		if (key == KeyEvent.VK_RIGHT) {
 			p.setVelX(0);
-		}
-		else if (key == KeyEvent.VK_LEFT)
-		{
+		} else if (key == KeyEvent.VK_LEFT) {
 			p.setVelX(0);
-		}
-		else if (key == KeyEvent.VK_DOWN)
-		{
+		} else if (key == KeyEvent.VK_DOWN) {
 			p.setVelY(0);
-		}
-		else if (key == KeyEvent.VK_UP)
-		{
+		} else if (key == KeyEvent.VK_UP) {
 			p.setVelY(0);
-		}
-		else if (key == KeyEvent.VK_SPACE)
-		{
+		} else if (key == KeyEvent.VK_SPACE) {
 			isShooting = false;
 		}
 
 	}
 
-	public static void main(String args[])
-	{
+	public static void main(String args[]) {
 		Game game = new Game();
 
 		game.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
@@ -302,28 +251,23 @@ public class Game extends Canvas implements Runnable
 		game.start();
 	}
 
-	public BufferedImage getSpriteSheet()
-	{
+	public BufferedImage getSpriteSheet() {
 		return spriteSheet;
 	}
 
-	public int getEnemyCount()
-	{
+	public int getEnemyCount() {
 		return enemyCount;
 	}
 
-	public void setEnemyCount(int enemyCount)
-	{
+	public void setEnemyCount(int enemyCount) {
 		this.enemyCount = enemyCount;
 	}
 
-	public int getEnemyKilled()
-	{
+	public int getEnemyKilled() {
 		return enemyKilled;
 	}
 
-	public void setEnemyKilled(int enemyKilled)
-	{
+	public void setEnemyKilled(int enemyKilled) {
 		this.enemyKilled = enemyKilled;
 	}
 }
