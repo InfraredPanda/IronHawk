@@ -44,6 +44,8 @@ public class Game extends Canvas implements Runnable
 	private Controller c;
 	private Textures tex;
 	private Menu menu;
+	private Help help;
+	private GameOver gameover;
 
 	public LinkedList<EntityA> ea;
 	public LinkedList<EntityB> eb;
@@ -52,10 +54,13 @@ public class Game extends Canvas implements Runnable
 
 	public static enum STATE
 	{
-		MENU, GAME, HELP
+		MENU, GAME, HELP, GAMEOVER
 	};
 
 	public static STATE State = STATE.MENU;
+	public static STATE State1 = STATE.HELP;
+	public static STATE State2 = STATE.GAMEOVER;
+	
 
 	public void init()
 	{
@@ -75,6 +80,8 @@ public class Game extends Canvas implements Runnable
 		c = new Controller(tex, this);
 		p = new Player(200, 200, tex, this, c);
 		menu = new Menu();
+		gameover = new GameOver();
+		help = new Help();
 
 		ea = c.getEntityA();
 		eb = c.getEntityB();
@@ -196,7 +203,7 @@ public class Game extends Canvas implements Runnable
 			g.fillRect(5, 5, 200, 50);
 
 			g.setColor(Color.green);
-			g.fillRect(5, 5, 200, 50);
+			g.fillRect(5, 5, HEALTH, 50);
 
 			g.setColor(Color.white);
 			g.drawRect(5, 5, 200, 50);
@@ -204,6 +211,14 @@ public class Game extends Canvas implements Runnable
 		else if (State == STATE.MENU)
 		{
 			menu.render(g);
+		}
+		else if (State == STATE.GAMEOVER)
+		{
+			gameover.render(g);
+		}
+		else if (State == STATE.HELP)
+		{
+			help.render(g);
 		}
 		// break
 		g.dispose();
