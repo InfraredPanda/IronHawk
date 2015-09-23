@@ -10,7 +10,6 @@ import com.game.src.main.libs.Animation;
 
 public class Enemy extends GameObject implements EntityB
 {
-
 	private double x;
 	private double y;
 	private Textures tex;
@@ -22,6 +21,8 @@ public class Enemy extends GameObject implements EntityB
 	public Enemy(double x, double y, Textures tex, Controller c, Game game)
 	{
 		super(x, y);
+		this.x = x;
+		this.y = y;
 		this.tex = tex;
 		this.game = game;
 		this.c = c;

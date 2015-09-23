@@ -36,9 +36,9 @@ public class Game extends Canvas implements Runnable
 
 	private boolean isShooting = false;
 
-	private int enemyCount = 10;
 	private int enemyKilled = 0;
-
+	private int enemyCount = 10;
+	
 	private Player p;
 	private Controller c;
 	private Textures tex;
@@ -153,6 +153,8 @@ public class Game extends Canvas implements Runnable
 				updates = 0;
 				frames = 0;
 			}
+			
+			System.out.println(enemyCount);
 
 		}
 		stop();
@@ -165,10 +167,9 @@ public class Game extends Canvas implements Runnable
 			p.tick();
 			c.tick();
 		}
-		if (enemyKilled >= enemyCount)
+		if (enemyCount == 0)
 		{
-			enemyCount += 2;
-			enemyKilled += 0;
+			enemyCount = 10;
 			c.createEnemy(enemyCount);
 		}
 
@@ -255,6 +256,10 @@ public class Game extends Canvas implements Runnable
 			{
 				isShooting = true;
 				c.addEntity(new Bullet(p.getX(), p.getY(), tex, this));
+			}
+			else if (key == KeyEvent.VK_ESCAPE)
+			{
+				State = STATE.MENU;
 			}
 		}
 

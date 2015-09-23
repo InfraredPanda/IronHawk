@@ -22,16 +22,22 @@ public class Controller
 
 	public void createEnemy(int enemyCount)
 	{
-		Random r = new Random();
+		if(game.getEnemyCount() >= 20)
+		{
+			return;
+		}
 		
 		for (int i = 0; i < enemyCount; i++)
 		{
+			Random r = new Random();
 			addEntity(new Enemy(r.nextInt(640), -10, tex, this, game));
 		}
 	}
 
 	public void tick()
 	{
+		game.setEnemyCount(eb.size());
+		
 		// A CLASS
 		for (int i = 0; i < ea.size(); i++)
 		{

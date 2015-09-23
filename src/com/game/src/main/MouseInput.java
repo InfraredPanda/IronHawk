@@ -26,12 +26,13 @@ public class MouseInput implements MouseListener
 	@Override
 	public void mousePressed(MouseEvent e)
 	{
-		int mx = e.getX();
-		int my = e.getY();
+		int clickX = e.getX();
+		int clickY = e.getY();
+		
 		// Play Button
-		if (mx >= Game.WIDTH / 2 + 120 && mx <= Game.WIDTH / 2 + 220)
+		if (clickX >= Game.WIDTH / 2 + 120 && clickX <= Game.WIDTH / 2 + 220)
 		{
-			if (my >= 150 && my <= 200)
+			if (clickY >= 150 && clickY <= 200)
 			{
 				// Pressed Play
 				Game.State = Game.STATE.GAME;
@@ -39,20 +40,31 @@ public class MouseInput implements MouseListener
 		}
 		if (Game.State == Game.STATE.MENU)
 		{
-			if (mx >= Game.WIDTH / 2 + 120 && mx <= Game.WIDTH / 2 + 220)
+			if (clickX >= Game.WIDTH / 2 + 120 && clickX <= Game.WIDTH / 2 + 220)
 			{
-				if (my >= 250 && my <= 300)
+				if (clickY >= 250 && clickY <= 300)
 				{
 					// Pressed Help
 					Game.State = Game.STATE.HELP;
 				}
 			}
 		}
+		if (Game.State == Game.STATE.MENU)
+		{
+			if (clickX >= Game.WIDTH / 2 + 120 && clickX <= Game.WIDTH / 2 + 220)
+			{
+				if (clickY >= 340 && clickY <= 400)
+				{
+					// Pressed Quit
+					System.exit(1);
+				}
+			}
+		}
 		if (Game.State == Game.STATE.HELP)
 		{
-			if (mx >= 5 && mx <= 105)
+			if (clickX >= 5 && clickX <= 105)
 			{
-				if (my >= 5 && my <= 55)
+				if (clickY >= 5 && clickY <= 55)
 				{
 					// Pressed Back
 					Game.State = Game.STATE.MENU;
@@ -62,9 +74,9 @@ public class MouseInput implements MouseListener
 		// Quit Button
 		if (Game.State == Game.STATE.GAME || Game.State == Game.STATE.GAMEOVER)
 		{
-			if (mx >= Game.WIDTH / 2 + 120 && mx <= Game.WIDTH / 2 + 220)
+			if (clickX >= Game.WIDTH / 2 + 120 && clickX <= Game.WIDTH / 2 + 220)
 			{
-				if (my >= 350 && my <= 400)
+				if (clickY >= 350 && clickY <= 400)
 				{
 					// Pressed Quit
 					System.exit(1);
@@ -73,9 +85,9 @@ public class MouseInput implements MouseListener
 		}
 		if (Game.State == Game.STATE.GAMEOVER)
 		{
-			if (mx >= Game.WIDTH / 2 + 120 && mx <= Game.WIDTH / 2 + 250)
+			if (clickX >= Game.WIDTH / 2 + 120 && clickX <= Game.WIDTH / 2 + 250)
 			{
-				if (my >= 250 && my <= 300)
+				if (clickY >= 250 && clickY <= 300)
 				{
 					// Pressed Play Again
 					Game.HEALTH = 200;
