@@ -20,11 +20,16 @@ public class Help
 		g.setFont(fnt0);
 		g.setColor(Color.WHITE);
 		g.drawString("Help Menu", Game.WIDTH / 2, 50);
-
+		
 		Font fnt1 = new Font("arial", Font.BOLD, 30);
 		g.setFont(fnt1);
 		g.drawString("Back", backButton.x + 19, backButton.y + 30);
 		g2d.draw(backButton);
+		
+		Font fnt2 = new Font("arial", Font.PLAIN, 20);
+		g.setFont(fnt2);
+		g.setColor(Color.WHITE);
+		g.drawString("In order to move in this game," , 0, 0);
 
 	}
 
