@@ -16,13 +16,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -43,14 +44,16 @@ public class Game extends Canvas implements Runnable
 	private BufferedImage spriteSheet = null;
 	private BufferedImage background = null;
 
-	private static BufferedImage icon = null;
-	
+	private static BufferedImage icon16 = null;
+	private static BufferedImage icon32 = null;
+	private static BufferedImage icon64 = null;
+
 	private boolean isShooting = false;
 
 	private int enemyKilled = 0;
 	private int enemyCount = 10;
 	private int roundNumber = 1;
-	
+
 	private Player p;
 	private Controller c;
 	private Textures tex;
@@ -79,7 +82,6 @@ public class Game extends Canvas implements Runnable
 		{
 			spriteSheet = loader.loadImage("/spriteSheet.png");
 			background = loader.loadImage("/background.png");
-			icon = loader.loadImage("/16.png");
 		}
 		catch (IOException e)
 		{
@@ -218,11 +220,11 @@ public class Game extends Canvas implements Runnable
 			g.setColor(Color.BLACK);
 			g.drawString("Health", 20, 20);
 			g.drawString(String.valueOf(HEALTH / 2), 20, 40);
-			
+
 			g.setColor(Color.white);
 			g.drawString("Round", WIDTH + WIDTH - 80, 20);
 			g.drawString(String.valueOf(roundNumber), WIDTH + WIDTH - 10, 20);
-			
+
 			g.setColor(Color.red);
 			g.drawString("Enemies", WIDTH - 15, 20);
 			g.drawString(String.valueOf(enemyCount), WIDTH + 75, 20);
@@ -269,6 +271,22 @@ public class Game extends Canvas implements Runnable
 			{
 				p.setVelY(-5);
 			}
+			else if (key == KeyEvent.VK_D)
+			{
+				p.setVelX(5);
+			}
+			else if (key == KeyEvent.VK_A)
+			{
+				p.setVelX(-5);
+			}
+			else if (key == KeyEvent.VK_S)
+			{
+				p.setVelY(5);
+			}
+			else if (key == KeyEvent.VK_W)
+			{
+				p.setVelY(-5);
+			}
 			else if (key == KeyEvent.VK_SPACE && !isShooting)
 			{
 				isShooting = true;
@@ -302,6 +320,22 @@ public class Game extends Canvas implements Runnable
 		{
 			p.setVelY(0);
 		}
+		if (key == KeyEvent.VK_D)
+		{
+			p.setVelX(0);
+		}
+		else if (key == KeyEvent.VK_A)
+		{
+			p.setVelX(0);
+		}
+		else if (key == KeyEvent.VK_S)
+		{
+			p.setVelY(0);
+		}
+		else if (key == KeyEvent.VK_W)
+		{
+			p.setVelY(0);
+		}
 		else if (key == KeyEvent.VK_SPACE)
 		{
 			isShooting = false;
@@ -311,20 +345,38 @@ public class Game extends Canvas implements Runnable
 
 	public static void main(String args[])
 	{
+		BufferedImageLoader loader = new BufferedImageLoader();
+		try
+		{
+			icon16 = loader.loadImage("/16.png");
+			icon32 = loader.loadImage("/32.png");
+			icon64 = loader.loadImage("/64.png");
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		
 		Game game = new Game();
 
 		game.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		game.setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		game.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 
+
 		JFrame frame = new JFrame(game.TITLE);
+		ArrayList<Image> list = new ArrayList<Image>();
+		list.add(icon16);
+		list.add(icon32);
+		list.add(icon64);
+		frame.setIconImages(list);
 		frame.add(game);
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-		
+
 		game.start();
 	}
 
@@ -352,12 +404,12 @@ public class Game extends Canvas implements Runnable
 	{
 		this.enemyKilled = enemyKilled;
 	}
-	
+
 	public int getRoundNumber()
 	{
 		return this.roundNumber;
 	}
-	
+
 	public void setRound(int roundNumber)
 	{
 		this.roundNumber = roundNumber;
