@@ -1,4 +1,6 @@
-package com.negafinity.ironhawk;
+package com.negafinity.ironhawk.states;
+
+import com.negafinity.ironhawk.Game;
 
 import java.awt.Color;
 import java.awt.Font;

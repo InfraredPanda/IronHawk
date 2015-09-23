@@ -1,4 +1,4 @@
-package com.negafinity.ironhawk;
+package com.negafinity.ironhawk.utils;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;

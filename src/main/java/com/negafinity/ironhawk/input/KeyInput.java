@@ -1,4 +1,6 @@
-package com.negafinity.ironhawk;
+package com.negafinity.ironhawk.input;
+
+import com.negafinity.ironhawk.Game;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

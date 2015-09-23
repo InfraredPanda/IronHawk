@@ -1,5 +1,7 @@
 package com.negafinity.ironhawk;
 
+import com.negafinity.ironhawk.entities.Enemy;
+
 import com.negafinity.ironhawk.entities.EntityA;
 import com.negafinity.ironhawk.entities.EntityB;
 
