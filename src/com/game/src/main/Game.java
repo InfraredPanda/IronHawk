@@ -3,6 +3,7 @@ package com.game.src.main;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
@@ -25,7 +26,7 @@ public class Game extends Canvas implements Runnable {
 	public static final int HEIGHT = WIDTH / 12 * 9;
 	public static final int SCALE = 2;
 	public final String TITLE = "Iron Hawk";
-
+	
 	private boolean running = false;
 	private Thread thread;
 
@@ -175,13 +176,19 @@ public class Game extends Canvas implements Runnable {
 		if (State == STATE.GAME) {
 			p.render(g);
 			c.render(g);
-
+			
+			Font fnt0 = new Font("arial", Font.BOLD, 20);
+			g.setFont(fnt0);	
 			g.setColor(Color.red);
 			g.fillRect(5, 5, 200, 50);
 
 			g.setColor(Color.green);
 			g.fillRect(5, 5, HEALTH, 50);
-
+			
+			g.setColor(Color.BLACK);
+			g.drawString("Health", 20, 20);
+			g.drawString(HEALTH/2 + "", 20, 40);
+			
 			g.setColor(Color.white);
 			g.drawRect(5, 5, 200, 50);
 		} else if (State == STATE.MENU) {
