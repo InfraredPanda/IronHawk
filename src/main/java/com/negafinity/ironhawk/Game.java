@@ -1,16 +1,15 @@
 package com.negafinity.ironhawk;
 
-import com.negafinity.ironhawk.input.MouseInput;
-
-import com.negafinity.ironhawk.input.KeyInput;
-import com.negafinity.ironhawk.entities.Player;
 import com.negafinity.ironhawk.entities.Bullet;
-import com.negafinity.ironhawk.utils.BufferedImageLoader;
-import com.negafinity.ironhawk.states.Help;
-import com.negafinity.ironhawk.states.Menu;
-import com.negafinity.ironhawk.states.GameOver;
 import com.negafinity.ironhawk.entities.EntityA;
 import com.negafinity.ironhawk.entities.EntityB;
+import com.negafinity.ironhawk.entities.Player;
+import com.negafinity.ironhawk.input.KeyInput;
+import com.negafinity.ironhawk.input.MouseInput;
+import com.negafinity.ironhawk.states.GameOver;
+import com.negafinity.ironhawk.states.Help;
+import com.negafinity.ironhawk.states.Menu;
+import com.negafinity.ironhawk.utils.BufferedImageLoader;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -47,6 +46,7 @@ public class Game extends Canvas implements Runnable
 
 	private int enemyKilled = 0;
 	private int enemyCount = 10;
+	private int roundNumber = 1;
 	
 	private Player p;
 	private Controller c;
@@ -122,7 +122,6 @@ public class Game extends Canvas implements Runnable
 		}
 		catch (InterruptedException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.exit(1);
@@ -162,9 +161,6 @@ public class Game extends Canvas implements Runnable
 				updates = 0;
 				frames = 0;
 			}
-			
-			System.out.println(enemyCount);
-
 		}
 		stop();
 	}
@@ -179,6 +175,7 @@ public class Game extends Canvas implements Runnable
 		if (enemyCount == 0)
 		{
 			enemyCount = 10;
+			roundNumber++;
 			c.createEnemy(enemyCount);
 		}
 
@@ -186,7 +183,6 @@ public class Game extends Canvas implements Runnable
 
 	private void render()
 	{
-
 		BufferStrategy bs = this.getBufferStrategy();
 
 		if (bs == null)
@@ -217,7 +213,15 @@ public class Game extends Canvas implements Runnable
 
 			g.setColor(Color.BLACK);
 			g.drawString("Health", 20, 20);
-			g.drawString(HEALTH / 2 + "", 20, 40);
+			g.drawString(String.valueOf(HEALTH / 2), 20, 40);
+			
+			g.setColor(Color.white);
+			g.drawString("Round", WIDTH + WIDTH - 80, 20);
+			g.drawString(String.valueOf(roundNumber), WIDTH + WIDTH - 10, 20);
+			
+			g.setColor(Color.red);
+			g.drawString("Enemies", WIDTH - 15, 20);
+			g.drawString(String.valueOf(enemyCount), WIDTH + 75, 20);
 
 			g.setColor(Color.white);
 			g.drawRect(5, 5, 200, 50);
@@ -316,7 +320,7 @@ public class Game extends Canvas implements Runnable
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-
+		
 		game.start();
 	}
 
@@ -343,5 +347,15 @@ public class Game extends Canvas implements Runnable
 	public void setEnemyKilled(int enemyKilled)
 	{
 		this.enemyKilled = enemyKilled;
+	}
+	
+	public int getRoundNumber()
+	{
+		return this.roundNumber;
+	}
+	
+	public void setRound(int roundNumber)
+	{
+		this.roundNumber = roundNumber;
 	}
 }
