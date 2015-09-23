@@ -1,4 +1,4 @@
-package com.game.src.main;
+package com.negafinity.ironhawk;
 
 import java.awt.image.BufferedImage;
 

@@ -1,4 +1,4 @@
-package com.game.src.main;
+package com.negafinity.ironhawk;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

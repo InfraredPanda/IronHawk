@@ -1,9 +1,9 @@
-package com.game.src.main.classes;
+package com.negafinity.ironhawk.entities;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public interface EntityB
+public interface EntityA
 {
 	public void tick();
 

@@ -1,4 +1,7 @@
-package com.game.src.main;
+package com.negafinity.ironhawk;
+
+import com.negafinity.ironhawk.entities.EntityA;
+import com.negafinity.ironhawk.entities.EntityB;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -12,9 +15,6 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 import javax.swing.JFrame;
-
-import com.game.src.main.classes.EntityA;
-import com.game.src.main.classes.EntityB;
 
 /**
  * @author InfraredPanda A 2D Game, fight the enemies!

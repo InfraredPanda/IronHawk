@@ -1,7 +1,7 @@
-package com.game.src.main;
+package com.negafinity.ironhawk;
 
-import com.game.src.main.classes.EntityA;
-import com.game.src.main.classes.EntityB;
+import com.negafinity.ironhawk.entities.EntityA;
+import com.negafinity.ironhawk.entities.EntityB;
 
 import java.awt.Graphics;
 import java.util.LinkedList;
