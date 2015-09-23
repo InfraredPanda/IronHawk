@@ -1,9 +1,9 @@
 package com.negafinity.ironhawk.entities;
 
+import com.negafinity.ironhawk.Controller;
 import com.negafinity.ironhawk.Game;
 import com.negafinity.ironhawk.GameObject;
 import com.negafinity.ironhawk.Textures;
-
 import com.negafinity.ironhawk.libs.Animation;
 
 import java.awt.Graphics;
@@ -14,10 +14,12 @@ public class Bullet extends GameObject implements EntityA
 	private Textures tex;
 	private Game game;
 	private Animation anim;
-
-	public Bullet(double x, double y, Textures tex, Game game)
+	private Controller c;
+	
+	public Bullet(double x, double y, Textures tex, Game game, Controller c)
 	{
 		super(x, y);
+		this.c = c;
 		this.x = x;
 		this.y = y;
 		this.tex = tex;
@@ -28,8 +30,12 @@ public class Bullet extends GameObject implements EntityA
 
 	public void tick()
 	{
+		if(this.y < -1000 || this.y > 1000)
+		{
+			c.removeEntity(this);
+		}
+		
 		y -= 10;
-
 		anim.runAnimation();
 	}
 

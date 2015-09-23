@@ -268,7 +268,7 @@ public class Game extends Canvas implements Runnable
 			else if (key == KeyEvent.VK_SPACE && !isShooting)
 			{
 				isShooting = true;
-				c.addEntity(new Bullet(p.getX(), p.getY(), tex, this));
+				c.addEntity(new Bullet(p.getX(), p.getY(), tex, this, c));
 			}
 			else if (key == KeyEvent.VK_ESCAPE)
 			{
@@ -316,6 +316,7 @@ public class Game extends Canvas implements Runnable
 		JFrame frame = new JFrame(game.TITLE);
 		frame.add(game);
 		frame.pack();
+//		frame.setIconImage(icon);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
