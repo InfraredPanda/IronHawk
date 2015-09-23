@@ -29,7 +29,12 @@ public class Help
 		Font fnt2 = new Font("arial", Font.PLAIN, 20);
 		g.setFont(fnt2);
 		g.setColor(Color.WHITE);
-		g.drawString("In order to move in this game," , 0, 0);
+		g.drawString("In order to move in this game, you can either use W, A, S, D" , 30, 85);
+		g.drawString("or, the arrow keys.", 30, 105);
+		g.drawString("Enemies will spawn at the beginning of every round, so watch out!", 30, 135);
+		g.drawString("To defend from the enemies, dodge or hit 'Space' to fire rounds!", 30, 155);
+		g.drawString("but don't let the enemies hit you, or you will lose health!", 30, 175);
+		g.drawString("Every game you start with 100 health, so don't let the enemies hit you!", 30, 205);
 
 	}
 
