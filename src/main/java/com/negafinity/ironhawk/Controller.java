@@ -24,11 +24,6 @@ public class Controller
 
 	public void createEnemy(int enemyCount)
 	{
-		if(game.getEnemyCount() >= 20)
-		{
-			return;
-		}
-		
 		for (int i = 0; i < enemyCount; i++)
 		{
 			Random r = new Random();

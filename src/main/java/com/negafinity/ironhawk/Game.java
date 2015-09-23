@@ -22,6 +22,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.LinkedList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -42,6 +43,8 @@ public class Game extends Canvas implements Runnable
 	private BufferedImage spriteSheet = null;
 	private BufferedImage background = null;
 
+	private static BufferedImage icon = null;
+	
 	private boolean isShooting = false;
 
 	private int enemyKilled = 0;
@@ -76,6 +79,7 @@ public class Game extends Canvas implements Runnable
 		{
 			spriteSheet = loader.loadImage("/spriteSheet.png");
 			background = loader.loadImage("/background.png");
+			icon = loader.loadImage("/16.png");
 		}
 		catch (IOException e)
 		{
@@ -176,7 +180,7 @@ public class Game extends Canvas implements Runnable
 		{
 			enemyCount = 10;
 			roundNumber++;
-			c.createEnemy(enemyCount);
+			c.createEnemy(enemyCount + roundNumber);
 		}
 
 	}
@@ -316,7 +320,6 @@ public class Game extends Canvas implements Runnable
 		JFrame frame = new JFrame(game.TITLE);
 		frame.add(game);
 		frame.pack();
-//		frame.setIconImage(icon);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
