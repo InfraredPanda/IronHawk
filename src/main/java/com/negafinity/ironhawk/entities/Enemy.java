@@ -16,7 +16,6 @@ public class Enemy extends GameObject implements EntityB
 {
 	private double x;
 	private double y;
-	private Textures tex;
 	private Game game;
 	private Controller c;
 	private int speed;
@@ -27,7 +26,6 @@ public class Enemy extends GameObject implements EntityB
 		super(x, y);
 		this.x = x;
 		this.y = y;
-		this.tex = tex;
 		this.game = game;
 		this.c = c;
 

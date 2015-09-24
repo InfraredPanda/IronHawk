@@ -9,6 +9,7 @@ import com.negafinity.ironhawk.input.MouseInput;
 import com.negafinity.ironhawk.states.GameOver;
 import com.negafinity.ironhawk.states.Help;
 import com.negafinity.ironhawk.states.Menu;
+import com.negafinity.ironhawk.states.Start;
 import com.negafinity.ironhawk.utils.BufferedImageLoader;
 
 import java.awt.Canvas;
@@ -27,11 +28,14 @@ import java.util.LinkedList;
 import javax.swing.JFrame;
 
 /**
- * @author InfraredPanda A 2D Game, fight the enemies!
+ * A 2D Game, fight the enemies!
+ * @author InfraredPanda
+ * @author HassanS6000
  */
 
 public class Game extends Canvas implements Runnable
 {
+	private static final long serialVersionUID = 1L;
 	public static final int WIDTH = 320;
 	public static final int HEIGHT = WIDTH / 12 * 9;
 	public static final int SCALE = 2;
@@ -43,6 +47,8 @@ public class Game extends Canvas implements Runnable
 	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private BufferedImage spriteSheet = null;
 	private BufferedImage background = null;
+
+	public Image negafinity = null;
 
 	private static BufferedImage icon16 = null;
 	private static BufferedImage icon32 = null;
@@ -57,6 +63,7 @@ public class Game extends Canvas implements Runnable
 	private Controller c;
 	private Textures tex;
 	private Menu menu;
+	private Start start;
 	private Help help;
 	private GameOver gameover;
 
@@ -67,10 +74,10 @@ public class Game extends Canvas implements Runnable
 
 	public static enum STATE
 	{
-		MENU, GAME, HELP, GAMEOVER
+		MENU, GAME, HELP, GAMEOVER, START
 	};
 
-	public static STATE State = STATE.MENU;
+	public static STATE State = STATE.START;
 	public static STATE State1 = STATE.HELP;
 	public static STATE State2 = STATE.GAMEOVER;
 
@@ -81,6 +88,7 @@ public class Game extends Canvas implements Runnable
 		{
 			spriteSheet = loader.loadImage("/spriteSheet.png");
 			background = loader.loadImage("/background.png");
+			negafinity = loader.loadImage("/negafinity.png");
 		}
 		catch (IOException e)
 		{
@@ -92,6 +100,7 @@ public class Game extends Canvas implements Runnable
 		c = new Controller(tex, this);
 		p = new Player(200, 200, tex, this, c);
 		menu = new Menu();
+		start = new Start();
 		gameover = new GameOver();
 		help = new Help();
 
@@ -243,6 +252,16 @@ public class Game extends Canvas implements Runnable
 		{
 			help.render(g);
 		}
+		else if (State == STATE.START)
+		{
+			if(start.hasNotBeenCalled)
+			{
+				start.hasNotBeenCalled = false;
+				start.showMenuIn10Sec();
+			}
+			
+			start.render(g, this);
+		}
 		// break
 		g.dispose();
 		bs.show();
@@ -289,7 +308,7 @@ public class Game extends Canvas implements Runnable
 			else if (key == KeyEvent.VK_SPACE && !isShooting)
 			{
 				isShooting = true;
-				c.addEntity(new Bullet(p.getX(), p.getY(), tex, this, c));
+				c.addEntity(new Bullet(p.getX(), p.getY(), tex, c));
 			}
 			else if (key == KeyEvent.VK_ESCAPE)
 			{
@@ -335,6 +354,10 @@ public class Game extends Canvas implements Runnable
 		{
 			p.setVelY(0);
 		}
+		else if (State == STATE.START)
+		{
+			State = STATE.MENU;
+		}
 		else if (key == KeyEvent.VK_SPACE)
 		{
 			isShooting = false;
@@ -345,6 +368,7 @@ public class Game extends Canvas implements Runnable
 	public static void main(String args[])
 	{
 		BufferedImageLoader loader = new BufferedImageLoader();
+
 		try
 		{
 			icon16 = loader.loadImage("/16.png");
@@ -354,13 +378,12 @@ public class Game extends Canvas implements Runnable
 		{
 			e.printStackTrace();
 		}
-		
+
 		Game game = new Game();
 
 		game.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		game.setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		game.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
-
 
 		JFrame frame = new JFrame(game.TITLE);
 		ArrayList<Image> list = new ArrayList<Image>();

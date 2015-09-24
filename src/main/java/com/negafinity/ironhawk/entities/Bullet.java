@@ -1,7 +1,6 @@
 package com.negafinity.ironhawk.entities;
 
 import com.negafinity.ironhawk.Controller;
-import com.negafinity.ironhawk.Game;
 import com.negafinity.ironhawk.GameObject;
 import com.negafinity.ironhawk.Textures;
 import com.negafinity.ironhawk.libs.Animation;
@@ -11,19 +10,15 @@ import java.awt.Rectangle;
 
 public class Bullet extends GameObject implements EntityA
 {
-	private Textures tex;
-	private Game game;
 	private Animation anim;
 	private Controller c;
 	
-	public Bullet(double x, double y, Textures tex, Game game, Controller c)
+	public Bullet(double x, double y, Textures tex, Controller c)
 	{
 		super(x, y);
 		this.c = c;
 		this.x = x;
 		this.y = y;
-		this.tex = tex;
-		this.game = game;
 
 		anim = new Animation(5, tex.bullet[0], tex.bullet[1], tex.bullet[2]);
 	}

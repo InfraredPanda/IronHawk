@@ -5,8 +5,6 @@ import com.negafinity.ironhawk.Game;
 import com.negafinity.ironhawk.GameObject;
 import com.negafinity.ironhawk.Physics;
 import com.negafinity.ironhawk.Textures;
-import com.negafinity.ironhawk.Game.STATE;
-
 import com.negafinity.ironhawk.libs.Animation;
 
 import java.awt.Graphics;
@@ -16,7 +14,6 @@ public class Player extends GameObject implements EntityA
 {
 	private double velX = 0;
 	private double velY = 0;
-	private Textures tex;
 	private Game game;
 	private Controller controller;
 	private Animation anim;
@@ -27,7 +24,6 @@ public class Player extends GameObject implements EntityA
 
 		this.x = x;
 		this.y = y;
-		this.tex = tex;
 		this.game = game;
 		this.controller = controller;
 

@@ -1,7 +1,6 @@
 package com.negafinity.ironhawk.input;
 
 import com.negafinity.ironhawk.Game;
-import com.negafinity.ironhawk.Game.STATE;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -62,6 +61,10 @@ public class MouseInput implements MouseListener
 					System.exit(1);
 				}
 			}
+		}
+		if(Game.State == Game.STATE.START)
+		{
+			Game.State = Game.STATE.MENU;
 		}
 		if (Game.State == Game.STATE.HELP)
 		{
