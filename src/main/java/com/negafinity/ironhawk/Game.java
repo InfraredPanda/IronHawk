@@ -56,11 +56,11 @@ public class Game extends Canvas implements Runnable
 	private boolean isShooting = false;
 	private boolean enemyKilled = false;
 
-	private int enemysKilled = 0;
+	private int enemiesKilled = 0;
 	private int enemyCount = 10;
 	private int roundNumber = 1;
-	private int enemyKilledX = 0;
-	private int enemyKilledY = 0;
+	private int lastEnemyKilledX = 0;
+	private int latestEnemyKilledY = 0;
 
 	private Player p;
 	private Controller c;
@@ -81,8 +81,6 @@ public class Game extends Canvas implements Runnable
 	};
 
 	public static STATE State = STATE.START;
-	public static STATE State1 = STATE.HELP;
-	public static STATE State2 = STATE.GAMEOVER;
 
 	public void init()
 	{
@@ -418,14 +416,14 @@ public class Game extends Canvas implements Runnable
 		this.enemyCount = enemyCount;
 	}
 
-	public int getEnemysKilled()
+	public int getEnemiesKilled()
 	{
-		return enemysKilled;
+		return enemiesKilled;
 	}
 
-	public void setEnemysKilled(int enemysKilled)
+	public void setEnemiesKilled(int enemiesKilled)
 	{
-		this.enemysKilled = enemysKilled;
+		this.enemiesKilled = enemiesKilled;
 	}
 
 	public int getRoundNumber()
@@ -440,21 +438,21 @@ public class Game extends Canvas implements Runnable
 
 	public int getEnemyKilledX()
 	{
-		return this.enemyKilledX;
+		return this.lastEnemyKilledX;
 	}
 
 	public void setEnemyKilledX(int enemyKilledX)
 	{
-		this.enemyKilledX = enemyKilledX;
+		this.lastEnemyKilledX = enemyKilledX;
 	}
 
-	public int getEnemyKilledY()
+	public int getLatestEnemyKilledY()
 	{
-		return this.enemyKilledY;
+		return this.latestEnemyKilledY;
 	}
 
-	public void setEnemyKilledY(int enemyKilledY)
+	public void setLatestEnemyKilledY(int enemyKilledY)
 	{
-		this.enemyKilledY = enemyKilledY;
+		this.latestEnemyKilledY = enemyKilledY;
 	}
 }
