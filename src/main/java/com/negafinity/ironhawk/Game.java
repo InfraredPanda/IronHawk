@@ -54,10 +54,13 @@ public class Game extends Canvas implements Runnable
 	private static BufferedImage icon32 = null;
 
 	private boolean isShooting = false;
+	private boolean enemyKilled = false;
 
-	private int enemyKilled = 0;
+	private int enemysKilled = 0;
 	private int enemyCount = 10;
 	private int roundNumber = 1;
+	private int enemyKilledX = 0;
+	private int enemyKilledY = 0;
 
 	private Player p;
 	private Controller c;
@@ -191,6 +194,10 @@ public class Game extends Canvas implements Runnable
 			enemyCount = 10;
 			roundNumber++;
 			c.createEnemy(enemyCount + roundNumber);
+		}
+		if (enemyKilled)
+		{
+			c.createHealthPack();
 		}
 
 	}
@@ -411,14 +418,14 @@ public class Game extends Canvas implements Runnable
 		this.enemyCount = enemyCount;
 	}
 
-	public int getEnemyKilled()
+	public int getEnemysKilled()
 	{
-		return enemyKilled;
+		return enemysKilled;
 	}
 
-	public void setEnemyKilled(int enemyKilled)
+	public void setEnemysKilled(int enemysKilled)
 	{
-		this.enemyKilled = enemyKilled;
+		this.enemysKilled = enemysKilled;
 	}
 
 	public int getRoundNumber()
@@ -429,5 +436,25 @@ public class Game extends Canvas implements Runnable
 	public void setRound(int roundNumber)
 	{
 		this.roundNumber = roundNumber;
+	}
+
+	public int getEnemyKilledX()
+	{
+		return this.enemyKilledX;
+	}
+
+	public void setEnemyKilledX(int enemyKilledX)
+	{
+		this.enemyKilledX = enemyKilledX;
+	}
+
+	public int getEnemyKilledY()
+	{
+		return this.enemyKilledY;
+	}
+
+	public void setEnemyKilledY(int enemyKilledY)
+	{
+		this.enemyKilledY = enemyKilledY;
 	}
 }
