@@ -34,8 +34,8 @@ public class Textures
 		enemy[2] = ss.grabImage(3, 1, 32, 32);
 		
 		
-		healthPack[0] = ss.grabImage(4, 1, 32, 32);
-		healthPack[1] = ss.grabImage(4, 2, 32, 32);
+		healthPack[0] = ss.grabImage(5, 1, 32, 32);
+		healthPack[1] = ss.grabImage(5, 2, 32, 32);
 	}
 
 }
