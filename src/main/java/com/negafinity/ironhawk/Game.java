@@ -1,8 +1,7 @@
 package com.negafinity.ironhawk;
 
 import com.negafinity.ironhawk.entities.Bullet;
-import com.negafinity.ironhawk.entities.EntityA;
-import com.negafinity.ironhawk.entities.EntityB;
+import com.negafinity.ironhawk.entities.Entity;
 import com.negafinity.ironhawk.entities.Player;
 import com.negafinity.ironhawk.input.KeyInput;
 import com.negafinity.ironhawk.input.MouseInput;
@@ -54,17 +53,13 @@ public class Game extends Canvas implements Runnable
 	private static BufferedImage icon32 = null;
 
 	private boolean isShooting = false;
-	private boolean enemyKilled = false;
 
 	private int enemiesKilled = 0;
 	private int enemyCount = 10;
 	private int roundNumber = 1;
-	
-	private double latestEnemyKilledX = 0;
-	private double latestEnemyKilledY = 0;
 
 	public Player player;
-	
+
 	private Controller c;
 	private Textures tex;
 	private Menu menu;
@@ -72,8 +67,7 @@ public class Game extends Canvas implements Runnable
 	private Help help;
 	private GameOver gameover;
 
-	public LinkedList<EntityA> ea;
-	public LinkedList<EntityB> eb;
+	public LinkedList<Entity> entities;
 
 	public static int HEALTH = 100 * 2;
 
@@ -99,16 +93,14 @@ public class Game extends Canvas implements Runnable
 		}
 
 		tex = new Textures(this);
-
 		c = new Controller(tex, this);
-		player = new Player(200, 200, tex, this, c);
 		menu = new Menu();
 		start = new Start();
 		gameover = new GameOver();
 		help = new Help();
-
-		ea = c.getEntityA();
-		eb = c.getEntityB();
+		player = new Player(200, 200, tex, c, this);
+		
+		entities = c.getEntities();
 
 		this.addKeyListener(new KeyInput(this));
 		this.addMouseListener(new MouseInput());
@@ -207,8 +199,8 @@ public class Game extends Canvas implements Runnable
 			createBufferStrategy(3);
 			return;
 		}
+
 		Graphics g = bs.getDrawGraphics();
-		// break
 
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
 
@@ -256,12 +248,12 @@ public class Game extends Canvas implements Runnable
 		}
 		else if (State == STATE.START)
 		{
-			if(start.hasNotBeenCalled)
+			if (start.hasNotBeenCalled)
 			{
 				start.hasNotBeenCalled = false;
 				start.showMenuIn10Sec();
 			}
-			
+
 			start.render(g, this);
 		}
 		// break
@@ -431,25 +423,5 @@ public class Game extends Canvas implements Runnable
 	public void setRound(int roundNumber)
 	{
 		this.roundNumber = roundNumber;
-	}
-
-	public double getLatestEnemyKilledX()
-	{
-		return this.latestEnemyKilledX;
-	}
-
-	public void setLatestEnemyKilledX(double latestEnemyKilledX)
-	{
-		this.latestEnemyKilledX = latestEnemyKilledX;
-	}
-
-	public double getLatestEnemyKilledY()
-	{
-		return this.latestEnemyKilledY;
-	}
-
-	public void setLatestEnemyKilledY(double latestEnemyKilledY)
-	{
-		this.latestEnemyKilledY = latestEnemyKilledY;
 	}
 }

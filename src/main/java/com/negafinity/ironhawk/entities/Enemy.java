@@ -2,43 +2,32 @@ package com.negafinity.ironhawk.entities;
 
 import com.negafinity.ironhawk.Controller;
 import com.negafinity.ironhawk.Game;
-import com.negafinity.ironhawk.GameObject;
 import com.negafinity.ironhawk.Physics;
 import com.negafinity.ironhawk.Textures;
-
 import com.negafinity.ironhawk.libs.Animation;
 
-import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.util.Random;
 
-public class Enemy extends GameObject implements EntityB
+public class Enemy extends Entity
 {
-	private double x;
-	private double y;
-	private Game game;
-	private Controller c;
 	private int speed;
-	private Animation anim;
-	private Textures tex;
 
 	public Enemy(double x, double y, Textures tex, Controller c, Game game)
 	{
-		super(x, y);
-		this.x = x;
-		this.y = y;
-		this.game = game;
-		this.tex = tex;
-		this.c = c;
+		super(x, y, tex, c, game);
 
 		Random r = new Random();
 		this.speed = r.nextInt(5) + 1;
-
+		
+		this.name = "Enemy";
 		anim = new Animation(5, tex.enemy[0], tex.enemy[1], tex.enemy[2]);
 	}
 
+	@Override
 	public void tick()
 	{
+		super.tick();
+		
 		Random r = new Random();
 		y += speed;
 
@@ -52,33 +41,8 @@ public class Enemy extends GameObject implements EntityB
 		if (Physics.collision(this, game.player))
 		{
 			c.removeEntity(this);
-			game.setLatestEnemyKilledX(x);
-			game.setLatestEnemyKilledY(y);
 			c.randomlySpawnHealthPack(x, y);
 			game.setEnemiesKilled(game.getEnemiesKilled() + 1);
 		}
-
-		anim.runAnimation();
 	}
-
-	public void render(Graphics g)
-	{
-		anim.drawAnimation(g, x, y, 0);
-	}
-
-	public Rectangle getBounds()
-	{
-		return new Rectangle((int) x, (int) y, 32, 32);
-	}
-
-	public double getX()
-	{
-		return x;
-	}
-
-	public double getY()
-	{
-		return y;
-	}
-
 }

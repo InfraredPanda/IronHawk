@@ -1,9 +1,7 @@
 package com.negafinity.ironhawk;
 
 import com.negafinity.ironhawk.entities.Enemy;
-
-import com.negafinity.ironhawk.entities.EntityA;
-import com.negafinity.ironhawk.entities.EntityB;
+import com.negafinity.ironhawk.entities.Entity;
 import com.negafinity.ironhawk.entities.HealthPack;
 
 import java.awt.Graphics;
@@ -12,8 +10,7 @@ import java.util.Random;
 
 public class Controller
 {
-	private LinkedList<EntityA> ea = new LinkedList<EntityA>();
-	private LinkedList<EntityB> eb = new LinkedList<EntityB>();
+	private LinkedList<Entity> entities = new LinkedList<Entity>();
 	private Textures tex;
 	private Game game;
 
@@ -35,9 +32,9 @@ public class Controller
 	public void randomlySpawnHealthPack(double x, double y)
 	{
 		Random r = new Random();
-		int spawnChance = r.nextInt(10);
+		int spawnChance = r.nextInt(9);
 
-		if (spawnChance <= 10)
+		if (spawnChance == 0)
 		{
 			addEntity(new HealthPack(x, y, tex, this, game));
 		}
@@ -45,70 +42,48 @@ public class Controller
 	
 	public void tick()
 	{
-		game.setEnemyCount(eb.size());
-
-		// A CLASS
-		for (int i = 0; i < ea.size(); i++)
+		int enemies = 0;
+		
+		for(Entity entity : entities)
 		{
-			EntityA entityA = ea.get(i);
-			entityA.tick();
+			if(entity instanceof Enemy)
+			{
+				enemies++;
+			}
 		}
-		// B CLASS
-		for (int i = 0; i < eb.size(); i++)
+		
+		game.setEnemyCount(enemies);
+
+		for (int i = 0; i < entities.size(); i++)
 		{
-			EntityB entityB = eb.get(i);
-			entityB.tick();
+			Entity entity = entities.get(i);
+			entity.tick();
 		}
 
 	}
 
 	public void render(Graphics g)
 	{
-		// A CLASS
-		for (int i = 0; i < ea.size(); i++)
+		for (int i = 0; i < entities.size(); i++)
 		{
-			EntityA entityA = ea.get(i);
-			entityA.render(g);
-
-		}
-		// B CLASS
-		for (int i = 0; i < eb.size(); i++)
-		{
-			EntityB entityB = eb.get(i);
-			entityB.render(g);
-
+			Entity entity = entities.get(i);
+			entity.render(g);
 		}
 
 	}
 
-	public void addEntity(EntityA block)
+	public void addEntity(Entity entity)
 	{
-		ea.add(block);
+		entities.add(entity);
 	}
 
-	public void removeEntity(EntityA block)
+	public void removeEntity(Entity entity)
 	{
-		ea.remove(block);
+		entities.remove(entity);
 	}
 
-	public void addEntity(EntityB block)
+	public LinkedList<Entity> getEntities()
 	{
-		eb.add(block);
+		return entities;
 	}
-
-	public void removeEntity(EntityB block)
-	{
-		eb.remove(block);
-	}
-
-	public LinkedList<EntityA> getEntityA()
-	{
-		return ea;
-	}
-
-	public LinkedList<EntityB> getEntityB()
-	{
-		return eb;
-	}
-
 }
