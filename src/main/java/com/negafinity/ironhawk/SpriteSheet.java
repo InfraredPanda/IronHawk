@@ -21,7 +21,7 @@ public class SpriteSheet
 		}
 		else
 		{
-			System.out.println("F16 NOT FOUND!");
+			System.out.println("IMAGE NOT FOUND!");
 		}
 		return null;
 
