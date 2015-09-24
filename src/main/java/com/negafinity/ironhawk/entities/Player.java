@@ -47,7 +47,7 @@ public class Player extends GameObject implements EntityA
 		{
 			EntityB tempEnt = game.eb.get(i);
 
-			if (Physics.Collision(this, tempEnt))
+			if (Physics.collision(this, tempEnt))
 			{
 				controller.removeEntity(tempEnt);
 				Game.HEALTH -= 40;

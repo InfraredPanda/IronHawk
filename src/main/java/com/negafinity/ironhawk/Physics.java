@@ -5,7 +5,7 @@ import com.negafinity.ironhawk.entities.EntityB;
 
 public class Physics
 {
-	public static boolean Collision(EntityA enta, EntityB entb)
+	public static boolean collision(EntityA enta, EntityB entb)
 	{
 
 		if (enta.getBounds().intersects(entb.getBounds()))
@@ -16,7 +16,7 @@ public class Physics
 		return false;
 	}
 	
-	public static boolean Collision(EntityA enta1, EntityA enta2)
+	public static boolean collision(EntityA enta1, EntityA enta2)
 	{
 
 		if (enta1.getBounds().intersects(enta2.getBounds()))
@@ -27,7 +27,7 @@ public class Physics
 		return false;
 	}
 	
-	public static boolean Collision(EntityB entb1, EntityB entb2)
+	public static boolean collision(EntityB entb1, EntityB entb2)
 	{
 
 		if (entb1.getBounds().intersects(entb2.getBounds()))
@@ -38,7 +38,7 @@ public class Physics
 		return false;
 	}
 
-	public static boolean Collision(EntityB entb, EntityA enta)
+	public static boolean collision(EntityB entb, EntityA enta)
 	{
 		if (entb.getBounds().intersects(enta.getBounds()))
 		{

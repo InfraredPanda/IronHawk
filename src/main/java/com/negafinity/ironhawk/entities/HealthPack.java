@@ -1,14 +1,14 @@
 package com.negafinity.ironhawk.entities;
 
-import java.awt.Graphics;
-import java.awt.Rectangle;
-
 import com.negafinity.ironhawk.Controller;
 import com.negafinity.ironhawk.Game;
 import com.negafinity.ironhawk.GameObject;
 import com.negafinity.ironhawk.Physics;
 import com.negafinity.ironhawk.Textures;
 import com.negafinity.ironhawk.libs.Animation;
+
+import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public class HealthPack extends GameObject implements EntityA
 {
@@ -31,17 +31,15 @@ public class HealthPack extends GameObject implements EntityA
 
 	public void tick()
 	{
-		for (int i = 0; i < game.ea.size(); i++)
-		{
-			EntityA tempEnt = game.ea.get(i);
+		System.out.println(this.x + "," + this.y);
 
-			if (Physics.Collision(this, tempEnt))
-			{
-				c.removeEntity(this);
-				Game.HEALTH = 200;
-			}
-			anim.runAnimation();
+		if (Physics.collision(this, game.player))
+		{
+			c.removeEntity(this);
+			Game.HEALTH = 200;
 		}
+
+		anim.runAnimation();
 	}
 
 	public void render(Graphics g)
@@ -51,7 +49,7 @@ public class HealthPack extends GameObject implements EntityA
 
 	public Rectangle getBounds()
 	{
-		return new Rectangle(game.getLatestEnemyKilledX(),game.getLatestEnemyKilledY(), 32, 32);
+		return new Rectangle((int) x, (int) y, 32, 32);
 	}
 
 	public double getX()

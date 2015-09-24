@@ -21,7 +21,7 @@ public class Enemy extends GameObject implements EntityB
 	private int speed;
 	private Animation anim;
 	private Textures tex;
-	
+
 	public Enemy(double x, double y, Textures tex, Controller c, Game game)
 	{
 		super(x, y);
@@ -47,41 +47,18 @@ public class Enemy extends GameObject implements EntityB
 			speed = r.nextInt(3) + 1;
 			x = r.nextInt(640);
 			y = -10;
-			
 		}
 
-		for (int i = 0; i < game.ea.size(); i++)
+		if (Physics.collision(this, game.player))
 		{
-			EntityA tempEnt = game.ea.get(i);
-
-			if (Physics.Collision(this, tempEnt))
-			{
-				c.removeEntity(this);
-				c.removeEntity(tempEnt);
-				x = game.getLatestEnemyKilledX();
-				y = game.getLatestEnemyKilledY();
-				createHealthPack();
-				game.setEnemiesKilled(game.getEnemiesKilled() + 1);
-			}
+			c.removeEntity(this);
+			game.setLatestEnemyKilledX(x);
+			game.setLatestEnemyKilledY(y);
+			c.randomlySpawnHealthPack(x, y);
+			game.setEnemiesKilled(game.getEnemiesKilled() + 1);
 		}
 
 		anim.runAnimation();
-	}
-	
-	public void createHealthPack()
-	{
-		if (game.getEnemiesKilled() != 0)
-		{
-			Random r = new Random();
-			int spawnChance = r.nextInt(10);
-			int spawnLocationX = game.getLatestEnemyKilledX();
-			int spawnLocationY = game.getLatestEnemyKilledY();
-			if (spawnChance <= 10)
-			{
-				c.addEntity(new HealthPack(spawnLocationX, spawnLocationY, tex, c, game));
-			}
-
-		}
 	}
 
 	public void render(Graphics g)

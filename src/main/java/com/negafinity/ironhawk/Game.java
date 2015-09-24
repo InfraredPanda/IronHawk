@@ -59,10 +59,12 @@ public class Game extends Canvas implements Runnable
 	private int enemiesKilled = 0;
 	private int enemyCount = 10;
 	private int roundNumber = 1;
-	private int latestEnemyKilledX = 0;
-	private int latestEnemyKilledY = 0;
+	
+	private double latestEnemyKilledX = 0;
+	private double latestEnemyKilledY = 0;
 
-	private Player p;
+	public Player player;
+	
 	private Controller c;
 	private Textures tex;
 	private Menu menu;
@@ -99,7 +101,7 @@ public class Game extends Canvas implements Runnable
 		tex = new Textures(this);
 
 		c = new Controller(tex, this);
-		p = new Player(200, 200, tex, this, c);
+		player = new Player(200, 200, tex, this, c);
 		menu = new Menu();
 		start = new Start();
 		gameover = new GameOver();
@@ -184,7 +186,7 @@ public class Game extends Canvas implements Runnable
 	{
 		if (State == STATE.GAME)
 		{
-			p.tick();
+			player.tick();
 			c.tick();
 		}
 		if (enemyCount == 0)
@@ -214,7 +216,7 @@ public class Game extends Canvas implements Runnable
 
 		if (State == STATE.GAME)
 		{
-			p.render(g);
+			player.render(g);
 			c.render(g);
 
 			Font fnt0 = new Font("arial", Font.BOLD, 20);
@@ -275,40 +277,40 @@ public class Game extends Canvas implements Runnable
 		{
 			if (key == KeyEvent.VK_RIGHT)
 			{
-				p.setVelX(5);
+				player.setVelX(5);
 			}
 			else if (key == KeyEvent.VK_LEFT)
 			{
-				p.setVelX(-5);
+				player.setVelX(-5);
 			}
 			else if (key == KeyEvent.VK_DOWN)
 			{
-				p.setVelY(5);
+				player.setVelY(5);
 			}
 			else if (key == KeyEvent.VK_UP)
 			{
-				p.setVelY(-5);
+				player.setVelY(-5);
 			}
 			else if (key == KeyEvent.VK_D)
 			{
-				p.setVelX(5);
+				player.setVelX(5);
 			}
 			else if (key == KeyEvent.VK_A)
 			{
-				p.setVelX(-5);
+				player.setVelX(-5);
 			}
 			else if (key == KeyEvent.VK_S)
 			{
-				p.setVelY(5);
+				player.setVelY(5);
 			}
 			else if (key == KeyEvent.VK_W)
 			{
-				p.setVelY(-5);
+				player.setVelY(-5);
 			}
 			else if (key == KeyEvent.VK_SPACE && !isShooting)
 			{
 				isShooting = true;
-				c.addEntity(new Bullet(p.getX(), p.getY(), tex, c));
+				c.addEntity(new Bullet(player.getX(), player.getY(), tex, c, this));
 			}
 			else if (key == KeyEvent.VK_ESCAPE)
 			{
@@ -324,35 +326,35 @@ public class Game extends Canvas implements Runnable
 
 		if (key == KeyEvent.VK_RIGHT)
 		{
-			p.setVelX(0);
+			player.setVelX(0);
 		}
 		else if (key == KeyEvent.VK_LEFT)
 		{
-			p.setVelX(0);
+			player.setVelX(0);
 		}
 		else if (key == KeyEvent.VK_DOWN)
 		{
-			p.setVelY(0);
+			player.setVelY(0);
 		}
 		else if (key == KeyEvent.VK_UP)
 		{
-			p.setVelY(0);
+			player.setVelY(0);
 		}
 		if (key == KeyEvent.VK_D)
 		{
-			p.setVelX(0);
+			player.setVelX(0);
 		}
 		else if (key == KeyEvent.VK_A)
 		{
-			p.setVelX(0);
+			player.setVelX(0);
 		}
 		else if (key == KeyEvent.VK_S)
 		{
-			p.setVelY(0);
+			player.setVelY(0);
 		}
 		else if (key == KeyEvent.VK_W)
 		{
-			p.setVelY(0);
+			player.setVelY(0);
 		}
 		else if (key == KeyEvent.VK_SPACE)
 		{
@@ -431,22 +433,22 @@ public class Game extends Canvas implements Runnable
 		this.roundNumber = roundNumber;
 	}
 
-	public int getLatestEnemyKilledX()
+	public double getLatestEnemyKilledX()
 	{
 		return this.latestEnemyKilledX;
 	}
 
-	public void setEnemyKilledX(int latestEnemyKilledX)
+	public void setLatestEnemyKilledX(double latestEnemyKilledX)
 	{
 		this.latestEnemyKilledX = latestEnemyKilledX;
 	}
 
-	public int getLatestEnemyKilledY()
+	public double getLatestEnemyKilledY()
 	{
 		return this.latestEnemyKilledY;
 	}
 
-	public void setLatestEnemyKilledY(int latestEnemyKilledY)
+	public void setLatestEnemyKilledY(double latestEnemyKilledY)
 	{
 		this.latestEnemyKilledY = latestEnemyKilledY;
 	}

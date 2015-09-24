@@ -31,7 +31,18 @@ public class Controller
 			addEntity(new Enemy(r.nextInt(640), -10, tex, this, game));
 		}
 	}
+	
+	public void randomlySpawnHealthPack(double x, double y)
+	{
+		Random r = new Random();
+		int spawnChance = r.nextInt(10);
 
+		if (spawnChance <= 10)
+		{
+			addEntity(new HealthPack(x, y, tex, this, game));
+		}
+	}
+	
 	public void tick()
 	{
 		game.setEnemyCount(eb.size());
