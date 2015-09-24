@@ -57,8 +57,8 @@ public class Enemy extends GameObject implements EntityB
 				c.removeEntity(this);
 				c.removeEntity(tempEnt);
 				x = game.getEnemyKilledX();
-				y = game.getEnemyKilledY();
-				game.setEnemysKilled(game.getEnemysKilled() + 1);
+				y = game.getLatestEnemyKilledY();
+				game.setEnemiesKilled(game.getEnemiesKilled() + 1);
 			}
 		}
 

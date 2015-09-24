@@ -25,7 +25,7 @@ public class Controller
 
 	public void createHealthPack()
 	{
-		if (game.getEnemysKilled() != 0)
+		if (game.getEnemiesKilled() != 0)
 		{
 			Random r = new Random();
 			Random r2 = new Random();
