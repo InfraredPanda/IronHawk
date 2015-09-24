@@ -31,6 +31,11 @@ public class IronHawk
 
 	public void render(Graphics g, Game game)
 	{
+		if(this.hasNotBeenCalled)
+		{
+			showMenuIn10Sec();
+		}
+		
 		g.drawImage(game.ironhawkscreen, 0, 0, game);
 	}
 

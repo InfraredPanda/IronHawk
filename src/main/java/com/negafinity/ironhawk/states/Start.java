@@ -14,7 +14,7 @@ public class Start
 
 	private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
 
-	public void showMenuIn10Sec()
+	public void showIronHawkIn10Sec()
 	{
 		Runnable task = new Runnable()
 		{
@@ -22,7 +22,7 @@ public class Start
 			{
 				if(Game.State == STATE.START)
 				{
-					Game.State = Game.STATE.IRONHAWK;	
+					Game.State = Game.STATE.IRONHAWK;
 				}
 			}
 		};

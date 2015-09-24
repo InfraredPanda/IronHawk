@@ -256,7 +256,7 @@ public class Game extends Canvas implements Runnable
 			if (start.hasNotBeenCalled)
 			{
 				start.hasNotBeenCalled = false;
-				start.showMenuIn10Sec();
+				start.showIronHawkIn10Sec();
 			}
 			ironhawk.render(g, this);
 		}
@@ -265,7 +265,7 @@ public class Game extends Canvas implements Runnable
 			if (start.hasNotBeenCalled)
 			{
 				start.hasNotBeenCalled = false;
-				start.showMenuIn10Sec();
+				start.showIronHawkIn10Sec();
 			}
 
 			start.render(g, this);
