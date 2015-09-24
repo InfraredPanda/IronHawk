@@ -24,12 +24,12 @@ public class HealthPack extends GameObject implements EntityA
 		this.tex = tex;
 		this.game = game;
 		
-		anim = new Animation(5, tex.healthPack[0], tex.healthPack[1], tex.healthPack[2]);
+		anim = new Animation(5, tex.healthPack[0], tex.healthPack[1]);
 	}
 
 	public void tick()
 	{
-		
+		anim.runAnimation();
 	}
 
 	public void render(Graphics g)
