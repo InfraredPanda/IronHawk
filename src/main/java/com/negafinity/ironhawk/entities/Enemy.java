@@ -20,13 +20,15 @@ public class Enemy extends GameObject implements EntityB
 	private Controller c;
 	private int speed;
 	private Animation anim;
-
+	private Textures tex;
+	
 	public Enemy(double x, double y, Textures tex, Controller c, Game game)
 	{
 		super(x, y);
 		this.x = x;
 		this.y = y;
 		this.game = game;
+		this.tex = tex;
 		this.c = c;
 
 		Random r = new Random();
@@ -56,13 +58,31 @@ public class Enemy extends GameObject implements EntityB
 			{
 				c.removeEntity(this);
 				c.removeEntity(tempEnt);
-				x = game.getEnemyKilledX();
+				x = game.getLatestEnemyKilledX();
 				y = game.getLatestEnemyKilledY();
+				createHealthPack();
 				game.setEnemiesKilled(game.getEnemiesKilled() + 1);
 			}
 		}
 
 		anim.runAnimation();
+	}
+	
+	public void createHealthPack()
+	{
+		if (game.getEnemiesKilled() != 0)
+		{
+			Random r = new Random();
+			int spawnChance = r.nextInt(10);
+			int spawnLocationX = game.getLatestEnemyKilledX();
+			int spawnLocationY = game.getLatestEnemyKilledY();
+			if (spawnChance <= 10)
+			{
+				System.out.println("hi");
+				c.addEntity(new HealthPack(spawnLocationX, spawnLocationY, tex, c, game));
+			}
+
+		}
 	}
 
 	public void render(Graphics g)

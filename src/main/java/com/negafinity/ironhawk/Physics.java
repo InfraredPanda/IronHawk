@@ -15,6 +15,28 @@ public class Physics
 
 		return false;
 	}
+	
+	public static boolean Collision(EntityA enta1, EntityA enta2)
+	{
+
+		if (enta1.getBounds().intersects(enta2.getBounds()))
+		{
+			return true;
+		}
+
+		return false;
+	}
+	
+	public static boolean Collision(EntityB entb1, EntityB entb2)
+	{
+
+		if (entb1.getBounds().intersects(entb2.getBounds()))
+		{
+			return true;
+		}
+
+		return false;
+	}
 
 	public static boolean Collision(EntityB entb, EntityA enta)
 	{

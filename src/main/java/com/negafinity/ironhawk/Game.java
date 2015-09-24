@@ -59,7 +59,7 @@ public class Game extends Canvas implements Runnable
 	private int enemiesKilled = 0;
 	private int enemyCount = 10;
 	private int roundNumber = 1;
-	private int lastEnemyKilledX = 0;
+	private int latestEnemyKilledX = 0;
 	private int latestEnemyKilledY = 0;
 
 	private Player p;
@@ -193,11 +193,6 @@ public class Game extends Canvas implements Runnable
 			roundNumber++;
 			c.createEnemy(enemyCount + roundNumber);
 		}
-		if (enemyKilled)
-		{
-			c.createHealthPack();
-		}
-
 	}
 
 	private void render()
@@ -436,14 +431,14 @@ public class Game extends Canvas implements Runnable
 		this.roundNumber = roundNumber;
 	}
 
-	public int getEnemyKilledX()
+	public int getLatestEnemyKilledX()
 	{
-		return this.lastEnemyKilledX;
+		return this.latestEnemyKilledX;
 	}
 
-	public void setEnemyKilledX(int enemyKilledX)
+	public void setEnemyKilledX(int latestEnemyKilledX)
 	{
-		this.lastEnemyKilledX = enemyKilledX;
+		this.latestEnemyKilledX = latestEnemyKilledX;
 	}
 
 	public int getLatestEnemyKilledY()
@@ -451,8 +446,8 @@ public class Game extends Canvas implements Runnable
 		return this.latestEnemyKilledY;
 	}
 
-	public void setLatestEnemyKilledY(int enemyKilledY)
+	public void setLatestEnemyKilledY(int latestEnemyKilledY)
 	{
-		this.latestEnemyKilledY = enemyKilledY;
+		this.latestEnemyKilledY = latestEnemyKilledY;
 	}
 }

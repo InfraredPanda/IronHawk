@@ -23,22 +23,6 @@ public class Controller
 		this.game = game;
 	}
 
-	public void createHealthPack()
-	{
-		if (game.getEnemiesKilled() != 0)
-		{
-			Random r = new Random();
-			Random r2 = new Random();
-			int spawnChance = r.nextInt(10);
-			int spawnLocation = r2.nextInt(640);
-			if (spawnChance == 5)
-			{
-				addEntity(new HealthPack(spawnLocation, -10, tex, this, game));
-			}
-
-		}
-	}
-
 	public void createEnemy(int enemyCount)
 	{
 		for (int i = 0; i < enemyCount; i++)

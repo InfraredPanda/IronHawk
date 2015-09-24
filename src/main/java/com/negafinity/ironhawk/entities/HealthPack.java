@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import com.negafinity.ironhawk.Controller;
 import com.negafinity.ironhawk.Game;
 import com.negafinity.ironhawk.GameObject;
+import com.negafinity.ironhawk.Physics;
 import com.negafinity.ironhawk.Textures;
 import com.negafinity.ironhawk.libs.Animation;
 
@@ -15,6 +16,7 @@ public class HealthPack extends GameObject implements EntityA
 	private Game game;
 	private Animation anim;
 	private Controller c;
+
 	public HealthPack(double x, double y, Textures tex, Controller c, Game game)
 	{
 		super(x, y);
@@ -23,22 +25,34 @@ public class HealthPack extends GameObject implements EntityA
 		this.y = y;
 		this.tex = tex;
 		this.game = game;
-		
+
 		anim = new Animation(5, tex.healthPack[0], tex.healthPack[1]);
 	}
 
 	public void tick()
 	{
-		anim.runAnimation();
+		System.out.println("aodaosd");
+		for (int i = 0; i < game.ea.size(); i++)
+		{
+			EntityA tempEnt = game.ea.get(i);
+
+			if (Physics.Collision(this, tempEnt))
+			{
+				c.removeEntity(this);a	`
+				Game.HEALTH = 200;
+			}
+			anim.runAnimation();
+		}
 	}
 
 	public void render(Graphics g)
 	{
+		anim.drawAnimation(g, x, y, 0);
 	}
 
 	public Rectangle getBounds()
 	{
-		return new Rectangle((int) x, (int) y, 32, 32);
+		return new Rectangle(game.getLatestEnemyKilledX(),game.getLatestEnemyKilledY(), 32, 32);
 	}
 
 	public double getX()
