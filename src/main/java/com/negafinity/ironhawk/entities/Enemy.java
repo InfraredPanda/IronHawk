@@ -54,7 +54,7 @@ public class Enemy extends GameObject implements EntityB
 			c.removeEntity(this);
 			game.setLatestEnemyKilledX(x);
 			game.setLatestEnemyKilledY(y);
-			c.randomlySpawnHealthPack(x, y);
+			c.spawnHealthPack(x, y);
 			game.setEnemiesKilled(game.getEnemiesKilled() + 1);
 		}
 

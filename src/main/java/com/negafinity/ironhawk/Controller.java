@@ -32,7 +32,7 @@ public class Controller
 		}
 	}
 	
-	public void randomlySpawnHealthPack(double x, double y)
+	public void spawnHealthPack(double x, double y)
 	{
 		Random r = new Random();
 		int spawnChance = r.nextInt(10);

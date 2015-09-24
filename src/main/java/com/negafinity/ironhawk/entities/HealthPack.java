@@ -31,8 +31,6 @@ public class HealthPack extends GameObject implements EntityA
 
 	public void tick()
 	{
-		System.out.println(this.x + "," + this.y);
-
 		if (Physics.collision(this, game.player))
 		{
 			c.removeEntity(this);

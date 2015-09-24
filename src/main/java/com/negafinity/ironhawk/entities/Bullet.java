@@ -44,7 +44,7 @@ public class Bullet extends GameObject implements EntityA
 				c.removeEntity(entityB);
 				game.setLatestEnemyKilledX(x);
 				game.setLatestEnemyKilledY(y);
-				c.randomlySpawnHealthPack(x, y);
+				c.spawnHealthPack(x, y);
 				game.setEnemiesKilled(game.getEnemiesKilled() + 1);
 			}
 		}
