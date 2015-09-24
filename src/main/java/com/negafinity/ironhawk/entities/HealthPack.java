@@ -31,7 +31,6 @@ public class HealthPack extends GameObject implements EntityA
 
 	public void tick()
 	{
-		System.out.println("aodaosd");
 		for (int i = 0; i < game.ea.size(); i++)
 		{
 			EntityA tempEnt = game.ea.get(i);
