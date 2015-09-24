@@ -354,10 +354,6 @@ public class Game extends Canvas implements Runnable
 		{
 			p.setVelY(0);
 		}
-		else if (State == STATE.START)
-		{
-			State = STATE.MENU;
-		}
 		else if (key == KeyEvent.VK_SPACE)
 		{
 			isShooting = false;
