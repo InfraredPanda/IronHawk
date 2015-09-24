@@ -47,7 +47,7 @@ public class Enemy extends GameObject implements EntityB
 			speed = r.nextInt(3) + 1;
 			x = r.nextInt(640);
 			y = -10;
-
+			
 		}
 
 		for (int i = 0; i < game.ea.size(); i++)
@@ -58,7 +58,9 @@ public class Enemy extends GameObject implements EntityB
 			{
 				c.removeEntity(this);
 				c.removeEntity(tempEnt);
-				game.setEnemyKilled(game.getEnemyKilled() + 1);
+				x = game.getEnemyKilledX();
+				y = game.getEnemyKilledY();
+				game.setEnemysKilled(game.getEnemysKilled() + 1);
 			}
 		}
 

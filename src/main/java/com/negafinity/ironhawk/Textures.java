@@ -7,7 +7,9 @@ public class Textures
 	public BufferedImage[] player = new BufferedImage[3];
 	public BufferedImage[] bullet = new BufferedImage[3];
 	public BufferedImage[] enemy = new BufferedImage[3];
-
+	public BufferedImage[] healthPack = new BufferedImage[3];
+	
+	
 	private SpriteSheet ss;
 
 	public Textures(Game game)
@@ -30,6 +32,10 @@ public class Textures
 		enemy[0] = ss.grabImage(3, 1, 32, 32);
 		enemy[1] = ss.grabImage(3, 1, 32, 32);
 		enemy[2] = ss.grabImage(3, 1, 32, 32);
+		
+		
+		healthPack[0] = ss.grabImage(4, 1, 32, 32);
+		healthPack[1] = ss.grabImage(4, 2, 32, 32);
 	}
 
 }
