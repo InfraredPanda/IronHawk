@@ -78,7 +78,6 @@ public class Enemy extends GameObject implements EntityB
 			int spawnLocationY = game.getLatestEnemyKilledY();
 			if (spawnChance <= 10)
 			{
-				System.out.println("hi");
 				c.addEntity(new HealthPack(spawnLocationX, spawnLocationY, tex, c, game));
 			}
 

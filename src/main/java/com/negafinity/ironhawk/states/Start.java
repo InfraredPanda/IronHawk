@@ -1,6 +1,7 @@
 package com.negafinity.ironhawk.states;
 
 import com.negafinity.ironhawk.Game;
+import com.negafinity.ironhawk.Game.STATE;
 
 import java.awt.Graphics;
 import java.util.concurrent.Executors;
@@ -19,7 +20,10 @@ public class Start
 		{
 			public void run()
 			{
-				Game.State = Game.STATE.MENU;
+				if(Game.State == STATE.START)
+				{
+					Game.State = Game.STATE.MENU;	
+				}
 			}
 		};
 		worker.schedule(task, 3, TimeUnit.SECONDS);
