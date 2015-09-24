@@ -28,7 +28,7 @@ public class Controller
 			addEntity(new Enemy(r.nextInt(640), -10, tex, this, game));
 		}
 	}
-	
+
 	public void randomlySpawnHealthPack(double x, double y)
 	{
 		Random r = new Random();
@@ -39,20 +39,10 @@ public class Controller
 			addEntity(new HealthPack(x, y, tex, this, game));
 		}
 	}
-	
+
 	public void tick()
 	{
-		int enemies = 0;
-		
-		for(Entity entity : entities)
-		{
-			if(entity instanceof Enemy)
-			{
-				enemies++;
-			}
-		}
-		
-		game.setEnemyCount(enemies);
+		updateEnemyCount();
 
 		for (int i = 0; i < entities.size(); i++)
 		{
@@ -60,6 +50,21 @@ public class Controller
 			entity.tick();
 		}
 
+	}
+
+	public void updateEnemyCount()
+	{
+		int enemies = 0;
+
+		for(Entity entity : entities)
+		{
+			if(entity instanceof Enemy)
+			{
+				enemies++;
+			}
+		}
+
+		game.setEnemyCount(enemies);
 	}
 
 	public void render(Graphics g)
