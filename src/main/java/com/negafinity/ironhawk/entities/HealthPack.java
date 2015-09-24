@@ -38,7 +38,7 @@ public class HealthPack extends GameObject implements EntityA
 
 			if (Physics.Collision(this, tempEnt))
 			{
-				c.removeEntity(this);a	`
+				c.removeEntity(this);
 				Game.HEALTH = 200;
 			}
 			anim.runAnimation();
