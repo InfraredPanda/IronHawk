@@ -7,6 +7,7 @@ import com.negafinity.ironhawk.input.KeyInput;
 import com.negafinity.ironhawk.input.MouseInput;
 import com.negafinity.ironhawk.states.GameOver;
 import com.negafinity.ironhawk.states.Help;
+import com.negafinity.ironhawk.states.IronHawk;
 import com.negafinity.ironhawk.states.Menu;
 import com.negafinity.ironhawk.states.Start;
 import com.negafinity.ironhawk.utils.BufferedImageLoader;
@@ -48,6 +49,7 @@ public class Game extends Canvas implements Runnable
 	private BufferedImage background = null;
 
 	public Image negafinity = null;
+	public Image ironhawkscreen = null;
 
 	private static BufferedImage icon16 = null;
 	private static BufferedImage icon32 = null;
@@ -64,6 +66,7 @@ public class Game extends Canvas implements Runnable
 	private Textures tex;
 	private Menu menu;
 	private Start start;
+	private IronHawk ironhawk;
 	private Help help;
 	private GameOver gameover;
 
@@ -73,7 +76,7 @@ public class Game extends Canvas implements Runnable
 
 	public static enum STATE
 	{
-		MENU, GAME, HELP, GAMEOVER, START
+		MENU, GAME, HELP, GAMEOVER, START, IRONHAWK
 	};
 
 	public static STATE State = STATE.START;
@@ -86,6 +89,7 @@ public class Game extends Canvas implements Runnable
 			spriteSheet = loader.loadImage("/spriteSheet.png");
 			background = loader.loadImage("/background.png");
 			negafinity = loader.loadImage("/negafinity.png");
+			ironhawkscreen = loader.loadImage("/ironhawkscreen.png");
 		}
 		catch (IOException e)
 		{
@@ -96,10 +100,11 @@ public class Game extends Canvas implements Runnable
 		c = new Controller(tex, this);
 		menu = new Menu();
 		start = new Start();
+		ironhawk = new IronHawk();
 		gameover = new GameOver();
 		help = new Help();
 		player = new Player(200, 200, tex, c, this);
-		
+
 		entities = c.getEntities();
 
 		this.addKeyListener(new KeyInput(this));
@@ -245,6 +250,15 @@ public class Game extends Canvas implements Runnable
 		else if (State == STATE.HELP)
 		{
 			help.render(g);
+		}
+		else if (State == STATE.IRONHAWK)
+		{
+			if (start.hasNotBeenCalled)
+			{
+				start.hasNotBeenCalled = false;
+				start.showMenuIn10Sec();
+			}
+			ironhawk.render(g, this);
 		}
 		else if (State == STATE.START)
 		{

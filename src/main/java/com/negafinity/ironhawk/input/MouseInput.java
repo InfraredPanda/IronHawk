@@ -64,6 +64,10 @@ public class MouseInput implements MouseListener
 		}
 		if(Game.State == Game.STATE.START)
 		{
+			Game.State = Game.STATE.IRONHAWK;
+		}
+		if(Game.State == Game.STATE.IRONHAWK)
+		{
 			Game.State = Game.STATE.MENU;
 		}
 		if (Game.State == Game.STATE.HELP)
@@ -106,6 +110,6 @@ public class MouseInput implements MouseListener
 	@Override
 	public void mouseReleased(MouseEvent arg0)
 	{
-		;
+		
 	}
 }

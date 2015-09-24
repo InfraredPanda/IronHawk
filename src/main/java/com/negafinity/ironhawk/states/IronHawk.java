@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class Start
+public class IronHawk
 {
 	public boolean hasNotBeenCalled = true;
 
@@ -20,9 +20,9 @@ public class Start
 		{
 			public void run()
 			{
-				if(Game.State == STATE.START)
+				if(Game.State == STATE.IRONHAWK)
 				{
-					Game.State = Game.STATE.IRONHAWK;	
+					Game.State = Game.STATE.MENU;	
 				}
 			}
 		};
@@ -31,7 +31,7 @@ public class Start
 
 	public void render(Graphics g, Game game)
 	{
-		g.drawImage(game.negafinity, 0, 0, game);
+		g.drawImage(game.ironhawkscreen, 0, 0, game);
 	}
 
 }

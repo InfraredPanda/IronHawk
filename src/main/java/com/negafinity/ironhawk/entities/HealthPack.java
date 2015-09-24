@@ -24,7 +24,7 @@ public class HealthPack extends Entity
 		if (Physics.collision(this, game.player))
 		{
 			c.removeEntity(this);
-			Game.HEALTH = 200;
+			Game.HEALTH += 100;
 		}
 	}
 }
