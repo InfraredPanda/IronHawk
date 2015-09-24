@@ -46,7 +46,6 @@ public class Game extends Canvas implements Runnable
 
 	private static BufferedImage icon16 = null;
 	private static BufferedImage icon32 = null;
-	private static BufferedImage icon64 = null;
 
 	private boolean isShooting = false;
 
@@ -350,7 +349,6 @@ public class Game extends Canvas implements Runnable
 		{
 			icon16 = loader.loadImage("/16.png");
 			icon32 = loader.loadImage("/32.png");
-			icon64 = loader.loadImage("/64.png");
 		}
 		catch (IOException e)
 		{
@@ -368,7 +366,6 @@ public class Game extends Canvas implements Runnable
 		ArrayList<Image> list = new ArrayList<Image>();
 		list.add(icon16);
 		list.add(icon32);
-		list.add(icon64);
 		frame.setIconImages(list);
 		frame.add(game);
 		frame.pack();
