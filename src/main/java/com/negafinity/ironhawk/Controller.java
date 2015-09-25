@@ -27,7 +27,7 @@ public class Controller
 		for (int i = 0; i < amountToSpawn; i++)
 		{
 			Random r = new Random();
-			addEntity(new RedBaron(r.nextInt(640), -10, tex, this, game));
+			addEntity(new RedBaron(r.nextInt(640), -10, tex, this, game, 100));
 		}
 	}
 	
@@ -36,7 +36,7 @@ public class Controller
 		for (int i = 0; i < amountToSpawn; i++)
 		{
 			Random r = new Random();
-			addEntity(new JapaneseFighterPlane(r.nextInt(640), -10, tex, this, game));
+			addEntity(new JapaneseFighterPlane(r.nextInt(640), -10, tex, this, game, 200));
 		}
 	}
 

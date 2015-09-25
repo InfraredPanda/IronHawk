@@ -30,8 +30,7 @@ public class Textures
 		bullet[2] = ss.grabImage(2, 1, 32, 32);
 
 		redBaron[0] = ss.grabImage(3, 1, 32, 32);
-		redBaron[1] = ss.grabImage(3, 1, 32, 32);
-		redBaron[2] = ss.grabImage(3, 1, 32, 32);
+		redBaron[1] = ss.grabImage(3, 2, 32, 32);
 		
 		japaneseFighterPlane[0] = ss.grabImage(4, 1, 32, 32);
 		

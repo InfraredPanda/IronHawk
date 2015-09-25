@@ -73,7 +73,7 @@ public class Game extends Canvas implements Runnable
 	public LinkedList<Entity> entities;
 
 	public static int HEALTH = 100 * 2;
-
+	
 	public static enum STATE
 	{
 		MENU, GAME, HELP, GAMEOVER, START, IRONHAWK
