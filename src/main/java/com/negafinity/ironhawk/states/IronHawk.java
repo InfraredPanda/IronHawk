@@ -26,7 +26,7 @@ public class IronHawk
 				}
 			}
 		};
-		worker.schedule(task, 3, TimeUnit.SECONDS);
+		worker.schedule(task, 2, TimeUnit.SECONDS);
 	}
 
 	public void render(Graphics g, Game game)

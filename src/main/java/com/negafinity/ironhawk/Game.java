@@ -192,6 +192,9 @@ public class Game extends Canvas implements Runnable
 			roundNumber++;
 			c.createEnemy(enemyCount + roundNumber);
 		}
+		if(HEALTH >= 200){
+			HEALTH = 200;
+		}
 	}
 
 	private void render()

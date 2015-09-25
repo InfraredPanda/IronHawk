@@ -26,7 +26,7 @@ public class Start
 				}
 			}
 		};
-		worker.schedule(task, 3, TimeUnit.SECONDS);
+		worker.schedule(task, (long)1.75, TimeUnit.SECONDS);
 	}
 
 	public void render(Graphics g, Game game)
