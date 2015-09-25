@@ -14,7 +14,7 @@ public class RedBaron extends Enemy
 		
 		this.name = "Red Baron";
 		
-		anim = new Animation(3, tex.redBaron[0], tex.redBaron[1]);
+		anim = new Animation(5, tex.redBaron[0], tex.redBaron[1]);
 	}
 
 }

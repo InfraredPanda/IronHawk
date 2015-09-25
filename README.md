@@ -1,2 +1,5 @@
 # Iron-Hawk
-A 2D Game made by NEGAFINITY
+A 2D Game
+developed
+by
+NEGAFINITY

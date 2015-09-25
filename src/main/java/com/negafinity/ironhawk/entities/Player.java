@@ -53,12 +53,20 @@ public class Player extends Entity
 		{
 			Entity entity = c.getEntities().get(i);
 
-			if(entity instanceof Enemy)
+			if(entity instanceof RedBaron)
 			{
 				if (Physics.collision(this, entity))
 				{
 					c.removeEntity(entity);
 					Game.player.health -= 40;
+				}
+			}
+			if(entity instanceof JapaneseFighterPlane)
+			{
+				if (Physics.collision(this, entity))
+				{
+					c.removeEntity(entity);
+					Game.player.health -= 100;
 				}
 			}
 

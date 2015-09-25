@@ -4,6 +4,7 @@ import com.negafinity.ironhawk.entities.Enemy;
 import com.negafinity.ironhawk.entities.Entity;
 import com.negafinity.ironhawk.entities.HealthPack;
 import com.negafinity.ironhawk.entities.JapaneseFighterPlane;
+import com.negafinity.ironhawk.entities.RapidFire;
 import com.negafinity.ironhawk.entities.RedBaron;
 
 import java.awt.Graphics;
@@ -30,9 +31,9 @@ public class Controller
 			addEntity(new RedBaron(r.nextInt(640), -10, tex, this, game, 100));
 		}
 	}
-	
+
 	public void createJapaneseFighterPlane(int amountToSpawn)
-	{	
+	{
 		for (int i = 0; i < amountToSpawn; i++)
 		{
 			Random r = new Random();
@@ -48,6 +49,17 @@ public class Controller
 		if (spawnChance == 0)
 		{
 			addEntity(new HealthPack(x, y, tex, this, game));
+		}
+	}
+
+	public void randomlySpawnRapidFire(double x, double y)
+	{
+		Random rand = new Random();
+		int spawnChance = rand.nextInt(9);
+
+		if (spawnChance == 0)
+		{
+			addEntity(new RapidFire(x, y, tex, this, game));
 		}
 	}
 
@@ -67,9 +79,9 @@ public class Controller
 	{
 		int enemies = 0;
 
-		for(Entity entity : entities)
+		for (Entity entity : entities)
 		{
-			if(entity instanceof Enemy)
+			if (entity instanceof Enemy)
 			{
 				enemies++;
 			}

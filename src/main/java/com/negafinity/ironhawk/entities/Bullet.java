@@ -13,7 +13,7 @@ public class Bullet extends Entity
 		super(x, y, tex, c, game);
 
 		this.name = "Bullet";	
-		anim = new Animation(5, tex.bullet[0], tex.bullet[1], tex.bullet[2]);
+		anim = new Animation(5, tex.bullet[0], tex.bullet[1]);
 	}
 
 	@Override
@@ -32,6 +32,7 @@ public class Bullet extends Entity
 					c.removeEntity(this);
 					c.removeEntity(entity);
 					c.randomlySpawnHealthPack(x, y);
+					c.randomlySpawnRapidFire(x, y);
 					game.setEnemiesKilled(game.getEnemiesKilled() + 1);
 				}
 			}

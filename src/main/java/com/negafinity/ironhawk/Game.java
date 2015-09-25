@@ -55,8 +55,10 @@ public class Game extends Canvas implements Runnable
 	private static BufferedImage icon32 = null;
 
 	private boolean isShooting = false;
+	public boolean rapidFire;
 
 	private int enemiesKilled = 0;
+	private int rapidFireShot = 0;
 	private int enemyCount = 10;
 	private int roundNumber = 1;
 
@@ -189,17 +191,18 @@ public class Game extends Canvas implements Runnable
 			enemyCount = 10;
 			roundNumber++;
 			
-			if(roundNumber >= 5)
+			if (roundNumber >= 5)
 			{
-				c.createRedBaron((enemyCount + roundNumber)/2);
-				c.createJapaneseFighterPlane((enemyCount + roundNumber)/2);
+				c.createRedBaron((enemyCount + roundNumber) / 2);
+				c.createJapaneseFighterPlane((enemyCount + roundNumber) / 2);
 			}
 			else
 			{
 				c.createRedBaron(enemyCount + roundNumber);
 			}
 		}
-		if(player.health >= 200){
+		if (player.health >= 200)
+		{
 			player.health = 200;
 		}
 	}
@@ -326,6 +329,11 @@ public class Game extends Canvas implements Runnable
 			else if (key == KeyEvent.VK_SPACE && !isShooting)
 			{
 				isShooting = true;
+				c.addEntity(new Bullet(player.getX(), player.getY(), tex, c, this));
+			}
+			else if (key == KeyEvent.VK_SPACE && rapidFire)
+			{
+				isShooting = false;
 				c.addEntity(new Bullet(player.getX(), player.getY(), tex, c, this));
 			}
 			else if (key == KeyEvent.VK_ESCAPE)
