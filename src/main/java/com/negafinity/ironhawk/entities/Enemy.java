@@ -38,7 +38,6 @@ public class Enemy extends Entity
 		if (Physics.collision(this, game.player))
 		{
 			c.removeEntity(this);
-			c.randomlySpawnHealthPack(x, y);
 			game.setEnemiesKilled(game.getEnemiesKilled() + 1);
 		}
 	}
