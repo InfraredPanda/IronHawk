@@ -110,7 +110,7 @@ public class Game extends Canvas implements Runnable
 		this.addKeyListener(new KeyInput(this));
 		this.addMouseListener(new MouseInput());
 
-		c.createEnemy(enemyCount);
+		c.createRedBaron(enemyCount);
 	}
 
 	private synchronized void start()
@@ -190,7 +190,16 @@ public class Game extends Canvas implements Runnable
 		{
 			enemyCount = 10;
 			roundNumber++;
-			c.createEnemy(enemyCount + roundNumber);
+			
+			if(roundNumber >= 5)
+			{
+				c.createRedBaron((enemyCount + roundNumber)/2);
+				c.createJapaneseFighterPlane((enemyCount + roundNumber)/2);
+			}
+			else
+			{
+				c.createRedBaron(enemyCount + roundNumber);
+			}
 		}
 	}
 
