@@ -10,7 +10,7 @@ import java.util.Random;
 public class Enemy extends Entity
 {
 	private int speed;
-	
+
 	public int enemyHealth;
 	
 	public Enemy(double x, double y, Textures tex, Controller c, Game game, int enemyHealth)

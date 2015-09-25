@@ -10,7 +10,9 @@ public class Player extends Entity
 {
 	private double velX = 0;
 	private double velY = 0;
-
+	
+	public int health = 200;
+	
 	public Player(double x, double y, Textures tex, Controller c, Game game)
 	{
 		super(x, y, tex, c, game);
@@ -56,11 +58,11 @@ public class Player extends Entity
 				if (Physics.collision(this, entity))
 				{
 					c.removeEntity(entity);
-					Game.HEALTH -= 40;
+					Game.player.health -= 40;
 				}
 			}
 
-			if (Game.HEALTH <= 0)
+			if (Game.player.health <= 0)
 			{
 				Game.State = Game.STATE.GAMEOVER;
 			}

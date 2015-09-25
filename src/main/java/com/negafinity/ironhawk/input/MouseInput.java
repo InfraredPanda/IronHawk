@@ -100,7 +100,7 @@ public class MouseInput implements MouseListener
 				if (clickY >= 250 && clickY <= 300)
 				{
 					// Pressed Play Again
-					Game.HEALTH = 200;
+					Game.player.health = 200;
 					Game.State = Game.STATE.GAME;
 				}
 			}

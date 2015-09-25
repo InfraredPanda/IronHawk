@@ -60,7 +60,7 @@ public class Game extends Canvas implements Runnable
 	private int enemyCount = 10;
 	private int roundNumber = 1;
 
-	public Player player;
+	public static Player player;
 
 	private Controller c;
 	private Textures tex;
@@ -72,8 +72,6 @@ public class Game extends Canvas implements Runnable
 
 	public LinkedList<Entity> entities;
 
-	public static int HEALTH = 100 * 2;
-	
 	public static enum STATE
 	{
 		MENU, GAME, HELP, GAMEOVER, START, IRONHAWK
@@ -201,8 +199,8 @@ public class Game extends Canvas implements Runnable
 				c.createRedBaron(enemyCount + roundNumber);
 			}
 		}
-		if(HEALTH >= 200){
-			HEALTH = 200;
+		if(player.health >= 200){
+			player.health = 200;
 		}
 	}
 
@@ -234,11 +232,11 @@ public class Game extends Canvas implements Runnable
 			g.fillRect(5, 5, 200, 50);
 
 			g.setColor(Color.green);
-			g.fillRect(5, 5, HEALTH, 50);
+			g.fillRect(5, 5, player.health, 50);
 
 			g.setColor(Color.BLACK);
 			g.drawString("Health", 20, 20);
-			g.drawString(String.valueOf(HEALTH / 2), 20, 40);
+			g.drawString(String.valueOf(player.health / 2), 20, 40);
 
 			g.setColor(Color.white);
 			g.drawString("Round", WIDTH + WIDTH - 80, 20);
