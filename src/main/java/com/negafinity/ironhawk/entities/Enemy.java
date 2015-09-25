@@ -18,9 +18,6 @@ public class Enemy extends Entity
 
 		Random r = new Random();
 		this.speed = r.nextInt(5) + 1;
-		
-		this.name = "Enemy";
-		anim = new Animation(5, tex.enemy[0], tex.enemy[1], tex.enemy[2]);
 	}
 
 	@Override
