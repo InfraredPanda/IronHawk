@@ -41,7 +41,7 @@ public class Enemy extends Entity
 		if (Physics.collision(this, Game.player))
 		{
 			this.enemyHealth -= 100;
-			game.player.health -= 40;
+			Game.player.health -= 40;
 		}
 		
 		if(this.enemyHealth == 0)
