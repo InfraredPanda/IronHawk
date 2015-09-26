@@ -213,7 +213,6 @@ public class Game extends Canvas implements Runnable
 
 		if (bs == null)
 		{
-
 			createBufferStrategy(3);
 			return;
 		}
@@ -334,6 +333,7 @@ public class Game extends Canvas implements Runnable
 			else if (key == KeyEvent.VK_SPACE && rapidFire)
 			{
 				isShooting = false;
+				System.out.println("RAPID FIRE");
 				c.addEntity(new Bullet(player.getX(), player.getY(), tex, c, this));
 			}
 			else if (key == KeyEvent.VK_ESCAPE)

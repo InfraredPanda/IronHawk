@@ -10,6 +10,10 @@ public class Physics
 		{
 			return true;
 		}
+		if (entityB.getBounds().intersects(entityA.getBounds()))
+		{
+			return true;
+		}
 
 		return false;
 	}
