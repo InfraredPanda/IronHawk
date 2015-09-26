@@ -58,7 +58,6 @@ public class Game extends Canvas implements Runnable
 	public boolean rapidFire;
 
 	private int enemiesKilled = 0;
-	private int rapidFireShot = 0;
 	private int enemyCount = 10;
 	private int roundNumber = 1;
 
@@ -330,15 +329,14 @@ public class Game extends Canvas implements Runnable
 				isShooting = true;
 				c.addEntity(new Bullet(player.getX(), player.getY(), tex, c, this));
 			}
-			else if (key == KeyEvent.VK_SPACE && rapidFire)
-			{
-				isShooting = false;
-				System.out.println("RAPID FIRE");
-				c.addEntity(new Bullet(player.getX(), player.getY(), tex, c, this));
-			}
 			else if (key == KeyEvent.VK_ESCAPE)
 			{
 				State = STATE.MENU;
+			}
+			while(key == KeyEvent.VK_SPACE && rapidFire)
+			{
+				isShooting = false;
+				c.addEntity(new Bullet(player.getX(), player.getY(), tex, c, this));
 			}
 		}
 
