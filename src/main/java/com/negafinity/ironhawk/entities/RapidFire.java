@@ -1,5 +1,7 @@
 package com.negafinity.ironhawk.entities;
 
+
+
 import com.negafinity.ironhawk.Controller;
 import com.negafinity.ironhawk.Game;
 import com.negafinity.ironhawk.Physics;
@@ -20,11 +22,15 @@ public class RapidFire extends Entity
 	public void tick()
 	{
 		super.tick();
-		
+	
 		if (Physics.collision(this, Game.player))
 		{
 			c.removeEntity(this);
 			game.rapidFire = true;
+		}
+		if(game.rapidFire)
+		{
+		
 		}
 	}
 }

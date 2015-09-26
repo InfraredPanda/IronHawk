@@ -29,6 +29,7 @@ public class Bullet extends Entity
 			{
 				if (Physics.collision(this, entity))
 				{
+					c.removeEntity(this);
 					c.removeEntity(entity);
 					c.randomlySpawnHealthPack(x, y);
 					c.randomlySpawnRapidFire(x, y);
