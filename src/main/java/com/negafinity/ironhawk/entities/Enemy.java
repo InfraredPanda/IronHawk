@@ -11,7 +11,7 @@ public class Enemy extends Entity
 {
 	private int speed;
 
-	public int enemyHealth;
+	public int enemyHealth = 100;
 	
 	public Enemy(double x, double y, Textures tex, Controller c, Game game, int enemyHealth)
 	{
@@ -41,10 +41,12 @@ public class Enemy extends Entity
 		if (Physics.collision(this, Game.player))
 		{
 			this.enemyHealth -= 100;
+			game.player.health -= 40;
 		}
 		
 		if(this.enemyHealth == 0)
 		{
+			System.out.println("enemy killed");
 			c.removeEntity(this);
 			game.setEnemiesKilled(game.getEnemiesKilled() + 1);
 		}
