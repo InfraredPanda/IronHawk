@@ -62,14 +62,26 @@ public class MouseInput implements MouseListener
 				}
 			}
 		}
+		
+		if(Game.State == Game.STATE.IRONHAWK)
+        {
+            if(!(Game.ironhawk.hasNotBeenCalled))
+            {
+                Game.State = Game.STATE.MENU;
+            }
+        }
+		
 		if(Game.State == Game.STATE.START)
 		{
 			Game.State = Game.STATE.IRONHAWK;
+			
+			if(Game.ironhawk.hasNotBeenCalled)
+			{
+			    Game.ironhawk.hasNotBeenCalled = false;
+			    Game.ironhawk.showMenuIn10Sec();
+			}
 		}
-		if(Game.State == Game.STATE.IRONHAWK)
-		{
-			Game.State = Game.STATE.MENU;
-		}
+		
 		if (Game.State == Game.STATE.HELP)
 		{
 			if (clickX >= 5 && clickX <= 105)
@@ -81,6 +93,7 @@ public class MouseInput implements MouseListener
 				}
 			}
 		}
+		
 		// Quit Button
 		if (Game.State == Game.STATE.GAME || Game.State == Game.STATE.GAMEOVER)
 		{

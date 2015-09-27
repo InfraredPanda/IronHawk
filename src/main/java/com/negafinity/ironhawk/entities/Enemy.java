@@ -46,7 +46,6 @@ public class Enemy extends Entity
 		
 		if(this.enemyHealth == 0)
 		{
-			System.out.println("enemy killed");
 			c.removeEntity(this);
 			game.setEnemiesKilled(game.getEnemiesKilled() + 1);
 		}
