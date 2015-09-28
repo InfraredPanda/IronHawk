@@ -114,6 +114,8 @@ public class MouseInput implements MouseListener
 				{
 					// Pressed Play Again
 					Game.player.health = 200;
+					Game.roundNumber = 1;
+					Game.enemyCount = 10;
 					Game.State = Game.STATE.GAME;
 				}
 			}

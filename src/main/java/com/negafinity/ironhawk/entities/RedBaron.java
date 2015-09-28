@@ -11,10 +11,18 @@ public class RedBaron extends Enemy
 	public RedBaron(double x, double y, Textures tex, Controller c, Game game, int enemyHealth)
 	{
 		super(x, y, tex, c, game, enemyHealth);
-		
+
 		this.name = "Red Baron";
-		
+		this.enemyHealth = 100;
 		anim = new Animation(5, tex.redBaron[0], tex.redBaron[1]);
 	}
 
+	@Override
+	public void tick()
+	{
+		super.tick();
+		
+
+		System.out.println(this.enemyHealth);
+	}
 }

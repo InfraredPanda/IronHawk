@@ -58,10 +58,12 @@ public class Game extends Canvas implements Runnable
     public boolean rapidFire;
 
     private int enemiesKilled = 0;
-    private int enemyCount = 10;
-    private int roundNumber = 1;
+    
+    public static int roundNumber = 1;
 
     public static Player player;
+    
+    public static int enemyCount = 10;
 
     private Controller c;
     private Textures tex;

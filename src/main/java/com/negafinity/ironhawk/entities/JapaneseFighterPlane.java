@@ -13,6 +13,7 @@ public class JapaneseFighterPlane extends Enemy
 		super(x, y, tex, c, game, enemyHealth);
 
 		this.name = "Japanese Fighter Plane";
+		this.enemyHealth = 200;
 
 		anim = new Animation(5, tex.japaneseFighterPlane[0], tex.japaneseFighterPlane[1]);
 	}
@@ -20,8 +21,8 @@ public class JapaneseFighterPlane extends Enemy
 	@Override
 	public void tick()
 	{
+		
 		super.tick();
-
 		System.out.println(this.enemyHealth);
 	}
 }
