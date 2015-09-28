@@ -426,14 +426,14 @@ public class Game extends Canvas implements Runnable
         return spriteSheet;
     }
 
-    public int getEnemyCount()
+    public static int getEnemyCount()
     {
         return enemyCount;
     }
 
-    public void setEnemyCount(int enemyCount)
+    public static void setEnemyCount(int enemyCount)
     {
-        this.enemyCount = enemyCount;
+        Game.enemyCount = enemyCount;
     }
 
     public int getEnemiesKilled()
