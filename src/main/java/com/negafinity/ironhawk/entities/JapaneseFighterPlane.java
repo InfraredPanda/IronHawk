@@ -21,8 +21,6 @@ public class JapaneseFighterPlane extends Enemy
 	@Override
 	public void tick()
 	{
-		
 		super.tick();
-		System.out.println(this.enemyHealth);
 	}
 }

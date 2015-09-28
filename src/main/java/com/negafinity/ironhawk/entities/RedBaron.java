@@ -21,8 +21,5 @@ public class RedBaron extends Enemy
 	public void tick()
 	{
 		super.tick();
-		
-
-		System.out.println(this.enemyHealth);
 	}
 }

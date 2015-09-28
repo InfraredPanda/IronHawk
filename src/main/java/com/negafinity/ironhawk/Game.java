@@ -446,13 +446,13 @@ public class Game extends Canvas implements Runnable
         this.enemiesKilled = enemiesKilled;
     }
 
-    public int getRoundNumber()
+    public static int getRoundNumber()
     {
-        return this.roundNumber;
+        return roundNumber;
     }
 
-    public void setRound(int roundNumber)
+    public static void setRound(int roundNumber)
     {
-        this.roundNumber = roundNumber;
+        Game.roundNumber = roundNumber;
     }
 }
