@@ -30,14 +30,17 @@ public class MouseInput implements MouseListener
 	{
 		int clickX = e.getX();
 		int clickY = e.getY();
-		
+
 		// Play Button
-		if (clickX >= Game.WIDTH / 2 + 120 && clickX <= Game.WIDTH / 2 + 220)
+		if(Game.State == Game.STATE.MENU )
 		{
-			if (clickY >= 150 && clickY <= 200)
+			if (clickX >= Game.WIDTH / 2 + 120 && clickX <= Game.WIDTH / 2 + 220)
 			{
-				// Pressed Play
-				Game.State = Game.STATE.GAME;
+				if (clickY >= 150 && clickY <= 200)
+				{
+					// Pressed Play
+					Game.State = Game.STATE.GAME;
+				}
 			}
 		}
 		if (Game.State == Game.STATE.MENU)
@@ -62,26 +65,26 @@ public class MouseInput implements MouseListener
 				}
 			}
 		}
-		
+
 		if(Game.State == Game.STATE.IRONHAWK)
-        {
-            if(!(Game.ironhawk.hasNotBeenCalled))
-            {
-                Game.State = Game.STATE.MENU;
-            }
-        }
-		
+		{
+			if(!(Game.ironhawk.hasNotBeenCalled))
+			{
+				Game.State = Game.STATE.MENU;
+			}
+		}
+
 		if(Game.State == Game.STATE.START)
 		{
 			Game.State = Game.STATE.IRONHAWK;
-			
+
 			if(Game.ironhawk.hasNotBeenCalled)
 			{
-			    Game.ironhawk.hasNotBeenCalled = false;
-			    Game.ironhawk.showMenuIn10Sec();
+				Game.ironhawk.hasNotBeenCalled = false;
+				Game.ironhawk.showMenuIn10Sec();
 			}
 		}
-		
+
 		if (Game.State == Game.STATE.HELP)
 		{
 			if (clickX >= 5 && clickX <= 105)
@@ -93,7 +96,7 @@ public class MouseInput implements MouseListener
 				}
 			}
 		}
-		
+
 		// Quit Button
 		if (Game.State == Game.STATE.GAME || Game.State == Game.STATE.GAMEOVER)
 		{
@@ -125,6 +128,6 @@ public class MouseInput implements MouseListener
 	@Override
 	public void mouseReleased(MouseEvent arg0)
 	{
-		
+
 	}
 }

@@ -35,424 +35,424 @@ import javax.swing.JFrame;
 
 public class Game extends Canvas implements Runnable
 {
-    private static final long serialVersionUID = 1L;
-    public static final int WIDTH = 320;
-    public static final int HEIGHT = WIDTH / 12 * 9;
-    public static final int SCALE = 2;
-    public final String TITLE = "Iron Hawk";
+	private static final long serialVersionUID = 1L;
+	public static final int WIDTH = 320;
+	public static final int HEIGHT = WIDTH / 12 * 9;
+	public static final int SCALE = 2;
+	public final String TITLE = "Iron Hawk";
 
-    private boolean running = false;
-    private Thread thread;
+	private boolean running = false;
+	private Thread thread;
 
-    private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-    private BufferedImage spriteSheet = null;
-    private BufferedImage background = null;
+	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+	private BufferedImage spriteSheet = null;
+	private BufferedImage background = null;
 
-    public Image negafinity = null;
-    public Image ironhawkscreen = null;
+	public Image negafinity = null;
+	public Image ironhawkscreen = null;
 
-    private static BufferedImage icon16 = null;
-    private static BufferedImage icon32 = null;
+	private static BufferedImage icon16 = null;
+	private static BufferedImage icon32 = null;
 
-    private boolean isShooting = false;
-    public boolean rapidFire;
+	private boolean isShooting = false;
+	public boolean rapidFire;
 
-    private int enemiesKilled = 0;
-    
-    public static int roundNumber = 1;
+	private int enemiesKilled = 0;
 
-    public static Player player;
-    
-    public static int enemyCount = 10;
+	public static int roundNumber = 1;
 
-    private Controller c;
-    private Textures tex;
-    private Menu menu;
-    private Start start;
-    public static IronHawk ironhawk;
-    private Help help;
-    private GameOver gameover;
+	public static Player player;
 
-    public LinkedList<Entity> entities;
+	public static int enemyCount = 10;
 
-    public static enum STATE
-    {
-        MENU, GAME, HELP, GAMEOVER, START, IRONHAWK
-    };
+	private Controller c;
+	private Textures tex;
+	private Menu menu;
+	private Start start;
+	public static IronHawk ironhawk;
+	private Help help;
+	private GameOver gameover;
 
-    public static STATE State = STATE.START;
+	public LinkedList<Entity> entities;
 
-    public void init()
-    {
-        BufferedImageLoader loader = new BufferedImageLoader();
-        try
-        {
-            spriteSheet = loader.loadImage("/spriteSheet.png");
-            background = loader.loadImage("/background.png");
-            negafinity = loader.loadImage("/negafinity.png");
-            ironhawkscreen = loader.loadImage("/ironhawkscreen.png");
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+	public static enum STATE
+	{
+		MENU, GAME, HELP, GAMEOVER, START, IRONHAWK
+	};
 
-        tex = new Textures(this);
-        c = new Controller(tex, this);
-        menu = new Menu();
-        start = new Start();
-        ironhawk = new IronHawk();
-        gameover = new GameOver();
-        help = new Help();
-        player = new Player(200, 200, tex, c, this);
+	public static STATE State = STATE.START;
 
-        entities = c.getEntities();
+	public void init()
+	{
+		BufferedImageLoader loader = new BufferedImageLoader();
+		try
+		{
+			spriteSheet = loader.loadImage("/spriteSheet.png");
+			background = loader.loadImage("/background.png");
+			negafinity = loader.loadImage("/negafinity.png");
+			ironhawkscreen = loader.loadImage("/ironhawkscreen.png");
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 
-        this.addKeyListener(new KeyInput(this));
-        this.addMouseListener(new MouseInput());
+		tex = new Textures(this);
+		c = new Controller(tex, this);
+		menu = new Menu();
+		start = new Start();
+		ironhawk = new IronHawk();
+		gameover = new GameOver();
+		help = new Help();
+		player = new Player(200, 200, tex, c, this);
 
-        c.createRedBaron(enemyCount);
-    }
+		entities = c.getEntities();
 
-    private synchronized void start()
-    {
-        if (running)
-            return;
+		this.addKeyListener(new KeyInput(this));
+		this.addMouseListener(new MouseInput());
 
-        running = true;
-        thread = new Thread(this);
-        thread.start();
+		c.createRedBaron(enemyCount);
+	}
 
-    }
+	private synchronized void start()
+	{
+		if (running)
+			return;
 
-    private synchronized void stop()
-    {
-        if (!running)
-            return;
+		running = true;
+		thread = new Thread(this);
+		thread.start();
 
-        running = false;
-        try
-        {
-            thread.join();
-        }
-        catch (InterruptedException e)
-        {
-            e.printStackTrace();
-        }
-        System.exit(1);
+	}
 
-    }
+	private synchronized void stop()
+	{
+		if (!running)
+			return;
 
-    // Game Loop
-    public void run()
-    {
-        init();
-        long lastTime = System.nanoTime();
-        final double amountOfTicks = 60.0;
-        double ns = 1000000000 / amountOfTicks;
-        double delta = 0;
-        int updates = 0;
-        int frames = 0;
-        long timer = System.currentTimeMillis();
+		running = false;
+		try
+		{
+			thread.join();
+		}
+		catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
+		System.exit(1);
 
-        while (running)
-        {
-            long now = System.nanoTime();
-            delta += (now - lastTime) / ns;
-            lastTime = now;
-            if (delta >= 1)
-            {
-                tick();
-                updates++;
-                delta--;
-            }
-            render();
-            frames++;
+	}
 
-            if (System.currentTimeMillis() - timer > 1000)
-            {
-                timer += 1000;
-                System.out.println(updates + " Ticks, Fps " + frames);
-                updates = 0;
-                frames = 0;
-            }
-        }
-        stop();
-    }
+	// Game Loop
+	public void run()
+	{
+		init();
+		long lastTime = System.nanoTime();
+		final double amountOfTicks = 60.0;
+		double ns = 1000000000 / amountOfTicks;
+		double delta = 0;
+		int updates = 0;
+		int frames = 0;
+		long timer = System.currentTimeMillis();
 
-    private void tick()
-    {
-        if (State == STATE.GAME)
-        {
-            player.tick();
-            c.tick();
-        }
-        if (enemyCount == 0)
-        {
-            enemyCount = 10;
-            roundNumber++;
+		while (running)
+		{
+			long now = System.nanoTime();
+			delta += (now - lastTime) / ns;
+			lastTime = now;
+			if (delta >= 1)
+			{
+				tick();
+				updates++;
+				delta--;
+			}
+			render();
+			frames++;
 
-            if (roundNumber >= 5)
-            {
-                c.createRedBaron((enemyCount + roundNumber) / 2);
-                c.createJapaneseFighterPlane((enemyCount + roundNumber) / 2);
-            }
-            else
-            {
-                c.createRedBaron(enemyCount + roundNumber);
-            }
-        }
-        if (player.health >= 200)
-        {
-            player.health = 200;
-        }
-    }
+			if (System.currentTimeMillis() - timer > 1000)
+			{
+				timer += 1000;
+				System.out.println(updates + " Ticks, Fps " + frames);
+				updates = 0;
+				frames = 0;
+			}
+		}
+		stop();
+	}
 
-    private void render()
-    {
-        BufferStrategy bs = this.getBufferStrategy();
+	private void tick()
+	{
+		if (State == STATE.GAME)
+		{
+			player.tick();
+			c.tick();
+		}
+		if (enemyCount == 0)
+		{
+			enemyCount = 10;
+			roundNumber++;
 
-        if (bs == null)
-        {
-            createBufferStrategy(3);
-            return;
-        }
+			if (roundNumber >= 5)
+			{
+				c.createRedBaron((enemyCount + roundNumber) / 2);
+				c.createJapaneseFighterPlane((enemyCount + roundNumber) / 2);
+			}
+			else
+			{
+				c.createRedBaron(enemyCount + roundNumber);
+			}
+		}
+		if (player.health >= 200)
+		{
+			player.health = 200;
+		}
+	}
 
-        Graphics g = bs.getDrawGraphics();
+	private void render()
+	{
+		BufferStrategy bs = this.getBufferStrategy();
 
-        g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+		if (bs == null)
+		{
+			createBufferStrategy(3);
+			return;
+		}
 
-        g.drawImage(background, 0, 0, this);
+		Graphics g = bs.getDrawGraphics();
 
-        if (State == STATE.GAME)
-        {
-            player.render(g);
-            c.render(g);
+		g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
 
-            Font fnt0 = new Font("arial", Font.BOLD, 20);
-            g.setFont(fnt0);
-            g.setColor(Color.red);
-            g.fillRect(5, 5, 200, 50);
+		g.drawImage(background, 0, 0, this);
 
-            g.setColor(Color.green);
-            g.fillRect(5, 5, player.health, 50);
+		if (State == STATE.GAME)
+		{
+			player.render(g);
+			c.render(g);
 
-            g.setColor(Color.BLACK);
-            g.drawString("Health", 20, 20);
-            g.drawString(String.valueOf(player.health / 2), 20, 40);
+			Font fnt0 = new Font("arial", Font.BOLD, 20);
+			g.setFont(fnt0);
+			g.setColor(Color.red);
+			g.fillRect(5, 5, 200, 50);
 
-            g.setColor(Color.white);
-            g.drawString("Round", WIDTH + WIDTH - 80, 20);
-            g.drawString(String.valueOf(roundNumber), WIDTH + WIDTH - 10, 20);
+			g.setColor(Color.green);
+			g.fillRect(5, 5, player.health, 50);
 
-            g.setColor(Color.red);
-            g.drawString("Enemies", WIDTH - 15, 20);
-            g.drawString(String.valueOf(enemyCount), WIDTH + 75, 20);
+			g.setColor(Color.BLACK);
+			g.drawString("Health", 20, 20);
+			g.drawString(String.valueOf(player.health / 2), 20, 40);
 
-            g.setColor(Color.white);
-            g.drawRect(5, 5, 200, 50);
-        }
-        else if (State == STATE.MENU)
-        {
-            menu.render(g);
-        }
-        else if (State == STATE.GAMEOVER)
-        {
-            gameover.render(g);
-        }
-        else if (State == STATE.HELP)
-        {
-            help.render(g);
-        }
-        else if (State == STATE.IRONHAWK)
-        {
-            if (start.hasNotBeenCalled)
-            {
-                start.hasNotBeenCalled = false;
-                start.showIronHawkIn10Sec();
-            }
-            ironhawk.render(g, this);
-        }
-        else if (State == STATE.START)
-        {
-            if (start.hasNotBeenCalled)
-            {
-                start.hasNotBeenCalled = false;
-                start.showIronHawkIn10Sec();
-            }
+			g.setColor(Color.white);
+			g.drawString("Round", WIDTH + WIDTH - 80, 20);
+			g.drawString(String.valueOf(roundNumber), WIDTH + WIDTH - 10, 20);
 
-            start.render(g, this);
-        }
-        // break
-        g.dispose();
-        bs.show();
-    }
+			g.setColor(Color.red);
+			g.drawString("Enemies", WIDTH - 15, 20);
+			g.drawString(String.valueOf(enemyCount), WIDTH + 75, 20);
 
-    public void keyPressed(KeyEvent e)
-    {
-        int key = e.getKeyCode();
+			g.setColor(Color.white);
+			g.drawRect(5, 5, 200, 50);
+		}
+		else if (State == STATE.MENU)
+		{
+			menu.render(g);
+		}
+		else if (State == STATE.GAMEOVER)
+		{
+			gameover.render(g);
+		}
+		else if (State == STATE.HELP)
+		{
+			help.render(g);
+		}
+		else if (State == STATE.IRONHAWK)
+		{
+			if (start.hasNotBeenCalled)
+			{
+				start.hasNotBeenCalled = false;
+				start.showIronHawkIn10Sec();
+			}
+			ironhawk.render(g, this);
+		}
+		else if (State == STATE.START)
+		{
+			if (start.hasNotBeenCalled)
+			{
+				start.hasNotBeenCalled = false;
+				start.showIronHawkIn10Sec();
+			}
 
-        if (State == STATE.GAME)
-        {
-            if (key == KeyEvent.VK_RIGHT)
-            {
-                player.setVelX(5);
-            }
-            else if (key == KeyEvent.VK_LEFT)
-            {
-                player.setVelX(-5);
-            }
-            else if (key == KeyEvent.VK_DOWN)
-            {
-                player.setVelY(5);
-            }
-            else if (key == KeyEvent.VK_UP)
-            {
-                player.setVelY(-5);
-            }
-            else if (key == KeyEvent.VK_D)
-            {
-                player.setVelX(5);
-            }
-            else if (key == KeyEvent.VK_A)
-            {
-                player.setVelX(-5);
-            }
-            else if (key == KeyEvent.VK_S)
-            {
-                player.setVelY(5);
-            }
-            else if (key == KeyEvent.VK_W)
-            {
-                player.setVelY(-5);
-            }
-            else if (key == KeyEvent.VK_SPACE && !isShooting)
-            {
-                if(!rapidFire)
-                {
-                    isShooting = true;
-                }
-                
-                c.addEntity(new Bullet(player.getX(), player.getY(), tex, c, this));
-            }
-            else if (key == KeyEvent.VK_ESCAPE)
-            {
-                State = STATE.MENU;
-            }
-        }
+			start.render(g, this);
+		}
+		// break
+		g.dispose();
+		bs.show();
+	}
 
-    }
+	public void keyPressed(KeyEvent e)
+	{
+		int key = e.getKeyCode();
 
-    public void keyReleased(KeyEvent e)
-    {
-        int key = e.getKeyCode();
+		if (State == STATE.GAME)
+		{
+			if (key == KeyEvent.VK_RIGHT)
+			{
+				player.setVelX(5);
+			}
+			else if (key == KeyEvent.VK_LEFT)
+			{
+				player.setVelX(-5);
+			}
+			else if (key == KeyEvent.VK_DOWN)
+			{
+				player.setVelY(5);
+			}
+			else if (key == KeyEvent.VK_UP)
+			{
+				player.setVelY(-5);
+			}
+			else if (key == KeyEvent.VK_D)
+			{
+				player.setVelX(5);
+			}
+			else if (key == KeyEvent.VK_A)
+			{
+				player.setVelX(-5);
+			}
+			else if (key == KeyEvent.VK_S)
+			{
+				player.setVelY(5);
+			}
+			else if (key == KeyEvent.VK_W)
+			{
+				player.setVelY(-5);
+			}
+			else if (key == KeyEvent.VK_SPACE && !isShooting)
+			{
+				if (!rapidFire)
+				{
+					isShooting = true;
+				}
 
-        if (key == KeyEvent.VK_RIGHT)
-        {
-            player.setVelX(0);
-        }
-        else if (key == KeyEvent.VK_LEFT)
-        {
-            player.setVelX(0);
-        }
-        else if (key == KeyEvent.VK_DOWN)
-        {
-            player.setVelY(0);
-        }
-        else if (key == KeyEvent.VK_UP)
-        {
-            player.setVelY(0);
-        }
-        if (key == KeyEvent.VK_D)
-        {
-            player.setVelX(0);
-        }
-        else if (key == KeyEvent.VK_A)
-        {
-            player.setVelX(0);
-        }
-        else if (key == KeyEvent.VK_S)
-        {
-            player.setVelY(0);
-        }
-        else if (key == KeyEvent.VK_W)
-        {
-            player.setVelY(0);
-        }
-        else if (key == KeyEvent.VK_SPACE)
-        {
-            isShooting = false;
-        }
+				c.addEntity(new Bullet(player.getX(), player.getY(), tex, c, this));
+			}
+			else if (key == KeyEvent.VK_ESCAPE)
+			{
+				State = STATE.MENU;
+			}
+		}
 
-    }
+	}
 
-    public static void main(String args[])
-    {
-        BufferedImageLoader loader = new BufferedImageLoader();
+	public void keyReleased(KeyEvent e)
+	{
+		int key = e.getKeyCode();
 
-        try
-        {
-            icon16 = loader.loadImage("/16.png");
-            icon32 = loader.loadImage("/32.png");
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+		if (key == KeyEvent.VK_RIGHT)
+		{
+			player.setVelX(0);
+		}
+		else if (key == KeyEvent.VK_LEFT)
+		{
+			player.setVelX(0);
+		}
+		else if (key == KeyEvent.VK_DOWN)
+		{
+			player.setVelY(0);
+		}
+		else if (key == KeyEvent.VK_UP)
+		{
+			player.setVelY(0);
+		}
+		if (key == KeyEvent.VK_D)
+		{
+			player.setVelX(0);
+		}
+		else if (key == KeyEvent.VK_A)
+		{
+			player.setVelX(0);
+		}
+		else if (key == KeyEvent.VK_S)
+		{
+			player.setVelY(0);
+		}
+		else if (key == KeyEvent.VK_W)
+		{
+			player.setVelY(0);
+		}
+		else if (key == KeyEvent.VK_SPACE)
+		{
+			isShooting = false;
+		}
 
-        Game game = new Game();
+	}
 
-        game.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
-        game.setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
-        game.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
+	public static void main(String args[])
+	{
+		BufferedImageLoader loader = new BufferedImageLoader();
 
-        JFrame frame = new JFrame(game.TITLE);
-        ArrayList<Image> list = new ArrayList<Image>();
-        list.add(icon16);
-        list.add(icon32);
-        frame.setIconImages(list);
-        frame.add(game);
-        frame.pack();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+		try
+		{
+			icon16 = loader.loadImage("/16.png");
+			icon32 = loader.loadImage("/32.png");
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 
-        game.start();
-    }
+		Game game = new Game();
 
-    public BufferedImage getSpriteSheet()
-    {
-        return spriteSheet;
-    }
+		game.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
+		game.setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
+		game.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 
-    public static int getEnemyCount()
-    {
-        return enemyCount;
-    }
+		JFrame frame = new JFrame(game.TITLE);
+		ArrayList<Image> list = new ArrayList<Image>();
+		list.add(icon16);
+		list.add(icon32);
+		frame.setIconImages(list);
+		frame.add(game);
+		frame.pack();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
 
-    public static void setEnemyCount(int enemyCount)
-    {
-        Game.enemyCount = enemyCount;
-    }
+		game.start();
+	}
 
-    public int getEnemiesKilled()
-    {
-        return enemiesKilled;
-    }
+	public BufferedImage getSpriteSheet()
+	{
+		return spriteSheet;
+	}
 
-    public void setEnemiesKilled(int enemiesKilled)
-    {
-        this.enemiesKilled = enemiesKilled;
-    }
+	public static int getEnemyCount()
+	{
+		return enemyCount;
+	}
 
-    public static int getRoundNumber()
-    {
-        return roundNumber;
-    }
+	public static void setEnemyCount(int enemyCount)
+	{
+		Game.enemyCount = enemyCount;
+	}
 
-    public static void setRound(int roundNumber)
-    {
-        Game.roundNumber = roundNumber;
-    }
+	public int getEnemiesKilled()
+	{
+		return enemiesKilled;
+	}
+
+	public void setEnemiesKilled(int enemiesKilled)
+	{
+		this.enemiesKilled = enemiesKilled;
+	}
+
+	public static int getRoundNumber()
+	{
+		return roundNumber;
+	}
+
+	public static void setRound(int roundNumber)
+	{
+		Game.roundNumber = roundNumber;
+	}
 }
