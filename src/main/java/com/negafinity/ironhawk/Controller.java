@@ -87,7 +87,7 @@ public class Controller
 			}
 		}
 
-		game.setEnemyCount(enemies);
+		Game.setEnemyCount(enemies);
 	}
 
 	public void render(Graphics g)
