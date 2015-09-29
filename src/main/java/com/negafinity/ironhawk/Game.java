@@ -1,6 +1,19 @@
 package com.negafinity.ironhawk;
 
-import com.negafinity.ironhawk.entities.Bullet;
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+import javax.swing.JFrame;
+
 import com.negafinity.ironhawk.entities.Entity;
 import com.negafinity.ironhawk.entities.Player;
 import com.negafinity.ironhawk.input.KeyInput;
@@ -11,21 +24,6 @@ import com.negafinity.ironhawk.states.IronHawk;
 import com.negafinity.ironhawk.states.Menu;
 import com.negafinity.ironhawk.states.Start;
 import com.negafinity.ironhawk.utils.BufferedImageLoader;
-
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.event.KeyEvent;
-import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-
-import javax.swing.JFrame;
 
 /**
  * A 2D Game, fight the enemies!
@@ -109,7 +107,7 @@ public class Game extends Canvas implements Runnable
 
 		entities = c.getEntities();
 
-		this.addKeyListener(new KeyInput(this));
+		this.addKeyListener(new KeyInput(this, c, tex));
 		this.addMouseListener(new MouseInput(c, this));
 
 		c.createRedBaron(enemyCount);
