@@ -54,7 +54,7 @@ public class Game extends Canvas implements Runnable
 	private static BufferedImage icon16 = null;
 	private static BufferedImage icon32 = null;
 
-	private boolean isShooting = false;
+	public boolean isShooting = false;
 	
 	public static boolean rapidFire;
 
@@ -297,104 +297,6 @@ public class Game extends Canvas implements Runnable
 		// break
 		g.dispose();
 		bs.show();
-	}
-
-	public void keyPressed(KeyEvent e)
-	{
-		int key = e.getKeyCode();
-
-		if (State == STATE.GAME)
-		{
-			if (key == KeyEvent.VK_RIGHT)
-			{
-				player.setVelX(5);
-			}
-			else if (key == KeyEvent.VK_LEFT)
-			{
-				player.setVelX(-5);
-			}
-			else if (key == KeyEvent.VK_DOWN)
-			{
-				player.setVelY(5);
-			}
-			else if (key == KeyEvent.VK_UP)
-			{
-				player.setVelY(-5);
-			}
-			else if (key == KeyEvent.VK_D)
-			{
-				player.setVelX(5);
-			}
-			else if (key == KeyEvent.VK_A)
-			{
-				player.setVelX(-5);
-			}
-			else if (key == KeyEvent.VK_S)
-			{
-				player.setVelY(5);
-			}
-			else if (key == KeyEvent.VK_W)
-			{
-				player.setVelY(-5);
-			}
-			else if (key == KeyEvent.VK_SPACE && !isShooting)
-			{
-				if (!rapidFire)
-				{
-					isShooting = true;
-				}
-
-				c.addEntity(new Bullet(player.getX(), player.getY(), tex, c, this));
-			}
-			else if (key == KeyEvent.VK_ESCAPE)
-			{
-				State = STATE.MENU;
-			}
-		}
-
-	}
-
-	public void keyReleased(KeyEvent e)
-	{
-		int key = e.getKeyCode();
-
-		if (key == KeyEvent.VK_RIGHT)
-		{
-			player.setVelX(0);
-		}
-		else if (key == KeyEvent.VK_LEFT)
-		{
-			player.setVelX(0);
-		}
-		else if (key == KeyEvent.VK_DOWN)
-		{
-			player.setVelY(0);
-		}
-		else if (key == KeyEvent.VK_UP)
-		{
-			player.setVelY(0);
-		}
-		if (key == KeyEvent.VK_D)
-		{
-			player.setVelX(0);
-		}
-		else if (key == KeyEvent.VK_A)
-		{
-			player.setVelX(0);
-		}
-		else if (key == KeyEvent.VK_S)
-		{
-			player.setVelY(0);
-		}
-		else if (key == KeyEvent.VK_W)
-		{
-			player.setVelY(0);
-		}
-		else if (key == KeyEvent.VK_SPACE)
-		{
-			isShooting = false;
-		}
-
 	}
 
 	public static void main(String args[])
