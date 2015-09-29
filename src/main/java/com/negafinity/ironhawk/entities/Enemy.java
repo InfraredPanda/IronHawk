@@ -26,16 +26,8 @@ public class Enemy extends Entity
 	{
 		super.tick();
 		
-		Random r = new Random();
 		y += speed;
-
-		if (y > (Game.HEIGHT * Game.SCALE))
-		{
-			speed = r.nextInt(3) + 1;
-			x = r.nextInt(640);
-			y = -10;
-		}
-			
+		applySpeedMultiplier();
 		
 		if (Physics.collision(this, Game.player))
 		{
@@ -47,6 +39,17 @@ public class Enemy extends Entity
 		{
 			c.removeEntity(this);
 			game.setEnemiesKilled(game.getEnemiesKilled() + 1);
+		}
+	}
+	
+	public void applySpeedMultiplier()
+	{
+		if (y > (Game.HEIGHT * Game.SCALE))
+		{
+			Random r = new Random();
+			speed = r.nextInt(5) + 1;
+			x = r.nextInt(640);
+			y = -10;
 		}
 	}
 }

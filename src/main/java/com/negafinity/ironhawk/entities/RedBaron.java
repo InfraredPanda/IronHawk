@@ -26,4 +26,16 @@ public class RedBaron extends Enemy
 	{
 		super.tick();
 	}
+	
+	@Override
+	public void applySpeedMultiplier()
+	{
+		if (y > (Game.HEIGHT * Game.SCALE))
+		{
+			Random r = new Random();
+			speed = r.nextInt(5) + 1;
+			x = r.nextInt(640);
+			y = -10;
+		}
+	}
 }

@@ -1,5 +1,6 @@
 package com.negafinity.ironhawk.input;
 
+import com.negafinity.ironhawk.Controller;
 import com.negafinity.ironhawk.Game;
 
 import java.awt.event.MouseEvent;
@@ -7,6 +8,15 @@ import java.awt.event.MouseListener;
 
 public class MouseInput implements MouseListener
 {
+	private Controller c;
+	private Game game;
+	
+	public MouseInput(Controller c, Game game)
+	{
+		this.c = c;
+		this.game = game;
+	}
+	
 	@Override
 	public void mouseClicked(MouseEvent arg0)
 	{
@@ -116,9 +126,11 @@ public class MouseInput implements MouseListener
 				if (clickY >= 250 && clickY <= 300)
 				{
 					// Pressed Play Again
+					game.entities.clear();
 					Game.player.health = 200;
-					Game.roundNumber = 1;
+					Game.roundNumber = 0;
 					Game.enemyCount = 10;
+					Game.rapidFire = false;
 					Game.State = Game.STATE.GAME;
 				}
 			}

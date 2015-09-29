@@ -24,5 +24,17 @@ public class JapaneseFighterPlane extends Enemy
 	public void tick()
 	{
 		super.tick();
+	}	
+	
+	@Override
+	public void applySpeedMultiplier()
+	{
+		if (y > (Game.HEIGHT * Game.SCALE))
+		{
+			Random r = new Random();
+			speed = r.nextInt(5) + 5;
+			x = r.nextInt(640);
+			y = -10;
+		}
 	}
 }

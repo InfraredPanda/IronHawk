@@ -24,8 +24,12 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  * A 2D Game, fight the enemies!
@@ -55,7 +59,8 @@ public class Game extends Canvas implements Runnable
 	private static BufferedImage icon32 = null;
 
 	private boolean isShooting = false;
-	public boolean rapidFire;
+	
+	public static boolean rapidFire;
 
 	private int enemiesKilled = 0;
 
@@ -109,7 +114,7 @@ public class Game extends Canvas implements Runnable
 		entities = c.getEntities();
 
 		this.addKeyListener(new KeyInput(this));
-		this.addMouseListener(new MouseInput());
+		this.addMouseListener(new MouseInput(c, this));
 
 		c.createRedBaron(enemyCount);
 	}
@@ -197,7 +202,7 @@ public class Game extends Canvas implements Runnable
 				c.createRedBaron((enemyCount + roundNumber) / 2);
 				c.createJapaneseFighterPlane((enemyCount + roundNumber) / 2);
 			}
-			else
+			else if (roundNumber <= 5)
 			{
 				c.createRedBaron(enemyCount + roundNumber);
 			}
@@ -223,9 +228,19 @@ public class Game extends Canvas implements Runnable
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
 
 		g.drawImage(background, 0, 0, this);
-
 		if (State == STATE.GAME)
 		{
+			/*JLabel label1 = new JLabel("Start");
+			label1.setVerticalTextPosition(JLabel.BOTTOM);
+			label1.setHorizontalTextPosition(JLabel.CENTER);
+			label1.setText("Enemies spawn in 3");
+			label1.setText("");
+			label1.setText("Enemies spawn in 2");
+			label1.setText("");
+			label1.setText("Enemies spawn in 1");
+			label1.setText("");
+			*/
+			
 			player.render(g);
 			c.render(g);
 
