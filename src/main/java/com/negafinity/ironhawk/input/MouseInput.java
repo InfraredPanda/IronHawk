@@ -128,6 +128,7 @@ public class MouseInput implements MouseListener
 					// Pressed Play Again
 					game.entities.clear();
 					Game.player.health = 200;
+					Game.player.anim = Game.player.defaultAnim;
 					Game.roundNumber = 0;
 					Game.enemyCount = 10;
 					Game.rapidFire = false;

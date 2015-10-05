@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 public class Textures
 {
-	public BufferedImage[] player = new BufferedImage[3];
+	public BufferedImage[] player = new BufferedImage[6];
 	public BufferedImage[] bullet = new BufferedImage[3];
 	public BufferedImage[] redBaron = new BufferedImage[3];
 	public BufferedImage[] healthPack = new BufferedImage[3];
@@ -25,6 +25,9 @@ public class Textures
 		player[0] = ss.grabImage(1, 1, 32, 32);
 		player[1] = ss.grabImage(1, 2, 32, 32);
 		player[2] = ss.grabImage(1, 3, 32, 32);
+		player[3] = ss.grabImage(1, 4, 32, 32);
+		player[4] = ss.grabImage(1, 5, 32, 32);
+		player[5] = ss.grabImage(1, 6, 32, 32);
 
 		bullet[0] = ss.grabImage(2, 1, 32, 32);
 		bullet[1] = ss.grabImage(2, 2, 32, 32);

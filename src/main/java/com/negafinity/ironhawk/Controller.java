@@ -97,7 +97,6 @@ public class Controller
 			Entity entity = entities.get(i);
 			entity.render(g);
 		}
-
 	}
 
 	public void addEntity(Entity entity)

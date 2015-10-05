@@ -1,5 +1,10 @@
 package com.negafinity.ironhawk.entities;
 
+import java.awt.Graphics;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 import com.negafinity.ironhawk.Controller;
 import com.negafinity.ironhawk.Game;
 import com.negafinity.ironhawk.Physics;
@@ -10,16 +15,20 @@ public class Player extends Entity
 {
 	private double velX = 0;
 	private double velY = 0;
-	
+
 	public int health = 200;
 	public Animation defaultAnim;
-	
+	public Animation deathAnim;
+
+	private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
+
 	public Player(double x, double y, Textures tex, Controller c, Game game)
 	{
 		super(x, y, tex, c, game);
 
 		this.name = "Player";
-		
+
+		deathAnim = new Animation(15, tex.player[3], tex.player[4], tex.player[5]);
 		defaultAnim = new Animation(5, tex.player[0], tex.player[1]);
 		anim = new Animation(5, tex.player[0], tex.player[1]);
 	}
@@ -28,7 +37,7 @@ public class Player extends Entity
 	public void tick()
 	{
 		super.tick();
-		
+
 		x += velX;
 		y += velY;
 
@@ -56,7 +65,7 @@ public class Player extends Entity
 		{
 			Entity entity = c.getEntities().get(i);
 
-			if(entity instanceof RedBaron)
+			if (entity instanceof RedBaron)
 			{
 				if (Physics.collision(this, entity))
 				{
@@ -64,7 +73,7 @@ public class Player extends Entity
 					Game.player.health -= 40;
 				}
 			}
-			if(entity instanceof JapaneseFighterPlane)
+			if (entity instanceof JapaneseFighterPlane)
 			{
 				if (Physics.collision(this, entity))
 				{
@@ -72,14 +81,9 @@ public class Player extends Entity
 					Game.player.health -= 100;
 				}
 			}
-
-			if (Game.player.health <= 0)
-			{
-				Game.State = Game.STATE.GAMEOVER;
-			}
 		}
 	}
-	
+
 	public void setVelX(double velX)
 	{
 		this.velX = velX;
@@ -90,4 +94,30 @@ public class Player extends Entity
 		this.velY = velY;
 	}
 
+	public void endGameInOneSec()
+	{
+		Runnable task = new Runnable()
+		{
+			public void run()
+			{
+				if (anim.equals(deathAnim))
+				{
+					Game.State = Game.STATE.GAMEOVER;
+				}
+			}
+		};
+		worker.schedule(task, 1, TimeUnit.SECONDS);
+	}
+
+	@Override
+	public void render(Graphics g)
+	{
+		super.render(g);
+		
+		if (this.health <= 0)
+		{
+			this.anim = this.deathAnim;
+			this.endGameInOneSec();
+		}
+	}
 }

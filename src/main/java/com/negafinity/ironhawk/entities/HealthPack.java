@@ -9,7 +9,6 @@ import com.negafinity.ironhawk.Controller;
 import com.negafinity.ironhawk.Game;
 import com.negafinity.ironhawk.Physics;
 import com.negafinity.ironhawk.Textures;
-import com.negafinity.ironhawk.Game.STATE;
 import com.negafinity.ironhawk.libs.Animation;
 
 public class HealthPack extends Entity
