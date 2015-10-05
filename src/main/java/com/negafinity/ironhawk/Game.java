@@ -53,7 +53,7 @@ public class Game extends Canvas implements Runnable
 	private static BufferedImage icon32 = null;
 
 	public boolean isShooting = false;
-	
+
 	public static boolean rapidFire;
 
 	private int enemiesKilled = 0;
@@ -78,7 +78,6 @@ public class Game extends Canvas implements Runnable
 	{
 		MENU, GAME, HELP, GAMEOVER, START, IRONHAWK
 	};
-
 	public static STATE State = STATE.START;
 
 	public void init()
@@ -121,7 +120,6 @@ public class Game extends Canvas implements Runnable
 		running = true;
 		thread = new Thread(this);
 		thread.start();
-
 	}
 
 	private synchronized void stop()
@@ -224,17 +222,10 @@ public class Game extends Canvas implements Runnable
 		g.drawImage(background, 0, 0, this);
 		if (State == STATE.GAME)
 		{
-			/*JLabel label1 = new JLabel("Start");
-			label1.setVerticalTextPosition(JLabel.BOTTOM);
-			label1.setHorizontalTextPosition(JLabel.CENTER);
-			label1.setText("Enemies spawn in 3");
-			label1.setText("");
-			label1.setText("Enemies spawn in 2");
-			label1.setText("");
-			label1.setText("Enemies spawn in 1");
-			label1.setText("");
-			*/
-			
+			/*
+			 * JLabel label1 = new JLabel("Start"); label1.setVerticalTextPosition(JLabel.BOTTOM); label1.setHorizontalTextPosition(JLabel.CENTER); label1.setText("Enemies spawn in 3"); label1.setText(""); label1.setText("Enemies spawn in 2"); label1.setText(""); label1.setText("Enemies spawn in 1"); label1.setText("");
+			 */
+
 			player.render(g);
 			c.render(g);
 
@@ -289,7 +280,6 @@ public class Game extends Canvas implements Runnable
 				start.hasNotBeenCalled = false;
 				start.showIronHawkIn10Sec();
 			}
-
 			start.render(g, this);
 		}
 		// break

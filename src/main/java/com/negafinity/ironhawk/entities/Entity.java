@@ -1,12 +1,12 @@
 package com.negafinity.ironhawk.entities;
 
+import java.awt.Graphics;
+import java.awt.Rectangle;
+
 import com.negafinity.ironhawk.Controller;
 import com.negafinity.ironhawk.Game;
 import com.negafinity.ironhawk.Textures;
 import com.negafinity.ironhawk.libs.Animation;
-
-import java.awt.Graphics;
-import java.awt.Rectangle;
 
 public class Entity
 {
@@ -33,7 +33,7 @@ public class Entity
 		{
 			c.removeEntity(this);
 		}
-
+		
 		anim.runAnimation();
 	}
 

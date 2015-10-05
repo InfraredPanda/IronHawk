@@ -12,12 +12,15 @@ public class Player extends Entity
 	private double velY = 0;
 	
 	public int health = 200;
+	public Animation defaultAnim;
 	
 	public Player(double x, double y, Textures tex, Controller c, Game game)
 	{
 		super(x, y, tex, c, game);
 
 		this.name = "Player";
+		
+		defaultAnim = new Animation(5, tex.player[0], tex.player[1]);
 		anim = new Animation(5, tex.player[0], tex.player[1]);
 	}
 

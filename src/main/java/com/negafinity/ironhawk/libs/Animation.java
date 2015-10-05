@@ -235,8 +235,6 @@ public class Animation
 
 	public void nextFrame()
 	{
-
-		// switch statement
 		switch (frames)
 		{
 			case 2:
