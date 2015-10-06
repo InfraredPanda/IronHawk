@@ -15,7 +15,7 @@ public class Bomb extends Entity
 		this.name = "Bomb";
 		anim = new Animation(5, tex.mine[0], tex.mine[1]);
 	}
-
+	//TODO: Texture BOMB, add special animation for health pack getting used, enemyHealth, boss(es), missle count, bomb count
 	@Override
 	public void tick()
 	{
@@ -24,7 +24,6 @@ public class Bomb extends Entity
 		for (int i = 0; i < c.getEntities().size(); i++)
 		{
 			Entity entity = c.getEntities().get(i);
-
 			if (entity instanceof Enemy)
 			{
 				if (Physics.collision(this, entity))

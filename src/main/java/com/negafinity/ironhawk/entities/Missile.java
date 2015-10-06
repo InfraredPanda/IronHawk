@@ -37,7 +37,7 @@ public class Missile extends Entity
 				}
 			}
 		}
-		y -= 10;
+		y -= 20;
 	}
 
 }
