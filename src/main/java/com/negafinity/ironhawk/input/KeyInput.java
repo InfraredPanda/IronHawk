@@ -29,39 +29,39 @@ public class KeyInput extends KeyAdapter
 
 		if (Game.State == STATE.GAME)
 		{
-			if (key == KeyEvent.VK_RIGHT)
+			if (key == KeyEvent.VK_RIGHT && Game.player.health >= 0)
 			{
 				Game.player.setVelX(5);
 			}
-			else if (key == KeyEvent.VK_LEFT)
+			else if (key == KeyEvent.VK_LEFT && Game.player.health >= 0)
 			{
 				Game.player.setVelX(-5);
 			}
-			else if (key == KeyEvent.VK_DOWN)
+			else if (key == KeyEvent.VK_DOWN && Game.player.health >= 0)
 			{
 				Game.player.setVelY(5);
 			}
-			else if (key == KeyEvent.VK_UP)
+			else if (key == KeyEvent.VK_UP && Game.player.health >= 0)
 			{
 				Game.player.setVelY(-5);
 			}
-			else if (key == KeyEvent.VK_D)
+			else if (key == KeyEvent.VK_D && Game.player.health >= 0)
 			{
 				Game.player.setVelX(5);
 			}
-			else if (key == KeyEvent.VK_A)
+			else if (key == KeyEvent.VK_A && Game.player.health >= 0)
 			{
 				Game.player.setVelX(-5);
 			}
-			else if (key == KeyEvent.VK_S)
+			else if (key == KeyEvent.VK_S && Game.player.health >= 0)
 			{
 				Game.player.setVelY(5);
 			}
-			else if (key == KeyEvent.VK_W)
+			else if (key == KeyEvent.VK_W && Game.player.health >= 0)
 			{
 				Game.player.setVelY(-5);
 			}
-			else if (key == KeyEvent.VK_SPACE && !game.isShooting)
+			else if (key == KeyEvent.VK_SPACE && !game.isShooting && Game.player.health >= 0)
 			{
 				if (!Game.rapidFire)
 				{
@@ -82,39 +82,39 @@ public class KeyInput extends KeyAdapter
 	{
 		int key = e.getKeyCode();
 
-		if (key == KeyEvent.VK_RIGHT)
+		if (key == KeyEvent.VK_RIGHT && Game.player.health >= 0)
 		{
 			Game.player.setVelX(0);
 		}
-		else if (key == KeyEvent.VK_LEFT)
+		else if (key == KeyEvent.VK_LEFT && Game.player.health >= 0)
 		{
 			Game.player.setVelX(0);
 		}
-		else if (key == KeyEvent.VK_DOWN)
+		else if (key == KeyEvent.VK_DOWN && Game.player.health >= 0)
 		{
 			Game.player.setVelY(0);
 		}
-		else if (key == KeyEvent.VK_UP)
+		else if (key == KeyEvent.VK_UP && Game.player.health >= 0)
 		{
 			Game.player.setVelY(0);
 		}
-		if (key == KeyEvent.VK_D)
+		if (key == KeyEvent.VK_D && Game.player.health >= 0)
 		{
 			Game.player.setVelX(0);
 		}
-		else if (key == KeyEvent.VK_A)
+		else if (key == KeyEvent.VK_A && Game.player.health >= 0)
 		{
 			Game.player.setVelX(0);
 		}
-		else if (key == KeyEvent.VK_S)
+		else if (key == KeyEvent.VK_S && Game.player.health >= 0)
 		{
 			Game.player.setVelY(0);
 		}
-		else if (key == KeyEvent.VK_W)
+		else if (key == KeyEvent.VK_W && Game.player.health >= 0)
 		{
 			Game.player.setVelY(0);
 		}
-		else if (key == KeyEvent.VK_SPACE)
+		else if (key == KeyEvent.VK_SPACE && Game.player.health >= 0)
 		{
 			game.isShooting = false;
 		}
