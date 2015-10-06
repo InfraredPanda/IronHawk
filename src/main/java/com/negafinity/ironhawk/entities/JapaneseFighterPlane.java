@@ -32,7 +32,7 @@ public class JapaneseFighterPlane extends Enemy
 		if (y > (Game.HEIGHT * Game.SCALE))
 		{
 			Random r = new Random();
-			speed = r.nextInt(5) + 5;
+			speed = r.nextInt(5) + 3;
 			x = r.nextInt(640);
 			y = -10;
 		}

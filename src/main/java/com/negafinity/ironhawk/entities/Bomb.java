@@ -6,13 +6,13 @@ import com.negafinity.ironhawk.Physics;
 import com.negafinity.ironhawk.Textures;
 import com.negafinity.ironhawk.libs.Animation;
 
-public class Mine extends Entity
+public class Bomb extends Entity
 {
-	public Mine(double x, double y, Textures tex, Controller c, Game game)
+	public Bomb(double x, double y, Textures tex, Controller c, Game game)
 	{
 		super(x, y, tex, c, game);
 
-		this.name = "Mine";
+		this.name = "Bomb";
 		anim = new Animation(5, tex.mine[0], tex.mine[1]);
 	}
 
@@ -37,7 +37,6 @@ public class Mine extends Entity
 				}
 			}
 		}
-		//y -= 10;
 	}
 
 }
