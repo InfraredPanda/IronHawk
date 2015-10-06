@@ -37,8 +37,7 @@ public class Bullet extends Entity
 				}
 			}
 		}
-
-		y -= 10;
+		//y -= 10;
 	}
 
 }

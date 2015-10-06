@@ -4,12 +4,13 @@ import java.awt.image.BufferedImage;
 
 public class Textures
 {
-	public BufferedImage[] player = new BufferedImage[6];
+	public BufferedImage[] player = new BufferedImage[7];
 	public BufferedImage[] bullet = new BufferedImage[3];
 	public BufferedImage[] redBaron = new BufferedImage[3];
 	public BufferedImage[] healthPack = new BufferedImage[3];
 	public BufferedImage[] rapidFire = new BufferedImage[3];
 	public BufferedImage[] japaneseFighterPlane = new BufferedImage[3];
+	public BufferedImage[] mine = new BufferedImage[3];
 	
 	private SpriteSheet ss;
 
@@ -28,6 +29,7 @@ public class Textures
 		player[3] = ss.grabImage(1, 4, 32, 32);
 		player[4] = ss.grabImage(1, 5, 32, 32);
 		player[5] = ss.grabImage(1, 6, 32, 32);
+		player[6] = ss.grabImage(1, 7, 32, 32);
 
 		bullet[0] = ss.grabImage(2, 1, 32, 32);
 		bullet[1] = ss.grabImage(2, 2, 32, 32);
@@ -43,6 +45,9 @@ public class Textures
 		
 		rapidFire[0] = ss.grabImage(6, 1, 32, 32);
 		rapidFire[1] = ss.grabImage(6, 2, 32, 32);
+		
+		mine[0] = ss.grabImage(7, 1, 32, 32);
+		mine[1] = ss.grabImage(7, 2, 32, 32);
 	}
 
 }

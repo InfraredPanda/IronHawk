@@ -22,7 +22,6 @@ public class HealthPack extends Entity
 
 		this.name = "Health Pack";
 		this.animEffect = new Animation(5, tex.player[0], tex.player[2]);
-		;
 		this.anim = new Animation(5, tex.healthPack[0], tex.healthPack[1]);
 	}
 
