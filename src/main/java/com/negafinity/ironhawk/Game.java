@@ -31,6 +31,7 @@ import com.negafinity.ironhawk.utils.BufferedImageLoader;
  * @author HassanS6000
  */
 //TODO: Texture BOMB, add special animation for health pack getting used, enemyHealth, boss(es), bomb count
+//Comment
 public class Game extends Canvas implements Runnable
 {
 	private static final long serialVersionUID = 1L;
