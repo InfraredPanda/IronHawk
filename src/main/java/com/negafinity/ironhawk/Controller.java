@@ -2,11 +2,11 @@ package com.negafinity.ironhawk;
 
 import com.negafinity.ironhawk.entities.Enemy;
 import com.negafinity.ironhawk.entities.Entity;
-import com.negafinity.ironhawk.entities.HealthPack;
 import com.negafinity.ironhawk.entities.JapaneseFighterPlane;
-import com.negafinity.ironhawk.entities.MissilePowerup;
-import com.negafinity.ironhawk.entities.RapidFire;
 import com.negafinity.ironhawk.entities.RedBaron;
+import com.negafinity.ironhawk.entities.powerups.HealthPack;
+import com.negafinity.ironhawk.entities.powerups.MissilePowerup;
+import com.negafinity.ironhawk.entities.powerups.RapidFire;
 
 import java.awt.Graphics;
 import java.util.LinkedList;

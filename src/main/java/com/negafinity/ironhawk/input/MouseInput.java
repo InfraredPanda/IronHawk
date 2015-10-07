@@ -1,10 +1,10 @@
 package com.negafinity.ironhawk.input;
 
-import com.negafinity.ironhawk.Controller;
-import com.negafinity.ironhawk.Game;
-
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import com.negafinity.ironhawk.Controller;
+import com.negafinity.ironhawk.Game;
 
 public class MouseInput implements MouseListener
 {
@@ -131,7 +131,7 @@ public class MouseInput implements MouseListener
 					Game.player.anim = Game.player.defaultAnim;
 					Game.roundNumber = 0;
 					Game.enemyCount = 10;
-					Game.rapidFire = false;
+					Game.player.rapidFire = false;
 					Game.State = Game.STATE.GAME;
 				}
 			}

@@ -1,9 +1,6 @@
-package com.negafinity.ironhawk.entities;
+package com.negafinity.ironhawk.entities.powerups;
 
 import java.awt.Graphics;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 import com.negafinity.ironhawk.Controller;
 import com.negafinity.ironhawk.Game;
@@ -11,7 +8,7 @@ import com.negafinity.ironhawk.Physics;
 import com.negafinity.ironhawk.Textures;
 import com.negafinity.ironhawk.libs.Animation;
 
-public class MissilePowerup extends Entity
+public class MissilePowerup extends Powerup
 {
 	public MissilePowerup(double x, double y, Textures tex, Controller c, Game game)
 	{
@@ -28,11 +25,7 @@ public class MissilePowerup extends Entity
 
 		if (Physics.collision(this, Game.player))
 		{
-			this.c.removeEntity(this);
-			Game.missleCount ++;
-		}
-		if(Game.missleCount > 0){
-			
+			Game.player.missleCount++;
 		}
 	}
 }
