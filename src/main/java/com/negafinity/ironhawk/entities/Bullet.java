@@ -36,6 +36,16 @@ public class Bullet extends Entity
 					game.setEnemiesKilled(game.getEnemiesKilled() + 1);
 				}
 			}
+			if (entity instanceof JapaneseFighterPlane)
+			{
+				if (Physics.collision(this, entity))
+				{
+					c.removeEntity(this);
+					c.removeEntity(entity);
+					c.randomlySpawnMissilePowerup(x, y);
+					game.setEnemiesKilled(game.getEnemiesKilled() + 1);
+				}
+			}
 		}
 		y -= 10;
 	}

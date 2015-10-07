@@ -30,7 +30,7 @@ import com.negafinity.ironhawk.utils.BufferedImageLoader;
  * @author InfraredPanda
  * @author HassanS6000
  */
-
+//TODO: Texture BOMB, add special animation for health pack getting used, enemyHealth, boss(es), bomb count
 public class Game extends Canvas implements Runnable
 {
 	private static final long serialVersionUID = 1L;
@@ -63,6 +63,7 @@ public class Game extends Canvas implements Runnable
 	public static Player player;
 
 	public static int enemyCount = 10;
+	public static int missleCount = 0;
 
 	private Controller c;
 	private Textures tex;
@@ -77,7 +78,8 @@ public class Game extends Canvas implements Runnable
 	public static enum STATE
 	{
 		MENU, GAME, HELP, GAMEOVER, START, IRONHAWK
-	};
+	}
+
 	public static STATE State = STATE.START;
 
 	public void init()
@@ -335,6 +337,14 @@ public class Game extends Canvas implements Runnable
 	public static void setEnemyCount(int enemyCount)
 	{
 		Game.enemyCount = enemyCount;
+	}
+	public static int getMissleCount()
+	{
+		return missleCount;
+	}
+	public static void setMissleCount(int missleCount)
+	{
+		Game.missleCount = missleCount;
 	}
 
 	public int getEnemiesKilled()

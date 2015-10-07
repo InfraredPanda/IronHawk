@@ -11,7 +11,8 @@ public class Textures
 	public BufferedImage[] rapidFire = new BufferedImage[3];
 	public BufferedImage[] japaneseFighterPlane = new BufferedImage[3];
 	public BufferedImage[] mine = new BufferedImage[3];
-	public BufferedImage[] missle = new BufferedImage[3];
+	public BufferedImage[] missile = new BufferedImage[3];
+	public BufferedImage[] missilePowerup = new BufferedImage[3];
 	
 	private SpriteSheet ss;
 
@@ -50,8 +51,11 @@ public class Textures
 		mine[0] = ss.grabImage(7, 1, 32, 32);
 		mine[1] = ss.grabImage(7, 2, 32, 32);
 		
-		missle[0] = ss.grabImage(8, 1, 32, 32);
-		missle[1] = ss.grabImage(8, 2, 32 ,32);
+		missile[0] = ss.grabImage(8, 1, 32, 32);
+		missile[1] = ss.grabImage(8, 2, 32 ,32);
+		
+		missilePowerup[0] = ss.grabImage(9, 1, 32, 32);
+		missilePowerup[1] = ss.grabImage(9, 2, 32, 32);	
 	}
 
 }

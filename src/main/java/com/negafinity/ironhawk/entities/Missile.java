@@ -13,7 +13,7 @@ public class Missile extends Entity
 		super(x, y, tex, c, game);
 
 		this.name = "Bullet";
-		anim = new Animation(5, tex.missle[0], tex.missle[1]);
+		anim = new Animation(5, tex.missile[0], tex.missile[1]);
 	}
 
 	@Override
@@ -33,6 +33,7 @@ public class Missile extends Entity
 					c.removeEntity(entity);
 					c.randomlySpawnHealthPack(x, y);
 					c.randomlySpawnRapidFire(x, y);
+					c.randomlySpawnMissilePowerup(x, y);
 					game.setEnemiesKilled(game.getEnemiesKilled() + 1);
 				}
 			}
