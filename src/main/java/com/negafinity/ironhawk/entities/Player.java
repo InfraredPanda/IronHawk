@@ -15,7 +15,8 @@ public class Player extends Entity
 {
 	private double velX = 0;
 	private double velY = 0;
-
+	
+	public int missleCount = 0;
 	public int health = 200;
 	public Animation defaultAnim;
 	public Animation deathAnim;
@@ -119,5 +120,15 @@ public class Player extends Entity
 			this.anim = this.deathAnim;
 			this.endGameInOneSec();
 		}
+	}
+	
+	public int getMissleCount()
+	{
+		return missleCount;
+	}
+	
+	public void setMissleCount(int missleCount)
+	{
+		this.missleCount = missleCount;
 	}
 }

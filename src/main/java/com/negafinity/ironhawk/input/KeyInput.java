@@ -74,10 +74,10 @@ public class KeyInput extends KeyAdapter
 			{
 				c.addEntity(new Bomb(Game.player.getX(), Game.player.getY(), tex, c, game));
 			}
-			else if (key == KeyEvent.VK_M && Game.missleCount > 0)
+			else if (key == KeyEvent.VK_M && Game.player.missleCount > 0)
 			{
 				c.addEntity(new Missile(Game.player.getX(), Game.player.getY(), tex, c, game));
-				Game.missleCount--;
+				Game.player.missleCount--;
 			}
 			else if (key == KeyEvent.VK_ESCAPE)
 			{

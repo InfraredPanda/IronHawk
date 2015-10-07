@@ -63,7 +63,6 @@ public class Game extends Canvas implements Runnable
 	public static Player player;
 
 	public static int enemyCount = 10;
-	public static int missleCount = 0;
 
 	private Controller c;
 	private Textures tex;
@@ -337,14 +336,6 @@ public class Game extends Canvas implements Runnable
 	public static void setEnemyCount(int enemyCount)
 	{
 		Game.enemyCount = enemyCount;
-	}
-	public static int getMissleCount()
-	{
-		return missleCount;
-	}
-	public static void setMissleCount(int missleCount)
-	{
-		Game.missleCount = missleCount;
 	}
 
 	public int getEnemiesKilled()
