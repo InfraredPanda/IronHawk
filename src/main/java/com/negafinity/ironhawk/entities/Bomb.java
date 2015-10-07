@@ -13,7 +13,7 @@ public class Bomb extends Entity
 		super(x, y, tex, c, game);
 
 		this.name = "Bomb";
-		anim = new Animation(5, tex.mine[0], tex.mine[1]);
+		anim = new Animation(5, tex.bomb[0], tex.bomb[1]);
 	}
 	@Override
 	public void tick()

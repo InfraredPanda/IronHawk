@@ -10,7 +10,7 @@ public class Textures
 	public BufferedImage[] healthPack = new BufferedImage[3];
 	public BufferedImage[] rapidFire = new BufferedImage[3];
 	public BufferedImage[] japaneseFighterPlane = new BufferedImage[3];
-	public BufferedImage[] mine = new BufferedImage[3];
+	public BufferedImage[] bomb = new BufferedImage[4];
 	public BufferedImage[] missile = new BufferedImage[3];
 	public BufferedImage[] missilePowerup = new BufferedImage[3];
 	
@@ -48,8 +48,9 @@ public class Textures
 		rapidFire[0] = ss.grabImage(6, 1, 32, 32);
 		rapidFire[1] = ss.grabImage(6, 2, 32, 32);
 		
-		mine[0] = ss.grabImage(7, 1, 32, 32);
-		mine[1] = ss.grabImage(7, 2, 32, 32);
+		bomb[0] = ss.grabImage(7, 1, 32, 32);
+		bomb[1] = ss.grabImage(7, 2, 32, 32);
+		bomb[2] = ss.grabImage(7, 3, 32, 32);
 		
 		missile[0] = ss.grabImage(8, 1, 32, 32);
 		missile[1] = ss.grabImage(8, 2, 32 ,32);
