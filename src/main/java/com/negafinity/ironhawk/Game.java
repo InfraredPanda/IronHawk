@@ -51,24 +51,19 @@ public class Game extends Canvas implements Runnable
 
 	private static BufferedImage icon16 = null;
 	private static BufferedImage icon32 = null;
-
-	public boolean isShooting = false;
-
-	public static boolean rapidFire;
-
+	
 	private int enemiesKilled = 0;
-
+	
+	public static int enemyCount = 10;
 	public static int roundNumber = 1;
-
 	public static Player player;
 
-	public static int enemyCount = 10;
-
+	public static IronHawk ironhawk;
+	
 	private Controller c;
 	private Textures tex;
 	private Menu menu;
 	private Start start;
-	public static IronHawk ironhawk;
 	private Help help;
 	private GameOver gameover;
 

@@ -16,6 +16,8 @@ public class Player extends Entity
 	private double velX = 0;
 	private double velY = 0;
 	
+	public boolean rapidFire;
+	public boolean isShooting = false;
 	public int missleCount = 0;
 	public int health = 200;
 	public Animation defaultAnim;

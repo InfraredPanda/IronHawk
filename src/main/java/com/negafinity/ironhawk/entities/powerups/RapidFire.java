@@ -31,7 +31,7 @@ public class RapidFire extends Powerup
 
 		if (Physics.collision(this, Game.player))
 		{
-			Game.rapidFire = true;
+			Game.player.rapidFire = true;
 			this.disableRapidFireIn10Sec();
 		}
 	}
@@ -44,7 +44,7 @@ public class RapidFire extends Powerup
 			{
 				if (Game.State == STATE.GAME)
 				{
-					Game.rapidFire = false;
+					Game.player.rapidFire = false;
 				}
 			}
 		};
