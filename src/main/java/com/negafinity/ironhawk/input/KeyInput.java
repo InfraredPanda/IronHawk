@@ -7,9 +7,9 @@ import com.negafinity.ironhawk.Controller;
 import com.negafinity.ironhawk.Game;
 import com.negafinity.ironhawk.Game.STATE;
 import com.negafinity.ironhawk.Textures;
-import com.negafinity.ironhawk.entities.Bomb;
-import com.negafinity.ironhawk.entities.Bullet;
-import com.negafinity.ironhawk.entities.Missile;
+import com.negafinity.ironhawk.entities.weapons.Bomb;
+import com.negafinity.ironhawk.entities.weapons.Bullet;
+import com.negafinity.ironhawk.entities.weapons.Missile;
 
 public class KeyInput extends KeyAdapter
 {

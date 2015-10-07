@@ -18,7 +18,8 @@ public class JapaneseFighterPlane extends Enemy
 		this.enemyHealth = 200;
 		this.speed = r.nextInt(5) + 5;
 		anim = new Animation(5, tex.japaneseFighterPlane[0], tex.japaneseFighterPlane[1]);
-	}	
+	}
+
 	@Override
 	public void applySpeedMultiplier()
 	{

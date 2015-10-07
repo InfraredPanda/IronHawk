@@ -1,19 +1,19 @@
-package com.negafinity.ironhawk.entities;
+package com.negafinity.ironhawk.entities.weapons;
 
 import com.negafinity.ironhawk.Controller;
 import com.negafinity.ironhawk.Game;
 import com.negafinity.ironhawk.Physics;
 import com.negafinity.ironhawk.Textures;
-import com.negafinity.ironhawk.libs.Animation;
+import com.negafinity.ironhawk.entities.Enemy;
+import com.negafinity.ironhawk.entities.Entity;
 
-public class Bullet extends Entity
+public class Weapon extends Entity
 {
-	public Bullet(double x, double y, Textures tex, Controller c, Game game)
+	public int speed;
+	
+	public Weapon(double x, double y, Textures tex, Controller c, Game game)
 	{
 		super(x, y, tex, c, game);
-
-		this.name = "Bullet";
-		anim = new Animation(5, tex.bullet[0], tex.bullet[1]);
 	}
 
 	@Override
@@ -29,27 +29,20 @@ public class Bullet extends Entity
 			{
 				if (Physics.collision(this, entity))
 				{
-					c.removeEntity(this);
 					Enemy enemy = (Enemy) entity;
 					enemy.enemyHealth = enemy.enemyHealth - 50;
+					c.removeEntity(this);
+					
 					c.randomlySpawnHealthPack(x, y);
 					c.randomlySpawnRapidFire(x, y);
-					game.setEnemiesKilled(game.getEnemiesKilled() + 1);
-				}
-			}
-			if (entity instanceof JapaneseFighterPlane)
-			{
-				if (Physics.collision(this, entity))
-				{
-					c.removeEntity(this);
-					c.removeEntity(entity);
 					c.randomlySpawnMissilePowerup(x, y);
+					
 					game.setEnemiesKilled(game.getEnemiesKilled() + 1);
 				}
 			}
 		}
 		
-		y -= 10;
+		y -= speed;
 	}
 
 }
