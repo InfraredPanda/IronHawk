@@ -51,6 +51,7 @@ public class Textures
 		bomb[0] = ss.grabImage(7, 1, 32, 32);
 		bomb[1] = ss.grabImage(7, 2, 32, 32);
 		bomb[2] = ss.grabImage(7, 3, 32, 32);
+		bomb[3] = ss.grabImage(7, 4, 32, 32);
 		
 		missile[0] = ss.grabImage(8, 1, 32, 32);
 		missile[1] = ss.grabImage(8, 2, 32 ,32);
