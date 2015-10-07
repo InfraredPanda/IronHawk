@@ -35,7 +35,7 @@ public class RapidFire extends Entity
 		if (Physics.collision(this, Game.player))
 		{
 			c.removeEntity(this);
-			game.rapidFire = true;
+			Game.rapidFire = true;
 			disableRapidFireIn10Sec();
 			Game.player.anim = this.animEffect;
 			this.changeAnimationIn1Sec();
@@ -65,7 +65,7 @@ public class RapidFire extends Entity
 			{
 				if (Game.State == STATE.GAME)
 				{
-					game.rapidFire = false;
+					Game.rapidFire = false;
 				}
 			}
 		};

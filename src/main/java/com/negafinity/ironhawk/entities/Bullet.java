@@ -30,13 +30,15 @@ public class Bullet extends Entity
 				if (Physics.collision(this, entity))
 				{
 					c.removeEntity(this);
-					c.removeEntity(entity);
+					Enemy enemy = (Enemy) entity;
+					enemy.enemyHealth = enemy.enemyHealth - 50;
 					c.randomlySpawnHealthPack(x, y);
 					c.randomlySpawnRapidFire(x, y);
 					game.setEnemiesKilled(game.getEnemiesKilled() + 1);
 				}
 			}
 		}
+		
 		y -= 10;
 	}
 
