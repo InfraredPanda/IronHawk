@@ -70,9 +70,10 @@ public class KeyInput extends KeyAdapter
 				}
 				c.addEntity(new Bullet(Game.player.getX(), Game.player.getY(), tex, c, game));
 			}
-			else if (key == KeyEvent.VK_B)
+			else if (key == KeyEvent.VK_B && Game.player.bombCount > 0)
 			{
 				c.addEntity(new Bomb(Game.player.getX(), Game.player.getY(), tex, c, game));
+				Game.player.bombCount--;
 			}
 			else if (key == KeyEvent.VK_M && Game.player.missleCount > 0)
 			{

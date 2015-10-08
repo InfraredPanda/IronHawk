@@ -38,6 +38,11 @@ public class Enemy extends Entity
 		if(this.enemyHealth <= 0)
 		{
 			c.removeEntity(this);
+			c.randomlySpawnHealthPack(x, y);
+			c.randomlySpawnRapidFire(x, y);
+			c.randomlySpawnMissilePowerup(x, y);
+			c.randomlySpawnBombPowerup(x, y);
+
 			game.setEnemiesKilled(game.getEnemiesKilled() + 1);
 		}
 	}

@@ -30,7 +30,7 @@ import com.negafinity.ironhawk.utils.BufferedImageLoader;
  * @author InfraredPanda
  * @author HassanS6000
  */
-//TODO: Texture BOMB, add special animation for health pack getting used, enemyHealth, boss(es), bomb count
+// TODO: enemyHealth, boss(es), bomb count
 public class Game extends Canvas implements Runnable
 {
 	private static final long serialVersionUID = 1L;
@@ -51,15 +51,15 @@ public class Game extends Canvas implements Runnable
 
 	private static BufferedImage icon16 = null;
 	private static BufferedImage icon32 = null;
-	
+
 	private int enemiesKilled = 0;
-	
+
 	public static int enemyCount = 10;
 	public static int roundNumber = 1;
 	public static Player player;
 
 	public static IronHawk ironhawk;
-	
+
 	private Controller c;
 	private Textures tex;
 	private Menu menu;
@@ -227,19 +227,43 @@ public class Game extends Canvas implements Runnable
 
 			Font fnt0 = new Font("arial", Font.BOLD, 20);
 			g.setFont(fnt0);
-			g.setColor(Color.red);
-			g.fillRect(5, 5, 200, 50);
 
-			g.setColor(Color.green);
+			if (Game.player.health / 2 == 0)
+			{
+				 g.setColor(Color.red);
+				 g.fillRect(5, 5, 200, 50);
+			}
+			
+			Color healthBarColor = Color.green;
+
+			if (Game.player.health / 2 <= 100 && Game.player.health / 2 >= 60)
+			{
+				healthBarColor = Color.green;
+			}
+			else if (Game.player.health / 2 >= 40 && Game.player.health / 2 < 60)
+			{
+				healthBarColor = Color.yellow;
+			}
+			else
+			{
+				healthBarColor = Color.red;
+			}
+
+			g.setColor(healthBarColor);
 			g.fillRect(5, 5, player.health, 50);
 
-			g.setColor(Color.BLACK);
+			g.setColor(Color.white);
 			g.drawString("Health", 20, 20);
+			g.setColor(Color.gray);
 			g.drawString(String.valueOf(player.health / 2), 20, 40);
 
 			g.setColor(Color.white);
 			g.drawString("Round", WIDTH + WIDTH - 80, 20);
 			g.drawString(String.valueOf(roundNumber), WIDTH + WIDTH - 10, 20);
+
+			g.setColor(Color.white);
+			g.drawString("Bombs", 500, 475);
+			g.drawString(String.valueOf(player.bombCount), 575, 475);
 
 			g.setColor(Color.red);
 			g.drawString("Enemies", WIDTH - 15, 20);

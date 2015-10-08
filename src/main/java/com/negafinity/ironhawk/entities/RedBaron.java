@@ -16,7 +16,7 @@ public class RedBaron extends Enemy
 		
 		Random r = new Random();
 		this.name = "Red Baron";
-		this.enemyHealth = 100;
+		this.enemyHealth = 50;
 		this.speed = r.nextInt(5) + 1;
 		anim = new Animation(5, tex.redBaron[0], tex.redBaron[1]);
 	}

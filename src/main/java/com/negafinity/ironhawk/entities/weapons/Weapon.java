@@ -15,8 +15,6 @@ public class Weapon extends Entity
 	{
 		super(x, y, tex, c, game);
 	}
-
-	@Override
 	public void tick()
 	{
 		super.tick();
@@ -32,12 +30,6 @@ public class Weapon extends Entity
 					Enemy enemy = (Enemy) entity;
 					enemy.enemyHealth = enemy.enemyHealth - 50;
 					c.removeEntity(this);
-					
-					c.randomlySpawnHealthPack(x, y);
-					c.randomlySpawnRapidFire(x, y);
-					c.randomlySpawnMissilePowerup(x, y);
-					
-					game.setEnemiesKilled(game.getEnemiesKilled() + 1);
 				}
 			}
 		}

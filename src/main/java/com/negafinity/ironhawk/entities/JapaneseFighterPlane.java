@@ -15,7 +15,7 @@ public class JapaneseFighterPlane extends Enemy
 
 		Random r = new Random();
 		this.name = "Japanese Fighter Plane";
-		this.enemyHealth = 200;
+		this.enemyHealth = 100;
 		this.speed = r.nextInt(5) + 5;
 		anim = new Animation(5, tex.japaneseFighterPlane[0], tex.japaneseFighterPlane[1]);
 	}

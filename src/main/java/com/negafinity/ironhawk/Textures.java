@@ -13,6 +13,7 @@ public class Textures
 	public BufferedImage[] bomb = new BufferedImage[4];
 	public BufferedImage[] missile = new BufferedImage[3];
 	public BufferedImage[] missilePowerup = new BufferedImage[3];
+	public BufferedImage[] bombPowerup = new BufferedImage[3];
 	
 	private SpriteSheet ss;
 
@@ -58,7 +59,10 @@ public class Textures
 		missile[1] = ss.grabImage(8, 2, 32 ,32);
 		
 		missilePowerup[0] = ss.grabImage(9, 1, 32, 32);
-		missilePowerup[1] = ss.grabImage(9, 2, 32, 32);	
+		missilePowerup[1] = ss.grabImage(9, 2, 32, 32);
+		
+		bombPowerup[0] = ss.grabImage(10, 1, 32, 32);
+		bombPowerup[1] = ss.grabImage(10, 2, 32, 32);
 	}
 
 }

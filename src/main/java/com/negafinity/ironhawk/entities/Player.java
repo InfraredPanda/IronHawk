@@ -15,10 +15,11 @@ public class Player extends Entity
 {
 	private double velX = 0;
 	private double velY = 0;
-	
+
 	public boolean rapidFire;
 	public boolean isShooting = false;
 	public int missleCount = 0;
+	public int bombCount = 5;
 	public int health = 200;
 	public Animation defaultAnim;
 	public Animation deathAnim;
@@ -40,6 +41,11 @@ public class Player extends Entity
 	public void tick()
 	{
 		super.tick();
+
+		if (this.health < 0)
+		{
+			this.health = 0;
+		}
 
 		x += velX;
 		y += velY;
@@ -116,19 +122,29 @@ public class Player extends Entity
 	public void render(Graphics g)
 	{
 		super.render(g);
-		
+
 		if (this.health <= 0)
 		{
 			this.anim = this.deathAnim;
 			this.endGameInOneSec();
 		}
 	}
-	
+
+	public int getBombCount()
+	{
+		return bombCount;
+	}
+
+	public void setBombCount(int missleCount)
+	{
+		this.missleCount = missleCount;
+	}
+
 	public int getMissleCount()
 	{
 		return missleCount;
 	}
-	
+
 	public void setMissleCount(int missleCount)
 	{
 		this.missleCount = missleCount;

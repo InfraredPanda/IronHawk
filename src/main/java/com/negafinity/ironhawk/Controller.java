@@ -4,6 +4,7 @@ import com.negafinity.ironhawk.entities.Enemy;
 import com.negafinity.ironhawk.entities.Entity;
 import com.negafinity.ironhawk.entities.JapaneseFighterPlane;
 import com.negafinity.ironhawk.entities.RedBaron;
+import com.negafinity.ironhawk.entities.powerups.BombPowerup;
 import com.negafinity.ironhawk.entities.powerups.HealthPack;
 import com.negafinity.ironhawk.entities.powerups.MissilePowerup;
 import com.negafinity.ironhawk.entities.powerups.RapidFire;
@@ -63,6 +64,7 @@ public class Controller
 			addEntity(new RapidFire(x, y, tex, this, game));
 		}
 	}
+
 	public void randomlySpawnMissilePowerup(double x, double y)
 	{
 		Random rand = new Random();
@@ -71,6 +73,17 @@ public class Controller
 		if (spawnChance == 0)
 		{
 			addEntity(new MissilePowerup(x, y, tex, this, game));
+		}
+	}
+
+	public void randomlySpawnBombPowerup(double x, double y)
+	{
+		Random rand = new Random();
+		int spawnChance = rand.nextInt(9);
+
+		if (spawnChance == 0)
+		{
+			addEntity(new BombPowerup(x, y, tex, this, game));
 		}
 	}
 
