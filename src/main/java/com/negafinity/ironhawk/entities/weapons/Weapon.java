@@ -10,11 +10,12 @@ import com.negafinity.ironhawk.entities.Entity;
 public class Weapon extends Entity
 {
 	public int speed;
-	
+
 	public Weapon(double x, double y, Textures tex, Controller c, Game game)
 	{
 		super(x, y, tex, c, game);
 	}
+
 	public void tick()
 	{
 		super.tick();
@@ -30,10 +31,20 @@ public class Weapon extends Entity
 					Enemy enemy = (Enemy) entity;
 					enemy.enemyHealth = enemy.enemyHealth - 50;
 					c.removeEntity(this);
+
+					if (enemy.enemyHealth <= 0)
+					{
+						c.randomlySpawnHealthPack(x, y);
+						c.randomlySpawnRapidFire(x, y);
+						c.randomlySpawnMissilePowerup(x, y);
+						c.randomlySpawnBombPowerup(x, y);
+
+						game.setEnemiesKilled(game.getEnemiesKilled() + 1);
+					}
 				}
 			}
 		}
-		
+
 		y -= speed;
 	}
 

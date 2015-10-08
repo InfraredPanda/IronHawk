@@ -11,7 +11,7 @@ public class Enemy extends Entity
 {
 	public int speed;
 	public int enemyHealth;
-	
+
 	public Enemy(double x, double y, Textures tex, Controller c, Game game, int enemyHealth)
 	{
 		super(x, y, tex, c, game);
@@ -25,28 +25,22 @@ public class Enemy extends Entity
 	public void tick()
 	{
 		super.tick();
-		
+
 		y += speed;
 		applySpeedMultiplier();
-		
+
 		if (Physics.collision(this, Game.player))
 		{
-			this.enemyHealth -= 100;
+			this.enemyHealth -= 50;
 			Game.player.health -= 40;
 		}
 		
 		if(this.enemyHealth <= 0)
 		{
 			c.removeEntity(this);
-			c.randomlySpawnHealthPack(x, y);
-			c.randomlySpawnRapidFire(x, y);
-			c.randomlySpawnMissilePowerup(x, y);
-			c.randomlySpawnBombPowerup(x, y);
-
-			game.setEnemiesKilled(game.getEnemiesKilled() + 1);
 		}
 	}
-	
+
 	public void applySpeedMultiplier()
 	{
 		if (y > (Game.HEIGHT * Game.SCALE))
