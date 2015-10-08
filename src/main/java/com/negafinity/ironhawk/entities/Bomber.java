@@ -2,6 +2,7 @@ package com.negafinity.ironhawk.entities;
 
 import com.negafinity.ironhawk.Controller;
 import com.negafinity.ironhawk.Game;
+import com.negafinity.ironhawk.Physics;
 import com.negafinity.ironhawk.Textures;
 import com.negafinity.ironhawk.libs.Animation;
 
@@ -12,6 +13,7 @@ public class Bomber extends Enemy
 		super(x, y, tex, c, game, enemyHealth);
 
 		this.name = "B-29 Bomber";
+		this.speed = 0;
 		this.enemyHealth = 500;
 		anim = new Animation(5, tex.bomber[0], tex.bomber[1]);
 
@@ -21,19 +23,20 @@ public class Bomber extends Enemy
 	public void tick()
 	{
 		super.tick();
-		
-		while (this.x > 0 && this.x < 640)
+
+		if (this.x == 640)
+		{
+			x--;
+		}
+		if (this.x == 0)
 		{
 			x++;
 		}
-		
-		if(this.x == 640)
+		if (Physics.collision(this, Game.player))
 		{
-			while (this.x > 0 && this.x < 640)
-			{
-				x--;
-			}
+			Game.player.health -= 100;
 		}
 		
+
 	}
 }

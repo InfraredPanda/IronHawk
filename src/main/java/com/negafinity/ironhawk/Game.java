@@ -185,11 +185,10 @@ public class Game extends Canvas implements Runnable
 			enemyCount = 10;
 			roundNumber++;
 
-			if (roundNumber >= 0)
+			if (roundNumber >= 5)
 			{
-				//c.createRedBaron((enemyCount + roundNumber) / 2);
-				//c.createJapaneseFighterPlane((enemyCount + roundNumber) / 2);
-				c.createBomber();
+				c.createRedBaron((enemyCount + roundNumber) / 2);
+				c.createJapaneseFighterPlane((enemyCount + roundNumber) / 2);
 			}
 			else if (roundNumber <= 5)
 			{
