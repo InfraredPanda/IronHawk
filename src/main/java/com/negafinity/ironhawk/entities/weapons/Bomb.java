@@ -32,10 +32,12 @@ public class Bomb extends Weapon
 			
 			if (entity instanceof Enemy)
 			{
+				Enemy enemy = (Enemy) entity;
+				
 				if (Physics.collision(this, entity))
 				{
 					this.anim = this.animExplode;
-					c.removeEntity(entity);
+					enemy.enemyHealth -= 0;
 				}
 			}
 		}

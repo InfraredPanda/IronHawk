@@ -20,12 +20,6 @@ public class RedBaron extends Enemy
 		this.speed = r.nextInt(5) + 1;
 		anim = new Animation(5, tex.redBaron[0], tex.redBaron[1]);
 	}
-
-	@Override
-	public void tick()
-	{
-		super.tick();
-	}
 	
 	@Override
 	public void applySpeedMultiplier()

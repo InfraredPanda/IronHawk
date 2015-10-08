@@ -1,5 +1,6 @@
 package com.negafinity.ironhawk;
 
+import com.negafinity.ironhawk.entities.Bomber;
 import com.negafinity.ironhawk.entities.Enemy;
 import com.negafinity.ironhawk.entities.Entity;
 import com.negafinity.ironhawk.entities.JapaneseFighterPlane;
@@ -42,7 +43,11 @@ public class Controller
 			addEntity(new JapaneseFighterPlane(r.nextInt(640), -10, tex, this, game, 200));
 		}
 	}
-
+	
+	public void createBomber(){
+		addEntity(new Bomber(320, -10, tex, this, game, 500));
+	}
+	
 	public void randomlySpawnHealthPack(double x, double y)
 	{
 		Random r = new Random();
