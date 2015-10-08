@@ -16,6 +16,7 @@ public class Weapon extends Entity
 		super(x, y, tex, c, game);
 	}
 
+	@Override
 	public void tick()
 	{
 		super.tick();

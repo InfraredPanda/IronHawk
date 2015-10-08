@@ -30,7 +30,7 @@ import com.negafinity.ironhawk.utils.BufferedImageLoader;
  * @author InfraredPanda
  * @author HassanS6000
  */
-// TODO: enemyHealth, boss(es), bomb count
+// TODO: boss(es), etc..?
 public class Game extends Canvas implements Runnable
 {
 	private static final long serialVersionUID = 1L;
