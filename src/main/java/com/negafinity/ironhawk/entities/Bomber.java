@@ -1,5 +1,7 @@
 package com.negafinity.ironhawk.entities;
 
+import java.awt.Rectangle;
+
 import com.negafinity.ironhawk.Controller;
 import com.negafinity.ironhawk.Game;
 import com.negafinity.ironhawk.Physics;
@@ -38,5 +40,11 @@ public class Bomber extends Enemy
 		}
 		
 
+	}
+	
+	@Override
+	public Rectangle getBounds()
+	{
+		return new Rectangle((int) x, (int) y, 64, 64);
 	}
 }
