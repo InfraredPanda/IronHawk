@@ -46,11 +46,9 @@ public class Bomber extends Enemy
 		{
 			Game.player.health -= 100;
 		}
-<<<<<<< HEAD
+
 		
-		
-=======
->>>>>>> origin/master
+
 	}
 	
 	@Override
