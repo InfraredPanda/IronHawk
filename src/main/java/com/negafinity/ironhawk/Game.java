@@ -140,6 +140,7 @@ public class Game extends Canvas implements Runnable
 	public void run()
 	{
 		init();
+		
 		long lastTime = System.nanoTime();
 		final double amountOfTicks = 60.0;
 		double ns = 1000000000 / amountOfTicks;
@@ -170,6 +171,7 @@ public class Game extends Canvas implements Runnable
 				frames = 0;
 			}
 		}
+		
 		stop();
 	}
 
@@ -184,16 +186,17 @@ public class Game extends Canvas implements Runnable
 		{
 			enemyCount = 10;
 			roundNumber++;
-
-			if (roundNumber >= 5)
-			{
-				c.createRedBaron((enemyCount + roundNumber) / 2);
-				c.createJapaneseFighterPlane((enemyCount + roundNumber) / 2);
-			}
-			else if (roundNumber <= 5)
-			{
-				c.createRedBaron(enemyCount + roundNumber);
-			}
+			c.createBomber();
+//
+//			if (roundNumber >= 5)
+//			{
+////				c.createRedBaron((enemyCount + roundNumber) / 2);
+////				c.createJapaneseFighterPlane((enemyCount + roundNumber) / 2);
+//			}
+//			else if (roundNumber <= 5)
+//			{
+//				c.createRedBaron(enemyCount + roundNumber);
+//			}
 		}
 		if (player.health >= 200)
 		{
