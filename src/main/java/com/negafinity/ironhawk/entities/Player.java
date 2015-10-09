@@ -1,6 +1,9 @@
 package com.negafinity.ironhawk.entities;
 
 import java.awt.Graphics;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -35,6 +38,17 @@ public class Player extends Entity
 		deathAnim = new Animation(15, tex.player[5], tex.player[6], tex.player[7]);
 		defaultAnim = new Animation(5, tex.player[0], tex.player[1]);
 		anim = new Animation(5, tex.player[0], tex.player[1]);
+	}
+	
+	public void rotate()
+	{
+		BufferedImage bufferedImage = tex.player[0];
+		AffineTransform transform = new AffineTransform();
+	    transform.rotate(Math.PI, bufferedImage.getWidth()/2, bufferedImage.getHeight()/2);
+	    AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_BILINEAR);
+	    bufferedImage = op.filter(bufferedImage, null);
+	    
+	    anim = new Animation(5, bufferedImage, bufferedImage);
 	}
 
 	@Override

@@ -56,6 +56,7 @@ public class KeyInput extends KeyAdapter
 			}
 			else if (key == KeyEvent.VK_S && Game.player.health > 0)
 			{
+				Game.player.rotate();
 				Game.player.setVelY(5);
 			}
 			else if (key == KeyEvent.VK_W && Game.player.health > 0)
