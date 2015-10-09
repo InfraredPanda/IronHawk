@@ -82,11 +82,22 @@ public class Player extends Entity
 					Game.player.health -= 40;
 				}
 			}
+			
 			if (entity instanceof JapaneseFighterPlane)
 			{
 				if (Physics.collision(this, entity))
 				{
 					c.removeEntity(entity);
+					Game.player.health -= 100;
+				}
+			}
+			
+			if (entity instanceof Bomber)
+			{
+				if (Physics.collision(this, entity))
+				{
+					Bomber bomber = (Bomber) entity;
+					bomber.enemyHealth -= 100;
 					Game.player.health -= 100;
 				}
 			}

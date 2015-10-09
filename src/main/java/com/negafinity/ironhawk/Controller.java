@@ -1,5 +1,9 @@
 package com.negafinity.ironhawk;
 
+import java.awt.Graphics;
+import java.util.LinkedList;
+import java.util.Random;
+
 import com.negafinity.ironhawk.entities.Bomber;
 import com.negafinity.ironhawk.entities.Enemy;
 import com.negafinity.ironhawk.entities.Entity;
@@ -9,10 +13,6 @@ import com.negafinity.ironhawk.entities.powerups.BombPowerup;
 import com.negafinity.ironhawk.entities.powerups.HealthPack;
 import com.negafinity.ironhawk.entities.powerups.MissilePowerup;
 import com.negafinity.ironhawk.entities.powerups.RapidFire;
-
-import java.awt.Graphics;
-import java.util.LinkedList;
-import java.util.Random;
 
 public class Controller
 {
@@ -24,6 +24,29 @@ public class Controller
 	{
 		this.tex = tex;
 		this.game = game;
+	}
+	
+	public void moveTowardsPlayer(Entity entity)
+	{
+		if(entity.x < Game.player.x)
+		{
+			entity.x++;
+		}
+		
+		if(entity.x > Game.player.x)
+		{
+			entity.x--;
+		}
+		
+		if(entity.y < Game.player.y)
+		{
+			entity.y++;
+		}
+		
+		if(entity.y > Game.player.y)
+		{
+			entity.y--;
+		}
 	}
 
 	public void createRedBaron(int amountToSpawn)
