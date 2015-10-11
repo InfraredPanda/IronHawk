@@ -1,5 +1,6 @@
 package com.negafinity.ironhawk.entities;
 
+import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -16,6 +17,7 @@ import com.negafinity.ironhawk.libs.Animation;
 public class Bomber extends Enemy
 {
 	private boolean hasShot;
+	public static boolean bomberSpawned;
 	private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
 
 	public Bomber(double x, double y, Textures tex, Controller c, Game game, int enemyHealth)
@@ -35,7 +37,7 @@ public class Bomber extends Enemy
 		super.tick();
 
 		c.moveTowardsPlayer(this);
-
+		
 		if (this.x == Game.player.x && this.y < Game.player.y && !this.hasShot)
 		{
 			c.addEntity(new Warhead(this.x + 16, this.y + 16, tex, c, game, true));
@@ -48,6 +50,14 @@ public class Bomber extends Enemy
 			Game.player.health -= 100;
 		}
 
+	}
+	
+	@Override
+	public void render(Graphics g){
+		if(bomberSpawned){
+			g.drawString(name, enemyHealth, speed);
+			//I HAVE TO GO IDK WHAT THAT IS ABOVE JUST PLACEHOLDER VALUES WILL FIX LATER
+		}
 	}
 
 	@Override

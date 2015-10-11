@@ -14,6 +14,7 @@ import java.util.LinkedList;
 
 import javax.swing.JFrame;
 
+import com.negafinity.ironhawk.entities.Bomber;
 import com.negafinity.ironhawk.entities.Entity;
 import com.negafinity.ironhawk.entities.Player;
 import com.negafinity.ironhawk.input.KeyInput;
@@ -40,6 +41,7 @@ public class Game extends Canvas implements Runnable
 	public final String TITLE = "Iron Hawk";
 
 	private boolean running = false;
+	
 	private Thread thread;
 
 	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -187,6 +189,7 @@ public class Game extends Canvas implements Runnable
 			enemyCount = 10;
 			roundNumber++;
 			c.createBomber();
+			Bomber.bomberSpawned = true;
 //
 //			if (roundNumber >= 5)
 //			{
