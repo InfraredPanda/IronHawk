@@ -15,6 +15,7 @@ public class Textures
 	public BufferedImage[] missilePowerup = new BufferedImage[3];
 	public BufferedImage[] bombPowerup = new BufferedImage[3];
 	public BufferedImage[] bomber = new BufferedImage[3];
+	public BufferedImage[] warhead = new BufferedImage[3];
 	
 	private SpriteSheet ss;
 
@@ -66,7 +67,10 @@ public class Textures
 		bombPowerup[1] = ss.grabImage(10, 2, 32, 32);
 		
 		bomber[0] = ss.grabImage(11, 1, 64, 64);
-		bomber[1] = ss.grabImage(11, 2, 64, 64);
+		bomber[1] = ss.grabImage(11, 3, 64, 64);
+		//No 12th column because boss takes up two, (64, 64), (11,3) for next animation because boss is two (32,32) blocks big.
+		warhead[0] = ss.grabImage(13, 1, 32, 32);
+		warhead[1] = ss.grabImage(13, 2, 32, 32);
 	}
 
 }

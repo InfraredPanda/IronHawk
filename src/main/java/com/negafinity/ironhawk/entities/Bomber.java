@@ -10,6 +10,7 @@ import com.negafinity.ironhawk.Game;
 import com.negafinity.ironhawk.Physics;
 import com.negafinity.ironhawk.Textures;
 import com.negafinity.ironhawk.entities.weapons.Bullet;
+import com.negafinity.ironhawk.entities.weapons.Warhead;
 import com.negafinity.ironhawk.libs.Animation;
 
 public class Bomber extends Enemy
@@ -34,39 +35,37 @@ public class Bomber extends Enemy
 		super.tick();
 
 		c.moveTowardsPlayer(this);
-		
-		if(this.x == Game.player.x && this.y < Game.player.y && !this.hasShot)
+
+		if (this.x == Game.player.x && this.y < Game.player.y && !this.hasShot)
 		{
-			c.addEntity(new Bullet(this.x, this.y, tex, c, game, true));
+			c.addEntity(new Warhead(this.x + 16, this.y + 16, tex, c, game, true));
 			this.hasShot = true;
 			this.enableShootingInOneSec();
 		}
-		
+
 		if (Physics.collision(this, Game.player))
 		{
 			Game.player.health -= 100;
 		}
 
-		
-
 	}
-	
+
 	@Override
 	public Rectangle getBounds()
 	{
 		return new Rectangle((int) x, (int) y, 64, 64);
 	}
-	
+
 	public void enableShootingInOneSec()
 	{
 		Runnable task = new Runnable()
 		{
 			public void run()
 			{
-				if(hasShot)
+				if (hasShot)
 				{
 					hasShot = false;
-				}	
+				}
 			}
 		};
 		worker.schedule(task, 1, TimeUnit.SECONDS);
