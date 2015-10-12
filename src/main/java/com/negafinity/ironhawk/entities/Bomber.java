@@ -61,10 +61,21 @@ public class Bomber extends Enemy
 		if (bomberSpawned)
 		{
 			Font fnt0 = new Font("arial", Font.BOLD, 30);
-			g.setColor(Color.MAGENTA);
+			Font fnt1 = new Font("arial", Font.BOLD, 20);
 			g.setFont(fnt0);
-			g.drawString("Boss Health", Game.WIDTH / 2 - 160, 90);
-			g.drawString(String.valueOf(this.enemyHealth), Game.WIDTH / 2 + 25, 90);
+			
+			g.setColor(Color.white);
+			g.drawRect(5, 60, 250, 50);
+			
+			g.setColor(Color.MAGENTA);
+			g.fillRect(5, 60, this.enemyHealth/2, 50);
+			
+			g.setColor(Color.black);
+			g.drawString(" Boss Health", Game.WIDTH / 2 - 160, 90);
+			
+			g.setFont(fnt1);
+			g.setColor(Color.gray);
+			g.drawString(String.valueOf(this.enemyHealth), 20, 110);
 		}
 	}
 
