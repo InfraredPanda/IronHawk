@@ -48,6 +48,7 @@ public class Game extends Canvas implements Runnable
 	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private BufferedImage spriteSheet = null;
 	private BufferedImage background = null;
+	private BufferedImage player2Sprite = null;
 
 	public Image negafinity = null;
 	public Image ironhawkscreen = null;
@@ -87,6 +88,7 @@ public class Game extends Canvas implements Runnable
 		{
 			spriteSheet = loader.loadImage("/spriteSheet.png");
 			background = loader.loadImage("/background.png");
+			player2Sprite = loader.loadImage("/player2Sprite.png");
 			negafinity = loader.loadImage("/negafinity.png");
 			ironhawkscreen = loader.loadImage("/ironhawkscreen.png");
 		}
@@ -225,6 +227,7 @@ public class Game extends Canvas implements Runnable
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
 
 		g.drawImage(background, 0, 0, this);
+	
 		if (State == STATE.GAME)
 		{
 			// TODO: Panda's can't even JLabel
@@ -315,6 +318,9 @@ public class Game extends Canvas implements Runnable
 		else if (State == STATE.CHOICEMENU)
 		{
 			choiceMenu.render(g);
+			g.drawImage(icon32, 55, 200, this);
+			g.drawImage(icon32, 355, 200, this);
+			g.drawImage(player2Sprite, 455, 200, this);
 		}
 		// break
 		g.dispose();

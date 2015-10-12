@@ -1,7 +1,5 @@
 package com.negafinity.ironhawk.states;
 
-import com.negafinity.ironhawk.Game;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -10,8 +8,8 @@ import java.awt.Rectangle;
 
 public class ChoiceMenu
 {
-	public Rectangle player1Button = new Rectangle(Game.WIDTH / 2 + 120, 150, 200, 100);
-	public Rectangle player2Button = new Rectangle(Game.WIDTH / 2 + 320, 150, 200, 100);
+	public Rectangle player1Button = new Rectangle(25, 150, 300, 200);
+	public Rectangle player2Button = new Rectangle(325, 150, 300, 200);
 
 	public void render(Graphics g)
 	{
