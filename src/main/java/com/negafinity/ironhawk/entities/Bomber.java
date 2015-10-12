@@ -12,7 +12,6 @@ import com.negafinity.ironhawk.Controller;
 import com.negafinity.ironhawk.Game;
 import com.negafinity.ironhawk.Physics;
 import com.negafinity.ironhawk.Textures;
-import com.negafinity.ironhawk.entities.weapons.Bullet;
 import com.negafinity.ironhawk.entities.weapons.Warhead;
 import com.negafinity.ironhawk.libs.Animation;
 

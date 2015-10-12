@@ -209,21 +209,22 @@ public class Game extends Canvas implements Runnable
 
 	private void render()
 	{
-		BufferStrategy bs = this.getBufferStrategy();
+		BufferStrategy bufferedStrat = this.getBufferStrategy();
 
-		if (bs == null)
+		if (bufferedStrat == null)
 		{
 			createBufferStrategy(3);
 			return;
 		}
 
-		Graphics g = bs.getDrawGraphics();
+		Graphics g = bufferedStrat.getDrawGraphics();
 
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
 
 		g.drawImage(background, 0, 0, this);
 		if (State == STATE.GAME)
 		{
+			//TODO: Panda's can't even JLabel
 			/*
 			 * JLabel label1 = new JLabel("Start"); label1.setVerticalTextPosition(JLabel.BOTTOM); label1.setHorizontalTextPosition(JLabel.CENTER); label1.setText("Enemies spawn in 3"); label1.setText(""); label1.setText("Enemies spawn in 2"); label1.setText(""); label1.setText("Enemies spawn in 1"); label1.setText("");
 			 */
@@ -310,7 +311,7 @@ public class Game extends Canvas implements Runnable
 		}
 		// break
 		g.dispose();
-		bs.show();
+		bufferedStrat.show();
 	}
 
 	public static void main(String args[])

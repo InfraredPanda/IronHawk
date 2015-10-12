@@ -56,11 +56,22 @@ public class KeyInput extends KeyAdapter
 			}
 			else if (key == KeyEvent.VK_S && Game.player.health > 0)
 			{
-				Game.player.rotate();
+				if (!Game.player.hasBeenRotatedUpsideDown)
+				{
+					Game.player.hasBeenRotatedUpsideDown = true;
+					Game.player.rotate();
+				}
+				
 				Game.player.setVelY(5);
 			}
 			else if (key == KeyEvent.VK_W && Game.player.health > 0)
 			{
+				if (Game.player.hasBeenRotatedUpsideDown)
+				{
+					Game.player.hasBeenRotatedUpsideDown = false;
+					Game.player.rotateBack();
+				}
+				
 				Game.player.setVelY(-5);
 			}
 			else if (key == KeyEvent.VK_SPACE && !Game.player.isShooting && Game.player.health > 0)
