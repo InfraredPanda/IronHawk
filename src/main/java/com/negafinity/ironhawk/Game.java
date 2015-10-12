@@ -19,6 +19,7 @@ import com.negafinity.ironhawk.entities.Entity;
 import com.negafinity.ironhawk.entities.Player;
 import com.negafinity.ironhawk.input.KeyInput;
 import com.negafinity.ironhawk.input.MouseInput;
+import com.negafinity.ironhawk.states.ChoiceMenu;
 import com.negafinity.ironhawk.states.GameOver;
 import com.negafinity.ironhawk.states.Help;
 import com.negafinity.ironhawk.states.IronHawk;
@@ -41,7 +42,7 @@ public class Game extends Canvas implements Runnable
 	public final String TITLE = "Iron Hawk";
 
 	private boolean running = false;
-	
+
 	private Thread thread;
 
 	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -68,12 +69,13 @@ public class Game extends Canvas implements Runnable
 	private Start start;
 	private Help help;
 	private GameOver gameover;
+	private ChoiceMenu choiceMenu;
 
 	public LinkedList<Entity> entities;
 
 	public static enum STATE
 	{
-		MENU, GAME, HELP, GAMEOVER, START, IRONHAWK
+		MENU, GAME, HELP, GAMEOVER, START, IRONHAWK, CHOICEMENU
 	}
 
 	public static STATE State = STATE.START;
@@ -100,6 +102,7 @@ public class Game extends Canvas implements Runnable
 		ironhawk = new IronHawk();
 		gameover = new GameOver();
 		help = new Help();
+		choiceMenu = new ChoiceMenu();
 		player = new Player(200, 200, tex, c, this);
 
 		entities = c.getEntities();
@@ -142,7 +145,7 @@ public class Game extends Canvas implements Runnable
 	public void run()
 	{
 		init();
-		
+
 		long lastTime = System.nanoTime();
 		final double amountOfTicks = 60.0;
 		double ns = 1000000000 / amountOfTicks;
@@ -173,7 +176,7 @@ public class Game extends Canvas implements Runnable
 				frames = 0;
 			}
 		}
-		
+
 		stop();
 	}
 
@@ -190,16 +193,16 @@ public class Game extends Canvas implements Runnable
 			roundNumber++;
 			c.createBomber();
 			Bomber.bomberSpawned = true;
-//
-//			if (roundNumber >= 5)
-//			{
-////				c.createRedBaron((enemyCount + roundNumber) / 2);
-////				c.createJapaneseFighterPlane((enemyCount + roundNumber) / 2);
-//			}
-//			else if (roundNumber <= 5)
-//			{
-//				c.createRedBaron(enemyCount + roundNumber);
-//			}
+			//
+			// if (roundNumber >= 5)
+			// {
+			//// c.createRedBaron((enemyCount + roundNumber) / 2);
+			//// c.createJapaneseFighterPlane((enemyCount + roundNumber) / 2);
+			// }
+			// else if (roundNumber <= 5)
+			// {
+			// c.createRedBaron(enemyCount + roundNumber);
+			// }
 		}
 		if (player.health >= 200)
 		{
@@ -224,7 +227,7 @@ public class Game extends Canvas implements Runnable
 		g.drawImage(background, 0, 0, this);
 		if (State == STATE.GAME)
 		{
-			//TODO: Panda's can't even JLabel
+			// TODO: Panda's can't even JLabel
 			/*
 			 * JLabel label1 = new JLabel("Start"); label1.setVerticalTextPosition(JLabel.BOTTOM); label1.setHorizontalTextPosition(JLabel.CENTER); label1.setText("Enemies spawn in 3"); label1.setText(""); label1.setText("Enemies spawn in 2"); label1.setText(""); label1.setText("Enemies spawn in 1"); label1.setText("");
 			 */
@@ -237,10 +240,10 @@ public class Game extends Canvas implements Runnable
 
 			if (Game.player.health / 2 == 0)
 			{
-				 g.setColor(Color.red);
-				 g.fillRect(5, 5, 200, 50);
+				g.setColor(Color.red);
+				g.fillRect(5, 5, 200, 50);
 			}
-			
+
 			Color healthBarColor = Color.green;
 
 			if (Game.player.health / 2 <= 100 && Game.player.health / 2 >= 60)
@@ -308,6 +311,10 @@ public class Game extends Canvas implements Runnable
 				start.showIronHawkIn10Sec();
 			}
 			start.render(g, this);
+		}
+		else if (State == STATE.CHOICEMENU)
+		{
+			choiceMenu.render(g);
 		}
 		// break
 		g.dispose();

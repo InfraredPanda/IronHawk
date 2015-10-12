@@ -59,8 +59,7 @@ public class Bomber extends Enemy
 		super.render(g);
 		if (bomberSpawned)
 		{
-			Font fnt0 = new Font("arial", Font.BOLD, 30);
-			Font fnt1 = new Font("arial", Font.BOLD, 20);
+			Font fnt0 = new Font("arial", Font.BOLD, 20);
 			g.setFont(fnt0);
 			
 			g.setColor(Color.white);
@@ -72,7 +71,6 @@ public class Bomber extends Enemy
 			g.setColor(Color.black);
 			g.drawString(" Boss Health", Game.WIDTH / 2 - 160, 90);
 			
-			g.setFont(fnt1);
 			g.setColor(Color.gray);
 			g.drawString(String.valueOf(this.enemyHealth), 20, 110);
 		}

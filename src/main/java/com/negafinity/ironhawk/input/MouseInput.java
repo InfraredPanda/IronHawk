@@ -10,13 +10,13 @@ public class MouseInput implements MouseListener
 {
 	private Controller c;
 	private Game game;
-	
+
 	public MouseInput(Controller c, Game game)
 	{
 		this.c = c;
 		this.game = game;
 	}
-	
+
 	@Override
 	public void mouseClicked(MouseEvent arg0)
 	{
@@ -42,7 +42,7 @@ public class MouseInput implements MouseListener
 		int clickY = e.getY();
 
 		// Play Button
-		if(Game.State == Game.STATE.MENU )
+		if (Game.State == Game.STATE.MENU)
 		{
 			if (clickX >= Game.WIDTH / 2 + 120 && clickX <= Game.WIDTH / 2 + 220)
 			{
@@ -50,6 +50,13 @@ public class MouseInput implements MouseListener
 				{
 					// Pressed Play
 					Game.State = Game.STATE.GAME;
+//					if (clickX >= Game.WIDTH / 2 + 120 && clickX <= Game.WIDTH / 2 + 220)
+//					{
+//						if (clickY >= 150 && clickY <= 200)
+//						{
+//							Game.State = Game.STATE.CHOICEMENU;
+//						}
+//					}
 				}
 			}
 		}
@@ -76,19 +83,19 @@ public class MouseInput implements MouseListener
 			}
 		}
 
-		if(Game.State == Game.STATE.IRONHAWK)
+		if (Game.State == Game.STATE.IRONHAWK)
 		{
-			if(!(Game.ironhawk.hasNotBeenCalled))
+			if (!(Game.ironhawk.hasNotBeenCalled))
 			{
 				Game.State = Game.STATE.MENU;
 			}
 		}
 
-		if(Game.State == Game.STATE.START)
+		if (Game.State == Game.STATE.START)
 		{
 			Game.State = Game.STATE.IRONHAWK;
 
-			if(Game.ironhawk.hasNotBeenCalled)
+			if (Game.ironhawk.hasNotBeenCalled)
 			{
 				Game.ironhawk.hasNotBeenCalled = false;
 				Game.ironhawk.showMenuIn10Sec();
