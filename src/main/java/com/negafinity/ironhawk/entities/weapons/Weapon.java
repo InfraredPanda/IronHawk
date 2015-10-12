@@ -10,10 +10,20 @@ import com.negafinity.ironhawk.entities.Entity;
 public class Weapon extends Entity
 {
 	public int speed;
-
+	public boolean upsideDown;
+	
 	public Weapon(double x, double y, Textures tex, Controller c, Game game)
 	{
 		super(x, y, tex, c, game);
+
+		if(Game.player.hasBeenRotatedUpsideDown)
+		{
+			this.upsideDown = true;
+		}
+		else
+		{
+			this.upsideDown = false;
+		}
 	}
 
 	@Override
@@ -45,8 +55,15 @@ public class Weapon extends Entity
 				}
 			}
 		}
-
-		y -= speed;
+		
+		if(this.upsideDown)
+		{
+			y += speed;
+		}
+		else
+		{
+			y -= speed;
+		}
 	}
 
 }
