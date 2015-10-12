@@ -1,5 +1,7 @@
 package com.negafinity.ironhawk.entities;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.concurrent.Executors;
@@ -37,7 +39,7 @@ public class Bomber extends Enemy
 		super.tick();
 
 		c.moveTowardsPlayer(this);
-		
+
 		if (this.x == Game.player.x && this.y < Game.player.y && !this.hasShot)
 		{
 			c.addEntity(new Warhead(this.x + 16, this.y + 16, tex, c, game, true));
@@ -51,12 +53,18 @@ public class Bomber extends Enemy
 		}
 
 	}
-	
+
 	@Override
-	public void render(Graphics g){
-		if(bomberSpawned){
-			g.drawString(name, enemyHealth, speed);
-			//I HAVE TO GO IDK WHAT THAT IS ABOVE JUST PLACEHOLDER VALUES WILL FIX LATER
+	public void render(Graphics g)
+	{
+		super.render(g);
+		if (bomberSpawned)
+		{
+			Font fnt0 = new Font("arial", Font.BOLD, 30);
+			g.setColor(Color.MAGENTA);
+			g.setFont(fnt0);
+			g.drawString("Boss Health", Game.WIDTH / 2 - 160, 90);
+			g.drawString(String.valueOf(this.enemyHealth), Game.WIDTH / 2 + 25, 90);
 		}
 	}
 
