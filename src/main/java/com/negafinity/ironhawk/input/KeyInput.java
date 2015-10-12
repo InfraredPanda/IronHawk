@@ -40,10 +40,22 @@ public class KeyInput extends KeyAdapter
 			}
 			else if (key == KeyEvent.VK_DOWN && Game.player.health > 0)
 			{
+				if (!Game.player.hasBeenRotatedUpsideDown)
+				{
+					Game.player.hasBeenRotatedUpsideDown = true;
+					Game.player.rotate();
+				}
+				
 				Game.player.setVelY(5);
 			}
 			else if (key == KeyEvent.VK_UP && Game.player.health > 0)
 			{
+				if (Game.player.hasBeenRotatedUpsideDown)
+				{
+					Game.player.hasBeenRotatedUpsideDown = false;
+					Game.player.rotateBack();
+				}
+				
 				Game.player.setVelY(-5);
 			}
 			else if (key == KeyEvent.VK_D && Game.player.health > 0)
