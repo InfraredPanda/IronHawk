@@ -6,6 +6,7 @@ import com.negafinity.ironhawk.Physics;
 import com.negafinity.ironhawk.Textures;
 import com.negafinity.ironhawk.entities.Enemy;
 import com.negafinity.ironhawk.entities.Entity;
+import com.negafinity.ironhawk.entities.Player;
 
 public class Weapon extends Entity
 {
@@ -14,28 +15,33 @@ public class Weapon extends Entity
 	public boolean isFacingRight;
 	public boolean isFacingLeft;
 
-	public Weapon(double x, double y, Textures tex, Controller c, Game game)
+	public Weapon(double x, double y, Textures tex, Controller c, Game game, Entity firer)
 	{
 		super(x, y, tex, c, game);
 
-		if (Game.player.hasBeenRotatedUpsideDown)
+		if (firer instanceof Player)
 		{
-			this.upsideDown = true;
-		}
-		
-		if (!Game.player.hasBeenRotatedUpsideDown)
-		{
-			this.upsideDown = false;
-		}
+			Player player = (Player) firer;
+			
+			if (player.hasBeenRotatedUpsideDown)
+			{
+				this.upsideDown = true;
+			}
 
-		if (Game.player.hasBeenRotatedLeft)
-		{
-			this.isFacingLeft = true;
-		}
-		
-		if (Game.player.hasBeenRotatedRight)
-		{
-			this.isFacingRight = true;
+			if (!player.hasBeenRotatedUpsideDown)
+			{
+				this.upsideDown = false;
+			}
+
+			if (player.hasBeenRotatedLeft)
+			{
+				this.isFacingLeft = true;
+			}
+
+			if (player.hasBeenRotatedRight)
+			{
+				this.isFacingRight = true;
+			}
 		}
 	}
 

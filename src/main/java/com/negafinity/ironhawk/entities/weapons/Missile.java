@@ -10,9 +10,9 @@ import com.negafinity.ironhawk.libs.Animation;
 
 public class Missile extends Weapon
 {
-	public Missile(double x, double y, Textures tex, Controller c, Game game)
+	public Missile(double x, double y, Textures tex, Controller c, Game game, Entity firer)
 	{
-		super(x, y, tex, c, game);
+		super(x, y, tex, c, game, firer);
 
 		this.name = "Missile";
 		this.speed = 20;

@@ -19,7 +19,8 @@ public class Bomber extends Enemy
 {
 	private boolean hasShot;
 	private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
-
+	private Player targetPlayer;
+	
 	public Bomber(double x, double y, Textures tex, Controller c, Game game, int enemyHealth)
 	{
 		super(x, y, tex, c, game, enemyHealth);
@@ -35,29 +36,47 @@ public class Bomber extends Enemy
 	public void tick()
 	{
 		super.tick();
+		findTarget();
+		
+		c.moveTowardsPlayer(this, this.targetPlayer);
 
-		c.moveTowardsPlayer(this);
-
-		System.out.println(this.y + "," + Game.player.y);
-		if (this.x == Game.player.x && this.y < Game.player.y && !this.hasShot)
+		if (this.x == this.targetPlayer.x && this.y < this.targetPlayer.y && !this.hasShot)
 		{
-			c.addEntity(new Warhead(this.x + 16, this.y + 16, tex, c, game, true));
+			c.addEntity(new Warhead(this.x + 16, this.y + 16, tex, c, game, true, this));
 			this.hasShot = true;
 			this.enableShootingInOneSec();
 		}
-		else if (this.x == Game.player.x && this.y > Game.player.y && !this.hasShot)
+		else if (this.x == this.targetPlayer.x && this.y > this.targetPlayer.y && !this.hasShot)
 		{
-			c.addEntity(new Warhead(this.x + 16, this.y + 16, tex, c, game, false));
+			c.addEntity(new Warhead(this.x + 16, this.y + 16, tex, c, game, false, this));
 			this.hasShot = true;
 			this.enableShootingInOneSec();
-			System.out.println("X: " + this.x + " Y: " + this.y);
 		}
 
-		if (Physics.collision(this, Game.player))
+		for(Player player : Game.players)
 		{
-			Game.player.health -= 100;
+			if (Physics.collision(this, player))
+			{
+				player.health -= 100;
+			}
 		}
 
+	}
+	
+	public void findTarget()
+	{
+		double currentDistance = Double.MAX_VALUE;
+		
+		for(Player player : Game.players)
+		{
+			double distance = Math.sqrt((this.x - player.x) * (this.x - player.x) + (this.y - player.y) * (this.y - player.y));
+			
+			if(distance < currentDistance)
+			{
+				this.targetPlayer = player;
+				currentDistance = distance;
+			}
+		}
 	}
 
 	@Override

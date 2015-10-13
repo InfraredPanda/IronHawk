@@ -10,6 +10,7 @@ import com.negafinity.ironhawk.Game;
 import com.negafinity.ironhawk.Game.STATE;
 import com.negafinity.ironhawk.Physics;
 import com.negafinity.ironhawk.Textures;
+import com.negafinity.ironhawk.entities.Player;
 import com.negafinity.ironhawk.libs.Animation;
 
 public class RapidFire extends Powerup
@@ -29,22 +30,27 @@ public class RapidFire extends Powerup
 	{
 		super.render(g);
 
-		if (Physics.collision(this, Game.player))
+		for(Player player : Game.players)
 		{
-			Game.player.rapidFire = true;
-			this.disableRapidFireIn10Sec();
+			if (Physics.collision(this, player))
+			{
+				player.rapidFire = true;
+				this.disableRapidFireIn10Sec(player);
+			}
 		}
 	}
 
-	public void disableRapidFireIn10Sec()
+	public void disableRapidFireIn10Sec(Player player)
 	{
+		final Player target = player;
+		
 		Runnable task = new Runnable()
 		{
 			public void run()
 			{
 				if (Game.State == STATE.GAME)
 				{
-					Game.player.rapidFire = false;
+					target.rapidFire = false;
 				}
 			}
 		};

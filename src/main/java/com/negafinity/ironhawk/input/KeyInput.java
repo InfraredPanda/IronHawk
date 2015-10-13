@@ -30,97 +30,97 @@ public class KeyInput extends KeyAdapter
 
 		if (Game.State == STATE.GAME)
 		{
-			if (key == KeyEvent.VK_RIGHT && Game.player.health > 0)
+			if (key == KeyEvent.VK_RIGHT && Game.players.get(0).health > 0)
 			{
-				Game.player.setVelX(5);
+				Game.players.get(0).setVelX(5);
 			}
-			else if (key == KeyEvent.VK_LEFT && Game.player.health > 0)
+			else if (key == KeyEvent.VK_LEFT && Game.players.get(0).health > 0)
 			{
-				Game.player.setVelX(-5);
+				Game.players.get(0).setVelX(-5);
 			}
-			else if (key == KeyEvent.VK_DOWN && Game.player.health > 0)
+			else if (key == KeyEvent.VK_DOWN && Game.players.get(0).health > 0)
 			{
-				if (!Game.player.hasBeenRotatedUpsideDown)
+				if (!Game.players.get(0).hasBeenRotatedUpsideDown)
 				{
-					Game.player.hasBeenRotatedUpsideDown = true;
-					Game.player.rotate();
+					Game.players.get(0).hasBeenRotatedUpsideDown = true;
+					Game.players.get(0).rotate();
 				}
 
-				Game.player.setVelY(5);
+				Game.players.get(0).setVelY(5);
 			}
-			else if (key == KeyEvent.VK_UP && Game.player.health > 0)
+			else if (key == KeyEvent.VK_UP && Game.players.get(0).health > 0)
 			{
-				if (Game.player.hasBeenRotatedUpsideDown)
+				if (Game.players.get(0).hasBeenRotatedUpsideDown)
 				{
-					Game.player.hasBeenRotatedUpsideDown = false;
-					Game.player.rotateBack();
+					Game.players.get(0).hasBeenRotatedUpsideDown = false;
+					Game.players.get(0).rotateBack();
 				}
 
-				Game.player.setVelY(-5);
+				Game.players.get(0).setVelY(-5);
 			}
-			else if (key == KeyEvent.VK_D && Game.player.health > 0)
+			else if (key == KeyEvent.VK_D && Game.players.get(0).health > 0)
 			{
-				if (!Game.player.hasBeenRotatedRight)
+				if (!Game.players.get(0).hasBeenRotatedRight)
 				{
-					Game.player.hasBeenRotatedLeft = false;
-					Game.player.hasBeenRotatedUpsideDown = false;
-					Game.player.hasBeenRotatedRight = true;
-					Game.player.rotateRight();
+					Game.players.get(0).hasBeenRotatedLeft = false;
+					Game.players.get(0).hasBeenRotatedUpsideDown = false;
+					Game.players.get(0).hasBeenRotatedRight = true;
+					Game.players.get(0).rotateRight();
 				}
-				Game.player.setVelX(5);
+				Game.players.get(0).setVelX(5);
 			}
-			else if (key == KeyEvent.VK_A && Game.player.health > 0)
+			else if (key == KeyEvent.VK_A && Game.players.get(0).health > 0)
 			{
-				if (!Game.player.hasBeenRotatedLeft)
+				if (!Game.players.get(0).hasBeenRotatedLeft)
 				{
-					Game.player.hasBeenRotatedRight = false;
-					Game.player.hasBeenRotatedUpsideDown = false;
-					Game.player.hasBeenRotatedLeft = true;
-					Game.player.rotateLeft();
+					Game.players.get(0).hasBeenRotatedRight = false;
+					Game.players.get(0).hasBeenRotatedUpsideDown = false;
+					Game.players.get(0).hasBeenRotatedLeft = true;
+					Game.players.get(0).rotateLeft();
 				}
-				Game.player.setVelX(-5);
+				Game.players.get(0).setVelX(-5);
 			}
-			else if (key == KeyEvent.VK_S && Game.player.health > 0)
+			else if (key == KeyEvent.VK_S && Game.players.get(0).health > 0)
 			{
-				if (!Game.player.hasBeenRotatedUpsideDown)
+				if (!Game.players.get(0).hasBeenRotatedUpsideDown)
 				{
-					Game.player.hasBeenRotatedRight = false;
-					Game.player.hasBeenRotatedLeft = false;
-					Game.player.hasBeenRotatedUpsideDown = true;
-					Game.player.rotate();
-				}
-
-				Game.player.setVelY(5);
-			}
-			else if (key == KeyEvent.VK_W && Game.player.health > 0)
-			{
-				if (Game.player.hasBeenRotatedUpsideDown || Game.player.hasBeenRotatedRight || Game.player.hasBeenRotatedLeft)
-				{
-					Game.player.hasBeenRotatedRight = false;
-					Game.player.hasBeenRotatedLeft = false;
-					Game.player.hasBeenRotatedUpsideDown = false;
-					Game.player.rotateBack();
+					Game.players.get(0).hasBeenRotatedRight = false;
+					Game.players.get(0).hasBeenRotatedLeft = false;
+					Game.players.get(0).hasBeenRotatedUpsideDown = true;
+					Game.players.get(0).rotate();
 				}
 
-				Game.player.setVelY(-5);
+				Game.players.get(0).setVelY(5);
 			}
-			else if (key == KeyEvent.VK_SPACE && !Game.player.isShooting && Game.player.health > 0)
+			else if (key == KeyEvent.VK_W && Game.players.get(0).health > 0)
 			{
-				if (!Game.player.rapidFire)
+				if (Game.players.get(0).hasBeenRotatedUpsideDown || Game.players.get(0).hasBeenRotatedRight || Game.players.get(0).hasBeenRotatedLeft)
 				{
-					Game.player.isShooting = true;
+					Game.players.get(0).hasBeenRotatedRight = false;
+					Game.players.get(0).hasBeenRotatedLeft = false;
+					Game.players.get(0).hasBeenRotatedUpsideDown = false;
+					Game.players.get(0).rotateBack();
 				}
-				c.addEntity(new Bullet(Game.player.getX(), Game.player.getY(), tex, c, game));
+
+				Game.players.get(0).setVelY(-5);
 			}
-			else if (key == KeyEvent.VK_B && Game.player.bombCount > 0)
+			else if (key == KeyEvent.VK_SPACE && !Game.players.get(0).isShooting && Game.players.get(0).health > 0)
 			{
-				c.addEntity(new Bomb(Game.player.getX(), Game.player.getY(), tex, c, game));
-				Game.player.bombCount--;
+				if (!Game.players.get(0).rapidFire)
+				{
+					Game.players.get(0).isShooting = true;
+				}
+				c.addEntity(new Bullet(Game.players.get(0).getX(), Game.players.get(0).getY(), tex, c, game, Game.players.get(0)));
 			}
-			else if (key == KeyEvent.VK_M && Game.player.missleCount > 0)
+			else if (key == KeyEvent.VK_B && Game.players.get(0).bombCount > 0)
 			{
-				c.addEntity(new Missile(Game.player.getX(), Game.player.getY(), tex, c, game));
-				Game.player.missleCount--;
+				c.addEntity(new Bomb(Game.players.get(0).getX(), Game.players.get(0).getY(), tex, c, game, Game.players.get(0)));
+				Game.players.get(0).bombCount--;
+			}
+			else if (key == KeyEvent.VK_M && Game.players.get(0).missleCount > 0)
+			{
+				c.addEntity(new Missile(Game.players.get(0).getX(), Game.players.get(0).getY(), tex, c, game, Game.players.get(0)));
+				Game.players.get(0).missleCount--;
 			}
 			else if (key == KeyEvent.VK_ESCAPE)
 			{
@@ -136,39 +136,39 @@ public class KeyInput extends KeyAdapter
 
 		if (key == KeyEvent.VK_RIGHT)
 		{
-			Game.player.setVelX(0);
+			Game.players.get(0).setVelX(0);
 		}
 		else if (key == KeyEvent.VK_LEFT)
 		{
-			Game.player.setVelX(0);
+			Game.players.get(0).setVelX(0);
 		}
 		else if (key == KeyEvent.VK_DOWN)
 		{
-			Game.player.setVelY(0);
+			Game.players.get(0).setVelY(0);
 		}
 		else if (key == KeyEvent.VK_UP)
 		{
-			Game.player.setVelY(0);
+			Game.players.get(0).setVelY(0);
 		}
 		if (key == KeyEvent.VK_D)
 		{
-			Game.player.setVelX(0);
+			Game.players.get(0).setVelX(0);
 		}
 		else if (key == KeyEvent.VK_A)
 		{
-			Game.player.setVelX(0);
+			Game.players.get(0).setVelX(0);
 		}
 		else if (key == KeyEvent.VK_S)
 		{
-			Game.player.setVelY(0);
+			Game.players.get(0).setVelY(0);
 		}
 		else if (key == KeyEvent.VK_W)
 		{
-			Game.player.setVelY(0);
+			Game.players.get(0).setVelY(0);
 		}
 		else if (key == KeyEvent.VK_SPACE)
 		{
-			Game.player.isShooting = false;
+			Game.players.get(0).isShooting = false;
 		}
 
 	}

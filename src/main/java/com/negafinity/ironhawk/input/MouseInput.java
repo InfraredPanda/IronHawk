@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 
 import com.negafinity.ironhawk.Controller;
 import com.negafinity.ironhawk.Game;
+import com.negafinity.ironhawk.entities.Player;
 
 public class MouseInput implements MouseListener
 {
@@ -48,13 +49,14 @@ public class MouseInput implements MouseListener
 			{
 				if (clickY >= 150 && clickY <= 200)
 				{
-					//Pressed Play
-					//Picking 1 or 2 Players
+					// Pressed Play
+					// Picking 1 or 2 Players
 					Game.State = Game.STATE.CHOICEMENU;
 				}
 			}
 		}
-		if(Game.State == Game.STATE.CHOICEMENU){
+		if (Game.State == Game.STATE.CHOICEMENU)
+		{
 			if (clickX >= Game.WIDTH / 2 + 120 && clickX <= Game.WIDTH / 2 + 220)
 			{
 				if (clickY >= 150 && clickY <= 200)
@@ -137,11 +139,16 @@ public class MouseInput implements MouseListener
 				{
 					// Pressed Play Again
 					game.entities.clear();
-					Game.player.health = 200;
-					Game.player.anim = Game.player.defaultAnim;
+
+					for (Player player : Game.players)
+					{
+						player.health = 200;
+						player.anim = player.defaultAnim;
+						player.rapidFire = false;
+					}
+
 					Game.roundNumber = 0;
 					Game.enemyCount = 10;
-					Game.player.rapidFire = false;
 					Game.State = Game.STATE.GAME;
 				}
 			}

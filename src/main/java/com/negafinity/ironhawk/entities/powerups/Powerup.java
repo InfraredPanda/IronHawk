@@ -10,6 +10,7 @@ import com.negafinity.ironhawk.Game;
 import com.negafinity.ironhawk.Physics;
 import com.negafinity.ironhawk.Textures;
 import com.negafinity.ironhawk.entities.Entity;
+import com.negafinity.ironhawk.entities.Player;
 import com.negafinity.ironhawk.libs.Animation;
 
 public class Powerup extends Entity
@@ -29,23 +30,28 @@ public class Powerup extends Entity
 	{
 		super.render(g);
 
-		if (Physics.collision(this, Game.player))
+		for(Player player : Game.players)
 		{
-			c.removeEntity(this);
-			Game.player.anim = this.animEffect;
-			this.changeAnimationIn1Sec();
+			if (Physics.collision(this, player))
+			{
+				c.removeEntity(this);
+				player.anim = this.animEffect;
+				this.changeAnimationIn1Sec(player);
+			}
 		}
 	}
 
-	public void changeAnimationIn1Sec()
+	public void changeAnimationIn1Sec(Player player)
 	{
+		final Player target = player;
+		
 		Runnable task = new Runnable()
 		{
 			public void run()
 			{
-				if (Game.player.anim.equals(animEffect))
+				if (target.anim.equals(animEffect))
 				{
-					Game.player.anim = Game.player.defaultAnim;
+					target.anim = target.defaultAnim;
 				}
 			}
 		};

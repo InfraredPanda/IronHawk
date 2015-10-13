@@ -1,11 +1,10 @@
 package com.negafinity.ironhawk.entities.powerups;
 
-import java.awt.Graphics;
-
 import com.negafinity.ironhawk.Controller;
 import com.negafinity.ironhawk.Game;
 import com.negafinity.ironhawk.Physics;
 import com.negafinity.ironhawk.Textures;
+import com.negafinity.ironhawk.entities.Player;
 import com.negafinity.ironhawk.libs.Animation;
 
 public class BombPowerup extends Powerup
@@ -19,13 +18,16 @@ public class BombPowerup extends Powerup
 	}
 
 	@Override
-	public void render(Graphics g)
+	public void tick()
 	{
-		super.render(g);
+		super.tick();
 
-		if (Physics.collision(this, Game.player))
+		for(Player player : Game.players)
 		{
-			Game.player.bombCount++;
+			if (Physics.collision(this, player))
+			{
+				player.bombCount++;
+			}
 		}
 	}
 }

@@ -16,7 +16,6 @@ import javax.swing.JFrame;
 
 import com.negafinity.ironhawk.entities.Entity;
 import com.negafinity.ironhawk.entities.Player;
-import com.negafinity.ironhawk.entities.Player2;
 import com.negafinity.ironhawk.input.KeyInput;
 import com.negafinity.ironhawk.input.MouseInput;
 import com.negafinity.ironhawk.states.ChoiceMenu;
@@ -60,9 +59,7 @@ public class Game extends Canvas implements Runnable
 
 	public static int enemyCount = 10;
 	public static int roundNumber = 1;
-	public static Player player;
-	public static Player2 player2;
-
+	public static ArrayList<Player> players = new ArrayList<>();
 	public static IronHawk ironhawk;
 
 	private Controller c;
@@ -106,8 +103,10 @@ public class Game extends Canvas implements Runnable
 		gameover = new GameOver();
 		help = new Help();
 		choiceMenu = new ChoiceMenu();
-		player = new Player(200, 200, tex, c, this);
-		player2 = new Player2(250, 200, tex, c, this);
+		Player player = new Player(200, 200, tex, c, this);
+		Player player2 = new Player(250, 200, tex, c, this);
+		players.add(player);
+		players.add(player2);
 
 		entities = c.getEntities();
 
@@ -188,8 +187,11 @@ public class Game extends Canvas implements Runnable
 	{
 		if (State == STATE.GAME)
 		{
-			player.tick();
-			player2.tick();
+			for (Player player : players)
+			{
+				player.tick();
+			}
+
 			c.tick();
 		}
 		if (enemyCount == 0)
@@ -208,9 +210,13 @@ public class Game extends Canvas implements Runnable
 			// c.createRedBaron(enemyCount + roundNumber);
 			// }
 		}
-		if (player.health >= 200)
+
+		for (Player player : players)
 		{
-			player.health = 200;
+			if (player.health >= 200)
+			{
+				player.health = 200;
+			}
 		}
 	}
 
@@ -227,62 +233,56 @@ public class Game extends Canvas implements Runnable
 		Graphics g = bufferedStrat.getDrawGraphics();
 
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
-
 		g.drawImage(background, 0, 0, this);
-	
+
 		if (State == STATE.GAME)
 		{
-			// TODO: Panda's can't even JLabel
-			/*
-			 * JLabel label1 = new JLabel("Start"); label1.setVerticalTextPosition(JLabel.BOTTOM); label1.setHorizontalTextPosition(JLabel.CENTER); label1.setText("Enemies spawn in 3"); label1.setText(""); label1.setText("Enemies spawn in 2"); label1.setText(""); label1.setText("Enemies spawn in 1"); label1.setText("");
-			 */
-
-			
-			player.render(g);
-			//if(twoPlayers){
-			player2.render(g);
-			//}
 			c.render(g);
-
-			Font fnt0 = new Font("arial", Font.BOLD, 20);
-			g.setFont(fnt0);
-
-			if (Game.player.health / 2 == 0)
+			
+			for(Player player : players)
 			{
-				g.setColor(Color.red);
-				g.fillRect(5, 5, 200, 50);
-			}
+				player.render(g);
+				
+				Font fnt0 = new Font("arial", Font.BOLD, 20);
+				g.setFont(fnt0);
 
-			Color healthBarColor = Color.green;
+				if (player.health / 2 == 0)
+				{
+					g.setColor(Color.red);
+					g.fillRect(5, 5, 200, 50);
+				}
 
-			if (Game.player.health / 2 <= 100 && Game.player.health / 2 >= 60)
-			{
-				healthBarColor = Color.green;
-			}
-			else if (Game.player.health / 2 >= 40 && Game.player.health / 2 < 60)
-			{
-				healthBarColor = Color.yellow;
-			}
-			else
-			{
-				healthBarColor = Color.red;
-			}
+				Color healthBarColor = Color.green;
 
-			g.setColor(healthBarColor);
-			g.fillRect(5, 5, player.health, 50);
+				if (player.health / 2 <= 100 && player.health / 2 >= 60)
+				{
+					healthBarColor = Color.green;
+				}
+				else if (player.health / 2 >= 40 && player.health / 2 < 60)
+				{
+					healthBarColor = Color.yellow;
+				}
+				else
+				{
+					healthBarColor = Color.red;
+				}
 
-			g.setColor(Color.white);
-			g.drawString("Health", 20, 20);
-			g.setColor(Color.gray);
-			g.drawString(String.valueOf(player.health / 2), 20, 40);
+				g.setColor(healthBarColor);
+				g.fillRect(5, 5, player.health, 50);
+
+				g.setColor(Color.white);
+				g.drawString("Health " + players.indexOf(player), 20, 20);
+				g.setColor(Color.gray);
+				g.drawString(String.valueOf(player.health / 2), 20, 40);
+				
+				g.setColor(Color.white);
+				g.drawString("Bombs " + players.indexOf(player), 500, 475);
+				g.drawString(String.valueOf(player.bombCount), 575, 475);
+			}
 
 			g.setColor(Color.white);
 			g.drawString("Round", WIDTH + WIDTH - 80, 20);
 			g.drawString(String.valueOf(roundNumber), WIDTH + WIDTH - 10, 20);
-
-			g.setColor(Color.white);
-			g.drawString("Bombs", 500, 475);
-			g.drawString(String.valueOf(player.bombCount), 575, 475);
 
 			g.setColor(Color.red);
 			g.drawString("Enemies", WIDTH - 15, 20);

@@ -12,9 +12,9 @@ public class Bomb extends Weapon
 {
 	public Animation animExplode;
 
-	public Bomb(double x, double y, Textures tex, Controller c, Game game)
+	public Bomb(double x, double y, Textures tex, Controller c, Game game, Entity firer)
 	{
-		super(x, y, tex, c, game);
+		super(x, y, tex, c, game, firer);
 
 		this.name = "Bomb";
 		anim = new Animation(5, tex.bomb[0], tex.bomb[1]);

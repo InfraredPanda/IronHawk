@@ -6,6 +6,7 @@ import com.negafinity.ironhawk.Controller;
 import com.negafinity.ironhawk.Game;
 import com.negafinity.ironhawk.Physics;
 import com.negafinity.ironhawk.Textures;
+import com.negafinity.ironhawk.entities.Player;
 import com.negafinity.ironhawk.libs.Animation;
 
 public class MissilePowerup extends Powerup
@@ -23,9 +24,12 @@ public class MissilePowerup extends Powerup
 	{
 		super.render(g);
 
-		if (Physics.collision(this, Game.player))
+		for (Player player : Game.players)
 		{
-			Game.player.missleCount++;
+			if (Physics.collision(this, player))
+			{
+				player.missleCount++;
+			}
 		}
 	}
 }

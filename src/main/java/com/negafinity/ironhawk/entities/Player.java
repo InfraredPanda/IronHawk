@@ -141,7 +141,7 @@ public class Player extends Entity
 				if (Physics.collision(this, entity))
 				{
 					c.removeEntity(entity);
-					Game.player.health -= 40;
+					this.health -= 40;
 				}
 			}
 			
@@ -150,7 +150,7 @@ public class Player extends Entity
 				if (Physics.collision(this, entity))
 				{
 					c.removeEntity(entity);
-					Game.player.health -= 100;
+					this.health -= 100;
 				}
 			}
 			
@@ -160,7 +160,7 @@ public class Player extends Entity
 				{
 					Bomber bomber = (Bomber) entity;
 					bomber.enemyHealth -= 100;
-					Game.player.health -= 100;
+					this.health -= 100;
 				}
 			}
 		}

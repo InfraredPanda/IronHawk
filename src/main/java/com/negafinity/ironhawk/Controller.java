@@ -8,6 +8,7 @@ import com.negafinity.ironhawk.entities.Bomber;
 import com.negafinity.ironhawk.entities.Enemy;
 import com.negafinity.ironhawk.entities.Entity;
 import com.negafinity.ironhawk.entities.JapaneseFighterPlane;
+import com.negafinity.ironhawk.entities.Player;
 import com.negafinity.ironhawk.entities.RedBaron;
 import com.negafinity.ironhawk.entities.powerups.BombPowerup;
 import com.negafinity.ironhawk.entities.powerups.HealthPack;
@@ -26,24 +27,24 @@ public class Controller
 		this.game = game;
 	}
 	
-	public void moveTowardsPlayer(Entity entity)
+	public void moveTowardsPlayer(Entity entity, Player player)
 	{
-		if(entity.x < Game.player.x)
+		if(entity.x < player.x)
 		{
 			entity.x++;
 		}
 		
-		if(entity.x > Game.player.x)
+		if(entity.x > player.x)
 		{
 			entity.x--;
 		}
 		
-		if(entity.y < Game.player.y)
+		if(entity.y < player.y)
 		{
 			entity.y++;
 		}
 		
-		if(entity.y > Game.player.y)
+		if(entity.y > player.y)
 		{
 			entity.y--;
 		}

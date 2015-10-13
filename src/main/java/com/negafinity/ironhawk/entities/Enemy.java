@@ -29,12 +29,15 @@ public class Enemy extends Entity
 		y += speed;
 		applySpeedMultiplier();
 
-		if (Physics.collision(this, Game.player))
+		for(Player player : Game.players)
 		{
-			this.enemyHealth -= 50;
-			Game.player.health -= 40;
+			if (Physics.collision(this, player))
+			{
+				this.enemyHealth -= 50;
+				player.health -= 40;
+			}
 		}
-		
+
 		if(this.enemyHealth <= 0)
 		{
 			c.removeEntity(this);
