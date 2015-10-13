@@ -53,22 +53,22 @@ public class MouseInput implements MouseListener
 					// Pressed Play
 					// Picking 1 or 2 Players
 					Game.State = Game.STATE.CHOICEMENU;
+					return;
 				}
 			}
 		}
 
 		if (Game.State == Game.STATE.CHOICEMENU)
 		{
-			System.out.println(clickX);
 			if (clickY < 348 && clickY > 147)
 			{
 				if (clickX <= Game.WIDTH / 2 + 160 && clickX >= 20)
 				{
+					Game.players.remove(1);
 					Game.State = Game.STATE.GAME;
 				}
 				else if (clickX < 627)
 				{
-					Game.multiplayer = true;
 					Game.State = Game.STATE.GAME;
 				}
 			}

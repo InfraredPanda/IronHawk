@@ -41,7 +41,7 @@ public class Game extends Canvas implements Runnable
 	public final String TITLE = "Iron Hawk";
 
 	private boolean running = false;
-	
+
 	private Thread thread;
 
 	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -59,7 +59,6 @@ public class Game extends Canvas implements Runnable
 
 	public static int enemyCount = 10;
 	public static int roundNumber = 1;
-	public static boolean multiplayer = false;
 	public static ArrayList<Player> players = new ArrayList<>();
 	public static IronHawk ironhawk;
 
@@ -106,12 +105,9 @@ public class Game extends Canvas implements Runnable
 		choiceMenu = new ChoiceMenu();
 		Player player = new Player(200, 200, tex, c, this);
 		players.add(player);
-		
-		if(multiplayer)
-		{
-		    Player player2 = new Player(250, 200, tex, c, this);
-		    players.add(player2);
-		}
+		Player player2 = new Player(250, 200, tex, c, this);
+		players.add(player2);
+
 		entities = c.getEntities();
 
 		this.addKeyListener(new KeyInput(this, c, tex));
@@ -206,8 +202,8 @@ public class Game extends Canvas implements Runnable
 			//
 			// if (roundNumber >= 5)
 			// {
-			//// c.createRedBaron((enemyCount + roundNumber) / 2);
-			//// c.createJapaneseFighterPlane((enemyCount + roundNumber) / 2);
+			// // c.createRedBaron((enemyCount + roundNumber) / 2);
+			// // c.createJapaneseFighterPlane((enemyCount + roundNumber) / 2);
 			// }
 			// else if (roundNumber <= 5)
 			// {
@@ -242,11 +238,11 @@ public class Game extends Canvas implements Runnable
 		if (State == STATE.GAME)
 		{
 			c.render(g);
-			
-			for(Player player : players)
+
+			for (Player player : players)
 			{
 				player.render(g);
-				
+
 				Font fnt0 = new Font("arial", Font.BOLD, 20);
 				g.setFont(fnt0);
 
@@ -278,7 +274,7 @@ public class Game extends Canvas implements Runnable
 				g.drawString("Health " + players.indexOf(player), 20, 20);
 				g.setColor(Color.gray);
 				g.drawString(String.valueOf(player.health / 2), 20, 40);
-				
+
 				g.setColor(Color.white);
 				g.drawString("Bombs " + players.indexOf(player), 500, 475);
 				g.drawString(String.valueOf(player.bombCount), 575, 475);
