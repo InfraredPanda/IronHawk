@@ -55,11 +55,12 @@ public class MouseInput implements MouseListener
 				}
 			}
 		}
+		
 		if (Game.State == Game.STATE.CHOICEMENU)
 		{
 			if (clickX >= Game.WIDTH / 2 + 120 && clickX <= Game.WIDTH / 2 + 220)
 			{
-				if (clickY >= 150 && clickY <= 200)
+				if (clickY >= 325 && clickY <= 525)
 				{
 					Game.State = Game.STATE.GAME;
 				}
