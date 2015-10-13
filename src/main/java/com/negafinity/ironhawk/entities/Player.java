@@ -20,6 +20,8 @@ public class Player extends Entity
 	private double velY = 0;
 
 	public boolean hasBeenRotatedUpsideDown = false;
+	public boolean hasBeenRotatedRight = false;
+	public boolean hasBeenRotatedLeft = false;
 	public boolean rapidFire;
 	public boolean isShooting = false;
 	public int missleCount = 0;
@@ -52,6 +54,40 @@ public class Player extends Entity
 	    BufferedImage bufferedImage2 = tex.player[1];
 		AffineTransform transform2 = new AffineTransform();
 	    transform2.rotate(Math.PI, bufferedImage2.getWidth()/2, bufferedImage2.getHeight()/2);
+	    AffineTransformOp op2 = new AffineTransformOp(transform2, AffineTransformOp.TYPE_BILINEAR);
+	    bufferedImage2 = op2.filter(bufferedImage2, null);
+	    
+	    anim = new Animation(5, bufferedImage, bufferedImage2);
+	}
+	
+	public void rotateRight()
+	{
+		BufferedImage bufferedImage = tex.player[0];
+		AffineTransform transform = new AffineTransform();
+	    transform.rotate(Math.PI/2, bufferedImage.getWidth()/2, bufferedImage.getHeight()/2);
+	    AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_BILINEAR);
+	    bufferedImage = op.filter(bufferedImage, null);
+	    
+	    BufferedImage bufferedImage2 = tex.player[1];
+		AffineTransform transform2 = new AffineTransform();
+	    transform2.rotate(Math.PI/2, bufferedImage2.getWidth()/2, bufferedImage2.getHeight()/2);
+	    AffineTransformOp op2 = new AffineTransformOp(transform2, AffineTransformOp.TYPE_BILINEAR);
+	    bufferedImage2 = op2.filter(bufferedImage2, null);
+	    
+	    anim = new Animation(5, bufferedImage, bufferedImage2);
+	}
+	
+	public void rotateLeft()
+	{
+		BufferedImage bufferedImage = tex.player[0];
+		AffineTransform transform = new AffineTransform();
+	    transform.rotate(-Math.PI/2, bufferedImage.getWidth()/2, bufferedImage.getHeight()/2);
+	    AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_BILINEAR);
+	    bufferedImage = op.filter(bufferedImage, null);
+	    
+	    BufferedImage bufferedImage2 = tex.player[1];
+		AffineTransform transform2 = new AffineTransform();
+	    transform2.rotate(-Math.PI/2, bufferedImage2.getWidth()/2, bufferedImage2.getHeight()/2);
 	    AffineTransformOp op2 = new AffineTransformOp(transform2, AffineTransformOp.TYPE_BILINEAR);
 	    bufferedImage2 = op2.filter(bufferedImage2, null);
 	    

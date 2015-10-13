@@ -45,7 +45,7 @@ public class KeyInput extends KeyAdapter
 					Game.player.hasBeenRotatedUpsideDown = true;
 					Game.player.rotate();
 				}
-				
+
 				Game.player.setVelY(5);
 			}
 			else if (key == KeyEvent.VK_UP && Game.player.health > 0)
@@ -55,35 +55,53 @@ public class KeyInput extends KeyAdapter
 					Game.player.hasBeenRotatedUpsideDown = false;
 					Game.player.rotateBack();
 				}
-				
+
 				Game.player.setVelY(-5);
 			}
 			else if (key == KeyEvent.VK_D && Game.player.health > 0)
 			{
+				if (!Game.player.hasBeenRotatedRight)
+				{
+					Game.player.hasBeenRotatedLeft = false;
+					Game.player.hasBeenRotatedUpsideDown = false;
+					Game.player.hasBeenRotatedRight = true;
+					Game.player.rotateRight();
+				}
 				Game.player.setVelX(5);
 			}
 			else if (key == KeyEvent.VK_A && Game.player.health > 0)
 			{
+				if (!Game.player.hasBeenRotatedLeft)
+				{
+					Game.player.hasBeenRotatedRight = false;
+					Game.player.hasBeenRotatedUpsideDown = false;
+					Game.player.hasBeenRotatedLeft = true;
+					Game.player.rotateLeft();
+				}
 				Game.player.setVelX(-5);
 			}
 			else if (key == KeyEvent.VK_S && Game.player.health > 0)
 			{
 				if (!Game.player.hasBeenRotatedUpsideDown)
 				{
+					Game.player.hasBeenRotatedRight = false;
+					Game.player.hasBeenRotatedLeft = false;
 					Game.player.hasBeenRotatedUpsideDown = true;
 					Game.player.rotate();
 				}
-				
+
 				Game.player.setVelY(5);
 			}
 			else if (key == KeyEvent.VK_W && Game.player.health > 0)
 			{
-				if (Game.player.hasBeenRotatedUpsideDown)
+				if (Game.player.hasBeenRotatedUpsideDown || Game.player.hasBeenRotatedRight || Game.player.hasBeenRotatedLeft)
 				{
+					Game.player.hasBeenRotatedRight = false;
+					Game.player.hasBeenRotatedLeft = false;
 					Game.player.hasBeenRotatedUpsideDown = false;
 					Game.player.rotateBack();
 				}
-				
+
 				Game.player.setVelY(-5);
 			}
 			else if (key == KeyEvent.VK_SPACE && !Game.player.isShooting && Game.player.health > 0)

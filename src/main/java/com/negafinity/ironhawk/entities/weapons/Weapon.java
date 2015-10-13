@@ -11,18 +11,31 @@ public class Weapon extends Entity
 {
 	public int speed;
 	public boolean upsideDown;
-	
+	public boolean isFacingRight;
+	public boolean isFacingLeft;
+
 	public Weapon(double x, double y, Textures tex, Controller c, Game game)
 	{
 		super(x, y, tex, c, game);
 
-		if(Game.player.hasBeenRotatedUpsideDown)
+		if (Game.player.hasBeenRotatedUpsideDown)
 		{
 			this.upsideDown = true;
 		}
-		else
+		
+		if (!Game.player.hasBeenRotatedUpsideDown)
 		{
 			this.upsideDown = false;
+		}
+
+		if (Game.player.hasBeenRotatedLeft)
+		{
+			this.isFacingLeft = true;
+		}
+		
+		if (Game.player.hasBeenRotatedRight)
+		{
+			this.isFacingRight = true;
 		}
 	}
 
@@ -55,14 +68,26 @@ public class Weapon extends Entity
 				}
 			}
 		}
-		
-		if(this.upsideDown)
+
+		if (this.upsideDown)
 		{
 			y += speed;
+			return;
 		}
-		else
+		else if (this.isFacingRight)
+		{
+			x += speed;
+			return;
+		}
+		else if (this.isFacingLeft)
+		{
+			x -= speed;
+			return;
+		}
+		else if (!this.upsideDown)
 		{
 			y -= speed;
+			return;
 		}
 	}
 

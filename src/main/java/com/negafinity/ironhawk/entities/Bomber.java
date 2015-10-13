@@ -18,7 +18,6 @@ import com.negafinity.ironhawk.libs.Animation;
 public class Bomber extends Enemy
 {
 	private boolean hasShot;
-	public static boolean bomberSpawned;
 	private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
 
 	public Bomber(double x, double y, Textures tex, Controller c, Game game, int enemyHealth)
@@ -39,11 +38,19 @@ public class Bomber extends Enemy
 
 		c.moveTowardsPlayer(this);
 
+		System.out.println(this.y + "," + Game.player.y);
 		if (this.x == Game.player.x && this.y < Game.player.y && !this.hasShot)
 		{
 			c.addEntity(new Warhead(this.x + 16, this.y + 16, tex, c, game, true));
 			this.hasShot = true;
 			this.enableShootingInOneSec();
+		}
+		else if (this.x == Game.player.x && this.y > Game.player.y && !this.hasShot)
+		{
+			c.addEntity(new Warhead(this.x + 16, this.y + 16, tex, c, game, false));
+			this.hasShot = true;
+			this.enableShootingInOneSec();
+			System.out.println("X: " + this.x + " Y: " + this.y);
 		}
 
 		if (Physics.collision(this, Game.player))
@@ -57,23 +64,21 @@ public class Bomber extends Enemy
 	public void render(Graphics g)
 	{
 		super.render(g);
-		if (bomberSpawned)
-		{
-			Font fnt0 = new Font("arial", Font.BOLD, 20);
-			g.setFont(fnt0);
-			
-			g.setColor(Color.white);
-			g.drawRect(5, 60, 250, 50);
-			
-			g.setColor(Color.MAGENTA);
-			g.fillRect(5, 60, this.enemyHealth/2, 50);
-			
-			g.setColor(Color.black);
-			g.drawString(" Boss Health", Game.WIDTH / 2 - 160, 90);
-			
-			g.setColor(Color.gray);
-			g.drawString(String.valueOf(this.enemyHealth), 20, 110);
-		}
+
+		Font fnt0 = new Font("arial", Font.BOLD, 20);
+		g.setFont(fnt0);
+
+		g.setColor(Color.white);
+		g.drawRect(5, 60, 250, 50);
+
+		g.setColor(Color.MAGENTA);
+		g.fillRect(5, 60, this.enemyHealth / 2, 50);
+
+		g.setColor(Color.black);
+		g.drawString(" Boss Health", Game.WIDTH / 2 - 160, 90);
+
+		g.setColor(Color.gray);
+		g.drawString(String.valueOf(this.enemyHealth), 20, 110);
 	}
 
 	@Override

@@ -8,13 +8,13 @@ import com.negafinity.ironhawk.libs.Animation;
 
 public class Warhead extends Weapon
 {
-	private boolean shotByEnemy;
+	private boolean lookingDownAtPlayer;
 
-	public Warhead(double x, double y, Textures tex, Controller c, Game game, boolean shotByEnemy)
+	public Warhead(double x, double y, Textures tex, Controller c, Game game, boolean lookingDownAtPlayer)
 	{
 		super(x, y, tex, c, game);
 
-		this.shotByEnemy = shotByEnemy;
+		this.lookingDownAtPlayer = lookingDownAtPlayer;
 		this.speed = 10;
 		this.name = "Warhead";
 		this.anim = new Animation(5, tex.warhead[0], tex.warhead[1]);
@@ -23,25 +23,36 @@ public class Warhead extends Weapon
 	@Override
 	public void tick()
 	{
-		if(this.shotByEnemy)
+		anim.runAnimation();
+		
+		if (this.lookingDownAtPlayer)
 		{
-			if(this.y < -1000 || this.y > 1000)
+			if (this.y < -1000 || this.y > 1000)
 			{
 				c.removeEntity(this);
 			}
 
-			anim.runAnimation();
-			
-			if(Physics.collision(this, Game.player))
+			if (Physics.collision(this, Game.player))
 			{
 				Game.player.health -= 10;
 			}
-			
+
 			y += speed;
 		}
 		else
 		{
-			super.tick();
+			if (this.y < -1000 || this.y > 1000)
+			{
+				c.removeEntity(this);
+			}
+			
+			if (Physics.collision(this, Game.player))
+			{
+				Game.player.health -= 15;
+				c.removeEntity(this);
+			}
+			
+			y -= speed;
 		}
 	}
 }
