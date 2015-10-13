@@ -41,7 +41,7 @@ public class Game extends Canvas implements Runnable
 	public final String TITLE = "Iron Hawk";
 
 	private boolean running = false;
-
+	
 	private Thread thread;
 
 	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -59,6 +59,7 @@ public class Game extends Canvas implements Runnable
 
 	public static int enemyCount = 10;
 	public static int roundNumber = 1;
+	public static boolean multiplayer = false;
 	public static ArrayList<Player> players = new ArrayList<>();
 	public static IronHawk ironhawk;
 
@@ -104,10 +105,13 @@ public class Game extends Canvas implements Runnable
 		help = new Help();
 		choiceMenu = new ChoiceMenu();
 		Player player = new Player(200, 200, tex, c, this);
-		Player player2 = new Player(250, 200, tex, c, this);
 		players.add(player);
-		players.add(player2);
-
+		
+		if(multiplayer)
+		{
+		    Player player2 = new Player(250, 200, tex, c, this);
+		    players.add(player2);
+		}
 		entities = c.getEntities();
 
 		this.addKeyListener(new KeyInput(this, c, tex));

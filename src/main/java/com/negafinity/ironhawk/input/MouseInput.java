@@ -9,6 +9,7 @@ import com.negafinity.ironhawk.entities.Player;
 
 public class MouseInput implements MouseListener
 {
+
 	private Controller c;
 	private Game game;
 
@@ -55,13 +56,19 @@ public class MouseInput implements MouseListener
 				}
 			}
 		}
-		
+
 		if (Game.State == Game.STATE.CHOICEMENU)
 		{
-			if (clickX >= Game.WIDTH / 2 + 120 && clickX <= Game.WIDTH / 2 + 220)
+			System.out.println(clickX);
+			if (clickY < 348 && clickY > 147)
 			{
-				if (clickY >= 325 && clickY <= 525)
+				if (clickX <= Game.WIDTH / 2 + 160 && clickX >= 20)
 				{
+					Game.State = Game.STATE.GAME;
+				}
+				else if (clickX < 627)
+				{
+					Game.multiplayer = true;
 					Game.State = Game.STATE.GAME;
 				}
 			}
