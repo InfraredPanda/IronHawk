@@ -51,13 +51,15 @@ public class MouseInput implements MouseListener
 					//Pressed Play
 					//Picking 1 or 2 Players
 					Game.State = Game.STATE.CHOICEMENU;
-					if (clickX >= Game.WIDTH / 2 + 120 && clickX <= Game.WIDTH / 2 + 220)
-					{
-						if (clickY >= 150 && clickY <= 200)
-						{
-							Game.State = Game.STATE.CHOICEMENU;
-						}
-					}
+				}
+			}
+		}
+		if(Game.State == Game.STATE.CHOICEMENU){
+			if (clickX >= Game.WIDTH / 2 + 120 && clickX <= Game.WIDTH / 2 + 220)
+			{
+				if (clickY >= 150 && clickY <= 200)
+				{
+					Game.State = Game.STATE.GAME;
 				}
 			}
 		}
