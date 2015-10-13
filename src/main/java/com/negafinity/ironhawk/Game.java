@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import com.negafinity.ironhawk.entities.Bomber;
 import com.negafinity.ironhawk.entities.Entity;
 import com.negafinity.ironhawk.entities.Player;
+import com.negafinity.ironhawk.entities.Player2;
 import com.negafinity.ironhawk.input.KeyInput;
 import com.negafinity.ironhawk.input.MouseInput;
 import com.negafinity.ironhawk.states.ChoiceMenu;
@@ -61,6 +62,7 @@ public class Game extends Canvas implements Runnable
 	public static int enemyCount = 10;
 	public static int roundNumber = 1;
 	public static Player player;
+	public static Player2 player2;
 
 	public static IronHawk ironhawk;
 
@@ -106,6 +108,7 @@ public class Game extends Canvas implements Runnable
 		help = new Help();
 		choiceMenu = new ChoiceMenu();
 		player = new Player(200, 200, tex, c, this);
+		player2 = new Player2(250, 200, tex, c, this);
 
 		entities = c.getEntities();
 
@@ -187,6 +190,7 @@ public class Game extends Canvas implements Runnable
 		if (State == STATE.GAME)
 		{
 			player.tick();
+			player2.tick();
 			c.tick();
 		}
 		if (enemyCount == 0)
@@ -235,7 +239,11 @@ public class Game extends Canvas implements Runnable
 			 * JLabel label1 = new JLabel("Start"); label1.setVerticalTextPosition(JLabel.BOTTOM); label1.setHorizontalTextPosition(JLabel.CENTER); label1.setText("Enemies spawn in 3"); label1.setText(""); label1.setText("Enemies spawn in 2"); label1.setText(""); label1.setText("Enemies spawn in 1"); label1.setText("");
 			 */
 
+			
 			player.render(g);
+			//if(twoPlayers){
+			player2.render(g);
+			//}
 			c.render(g);
 
 			Font fnt0 = new Font("arial", Font.BOLD, 20);
