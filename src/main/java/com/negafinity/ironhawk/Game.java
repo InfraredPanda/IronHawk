@@ -241,6 +241,13 @@ public class Game extends Canvas implements Runnable
 
 			for (Player player : players)
 			{
+				int moveFactor = 0;
+				
+				if(players.indexOf(player) > 0)
+				{
+					moveFactor = 120;
+				}
+				
 				player.render(g);
 
 				Font fnt0 = new Font("arial", Font.BOLD, 20);
@@ -268,16 +275,19 @@ public class Game extends Canvas implements Runnable
 				}
 
 				g.setColor(healthBarColor);
-				g.fillRect(5, 5, player.health, 50);
+				g.fillRect(5, 5 + moveFactor, player.health, 50);
 
 				g.setColor(Color.white);
-				g.drawString("Health " + players.indexOf(player), 20, 20);
+				g.drawString("Health of Player: " + (players.indexOf(player) + 1), 20, 20 + moveFactor);
 				g.setColor(Color.gray);
-				g.drawString(String.valueOf(player.health / 2), 20, 40);
+				g.drawString(String.valueOf(player.health / 2), 20, 40 + moveFactor);
 
 				g.setColor(Color.white);
-				g.drawString("Bombs " + players.indexOf(player), 500, 475);
-				g.drawString(String.valueOf(player.bombCount), 575, 475);
+				g.drawRect(5, 5 + moveFactor, 200, 50);
+				
+				g.setColor(Color.white);
+				g.drawString("Bombs", 500 - moveFactor, 475);
+				g.drawString(String.valueOf(player.bombCount), 575 - moveFactor, 475);
 			}
 
 			g.setColor(Color.white);
@@ -287,9 +297,6 @@ public class Game extends Canvas implements Runnable
 			g.setColor(Color.red);
 			g.drawString("Enemies", WIDTH - 15, 20);
 			g.drawString(String.valueOf(enemyCount), WIDTH + 75, 20);
-
-			g.setColor(Color.white);
-			g.drawRect(5, 5, 200, 50);
 		}
 		else if (State == STATE.MENU)
 		{
