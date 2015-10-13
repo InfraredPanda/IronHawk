@@ -35,6 +35,7 @@ public class Help
 		g.drawString("To defend from the enemies, dodge or hit 'Space' to fire rounds!", 30, 155);
 		g.drawString("but don't let the enemies hit you, or you will lose health!", 30, 175);
 		g.drawString("Every game you start with 100 health, so don't let the enemies hit you!", 30, 205);
+		g.drawString("The rounds will get progressively harder, so watch out!", 30, 225);
 
 	}
 
