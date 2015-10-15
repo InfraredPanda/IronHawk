@@ -44,6 +44,7 @@ public class Game extends Canvas implements Runnable
 	public final String TITLE = "Iron Hawk";
 
 	private boolean running = false;
+	private boolean hasNotBeenCalled = true;
 
 	private Thread thread;
 
@@ -61,12 +62,14 @@ public class Game extends Canvas implements Runnable
 	private int enemiesKilled = 0;
 
 	public static int enemyCount = 10;
-	public static int roundNumber = 1;
+	public static int roundNumber = 0;
+	public static boolean gameStarting = false;
+	public static int timeToRound = 0;
 	public static ArrayList<Player> players = new ArrayList<>();
 	public static IronHawk ironhawk;
 
 	private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
-	
+
 	private Controller c;
 	private Textures tex;
 	private Menu menu;
@@ -117,8 +120,6 @@ public class Game extends Canvas implements Runnable
 
 		this.addKeyListener(new KeyInput(this, c, tex));
 		this.addMouseListener(new MouseInput(c, this));
-		
-		this.startGame(c);
 	}
 
 	private synchronized void start()
@@ -130,55 +131,60 @@ public class Game extends Canvas implements Runnable
 		thread = new Thread(this);
 		thread.start();
 	}
-	
-	public void endGameInOneSec(Player player)
+
+	public void printRemainingTimeBeforeRound()
 	{
-		final Player p = player;
-		
 		Runnable task = new Runnable()
 		{
 			public void run()
 			{
-				boolean end = true;
-				int i = 0;
-				
-				while(end && i < Game.players.size())
+				if (timeToRound > 0)
 				{
-					Game.players.remove(p);
-					c.removeEntity(p);
-					
-					if(Game.players.get(i) != null && Game.players.get(i).health >= 0)
-					{
-						end = false;
-					}
-					
-					i++;
+					timeToRound--;
 				}
-
-				if (end)
+				else
 				{
-					Game.State = Game.STATE.GAMEOVER;
+					return;
 				}
 			}
 		};
-		worker.schedule(task, 1, TimeUnit.SECONDS);
+		worker.scheduleAtFixedRate(task, 1, 1, TimeUnit.SECONDS);
 	}
 
-	
 	public void startGame(Controller co)
 	{
 		final Controller c = co;
-		
+
 		Runnable task = new Runnable()
 		{
 			public void run()
 			{
-				c.createRedBaron(enemyCount);	
+				gameStarting = false;
+				
+				if (roundNumber != 1)
+					enemyCount = 10;
+				else
+					enemyCount = 9;
+
+				if (roundNumber <= 5)
+				{
+					c.createRedBaron(enemyCount + roundNumber);
+				}
+				else if (roundNumber >= 5 && roundNumber < 10)
+				{
+					c.createRedBaron((enemyCount + roundNumber) / 2);
+					c.createJapaneseFighterPlane((enemyCount + roundNumber) / 2);
+				}
+				else if (roundNumber >= 10)
+				{
+					c.createBomber();
+				}
+
+				hasNotBeenCalled = true;
 			}
 		};
 		worker.schedule(task, 5, TimeUnit.SECONDS);
 	}
-
 
 	private synchronized void stop()
 	{
@@ -248,21 +254,16 @@ public class Game extends Canvas implements Runnable
 
 			c.tick();
 		}
-		if (enemyCount == 0)
+
+		if (enemyCount == 0 && hasNotBeenCalled)
 		{
-			enemyCount = 10;
+			hasNotBeenCalled = false;
 			roundNumber++;
-			c.createBomber();
-			//
-			// if (roundNumber >= 5)
-			// {
-			// // c.createRedBaron((enemyCount + roundNumber) / 2);
-			// // c.createJapaneseFighterPlane((enemyCount + roundNumber) / 2);
-			// }
-			// else if (roundNumber <= 5)
-			// {
-			// c.createRedBaron(enemyCount + roundNumber);
-			// }
+
+			timeToRound = 5;
+			this.startGame(c);
+			gameStarting = true;
+			this.printRemainingTimeBeforeRound();
 		}
 
 		for (Player player : players)
@@ -354,6 +355,13 @@ public class Game extends Canvas implements Runnable
 			g.setColor(Color.white);
 			g.drawString("Round", WIDTH + WIDTH - 80, 20);
 			g.drawString(String.valueOf(roundNumber), WIDTH + WIDTH - 10, 20);
+
+			if (gameStarting)
+			{
+				g.setColor(Color.white);
+				g.drawString("Round Starts In: ", WIDTH - 15, 45);
+				g.drawString(String.valueOf(timeToRound), WIDTH + 175, 45);
+			}
 
 			g.setColor(Color.red);
 			g.drawString("Enemies", WIDTH - 15, 20);
