@@ -179,24 +179,24 @@ public class Player extends Entity
 	public void endGameInOneSec(Player player)
 	{
 		final Player p = player;
-		
+
 		Runnable task = new Runnable()
 		{
 			public void run()
 			{
 				boolean end = true;
 				int i = 0;
-				
-				while(end && i < Game.players.size())
+
+				while (end && i < Game.players.size())
 				{
 					Game.players.remove(p);
 					c.removeEntity(p);
-					
-					if(Game.players.get(i) != null && Game.players.get(i).health >= 0)
+
+					if (Game.players.get(i) != null && Game.players.get(i).health >= 0)
 					{
 						end = false;
 					}
-					
+
 					i++;
 				}
 
