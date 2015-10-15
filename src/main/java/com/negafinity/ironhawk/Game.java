@@ -160,7 +160,7 @@ public class Game extends Canvas implements Runnable
 			public void run()
 			{
 				gameStarting = false;
-				
+
 				if (roundNumber != 1)
 					enemyCount = 10;
 				else
@@ -263,7 +263,9 @@ public class Game extends Canvas implements Runnable
 			timeToRound = 5;
 			this.startGame(c);
 			gameStarting = true;
-			this.printRemainingTimeBeforeRound();
+
+			if (roundNumber == 1)
+				this.printRemainingTimeBeforeRound();
 		}
 
 		for (Player player : players)
@@ -359,8 +361,8 @@ public class Game extends Canvas implements Runnable
 			if (gameStarting)
 			{
 				g.setColor(Color.white);
-				g.drawString("Round Starts In: ", WIDTH - 15, 45);
-				g.drawString(String.valueOf(timeToRound), WIDTH + 175, 45);
+				g.drawString("Round Starts In: ", WIDTH - 35, 45);
+				g.drawString(String.valueOf(timeToRound), WIDTH + 125, 45);
 			}
 
 			g.setColor(Color.red);
