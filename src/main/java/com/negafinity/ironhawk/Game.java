@@ -242,12 +242,12 @@ public class Game extends Canvas implements Runnable
 			for (Player player : players)
 			{
 				int moveFactor = 0;
-				
-				if(players.indexOf(player) > 0)
+
+				if (players.indexOf(player) > 0)
 				{
 					moveFactor = 120;
 				}
-				
+
 				player.render(g);
 
 				Font fnt0 = new Font("arial", Font.BOLD, 20);
@@ -278,16 +278,23 @@ public class Game extends Canvas implements Runnable
 				g.fillRect(5, 5 + moveFactor, player.health, 50);
 
 				g.setColor(Color.white);
-				g.drawString("Health of Player: " + (players.indexOf(player) + 1), 20, 20 + moveFactor);
+				g.drawString("Health of Player " + (players.indexOf(player) + 1) + ":", 20, 20 + moveFactor);
 				g.setColor(Color.gray);
 				g.drawString(String.valueOf(player.health / 2), 20, 40 + moveFactor);
 
 				g.setColor(Color.white);
 				g.drawRect(5, 5 + moveFactor, 200, 50);
-				
+
 				g.setColor(Color.white);
 				g.drawString("Bombs", 500 - moveFactor, 475);
 				g.drawString(String.valueOf(player.bombCount), 575 - moveFactor, 475);
+
+				if (player.missleCount > 0)
+				{
+					g.setColor(Color.white);
+					g.drawString("Missles ", 300 - moveFactor, 475);
+					g.drawString(String.valueOf(player.missleCount), 375 - moveFactor, 475);
+				}
 			}
 
 			g.setColor(Color.white);
