@@ -20,7 +20,7 @@ public class Bomber extends Enemy
 	private boolean hasShot;
 	private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
 	private Player targetPlayer;
-	
+
 	public Bomber(double x, double y, Textures tex, Controller c, Game game, int enemyHealth)
 	{
 		super(x, y, tex, c, game, enemyHealth);
@@ -37,23 +37,26 @@ public class Bomber extends Enemy
 	{
 		super.tick();
 		findTarget();
-		
-		c.moveTowardsPlayer(this, this.targetPlayer);
 
-		if (this.x == this.targetPlayer.x && this.y < this.targetPlayer.y && !this.hasShot)
+		if (this.targetPlayer != null)
 		{
-			c.addEntity(new Warhead(this.x + 16, this.y + 16, tex, c, game, true, this));
-			this.hasShot = true;
-			this.enableShootingInOneSec();
-		}
-		else if (this.x == this.targetPlayer.x && this.y > this.targetPlayer.y && !this.hasShot)
-		{
-			c.addEntity(new Warhead(this.x + 16, this.y + 16, tex, c, game, false, this));
-			this.hasShot = true;
-			this.enableShootingInOneSec();
+			c.moveTowardsPlayer(this, this.targetPlayer);
+
+			if (this.x == this.targetPlayer.x && this.y < this.targetPlayer.y && !this.hasShot)
+			{
+				c.addEntity(new Warhead(this.x + 16, this.y + 16, tex, c, game, true, this));
+				this.hasShot = true;
+				this.enableShootingInOneSec();
+			}
+			else if (this.x == this.targetPlayer.x && this.y > this.targetPlayer.y && !this.hasShot)
+			{
+				c.addEntity(new Warhead(this.x + 16, this.y + 16, tex, c, game, false, this));
+				this.hasShot = true;
+				this.enableShootingInOneSec();
+			}
 		}
 
-		for(Player player : Game.players)
+		for (Player player : Game.players)
 		{
 			if (Physics.collision(this, player))
 			{
@@ -62,16 +65,16 @@ public class Bomber extends Enemy
 		}
 
 	}
-	
+
 	public void findTarget()
 	{
 		double currentDistance = Double.MAX_VALUE;
-		
-		for(Player player : Game.players)
+
+		for (Player player : Game.players)
 		{
 			double distance = Math.sqrt((this.x - player.x) * (this.x - player.x) + (this.y - player.y) * (this.y - player.y));
-			
-			if(distance < currentDistance)
+
+			if (distance < currentDistance)
 			{
 				this.targetPlayer = player;
 				currentDistance = distance;

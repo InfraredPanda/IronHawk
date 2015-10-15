@@ -11,6 +11,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
 
@@ -62,6 +65,8 @@ public class Game extends Canvas implements Runnable
 	public static ArrayList<Player> players = new ArrayList<>();
 	public static IronHawk ironhawk;
 
+	private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
+	
 	private Controller c;
 	private Textures tex;
 	private Menu menu;
@@ -112,8 +117,8 @@ public class Game extends Canvas implements Runnable
 
 		this.addKeyListener(new KeyInput(this, c, tex));
 		this.addMouseListener(new MouseInput(c, this));
-
-		c.createRedBaron(enemyCount);
+		
+		this.startGame(c);
 	}
 
 	private synchronized void start()
@@ -125,6 +130,55 @@ public class Game extends Canvas implements Runnable
 		thread = new Thread(this);
 		thread.start();
 	}
+	
+	public void endGameInOneSec(Player player)
+	{
+		final Player p = player;
+		
+		Runnable task = new Runnable()
+		{
+			public void run()
+			{
+				boolean end = true;
+				int i = 0;
+				
+				while(end && i < Game.players.size())
+				{
+					Game.players.remove(p);
+					c.removeEntity(p);
+					
+					if(Game.players.get(i) != null && Game.players.get(i).health >= 0)
+					{
+						end = false;
+					}
+					
+					i++;
+				}
+
+				if (end)
+				{
+					Game.State = Game.STATE.GAMEOVER;
+				}
+			}
+		};
+		worker.schedule(task, 1, TimeUnit.SECONDS);
+	}
+
+	
+	public void startGame(Controller co)
+	{
+		final Controller c = co;
+		
+		Runnable task = new Runnable()
+		{
+			public void run()
+			{
+				c.createRedBaron(enemyCount);	
+			}
+		};
+		worker.schedule(task, 5, TimeUnit.SECONDS);
+	}
+
 
 	private synchronized void stop()
 	{
