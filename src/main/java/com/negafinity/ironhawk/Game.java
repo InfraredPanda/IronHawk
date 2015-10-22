@@ -21,6 +21,7 @@ import com.negafinity.ironhawk.entities.Entity;
 import com.negafinity.ironhawk.entities.Player;
 import com.negafinity.ironhawk.input.KeyInput;
 import com.negafinity.ironhawk.input.MouseInput;
+import com.negafinity.ironhawk.libs.Animation;
 import com.negafinity.ironhawk.states.ChoiceMenu;
 import com.negafinity.ironhawk.states.GameOver;
 import com.negafinity.ironhawk.states.Help;
@@ -114,6 +115,7 @@ public class Game extends Canvas implements Runnable
 		Player player = new Player(200, 200, tex, c, this);
 		players.add(player);
 		Player player2 = new Player(250, 200, tex, c, this);
+		player2.anim = new Animation(5, tex.player2[0], tex.player2[1]);
 		players.add(player2);
 
 		entities = c.getEntities();
@@ -175,7 +177,7 @@ public class Game extends Canvas implements Runnable
 					c.createRedBaron((enemyCount + roundNumber) / 2);
 					c.createJapaneseFighterPlane((enemyCount + roundNumber) / 2);
 				}
-				else if (roundNumber >= 10)
+				else if (roundNumber >= 5)
 				{
 					c.createBomber();
 				}

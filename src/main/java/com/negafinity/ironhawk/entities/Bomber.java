@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -20,6 +23,9 @@ public class Bomber extends Enemy
 	private boolean hasShot;
 	private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
 	private Player targetPlayer;
+	public boolean hasBeenRotatedUpsideDown = false;
+	public boolean hasBeenRotatedRight = false;
+	public boolean hasBeenRotatedLeft = false;
 
 	public Bomber(double x, double y, Textures tex, Controller c, Game game, int enemyHealth)
 	{
@@ -64,6 +70,61 @@ public class Bomber extends Enemy
 			}
 		}
 
+	}
+	public void rotate()
+	{
+		BufferedImage bufferedImage = tex.bomber[0];
+		AffineTransform transform = new AffineTransform();
+		transform.rotate(Math.PI, bufferedImage.getWidth() / 2, bufferedImage.getHeight() / 2);
+		AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_BILINEAR);
+		bufferedImage = op.filter(bufferedImage, null);
+
+		BufferedImage bufferedImage2 = tex.bomber[1];
+		AffineTransform transform2 = new AffineTransform();
+		transform2.rotate(Math.PI, bufferedImage2.getWidth() / 2, bufferedImage2.getHeight() / 2);
+		AffineTransformOp op2 = new AffineTransformOp(transform2, AffineTransformOp.TYPE_BILINEAR);
+		bufferedImage2 = op2.filter(bufferedImage2, null);
+
+		anim = new Animation(5, bufferedImage, bufferedImage2);
+	}
+
+	public void rotateRight()
+	{
+		BufferedImage bufferedImage = tex.bomber[0];
+		AffineTransform transform = new AffineTransform();
+		transform.rotate(Math.PI / 2, bufferedImage.getWidth() / 2, bufferedImage.getHeight() / 2);
+		AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_BILINEAR);
+		bufferedImage = op.filter(bufferedImage, null);
+
+		BufferedImage bufferedImage2 = tex.player[1];
+		AffineTransform transform2 = new AffineTransform();
+		transform2.rotate(Math.PI / 2, bufferedImage2.getWidth() / 2, bufferedImage2.getHeight() / 2);
+		AffineTransformOp op2 = new AffineTransformOp(transform2, AffineTransformOp.TYPE_BILINEAR);
+		bufferedImage2 = op2.filter(bufferedImage2, null);
+
+		anim = new Animation(5, bufferedImage, bufferedImage2);
+	}
+
+	public void rotateLeft()
+	{
+		BufferedImage bufferedImage = tex.bomber[0];
+		AffineTransform transform = new AffineTransform();
+		transform.rotate(-Math.PI / 2, bufferedImage.getWidth() / 2, bufferedImage.getHeight() / 2);
+		AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_BILINEAR);
+		bufferedImage = op.filter(bufferedImage, null);
+
+		BufferedImage bufferedImage2 = tex.bomber[1];
+		AffineTransform transform2 = new AffineTransform();
+		transform2.rotate(-Math.PI / 2, bufferedImage2.getWidth() / 2, bufferedImage2.getHeight() / 2);
+		AffineTransformOp op2 = new AffineTransformOp(transform2, AffineTransformOp.TYPE_BILINEAR);
+		bufferedImage2 = op2.filter(bufferedImage2, null);
+
+		anim = new Animation(5, bufferedImage, bufferedImage2);
+	}
+
+	public void rotateBack()
+	{
+		anim = new Animation(5, tex.bomber[0], tex.bomber[1]);
 	}
 
 	public void findTarget()

@@ -12,7 +12,7 @@ public class MouseInput implements MouseListener
 
 	private Controller c;
 	private Game game;
-
+	
 	public MouseInput(Controller c, Game game)
 	{
 		this.c = c;
