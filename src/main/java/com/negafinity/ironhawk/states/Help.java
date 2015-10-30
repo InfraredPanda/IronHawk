@@ -29,8 +29,9 @@ public class Help
 		Font fnt2 = new Font("arial", Font.PLAIN, 20);
 		g.setFont(fnt2);
 		g.setColor(Color.WHITE);
-		g.drawString("In order to move in this game, you can either use W, A, S, D" , 30, 85);
-		g.drawString("or, the arrow keys.", 30, 105);
+		
+		g.drawString("The controls for this game are very simple, Player 1 will always move with" 30, 85);
+		g.drawString("W, A, S, and D. If you have two players, Player 2 will move with the arrow keys." 30, 105)
 		g.drawString("Enemies will spawn at the beginning of every round, so watch out!", 30, 135);
 		g.drawString("To defend from the enemies, dodge or hit 'Space' to fire rounds!", 30, 155);
 		g.drawString("but don't let the enemies hit you, or you will lose health!", 30, 175);
