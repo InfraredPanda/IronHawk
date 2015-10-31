@@ -11,9 +11,12 @@ import java.awt.Rectangle;
 public class Menu
 {
 	public Rectangle playButton = new Rectangle(Game.WIDTH / 2 + 120, 150, 100, 50);
+	public Rectangle playButtonEffect = new Rectangle(Game.WIDTH / 2 + 120, 150, 100, 50);
 	public Rectangle helpButton = new Rectangle(Game.WIDTH / 2 + 120, 250, 100, 50);
 	public Rectangle quitButton = new Rectangle(Game.WIDTH / 2 + 120, 350, 100, 50);
-
+	
+	public static boolean overPlayButton = false;
+	
 	public void render(Graphics g)
 	{
 		Graphics2D g2d = (Graphics2D) g;
@@ -27,6 +30,11 @@ public class Menu
 		g.setFont(fnt1);
 		g.drawString("Play", playButton.x + 19, playButton.y + 30);
 		g2d.draw(playButton);
+		if(overPlayButton){
+			g.setColor(Color.CYAN);
+			g2d.draw(playButtonEffect);
+			g.setColor(Color.white);
+		}
 		g.drawString("Help", helpButton.x + 19, helpButton.y + 30);
 		g2d.draw(helpButton);
 		g.drawString("Quit", quitButton.x + 19, quitButton.y + 30);

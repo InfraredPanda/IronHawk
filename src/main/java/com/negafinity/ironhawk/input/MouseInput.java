@@ -6,13 +6,14 @@ import java.awt.event.MouseListener;
 import com.negafinity.ironhawk.Controller;
 import com.negafinity.ironhawk.Game;
 import com.negafinity.ironhawk.entities.Player;
+import com.negafinity.ironhawk.states.Menu;
 
 public class MouseInput implements MouseListener
 {
 
 	private Controller c;
 	private Game game;
-	
+
 	public MouseInput(Controller c, Game game)
 	{
 		this.c = c;
@@ -26,9 +27,25 @@ public class MouseInput implements MouseListener
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent arg0)
+	public void mouseEntered(MouseEvent e)
 	{
-		;
+		int locX = e.getX();
+		int locY = e.getY();
+		
+		// Play Button
+				if (Game.State == Game.STATE.MENU)
+				{
+					if (locX >= Game.WIDTH / 2 + 120 && locX <= Game.WIDTH / 2 + 220)
+					{
+						if (locY >= 150 && locY <= 200)
+						{
+							// Hovering Over Play
+							Menu.overPlayButton = true;
+							System.out.println("works");
+							return;
+						}
+					}
+				}
 	}
 
 	@Override

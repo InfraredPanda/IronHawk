@@ -433,10 +433,11 @@ public class Game extends Canvas implements Runnable
 		game.setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		game.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 
-		JFrame frame = new JFrame(game.TITLE);
+		
 		ArrayList<Image> list = new ArrayList<Image>();
 		list.add(icon16);
 		list.add(icon32);
+		JFrame frame = new JFrame(game.TITLE);
 		frame.setIconImages(list);
 		frame.add(game);
 		frame.pack();

@@ -74,31 +74,31 @@ public class KeyInput extends KeyAdapter
 			{
 				Game.players.get(0).setVelY(-5);
 			}
-		}
-		else if (key == KeyEvent.VK_SPACE && !Game.players.get(0).isShooting && Game.players.get(0).health > 0)
-		{
-			if (Game.players.size() == 1)
+			else if (key == KeyEvent.VK_SPACE && !Game.players.get(0).isShooting && Game.players.get(0).health > 0)
 			{
-				if (!Game.players.get(0).rapidFire)
+				if (Game.players.size() == 1)
 				{
-					Game.players.get(0).isShooting = true;
+					if (!Game.players.get(0).rapidFire)
+					{
+						Game.players.get(0).isShooting = true;
+					}
 				}
+				c.addEntity(new Bullet(Game.players.get(0).getX(), Game.players.get(0).getY(), tex, c, game, Game.players.get(0)));
 			}
-			c.addEntity(new Bullet(Game.players.get(0).getX(), Game.players.get(0).getY(), tex, c, game, Game.players.get(0)));
-		}
-		else if (key == KeyEvent.VK_B && Game.players.get(0).bombCount > 0)
-		{
-			c.addEntity(new Bomb(Game.players.get(0).getX(), Game.players.get(0).getY(), tex, c, game, Game.players.get(0)));
-			Game.players.get(0).bombCount--;
-		}
-		else if (key == KeyEvent.VK_M && Game.players.get(0).missleCount > 0)
-		{
-			c.addEntity(new Missile(Game.players.get(0).getX(), Game.players.get(0).getY(), tex, c, game, Game.players.get(0)));
-			Game.players.get(0).missleCount--;
-		}
-		else if (key == KeyEvent.VK_ESCAPE)
-		{
-			Game.State = STATE.MENU;
+			else if (key == KeyEvent.VK_B && Game.players.get(0).bombCount > 0)
+			{
+				c.addEntity(new Bomb(Game.players.get(0).getX(), Game.players.get(0).getY(), tex, c, game, Game.players.get(0)));
+				Game.players.get(0).bombCount--;
+			}
+			else if (key == KeyEvent.VK_M && Game.players.get(0).missleCount > 0)
+			{
+				c.addEntity(new Missile(Game.players.get(0).getX(), Game.players.get(0).getY(), tex, c, game, Game.players.get(0)));
+				Game.players.get(0).missleCount--;
+			}
+			else if (key == KeyEvent.VK_ESCAPE)
+			{
+				Game.State = STATE.MENU;
+			}
 		}
 	}
 
