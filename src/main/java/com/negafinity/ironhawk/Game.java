@@ -35,7 +35,7 @@ import com.negafinity.ironhawk.utils.BufferedImageLoader;
  * @author InfraredPanda
  * @author HassanS6000
  */
-// TODO: boss(es), two players???, etc..?
+// TODO: BUG LIST: PLAY AGAIN DOES NOT WORK AT ALL. IF PLAYER 2 GETS A POWER UP, THE ANIMATION IS SET BACK TO P1, LOSING THE SKIN.
 public class Game extends Canvas implements Runnable
 {
 	private static final long serialVersionUID = 1L;
