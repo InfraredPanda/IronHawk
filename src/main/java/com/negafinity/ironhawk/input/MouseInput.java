@@ -31,21 +31,21 @@ public class MouseInput implements MouseListener
 	{
 		int locX = e.getX();
 		int locY = e.getY();
-		
+
 		// Play Button
-				if (Game.State == Game.STATE.MENU)
+		if (Game.State == Game.STATE.MENU)
+		{
+			if (locX >= Game.WIDTH / 2 + 120 && locX <= Game.WIDTH / 2 + 220)
+			{
+				if (locY >= 150 && locY <= 200)
 				{
-					if (locX >= Game.WIDTH / 2 + 120 && locX <= Game.WIDTH / 2 + 220)
-					{
-						if (locY >= 150 && locY <= 200)
-						{
-							// Hovering Over Play
-							Menu.overPlayButton = true;
-							System.out.println("works");
-							return;
-						}
-					}
+					// Hovering Over Play
+					Menu.overPlayButton = true;
+					System.out.println("works");
+					return;
 				}
+			}
+		}
 	}
 
 	@Override
