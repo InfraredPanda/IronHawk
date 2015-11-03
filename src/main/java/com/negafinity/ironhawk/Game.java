@@ -23,6 +23,7 @@ import com.negafinity.ironhawk.input.KeyInput;
 import com.negafinity.ironhawk.input.MouseInput;
 import com.negafinity.ironhawk.libs.Animation;
 import com.negafinity.ironhawk.states.ChoiceMenu;
+import com.negafinity.ironhawk.states.Controls;
 import com.negafinity.ironhawk.states.GameOver;
 import com.negafinity.ironhawk.states.Help;
 import com.negafinity.ironhawk.states.IronHawk;
@@ -56,6 +57,7 @@ public class Game extends Canvas implements Runnable
 
 	public Image negafinity = null;
 	public Image ironhawkscreen = null;
+	public Image controlscreen = null;
 
 	private static BufferedImage icon16 = null;
 	private static BufferedImage icon32 = null;
@@ -66,6 +68,7 @@ public class Game extends Canvas implements Runnable
 	public static int timeToRound = 0;
 	public static ArrayList<Player> players = new ArrayList<>();
 	public static IronHawk ironhawk;
+	public static Controls controls;
 	public static boolean multiplayerEnabled = false;
 	
 	private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
@@ -83,7 +86,7 @@ public class Game extends Canvas implements Runnable
 
 	public static enum STATE
 	{
-		MENU, GAME, HELP, GAMEOVER, START, IRONHAWK, CHOICEMENU
+		MENU, GAME, HELP, GAMEOVER, START, IRONHAWK, CHOICEMENU, CONTROLS
 	}
 
 	public static STATE State = STATE.START;
@@ -98,6 +101,7 @@ public class Game extends Canvas implements Runnable
 			player2Sprite = loader.loadImage("/player2Sprite.png");
 			negafinity = loader.loadImage("/negafinity.png");
 			ironhawkscreen = loader.loadImage("/ironhawkscreen.png");
+			controlscreen = loader.loadImage("/controlscreen.png");
 		}
 		catch (IOException e)
 		{
@@ -109,6 +113,7 @@ public class Game extends Canvas implements Runnable
 		menu = new Menu();
 		start = new Start();
 		ironhawk = new IronHawk();
+		controls = new Controls();
 		gameover = new GameOver();
 		help = new Help();
 		choiceMenu = new ChoiceMenu();
@@ -382,6 +387,10 @@ public class Game extends Canvas implements Runnable
 		else if (State == STATE.HELP)
 		{
 			help.render(g);
+		}
+		else if(State == STATE.CONTROLS)
+		{
+			controls.render(g, this);
 		}
 		else if (State == STATE.IRONHAWK)
 		{
