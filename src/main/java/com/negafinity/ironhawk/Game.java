@@ -60,19 +60,19 @@ public class Game extends Canvas implements Runnable
 	private static BufferedImage icon16 = null;
 	private static BufferedImage icon32 = null;
 
-	private int enemiesKilled = 0;
-
 	public static int enemyCount = 10;
 	public static int roundNumber = 0;
 	public static boolean gameStarting = false;
 	public static int timeToRound = 0;
 	public static ArrayList<Player> players = new ArrayList<>();
 	public static IronHawk ironhawk;
-
+	public static boolean multiplayerEnabled = false;
+	
 	private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
 
+	public static Textures tex;
+	
 	private Controller c;
-	private Textures tex;
 	private Menu menu;
 	private Start start;
 	private Help help;
@@ -168,16 +168,16 @@ public class Game extends Canvas implements Runnable
 				else
 					enemyCount = 9;
 
-				if (roundNumber <= 5)
-				{
-					c.createRedBaron(enemyCount + roundNumber);
-				}
-				else if (roundNumber >= 5 && roundNumber < 10)
-				{
-					c.createRedBaron((enemyCount + roundNumber) / 2);
-					c.createJapaneseFighterPlane((enemyCount + roundNumber) / 2);
-				}
-				else if (roundNumber >= 5)
+//				if (roundNumber <= 5)
+//				{
+//					c.createRedBaron(enemyCount + roundNumber);
+//				}
+//				else if (roundNumber >= 5 && roundNumber < 10)
+//				{
+//					c.createRedBaron((enemyCount + roundNumber) / 2);
+//					c.createJapaneseFighterPlane((enemyCount + roundNumber) / 2);
+//				}
+//				else if (roundNumber >= 5)
 				{
 					c.createBomber();
 				}
@@ -462,16 +462,6 @@ public class Game extends Canvas implements Runnable
 	public static void setEnemyCount(int enemyCount)
 	{
 		Game.enemyCount = enemyCount;
-	}
-
-	public int getEnemiesKilled()
-	{
-		return enemiesKilled;
-	}
-
-	public void setEnemiesKilled(int enemiesKilled)
-	{
-		this.enemiesKilled = enemiesKilled;
 	}
 
 	public static int getRoundNumber()

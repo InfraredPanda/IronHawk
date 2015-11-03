@@ -6,11 +6,11 @@ import java.awt.event.MouseListener;
 import com.negafinity.ironhawk.Controller;
 import com.negafinity.ironhawk.Game;
 import com.negafinity.ironhawk.entities.Player;
+import com.negafinity.ironhawk.libs.Animation;
 import com.negafinity.ironhawk.states.Menu;
 
 public class MouseInput implements MouseListener
 {
-
 	private Controller c;
 	private Game game;
 
@@ -81,11 +81,14 @@ public class MouseInput implements MouseListener
 			{
 				if (clickX <= Game.WIDTH / 2 + 160 && clickX >= 20)
 				{
-					Game.players.remove(1);
+					if (Game.players.size() == 2)
+						Game.players.remove(1);
+
 					Game.State = Game.STATE.GAME;
 				}
 				else if (clickX < 627)
 				{
+					Game.multiplayerEnabled = true;
 					Game.State = Game.STATE.GAME;
 				}
 			}
@@ -165,6 +168,21 @@ public class MouseInput implements MouseListener
 					// Pressed Play Again
 					game.entities.clear();
 
+					if (Game.multiplayerEnabled)
+					{
+						Player player = new Player(200, 200, Game.tex, c, game);
+						Player player2 = new Player(250, 200, Game.tex, c, game);
+						player2.anim = new Animation(5, Game.tex.player2[0], Game.tex.player2[1]);
+
+						Game.players.add(player);
+						Game.players.add(player2);
+					}
+					else
+					{
+						Player player = new Player(200, 200, Game.tex, c, game);
+						Game.players.add(player);
+					}
+
 					for (Player player : Game.players)
 					{
 						player.health = 200;
@@ -183,6 +201,6 @@ public class MouseInput implements MouseListener
 	@Override
 	public void mouseReleased(MouseEvent arg0)
 	{
-
+		;
 	}
 }

@@ -26,26 +26,42 @@ public class Controller
 		this.tex = tex;
 		this.game = game;
 	}
-	
+
 	public void moveTowardsPlayer(Entity entity, Player player)
-	{
-		if(entity.x < player.x)
+	{	
+		if (entity.x < player.x)
 		{
+			if (entity.currentRotation == 90)
+			{
+				entity.rotate(180);
+			}
+
 			entity.x++;
 		}
-		
-		if(entity.x > player.x)
+
+		if (entity.x > player.x)
 		{
+			if (entity.currentRotation == 0)
+			{
+				entity.rotate(90);
+			}
+			else if(entity.currentRotation == 180)
+			{
+				entity.rotate(-180);
+			}
+			
 			entity.x--;
 		}
-		
-		if(entity.y < player.y)
+
+		if (entity.y < player.y)
 		{
+			// entity.rotate();
 			entity.y++;
 		}
-		
-		if(entity.y > player.y)
+
+		if (entity.y > player.y)
 		{
+			// entity.rotate();
 			entity.y--;
 		}
 	}
@@ -67,11 +83,12 @@ public class Controller
 			addEntity(new JapaneseFighterPlane(r.nextInt(640), -10, tex, this, game, 200));
 		}
 	}
-	
-	public void createBomber(){
+
+	public void createBomber()
+	{
 		addEntity(new Bomber(320, -10, tex, this, game, 500));
 	}
-	
+
 	public void randomlySpawnHealthPack(double x, double y)
 	{
 		Random r = new Random();

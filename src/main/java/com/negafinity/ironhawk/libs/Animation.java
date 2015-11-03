@@ -5,26 +5,25 @@ import java.awt.image.BufferedImage;
 
 public class Animation
 {
-
 	private int speed;
 	private int frames;
 	private int index = 0;
 	private int count = 0;
 
-	private BufferedImage img1;
-	private BufferedImage img2;
-	private BufferedImage img3;
-	private BufferedImage img4;
-	private BufferedImage img5;
-	private BufferedImage img6;
-	private BufferedImage img7;
-	private BufferedImage img8;
-	private BufferedImage img9;
-	private BufferedImage img10;
-	private BufferedImage img11;
-	private BufferedImage img12;
-	private BufferedImage img13;
-	private BufferedImage img14;
+	public BufferedImage img1;
+	public BufferedImage img2;
+	public BufferedImage img3;
+	public BufferedImage img4;
+	public BufferedImage img5;
+	public BufferedImage img6;
+	public BufferedImage img7;
+	public BufferedImage img8;
+	public BufferedImage img9;
+	public BufferedImage img10;
+	public BufferedImage img11;
+	public BufferedImage img12;
+	public BufferedImage img13;
+	public BufferedImage img14;
 
 	private BufferedImage currentImg;
 

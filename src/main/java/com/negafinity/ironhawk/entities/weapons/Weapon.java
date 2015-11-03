@@ -11,16 +11,12 @@ import com.negafinity.ironhawk.entities.Player;
 public class Weapon extends Entity
 {
 	public int speed;
+	private Entity firer;
 
 	public Weapon(double x, double y, Textures tex, Controller c, Game game, Entity firer)
 	{
 		super(x, y, tex, c, game);
-
-		if (firer instanceof Player)
-		{
-			Player player = (Player) firer;
-
-		}
+		this.firer = firer;
 	}
 
 	@Override
@@ -47,7 +43,11 @@ public class Weapon extends Entity
 						c.randomlySpawnMissilePowerup(x, y);
 						c.randomlySpawnBombPowerup(x, y);
 
-						game.setEnemiesKilled(game.getEnemiesKilled() + 1);
+						if (firer instanceof Player)
+						{
+							Player player = (Player) firer;
+							player.setEnemiesKilled(player.getEnemiesKilled() + 1);
+						}
 					}
 				}
 			}

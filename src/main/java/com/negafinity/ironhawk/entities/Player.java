@@ -1,9 +1,6 @@
 package com.negafinity.ironhawk.entities;
 
 import java.awt.Graphics;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
-import java.awt.image.BufferedImage;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -18,6 +15,7 @@ public class Player extends Entity
 {
 	private double velX = 0;
 	private double velY = 0;
+	private int enemiesKilled = 0;
 
 	public boolean rapidFire;
 	public boolean isShooting = false;
@@ -105,6 +103,16 @@ public class Player extends Entity
 				}
 			}
 		}
+	}
+
+	public int getEnemiesKilled()
+	{
+		return enemiesKilled;
+	}
+
+	public void setEnemiesKilled(int enemiesKilled)
+	{
+		this.enemiesKilled = enemiesKilled;
 	}
 
 	public void setVelX(double velX)
