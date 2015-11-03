@@ -76,14 +76,22 @@ public class KeyInput extends KeyAdapter
 			}
 			else if (key == KeyEvent.VK_SPACE && !Game.players.get(0).isShooting && Game.players.get(0).health > 0)
 			{
-				if (Game.players.size() == 1)
+				if (!Game.players.get(0).rapidFire)
 				{
-					if (!Game.players.get(0).rapidFire)
-					{
-						Game.players.get(0).isShooting = true;
-					}
+					Game.players.get(0).isShooting = true;
 				}
 				c.addEntity(new Bullet(Game.players.get(0).getX(), Game.players.get(0).getY(), tex, c, game, Game.players.get(0)));
+			}
+			else if (key == KeyEvent.VK_ENTER && !Game.players.get(1).isShooting && Game.players.get(1).health > 0)
+			{
+				if (Game.players.size() == 2)
+				{
+					if (Game.players.get(1).rapidFire)
+					{
+						Game.players.get(1).isShooting = true;
+					}
+				}
+				c.addEntity(new Bullet(Game.players.get(1).getX(), Game.players.get(1).getY(), tex, c, game, Game.players.get(1)));
 			}
 			else if (key == KeyEvent.VK_B && Game.players.get(0).bombCount > 0)
 			{
@@ -154,8 +162,12 @@ public class KeyInput extends KeyAdapter
 		}
 		else if (key == KeyEvent.VK_SPACE)
 		{
-			if (Game.players.size() == 1)
-				Game.players.get(0).isShooting = false;
+			Game.players.get(0).isShooting = false;
+		}
+		else if (key == KeyEvent.VK_ENTER)
+		{
+			if (Game.players.size() == 2)
+				Game.players.get(1).isShooting = false;
 		}
 
 	}

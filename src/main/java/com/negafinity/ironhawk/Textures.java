@@ -75,6 +75,7 @@ public class Textures
 		
 		player2[0] = ss.grabImage(14, 1, 32, 32);
 		player2[1] = ss.grabImage(14, 2, 32, 32);
+		player2[2] = ss.grabImage(14, 3, 32, 32);
 	}
 
 }

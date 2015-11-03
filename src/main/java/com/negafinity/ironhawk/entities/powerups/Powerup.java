@@ -35,6 +35,10 @@ public class Powerup extends Entity
 			if (Physics.collision(this, player))
 			{
 				c.removeEntity(this);
+				if(Game.players.size() == 2 && Game.players.get(1) == player)
+				{
+				this.animEffect = new Animation(5, tex.player2[0], tex.player2[2]);
+				}
 				player.anim = this.animEffect;
 				this.changeAnimationIn1Sec(player);
 			}
@@ -51,6 +55,10 @@ public class Powerup extends Entity
 			{
 				if (target.anim.equals(animEffect))
 				{
+					if(Game.players.size() == 2 && target == Game.players.get(1))
+					{
+					target.defaultAnim =  new Animation(5, tex.player2[0], tex.player2[1]);
+					}
 					target.anim = target.defaultAnim;
 				}
 			}
