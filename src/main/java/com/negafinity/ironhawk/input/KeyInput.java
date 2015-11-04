@@ -103,6 +103,16 @@ public class KeyInput extends KeyAdapter
 				c.addEntity(new Missile(Game.players.get(0).getX(), Game.players.get(0).getY(), tex, c, game, Game.players.get(0)));
 				Game.players.get(0).missleCount--;
 			}
+			else if (key == KeyEvent.VK_SHIFT && Game.players.get(1).missleCount > 0)
+			{
+				c.addEntity(new Missile(Game.players.get(1).getX(), Game.players.get(1).getY(), tex, c, game, Game.players.get(1)));
+				Game.players.get(1).missleCount--;
+			}
+			else if (key == KeyEvent.VK_CONTROL && Game.players.get(1).bombCount > 1)
+			{
+				c.addEntity(new Bomb(Game.players.get(1).getX(), Game.players.get(1).getY(), tex, c, game, Game.players.get(1)));
+				Game.players.get(1).bombCount--;
+			}
 			else if (key == KeyEvent.VK_ESCAPE)
 			{
 				Game.State = STATE.MENU;
