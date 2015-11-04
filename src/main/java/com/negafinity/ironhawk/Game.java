@@ -70,11 +70,11 @@ public class Game extends Canvas implements Runnable
 	public static IronHawk ironhawk;
 	public static Controls controls;
 	public static boolean multiplayerEnabled = false;
-	
+
 	private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
 
-	public static Textures tex;
-	
+	public Textures tex;
+
 	private Controller c;
 	private Menu menu;
 	private Start start;
@@ -173,16 +173,16 @@ public class Game extends Canvas implements Runnable
 				else
 					enemyCount = 9;
 
-//				if (roundNumber <= 5)
-//				{
-//					c.createRedBaron(enemyCount + roundNumber);
-//				}
-//				else if (roundNumber >= 5 && roundNumber < 10)
-//				{
-//					c.createRedBaron((enemyCount + roundNumber) / 2);
-//					c.createJapaneseFighterPlane((enemyCount + roundNumber) / 2);
-//				}
-//				else if (roundNumber >= 5)
+				if (roundNumber <= 5)
+				{
+					c.createRedBaron(enemyCount + roundNumber);
+				}
+				else if (roundNumber >= 5 && roundNumber < 10)
+				{
+					c.createRedBaron((enemyCount + roundNumber) / 2);
+					c.createJapaneseFighterPlane((enemyCount + roundNumber) / 2);
+				}
+				else if (roundNumber >= 5)
 				{
 					c.createBomber();
 				}
@@ -388,7 +388,7 @@ public class Game extends Canvas implements Runnable
 		{
 			help.render(g);
 		}
-		else if(State == STATE.CONTROLS)
+		else if (State == STATE.CONTROLS)
 		{
 			controls.render(g, this);
 		}
@@ -442,7 +442,6 @@ public class Game extends Canvas implements Runnable
 		game.setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		game.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 
-		
 		ArrayList<Image> list = new ArrayList<Image>();
 		list.add(icon16);
 		list.add(icon32);

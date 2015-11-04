@@ -33,7 +33,7 @@ public class Weapon extends Entity
 				if (Physics.collision(this, entity))
 				{
 					Enemy enemy = (Enemy) entity;
-					enemy.enemyHealth = enemy.enemyHealth - 50;
+					enemy.enemyHealth -= 50;
 					c.removeEntity(this);
 
 					if (enemy.enemyHealth <= 0)
