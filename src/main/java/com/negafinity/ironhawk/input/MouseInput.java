@@ -196,9 +196,10 @@ public class MouseInput implements MouseListener
 					if (Game.multiplayerEnabled)
 					{
 						Player player = new Player(200, 200, tex, c, game);
+						player.anim = player.defaultAnim;
 						Player player2 = new Player(250, 200, tex, c, game);
 						player2.anim = new Animation(5, tex.player2[0], tex.player2[1]);
-
+						
 						Game.players.add(player);
 						Game.players.add(player2);
 					}

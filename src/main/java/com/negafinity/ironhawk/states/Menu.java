@@ -43,7 +43,7 @@ public class Menu
 		
 		Font fnt2 = new Font("arial", Font.BOLD, 10);
 		g.setFont(fnt2);
-		g.drawString("Version 2.0", 550, 460);
+		g.drawString("Version " + Game.VERSION, 550, 460);
 	}
 
 }

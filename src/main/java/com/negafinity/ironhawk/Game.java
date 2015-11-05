@@ -36,7 +36,7 @@ import com.negafinity.ironhawk.utils.BufferedImageLoader;
  * @author InfraredPanda
  * @author HassanS6000
  */
-// TODO: BUG LIST: PLAY AGAIN DOES NOT WORK AT ALL. IF PLAYER 2 GETS A POWER UP, THE ANIMATION IS SET BACK TO P1, LOSING THE SKIN.
+// TODO: BUG LIST: IRDK WHY BUT PLAY AGAIN STOPPED WORKING, SOMETHING TO DO WITH DEATH ANIMATIONS
 public class Game extends Canvas implements Runnable
 {
 	private static final long serialVersionUID = 1L;
@@ -44,6 +44,7 @@ public class Game extends Canvas implements Runnable
 	public static final int HEIGHT = WIDTH / 12 * 9;
 	public static final int SCALE = 2;
 	public final String TITLE = "Iron Hawk";
+	public static final String VERSION = "2.0";
 
 	private boolean running = false;
 	private boolean hasNotBeenCalled = true;
