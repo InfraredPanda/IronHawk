@@ -356,8 +356,8 @@ public class Game extends Canvas implements Runnable
 				if (player.missleCount > 0)
 				{
 					g.setColor(Color.white);
-					g.drawString("Missles ", 300 - moveFactor + 50, 475);
-					g.drawString(String.valueOf(player.missleCount), 375 - moveFactor, 475);
+					g.drawString("Missles ", 250 - moveFactor , 475);
+					g.drawString(String.valueOf(player.missleCount), 325 - moveFactor, 475);
 				}
 			}
 
