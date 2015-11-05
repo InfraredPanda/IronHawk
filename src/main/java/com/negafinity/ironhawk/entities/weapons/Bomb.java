@@ -25,10 +25,10 @@ public class Bomb extends Weapon
 
 		this.name = "Bomb";
 		anim = new Animation(5, tex.bomb[0], tex.bomb[1]);
-		animExplode = new Animation(10, tex.bomb[2], tex.bomb[3]);
+		animExplode = new Animation(18, tex.bomb[2], tex.bomb[3]);
 	}
 
-	public void removeInTwoSecconds()
+	public void removeInOneSeccond()
 	{
 		final Entity entity = this;
 		
@@ -39,7 +39,7 @@ public class Bomb extends Weapon
 				c.removeEntity(entity);
 			}
 		};
-		worker.schedule(task, 2, TimeUnit.SECONDS);
+		worker.schedule(task, 1, TimeUnit.SECONDS);
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class Bomb extends Weapon
 				{
 					this.anim = this.animExplode;
 					enemy.enemyHealth -= 100;
-					removeInTwoSecconds();
+					removeInOneSeccond();
 				}
 			}
 		}
