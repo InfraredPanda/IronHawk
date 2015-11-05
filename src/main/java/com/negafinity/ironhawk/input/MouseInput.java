@@ -16,10 +16,11 @@ public class MouseInput implements MouseListener
 	private Game game;
 	private Textures tex;
 	
-	public MouseInput(Controller c, Game game)
+	public MouseInput(Controller c, Game game, Textures tex)
 	{
 		this.c = c;
 		this.game = game;
+		this.tex = tex;
 	}
 
 	@Override

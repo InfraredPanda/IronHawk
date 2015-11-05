@@ -127,7 +127,7 @@ public class Game extends Canvas implements Runnable
 		entities = c.getEntities();
 
 		this.addKeyListener(new KeyInput(this, c, tex));
-		this.addMouseListener(new MouseInput(c, this));
+		this.addMouseListener(new MouseInput(c, this, tex));
 	}
 
 	private synchronized void start()
