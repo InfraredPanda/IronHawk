@@ -27,7 +27,10 @@ public class KeyInput extends KeyAdapter
 	public void keyPressed(KeyEvent e)
 	{
 		int key = e.getKeyCode();
-
+		if (key == KeyEvent.VK_ESCAPE)
+		{
+			Game.State = STATE.MENU;
+		}
 		if (Game.State == STATE.GAME)
 		{
 			if (key == KeyEvent.VK_RIGHT && Game.players.get(0).health > 0)
@@ -112,10 +115,6 @@ public class KeyInput extends KeyAdapter
 			{
 				c.addEntity(new Bomb(Game.players.get(1).getX(), Game.players.get(1).getY(), tex, c, game, Game.players.get(1)));
 				Game.players.get(1).bombCount--;
-			}
-			else if (key == KeyEvent.VK_ESCAPE)
-			{
-				Game.State = STATE.MENU;
 			}
 		}
 	}
