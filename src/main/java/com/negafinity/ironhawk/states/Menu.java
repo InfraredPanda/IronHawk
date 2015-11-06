@@ -25,6 +25,7 @@ public class Menu
 		g.setFont(fnt0);
 		g.setColor(Color.WHITE);
 		g.drawString("Iron Hawk", 175, 100);
+		
 
 		Font fnt1 = new Font("arial", Font.BOLD, 30);
 		g.setFont(fnt1);
@@ -39,6 +40,10 @@ public class Menu
 		g2d.draw(helpButton);
 		g.drawString("Quit", quitButton.x + 19, quitButton.y + 30);
 		g2d.draw(quitButton);
+		
+		Font fnt2 = new Font("arial", Font.BOLD, 10);
+		g.setFont(fnt2);
+		g.drawString("Version " + Game.VERSION, 550, 460);
 	}
 
 }
