@@ -76,6 +76,17 @@ public class MouseInput implements MouseListener
 				}
 			}
 		}
+		if (Game.State == Game.STATE.CHOICEMENU)
+		{
+			if (clickX >= 5 && clickX <= 105)
+			{
+				if (clickY >= 5 && clickY <= 55)
+				{
+					// Pressed Back
+					Game.State = Game.STATE.HELP;
+				}
+			}
+		}
 
 		if (Game.State == Game.STATE.CHOICEMENU)
 		{
