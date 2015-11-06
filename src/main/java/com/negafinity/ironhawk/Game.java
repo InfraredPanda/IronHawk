@@ -36,7 +36,7 @@ import com.negafinity.ironhawk.utils.BufferedImageLoader;
  * @author InfraredPanda
  * @author HassanS6000
  */
-// TODO: BUG LIST: IRDK WHY BUT PLAY AGAIN STOPPED WORKING, SOMETHING TO DO WITH DEATH ANIMATIONS
+// TODO: BUG LIST: 
 public class Game extends Canvas implements Runnable
 {
 	private static final long serialVersionUID = 1L;
@@ -44,7 +44,7 @@ public class Game extends Canvas implements Runnable
 	public static final int HEIGHT = WIDTH / 12 * 9;
 	public static final int SCALE = 2;
 	public final String TITLE = "Iron Hawk";
-	public static final String VERSION = "2.0";
+	public static final String VERSION = "2.1";
 
 	private boolean running = false;
 	private boolean hasNotBeenCalled = true;
