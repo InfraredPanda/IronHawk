@@ -19,7 +19,7 @@ public class Help
 		Font fnt0 = new Font("arial", Font.BOLD, 30);
 		g.setFont(fnt0);
 		g.setColor(Color.WHITE);
-		g.drawString("Help Menu", Game.WIDTH / 2, 50);
+		g.drawString("Help Menu", Game.WIDTH / 2 + 100, 50);
 		
 		Font fnt1 = new Font("arial", Font.BOLD, 30);
 		g.setFont(fnt1);

@@ -64,7 +64,7 @@ public class Game extends Canvas implements Runnable
 	public Image ironhawklogo = null;
 
 	private static BufferedImage icon16 = null;
-	private static BufferedImage icon32 = null;
+	private static BufferedImage icon64 = null;
 
 	public static int enemyCount = 10;
 	public static int roundNumber = 0;
@@ -418,8 +418,8 @@ public class Game extends Canvas implements Runnable
 		else if (State == STATE.CHOICEMENU)
 		{
 			choiceMenu.render(g);
-			g.drawImage(icon32, 55, 200, this);
-			g.drawImage(icon32, 355, 200, this);
+			g.drawImage(icon64, 55, 200, this);
+			g.drawImage(icon64, 355, 200, this);
 			g.drawImage(player2Sprite, 455, 200, this);
 		}
 		// break
@@ -434,7 +434,7 @@ public class Game extends Canvas implements Runnable
 		try
 		{
 			icon16 = loader.loadImage("/16.png");
-			icon32 = loader.loadImage("/32.png");
+			icon64 = loader.loadImage("/64.png");
 		}
 		catch (IOException e)
 		{
@@ -449,7 +449,7 @@ public class Game extends Canvas implements Runnable
 
 		ArrayList<Image> list = new ArrayList<Image>();
 		list.add(icon16);
-		list.add(icon32);
+		list.add(icon64);
 		JFrame frame = new JFrame(game.TITLE);
 		frame.setIconImages(list);
 		frame.add(game);
