@@ -8,8 +8,15 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -17,6 +24,8 @@ import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.negafinity.ironhawk.entities.Entity;
 import com.negafinity.ironhawk.entities.Player;
 import com.negafinity.ironhawk.input.KeyInput;
@@ -30,6 +39,7 @@ import com.negafinity.ironhawk.states.IronHawk;
 import com.negafinity.ironhawk.states.Menu;
 import com.negafinity.ironhawk.states.Start;
 import com.negafinity.ironhawk.utils.BufferedImageLoader;
+import com.negafinity.ironhawk.utils.User;
 
 /**
  * A 2D Game, fight the enemies!
@@ -41,6 +51,7 @@ import com.negafinity.ironhawk.utils.BufferedImageLoader;
 
 public class Game extends Canvas implements Runnable
 {
+	private static Gson gson = new GsonBuilder().create();
 	private static final long serialVersionUID = 1L;
 	public static final int WIDTH = 320;
 	public static final int HEIGHT = WIDTH / 12 * 9;
@@ -87,7 +98,8 @@ public class Game extends Canvas implements Runnable
 	private ChoiceMenu choiceMenu;
 
 	public LinkedList<Entity> entities;
-
+	public static ArrayList<User> users = new ArrayList<>();
+	
 	public static enum STATE
 	{
 		MENU, GAME, HELP, GAMEOVER, START, IRONHAWK, CHOICEMENU, CONTROLS
@@ -97,6 +109,7 @@ public class Game extends Canvas implements Runnable
 
 	public void init()
 	{
+		readUsers();
 		BufferedImageLoader loader = new BufferedImageLoader();
 		try
 		{
@@ -200,6 +213,8 @@ public class Game extends Canvas implements Runnable
 
 	private synchronized void stop()
 	{
+		saveUsers();
+		
 		if (!running)
 			return;
 
@@ -426,6 +441,50 @@ public class Game extends Canvas implements Runnable
 		g.dispose();
 		bufferedStrat.show();
 	}
+	
+	public static void saveUsers()
+	{
+		String json = gson.toJson(users);
+		
+		try
+		{
+			FileWriter fileWriter = new FileWriter("IronHawkData.json");
+			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+			bufferedWriter.write(json);
+			bufferedWriter.flush();
+			bufferedWriter.close();
+		}
+		catch (IOException ex)
+		{
+			System.out.println("Could not save users to JSON file!");
+		}
+	}
+	
+	public void readUsers()
+	{
+		String json = null;
+
+		try
+		{
+			json = readFile("IronHawkData.json", StandardCharsets.UTF_8);
+		}
+		catch (IOException e)
+		{
+			System.out.println("Could not read JSON file!");
+		}
+
+		if (json != null)
+			users = new ArrayList<User>(Arrays.asList(gson.fromJson(json, User[].class)));
+	}
+
+	static String readFile(String path, Charset encoding) throws IOException
+	{
+		byte[] encoded = Files.readAllBytes(Paths.get(path));
+		return new String(encoded, encoding);
+	}
+
+
 
 	public static void main(String args[])
 	{

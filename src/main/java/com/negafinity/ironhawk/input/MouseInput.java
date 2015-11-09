@@ -121,6 +121,7 @@ public class MouseInput implements MouseListener
 				if (clickY >= 320 && clickY <= 375)
 				{
 					// Pressed Quit
+					Game.saveUsers();
 					System.exit(1);
 				}
 			}
