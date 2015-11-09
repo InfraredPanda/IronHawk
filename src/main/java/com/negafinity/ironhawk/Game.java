@@ -46,7 +46,7 @@ public class Game extends Canvas implements Runnable
 	public static final int HEIGHT = WIDTH / 12 * 9;
 	public static final int SCALE = 2;
 	public final String TITLE = "Iron Hawk";
-	public static final String VERSION = "2.1";
+	public static final String VERSION = "2.2";
 
 	private boolean running = false;
 	private boolean hasNotBeenCalled = true;
