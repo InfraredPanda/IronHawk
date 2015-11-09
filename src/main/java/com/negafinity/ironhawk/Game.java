@@ -36,7 +36,7 @@ import com.negafinity.ironhawk.utils.BufferedImageLoader;
  * @author InfraredPanda
  * @author HassanS6000
  */
-//TODO: CHANGE MENU SCREEN LOGO TO ACTUAL ART. SKINS MENU, ETC.
+//TODO: READING OFF A FILE AND WRITING TO IT FOR HIGH SCORES SKINS MENU, ETC.
 //TODO: BUG LIST: PLAYER 2 REGISTERS AS 1 AFTER DEATH. 
 
 public class Game extends Canvas implements Runnable
