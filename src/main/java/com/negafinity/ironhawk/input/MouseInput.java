@@ -237,7 +237,3 @@ public class MouseInput implements MouseListener
 		;
 	}
 }
-
-
-
-
