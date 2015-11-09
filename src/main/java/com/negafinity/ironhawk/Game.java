@@ -36,6 +36,7 @@ import com.negafinity.ironhawk.states.Controls;
 import com.negafinity.ironhawk.states.GameOver;
 import com.negafinity.ironhawk.states.Help;
 import com.negafinity.ironhawk.states.IronHawk;
+import com.negafinity.ironhawk.states.Login;
 import com.negafinity.ironhawk.states.Menu;
 import com.negafinity.ironhawk.states.Start;
 import com.negafinity.ironhawk.utils.BufferedImageLoader;
@@ -58,7 +59,7 @@ public class Game extends Canvas implements Runnable
 	public static final int SCALE = 2;
 	public final String TITLE = "Iron Hawk";
 	public static final String VERSION = "2.2";
-
+	
 	private boolean running = false;
 	private boolean hasNotBeenCalled = true;
 
@@ -68,14 +69,16 @@ public class Game extends Canvas implements Runnable
 	private BufferedImage spriteSheet = null;
 	private BufferedImage background = null;
 	private BufferedImage player2Sprite = null;
+	
+	public static JFrame frame;
+	
+	public Image negafinity;
+	public Image ironhawkscreen;
+	public Image controlscreen;
+	public Image ironhawklogo;
 
-	public Image negafinity = null;
-	public Image ironhawkscreen = null;
-	public Image controlscreen = null;
-	public Image ironhawklogo = null;
-
-	private static BufferedImage icon16 = null;
-	private static BufferedImage icon64 = null;
+	private static BufferedImage icon16;
+	private static BufferedImage icon64;
 
 	public static int enemyCount = 10;
 	public static int roundNumber = 0;
@@ -91,18 +94,20 @@ public class Game extends Canvas implements Runnable
 	public Textures tex;
 
 	private Controller c;
+	
 	private Menu menu;
 	private Start start;
 	private Help help;
 	private GameOver gameover;
 	private ChoiceMenu choiceMenu;
+	private Login login;
 
 	public LinkedList<Entity> entities;
 	public static ArrayList<User> users = new ArrayList<>();
 
 	public static enum STATE
 	{
-		MENU, GAME, HELP, GAMEOVER, START, IRONHAWK, CHOICEMENU, CONTROLS
+		MENU, GAME, HELP, GAMEOVER, START, IRONHAWK, CHOICEMENU, CONTROLS, LOGIN
 	}
 
 	public static STATE State = STATE.START;
@@ -133,6 +138,7 @@ public class Game extends Canvas implements Runnable
 		ironhawk = new IronHawk();
 		controls = new Controls();
 		gameover = new GameOver();
+		login = new Login(this);
 		help = new Help();
 		choiceMenu = new ChoiceMenu();
 		Player player = new Player(200, 200, tex, c, this);
@@ -412,6 +418,10 @@ public class Game extends Canvas implements Runnable
 		{
 			controls.render(g, this);
 		}
+		else if (State == STATE.LOGIN)
+		{
+			login.render(g);
+		}
 		else if (State == STATE.IRONHAWK)
 		{
 			if (start.hasNotBeenCalled)
@@ -455,7 +465,7 @@ public class Game extends Canvas implements Runnable
 			bufferedWriter.flush();
 			bufferedWriter.close();
 		}
-		catch (IOException ex)
+		catch (IOException e)
 		{
 			System.out.println("Could not save users to JSON file!");
 		}
@@ -507,7 +517,7 @@ public class Game extends Canvas implements Runnable
 		ArrayList<Image> list = new ArrayList<Image>();
 		list.add(icon16);
 		list.add(icon64);
-		JFrame frame = new JFrame(game.TITLE);
+		frame = new JFrame(game.TITLE);
 		frame.setIconImages(list);
 		frame.add(game);
 		frame.pack();

@@ -10,6 +10,7 @@ import com.negafinity.ironhawk.Game;
 import com.negafinity.ironhawk.Physics;
 import com.negafinity.ironhawk.Textures;
 import com.negafinity.ironhawk.libs.Animation;
+import com.negafinity.ironhawk.utils.User;
 
 public class Player extends Entity
 {
@@ -17,6 +18,7 @@ public class Player extends Entity
 	private double velY = 0;
 	private int enemiesKilled = 0;
 
+	public User user;
 	public boolean rapidFire;
 	public boolean isShooting = false;
 	public int missleCount = 0;
@@ -124,6 +126,11 @@ public class Player extends Entity
 	{
 		this.velY = velY;
 	}
+	
+	public void setUser(User user)
+	{
+		this.user = user;
+	}
 
 	public void endGameInOneSec(Player player)
 	{
@@ -151,6 +158,9 @@ public class Player extends Entity
 
 				if (end)
 				{
+					if(p.getUser().getHighscore() < Game.getRoundNumber())
+						p.getUser().setHighscore(Game.getRoundNumber());
+					
 					Game.State = Game.STATE.GAMEOVER;
 				}
 			}
@@ -175,6 +185,11 @@ public class Player extends Entity
 		return bombCount;
 	}
 
+	public User getUser()
+	{
+		return user;
+	}
+	
 	public void setBombCount(int missleCount)
 	{
 		this.missleCount = missleCount;

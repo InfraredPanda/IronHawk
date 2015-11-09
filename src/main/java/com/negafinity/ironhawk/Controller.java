@@ -142,7 +142,6 @@ public class Controller
 			Entity entity = entities.get(i);
 			entity.tick();
 		}
-
 	}
 
 	public void updateEnemyCount()

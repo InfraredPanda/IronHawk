@@ -87,14 +87,24 @@ public class MouseInput implements MouseListener
 
 		if (Game.State == Game.STATE.CHOICEMENU)
 		{
+			if (clickX >= 270 && clickX <= 395)
+			{
+				if (clickY >= 5 && clickY <= 55)
+				{
+					Game.State = Game.STATE.LOGIN;
+				}
+			}
+		}
+
+		if (Game.State == Game.STATE.CHOICEMENU)
+		{
 			if (clickY < 348 && clickY > 147)
 			{
 				if (clickX <= Game.WIDTH / 2 + 160 && clickX >= 20)
 				{
+					// Picked SP
 					if (Game.players.size() == 2)
 						Game.players.remove(1);
-
-					Game.State = Game.STATE.GAME;
 				}
 				else if (clickX < 627)
 				{
@@ -103,6 +113,19 @@ public class MouseInput implements MouseListener
 				}
 			}
 		}
+		
+		if (Game.State == Game.STATE.LOGIN)
+		{
+			if (clickX >= 5 && clickX <= 105)
+			{
+				if (clickY >= 5 && clickY <= 55)
+				{
+					// Pressed Back
+					Game.State = Game.STATE.CHOICEMENU;
+				}
+			}
+		}
+		
 		if (Game.State == Game.STATE.MENU)
 		{
 			if (clickX >= 225 && clickX <= 430)

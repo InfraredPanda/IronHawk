@@ -30,5 +30,4 @@ public class GameOver
 		g.drawString("Quit", quitButton.x + 19, quitButton.y + 30);
 		g2d.draw(quitButton);
 	}
-
 }
