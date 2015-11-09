@@ -18,7 +18,7 @@ import com.negafinity.ironhawk.libs.Animation;
 public class Bomber extends Enemy
 {
 	private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
-	
+
 	private Player targetPlayer;
 	private boolean hasShot;
 

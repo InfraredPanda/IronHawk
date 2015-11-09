@@ -20,13 +20,13 @@ public class Start
 		{
 			public void run()
 			{
-				if(Game.State == STATE.START)
+				if (Game.State == STATE.START)
 				{
 					Game.State = Game.STATE.IRONHAWK;
 				}
 			}
 		};
-		worker.schedule(task, (long)1.75, TimeUnit.SECONDS);
+		worker.schedule(task, (long) 1.75, TimeUnit.SECONDS);
 	}
 
 	public void render(Graphics g, Game game)

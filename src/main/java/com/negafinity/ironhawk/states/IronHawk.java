@@ -20,9 +20,9 @@ public class IronHawk
 		{
 			public void run()
 			{
-				if(Game.State == STATE.IRONHAWK)
+				if (Game.State == STATE.IRONHAWK)
 				{
-					Game.State = Game.STATE.MENU;	
+					Game.State = Game.STATE.MENU;
 				}
 			}
 		};
@@ -31,11 +31,11 @@ public class IronHawk
 
 	public void render(Graphics g, Game game)
 	{
-		if(this.hasNotBeenCalled)
+		if (this.hasNotBeenCalled)
 		{
 			showMenuIn10Sec();
 		}
-		
+
 		g.drawImage(game.ironhawkscreen, 0, 0, game);
 	}
 

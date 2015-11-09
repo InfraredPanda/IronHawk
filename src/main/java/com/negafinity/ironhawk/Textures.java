@@ -17,7 +17,7 @@ public class Textures
 	public BufferedImage[] bomber = new BufferedImage[3];
 	public BufferedImage[] warhead = new BufferedImage[3];
 	public BufferedImage[] player2 = new BufferedImage[3];
-	
+
 	private SpriteSheet ss;
 
 	public Textures(Game game)
@@ -43,36 +43,36 @@ public class Textures
 
 		redBaron[0] = ss.grabImage(3, 1, 32, 32);
 		redBaron[1] = ss.grabImage(3, 2, 32, 32);
-		
+
 		japaneseFighterPlane[0] = ss.grabImage(4, 1, 32, 32);
 		japaneseFighterPlane[1] = ss.grabImage(4, 2, 32, 32);
-		
+
 		healthPack[0] = ss.grabImage(5, 1, 32, 32);
 		healthPack[1] = ss.grabImage(5, 2, 32, 32);
-		
+
 		rapidFire[0] = ss.grabImage(6, 1, 32, 32);
 		rapidFire[1] = ss.grabImage(6, 2, 32, 32);
-		
+
 		bomb[0] = ss.grabImage(7, 1, 32, 32);
 		bomb[1] = ss.grabImage(7, 2, 32, 32);
 		bomb[2] = ss.grabImage(7, 3, 32, 32);
 		bomb[3] = ss.grabImage(7, 4, 32, 32);
-		
+
 		missile[0] = ss.grabImage(8, 1, 32, 32);
-		missile[1] = ss.grabImage(8, 2, 32 ,32);
-		
+		missile[1] = ss.grabImage(8, 2, 32, 32);
+
 		missilePowerup[0] = ss.grabImage(9, 1, 32, 32);
 		missilePowerup[1] = ss.grabImage(9, 2, 32, 32);
-		
+
 		bombPowerup[0] = ss.grabImage(10, 1, 32, 32);
 		bombPowerup[1] = ss.grabImage(10, 2, 32, 32);
-		
+
 		bomber[0] = ss.grabImage(11, 1, 64, 64);
 		bomber[1] = ss.grabImage(11, 3, 64, 64);
-		//No 12th column because boss takes up two, (64, 64), (11,3) for next animation because boss is two (32,32) blocks big.
+		// No 12th column because boss takes up two, (64, 64), (11,3) for next animation because boss is two (32,32) blocks big.
 		warhead[0] = ss.grabImage(13, 1, 32, 32);
 		warhead[1] = ss.grabImage(13, 2, 32, 32);
-		
+
 		player2[0] = ss.grabImage(14, 1, 32, 32);
 		player2[1] = ss.grabImage(14, 2, 32, 32);
 		player2[2] = ss.grabImage(14, 3, 32, 32);

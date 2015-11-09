@@ -22,7 +22,7 @@ public class BombPowerup extends Powerup
 	{
 		super.tick();
 
-		for(Player player : Game.players)
+		for (Player player : Game.players)
 		{
 			if (Physics.collision(this, player))
 			{

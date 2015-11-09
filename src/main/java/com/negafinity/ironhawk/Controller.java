@@ -28,7 +28,7 @@ public class Controller
 	}
 
 	public void moveTowardsPlayer(Entity entity, Player player)
-	{	
+	{
 		if (entity.x < player.x)
 		{
 			if (entity.currentRotation == 90)
@@ -45,11 +45,11 @@ public class Controller
 			{
 				entity.rotate(90);
 			}
-			else if(entity.currentRotation == 180)
+			else if (entity.currentRotation == 180)
 			{
 				entity.rotate(-180);
 			}
-			
+
 			entity.x--;
 		}
 

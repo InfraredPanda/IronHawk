@@ -46,8 +46,8 @@ import com.negafinity.ironhawk.utils.User;
  * @author InfraredPanda
  * @author HassanS6000
  */
-//TODO: READING OFF A FILE AND WRITING TO IT FOR HIGH SCORES SKINS MENU, ETC.
-//TODO: BUG LIST: PLAYER 2 REGISTERS AS 1 AFTER DEATH. 
+// TODO: READING OFF A FILE AND WRITING TO IT FOR HIGH SCORES SKINS MENU, ETC.
+// TODO: BUG LIST: PLAYER 2 REGISTERS AS 1 AFTER DEATH.
 
 public class Game extends Canvas implements Runnable
 {
@@ -99,7 +99,7 @@ public class Game extends Canvas implements Runnable
 
 	public LinkedList<Entity> entities;
 	public static ArrayList<User> users = new ArrayList<>();
-	
+
 	public static enum STATE
 	{
 		MENU, GAME, HELP, GAMEOVER, START, IRONHAWK, CHOICEMENU, CONTROLS
@@ -214,7 +214,7 @@ public class Game extends Canvas implements Runnable
 	private synchronized void stop()
 	{
 		saveUsers();
-		
+
 		if (!running)
 			return;
 
@@ -441,11 +441,11 @@ public class Game extends Canvas implements Runnable
 		g.dispose();
 		bufferedStrat.show();
 	}
-	
+
 	public static void saveUsers()
 	{
 		String json = gson.toJson(users);
-		
+
 		try
 		{
 			FileWriter fileWriter = new FileWriter("IronHawkData.json");
@@ -460,7 +460,7 @@ public class Game extends Canvas implements Runnable
 			System.out.println("Could not save users to JSON file!");
 		}
 	}
-	
+
 	public void readUsers()
 	{
 		String json = null;
@@ -483,8 +483,6 @@ public class Game extends Canvas implements Runnable
 		byte[] encoded = Files.readAllBytes(Paths.get(path));
 		return new String(encoded, encoding);
 	}
-
-
 
 	public static void main(String args[])
 	{

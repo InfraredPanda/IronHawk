@@ -30,7 +30,7 @@ public class RapidFire extends Powerup
 	{
 		super.render(g);
 
-		for(Player player : Game.players)
+		for (Player player : Game.players)
 		{
 			if (Physics.collision(this, player))
 			{
@@ -43,7 +43,7 @@ public class RapidFire extends Powerup
 	public void disableRapidFireIn10Sec(Player player)
 	{
 		final Player target = player;
-		
+
 		Runnable task = new Runnable()
 		{
 			public void run()

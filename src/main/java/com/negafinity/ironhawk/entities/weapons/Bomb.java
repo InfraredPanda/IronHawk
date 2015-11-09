@@ -31,7 +31,7 @@ public class Bomb extends Weapon
 	public void removeInOneSeccond()
 	{
 		final Entity entity = this;
-		
+
 		Runnable task = new Runnable()
 		{
 			public void run()
@@ -50,7 +50,6 @@ public class Bomb extends Weapon
 			c.removeEntity(this);
 		}
 
-		
 		for (int i = 0; i < c.getEntities().size(); i++)
 		{
 			Entity entity = c.getEntities().get(i);
@@ -67,7 +66,7 @@ public class Bomb extends Weapon
 				}
 			}
 		}
-		
+
 		anim.runAnimation();
 	}
 

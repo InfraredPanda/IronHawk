@@ -4,5 +4,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="lib" path="res"/>
 	<classpathentry kind="lib" path="H:/Downloads/gson-2.3.1.jar"/>
+	<classpathentry kind="lib" path="D:/Programming/Workspaces/Game Design/Iron-Hawk/res/gson-2.3.1.jar"/>
+	<classpathentry kind="lib" path="D:/Programming/Workspaces/Game Design/Iron-Hawk/libs/gson-2.3.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
