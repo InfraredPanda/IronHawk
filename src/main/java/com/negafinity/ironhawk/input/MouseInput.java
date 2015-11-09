@@ -8,14 +8,13 @@ import com.negafinity.ironhawk.Game;
 import com.negafinity.ironhawk.Textures;
 import com.negafinity.ironhawk.entities.Player;
 import com.negafinity.ironhawk.libs.Animation;
-import com.negafinity.ironhawk.states.Menu;
 
 public class MouseInput implements MouseListener
 {
 	private Controller c;
 	private Game game;
 	private Textures tex;
-	
+
 	public MouseInput(Controller c, Game game, Textures tex)
 	{
 		this.c = c;
@@ -38,14 +37,11 @@ public class MouseInput implements MouseListener
 		// Play Button
 		if (Game.State == Game.STATE.MENU)
 		{
-			if (locX >= Game.WIDTH / 2 + 120 && locX <= Game.WIDTH / 2 + 220)
+			if (locX >= 225 && locX <= 430)
 			{
-				if (locY >= 150 && locY <= 200)
+				if (locY >= 195 && locY <= 250)
 				{
-					// Hovering Over Play
-					Menu.overPlayButton = true;
-					System.out.println("works");
-					return;
+
 				}
 			}
 		}
@@ -66,9 +62,9 @@ public class MouseInput implements MouseListener
 		// Play Button
 		if (Game.State == Game.STATE.MENU)
 		{
-			if (clickX >= Game.WIDTH / 2 + 120 && clickX <= Game.WIDTH / 2 + 220)
+			if (clickX >= 225 && clickX <= 430)
 			{
-				if (clickY >= 150 && clickY <= 200)
+				if (clickY >= 195 && clickY <= 250)
 				{
 					// Pressed Play
 					// Picking 1 or 2 Players
@@ -109,9 +105,9 @@ public class MouseInput implements MouseListener
 		}
 		if (Game.State == Game.STATE.MENU)
 		{
-			if (clickX >= Game.WIDTH / 2 + 120 && clickX <= Game.WIDTH / 2 + 220)
+			if (clickX >= 225 && clickX <= 430)
 			{
-				if (clickY >= 250 && clickY <= 300)
+				if (clickY >= 260 && clickY <= 305)
 				{
 					// Pressed Help
 					Game.State = Game.STATE.HELP;
@@ -120,9 +116,9 @@ public class MouseInput implements MouseListener
 		}
 		if (Game.State == Game.STATE.MENU)
 		{
-			if (clickX >= Game.WIDTH / 2 + 120 && clickX <= Game.WIDTH / 2 + 220)
+			if (clickX >= 225 && clickX <= 430)
 			{
-				if (clickY >= 340 && clickY <= 400)
+				if (clickY >= 320 && clickY <= 375)
 				{
 					// Pressed Quit
 					System.exit(1);
@@ -211,7 +207,7 @@ public class MouseInput implements MouseListener
 						player.anim = player.defaultAnim;
 						Player player2 = new Player(250, 200, tex, c, game);
 						player2.anim = new Animation(5, tex.player2[0], tex.player2[1]);
-						
+
 						Game.players.add(player);
 						Game.players.add(player2);
 					}
@@ -241,3 +237,7 @@ public class MouseInput implements MouseListener
 		;
 	}
 }
+
+
+
+

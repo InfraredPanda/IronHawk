@@ -61,6 +61,7 @@ public class Game extends Canvas implements Runnable
 	public Image negafinity = null;
 	public Image ironhawkscreen = null;
 	public Image controlscreen = null;
+	public Image ironhawklogo = null;
 
 	private static BufferedImage icon16 = null;
 	private static BufferedImage icon32 = null;
@@ -105,6 +106,7 @@ public class Game extends Canvas implements Runnable
 			negafinity = loader.loadImage("/negafinity.png");
 			ironhawkscreen = loader.loadImage("/ironhawkscreen.png");
 			controlscreen = loader.loadImage("/controlscreen.png");
+			ironhawklogo = loader.loadImage("/ironhawklogo.png");
 		}
 		catch (IOException e)
 		{
@@ -381,7 +383,7 @@ public class Game extends Canvas implements Runnable
 		}
 		else if (State == STATE.MENU)
 		{
-			menu.render(g);
+			menu.render(g, this);
 		}
 		else if (State == STATE.GAMEOVER)
 		{
