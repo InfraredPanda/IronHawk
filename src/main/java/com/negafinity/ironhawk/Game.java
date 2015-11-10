@@ -118,13 +118,13 @@ public class Game extends Canvas implements Runnable
 		BufferedImageLoader loader = new BufferedImageLoader();
 		try
 		{
-			spriteSheet = loader.loadImage("/spriteSheet.png");
-			background = loader.loadImage("/background.png");
-			player2Sprite = loader.loadImage("/player2Sprite.png");
-			negafinity = loader.loadImage("/negafinity.png");
-			ironhawkscreen = loader.loadImage("/ironhawkscreen.png");
-			controlscreen = loader.loadImage("/controlscreen.png");
-			ironhawklogo = loader.loadImage("/ironhawklogo.png");
+			spriteSheet = loader.loadImage("spriteSheet.png");
+			background = loader.loadImage("background.png");
+			player2Sprite = loader.loadImage("player2Sprite.png");
+			negafinity = loader.loadImage("negafinity.png");
+			ironhawkscreen = loader.loadImage("ironhawkscreen.png");
+			controlscreen = loader.loadImage("controlscreen.png");
+			ironhawklogo = loader.loadImage("ironhawklogo.png");
 		}
 		catch (IOException e)
 		{
@@ -500,8 +500,8 @@ public class Game extends Canvas implements Runnable
 
 		try
 		{
-			icon16 = loader.loadImage("/16.png");
-			icon64 = loader.loadImage("/64.png");
+			icon16 = loader.loadImage("16.png");
+			icon64 = loader.loadImage("64.png");
 		}
 		catch (IOException e)
 		{
