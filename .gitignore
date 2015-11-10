@@ -60,7 +60,6 @@ Thumbs.db
 .externalToolBuilders
 .gradle
 .idea
-.project
 .settings
 .checkstyle
 .factorypath
