@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
+import com.negafinity.ironhawk.Game;
+
 public class ChoiceMenu
 {
 	public Rectangle player1Button = new Rectangle(25, 150, 300, 200);
@@ -24,9 +26,12 @@ public class ChoiceMenu
 		g2d.draw(player1Button);
 		g.drawString("Back", backButton.x + 19, backButton.y + 30);
 		g2d.draw(backButton);
-		
-		g.drawString("Log In", loginButton.x + 19, loginButton.y + 30);
-		g2d.draw(loginButton);
+
+		if (Game.players.size() == 1 && Game.players.get(0).getUser() == null)
+		{
+			g.drawString("Log In", loginButton.x + 19, loginButton.y + 30);
+			g2d.draw(loginButton);
+		}
 
 		g.setColor(Color.white);
 		g.drawString("2 Players", player2Button.x + 19, player2Button.y + 30);

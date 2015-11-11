@@ -91,7 +91,14 @@ public class MouseInput implements MouseListener
 			{
 				if (clickY >= 5 && clickY <= 55)
 				{
-					Game.State = Game.STATE.LOGIN;
+					if(Game.players.size() == 1	&& Game.players.get(0).getUser() != null)
+					{
+					Game.State = Game.STATE.GAME;
+					}
+					else
+					{
+						Game.State = Game.STATE.LOGIN;
+					}
 				}
 			}
 		}
