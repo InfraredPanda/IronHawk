@@ -91,9 +91,9 @@ public class MouseInput implements MouseListener
 			{
 				if (clickY >= 5 && clickY <= 55)
 				{
-					if(Game.players.size() == 1	&& Game.players.get(0).getUser() != null)
+					if (Game.players.size() == 2 && Game.players.get(0).getUser() == null)
 					{
-					Game.State = Game.STATE.GAME;
+						Game.State = Game.STATE.GAME;
 					}
 					else
 					{
@@ -120,7 +120,7 @@ public class MouseInput implements MouseListener
 				}
 			}
 		}
-		
+
 		if (Game.State == Game.STATE.LOGIN)
 		{
 			if (clickX >= 5 && clickX <= 105)
@@ -132,7 +132,7 @@ public class MouseInput implements MouseListener
 				}
 			}
 		}
-		
+
 		if (Game.State == Game.STATE.MENU)
 		{
 			if (clickX >= 225 && clickX <= 430)

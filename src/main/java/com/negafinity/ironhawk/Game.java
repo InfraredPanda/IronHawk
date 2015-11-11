@@ -59,7 +59,7 @@ public class Game extends Canvas implements Runnable
 	public static final int SCALE = 2;
 	public final String TITLE = "Iron Hawk";
 	public static final String VERSION = "2.2";
-	
+
 	private boolean running = false;
 	private boolean hasNotBeenCalled = true;
 
@@ -69,9 +69,9 @@ public class Game extends Canvas implements Runnable
 	private BufferedImage spriteSheet = null;
 	private BufferedImage background = null;
 	private BufferedImage player2Sprite = null;
-	
+
 	public static JFrame frame;
-	
+
 	public Image negafinity;
 	public Image ironhawkscreen;
 	public Image controlscreen;
@@ -94,7 +94,7 @@ public class Game extends Canvas implements Runnable
 	public Textures tex;
 
 	private Controller c;
-	
+
 	private Menu menu;
 	private Start start;
 	private Help help;
