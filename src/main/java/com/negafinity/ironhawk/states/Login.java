@@ -43,8 +43,8 @@ public class Login
 
 		Font fnt1 = new Font("arial", Font.BOLD, 30);
 		g.setFont(fnt1);
-		// g.drawString("Back", backButton.x + 19, backButton.y + 30);
-		// g2d.draw(backButton);
+		g.drawString("Back", backButton.x + 19, backButton.y + 30);
+		g2d.draw(backButton);
 
 		g.drawString("Log In", loginButton.x + 19, loginButton.y + 30);
 		g2d.draw(loginButton);
@@ -66,10 +66,15 @@ public class Login
 			// Create JPanel
 			final JPanel panel = new JPanel();
 			panel.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
+			panel.setSize(320, 240);
 
 			// Create fields
 			final JTextField userNameField = new JTextField();
 			final JPasswordField passwordField = new JPasswordField();
+			userNameField.setBounds(10, 10, 20, 10);
+			
+			passwordField.setBounds(10, 10, 20, 10);
+			
 			// Add Submit Button
 			JButton submitButton = new JButton();
 			submitButton.setText("Submit");
@@ -79,9 +84,9 @@ public class Login
 				@SuppressWarnings("deprecation")
 				public void actionPerformed(ActionEvent evt)
 				{
-					System.out.println("yay");
-					System.out.println(userNameField.getText());
-					System.out.println(passwordField.getText());
+					System.out.println("Registering User.");
+					User user = new User(UUID.randomUUID().toString(), userNameField.getText(), passwordField.getText(), 0);
+					Game.users.add(user);
 					game.setVisible(true);
 					panel.setVisible(false);
 				}
@@ -97,22 +102,7 @@ public class Login
 			Game.frame.add(panel);
 			// Show changes
 			Game.frame.pack();
-			// hassan is geni
 			System.out.println("Added to JFrame.");
 		}
-
-		// TODO: Put buttons in right place, make fields using something like JLabels or something, from there get input
-		// then get the input to create a User class and add it to the List users in Game. If they'd like to login, do
-		// the stuff for that by iterating through the users array and finding a user name and pass that match.
-		// If you need help message HassanS6000
-
-		// Example of Adding Users:
-		String username = ""; // Get input
-		String password = ""; // Get input
-
-		User user = new User(UUID.randomUUID().toString(), username, password, 0);
-		Game.users.add(user);
-
 	}
-
 }

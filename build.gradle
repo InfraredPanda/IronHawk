@@ -2,10 +2,10 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 
 sourceCompatibility = 1.8
-version = '2.3'
+version = '2.2'
 jar {
     manifest {
-        attributes 'Implementation-Title': 'Gradle Quickstart',
+        attributes 'Implementation-Title': 'Iron-Hawk',
                    'Implementation-Version': version,
                    'Main-Class': 'com.negafinity.ironhawk.Game'
     }
