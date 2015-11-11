@@ -26,6 +26,7 @@ public class Login
 	public Rectangle backButton = new Rectangle(5, 5, 100, 50);
 	public Rectangle loginButton = new Rectangle(100, 60, 150, 50);
 	public Rectangle registerButton = new Rectangle(450, 60, 150, 50);
+	//This is a comment to test Jenkins.
 
 	public Login(Game game)
 	{
