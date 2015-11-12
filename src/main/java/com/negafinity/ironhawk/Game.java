@@ -141,9 +141,9 @@ public class Game extends Canvas implements Runnable
 		login = new Login(this);
 		help = new Help();
 		choiceMenu = new ChoiceMenu();
-		Player player = new Player(200, 200, tex, c, this);
+		Player player = new Player(320, 240, tex, c, this);
 		players.add(player);
-		Player player2 = new Player(250, 200, tex, c, this);
+		Player player2 = new Player(320, 280, tex, c, this);
 		player2.anim = new Animation(5, tex.player2[0], tex.player2[1]);
 		players.add(player2);
 
@@ -191,7 +191,15 @@ public class Game extends Canvas implements Runnable
 			public void run()
 			{
 				gameStarting = false;
-
+				
+				for(Player player : Game.players)
+				{
+					if(player.getUser() != null && roundNumber > player.getUser().getHighscore())
+					{
+						player.getUser().setHighscore(roundNumber);
+					}
+				}
+				
 				if (roundNumber != 1)
 					enemyCount = 10;
 				else

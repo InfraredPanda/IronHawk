@@ -87,11 +87,17 @@ public class MouseInput implements MouseListener
 
 		if (Game.State == Game.STATE.CHOICEMENU)
 		{
-			if (clickX >= 270 && clickX <= 395)
+			if (clickY < 348 && clickY > 147)
 			{
-				if (clickY >= 5 && clickY <= 55)
+				if (clickX <= Game.WIDTH / 2 + 160 && clickX >= 20)
 				{
-					if (Game.players.size() == 2 && Game.players.get(0).getUser() == null)
+					// Picked SP
+					if (Game.players.size() == 2)
+					{
+						Game.players.remove(1);
+					}
+
+					if (Game.players.get(0).getUser() != null)
 					{
 						Game.State = Game.STATE.GAME;
 					}
@@ -100,23 +106,18 @@ public class MouseInput implements MouseListener
 						Game.State = Game.STATE.LOGIN;
 					}
 				}
-			}
-		}
-
-		if (Game.State == Game.STATE.CHOICEMENU)
-		{
-			if (clickY < 348 && clickY > 147)
-			{
-				if (clickX <= Game.WIDTH / 2 + 160 && clickX >= 20)
-				{
-					// Picked SP
-					if (Game.players.size() == 2)
-						Game.players.remove(1);
-				}
 				else if (clickX < 627)
 				{
 					Game.multiplayerEnabled = true;
-					Game.State = Game.STATE.GAME;
+
+					if (Game.players.get(0).getUser() != null && Game.players.get(1).getUser() != null)
+					{
+						Game.State = Game.STATE.GAME;
+					}
+					else
+					{
+						Game.State = Game.STATE.LOGIN;
+					}
 				}
 			}
 		}
@@ -231,6 +232,7 @@ public class MouseInput implements MouseListener
 				{
 					// Pressed Play Again
 					game.entities.clear();
+					Game.players.clear();
 
 					if (Game.multiplayerEnabled)
 					{
@@ -246,12 +248,6 @@ public class MouseInput implements MouseListener
 					{
 						Player player = new Player(200, 200, tex, c, game);
 						Game.players.add(player);
-					}
-
-					for (Player player : Game.players)
-					{
-						player.health = 200;
-						player.rapidFire = false;
 					}
 
 					Game.roundNumber = 0;

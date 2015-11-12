@@ -30,7 +30,7 @@ public class User
 		return password;
 	}
 
-	public double getHighscore()
+	public int getHighscore()
 	{
 		return this.highscore;
 	}

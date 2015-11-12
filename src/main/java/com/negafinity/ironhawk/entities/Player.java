@@ -126,7 +126,7 @@ public class Player extends Entity
 	{
 		this.velY = velY;
 	}
-	
+
 	public void setUser(User user)
 	{
 		this.user = user;
@@ -145,22 +145,18 @@ public class Player extends Entity
 
 				while (end && i < Game.players.size())
 				{
-					Game.players.remove(p);
 					c.removeEntity(p);
 
-					if (Game.players.get(i) != null && Game.players.get(i).health >= 0)
+					if (Game.players.get(i) != null && Game.players.get(i).health > 0)
 					{
 						end = false;
 					}
 
 					i++;
 				}
-
-				if (end)
+				
+				if(end)
 				{
-					if(p.getUser().getHighscore() < Game.getRoundNumber())
-						p.getUser().setHighscore(Game.getRoundNumber());
-					
 					Game.State = Game.STATE.GAMEOVER;
 				}
 			}
@@ -189,7 +185,7 @@ public class Player extends Entity
 	{
 		return user;
 	}
-	
+
 	public void setBombCount(int missleCount)
 	{
 		this.missleCount = missleCount;

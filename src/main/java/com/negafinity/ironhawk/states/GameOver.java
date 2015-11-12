@@ -1,12 +1,12 @@
 package com.negafinity.ironhawk.states;
 
-import com.negafinity.ironhawk.Game;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+
+import com.negafinity.ironhawk.Game;
 
 public class GameOver
 {
@@ -27,6 +27,16 @@ public class GameOver
 		g.setColor(Color.white);
 		g.drawString("Again!", playAgain.x + 19, playAgain.y + 30);
 		g2d.draw(playAgain);
+
+		if (Game.players.size() == 1)
+		{
+			g.drawString("Your score was " + Game.getRoundNumber() + "! Your highscore is " + Game.players.get(0).getUser().getHighscore(), 5, 150);
+		}
+		else
+		{
+			;
+		}
+
 		g.drawString("Quit", quitButton.x + 19, quitButton.y + 30);
 		g2d.draw(quitButton);
 	}

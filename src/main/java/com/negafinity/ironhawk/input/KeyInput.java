@@ -121,63 +121,64 @@ public class KeyInput extends KeyAdapter
 
 	public void keyReleased(KeyEvent e)
 	{
-		int key = e.getKeyCode();
+		if (Game.players.size() != 0)
+		{
+			int key = e.getKeyCode();
 
-		if (key == KeyEvent.VK_RIGHT)
-		{
-			if (Game.players.size() == 2)
-				Game.players.get(1).setVelX(0);
-			else
-				Game.players.get(0).setVelX(0);
-		}
-		else if (key == KeyEvent.VK_LEFT)
-		{
-			if (Game.players.size() == 2)
-				Game.players.get(1).setVelX(0);
-			else
-				Game.players.get(0).setVelX(0);
-		}
-		else if (key == KeyEvent.VK_DOWN)
-		{
-			if (Game.players.size() == 2)
-				Game.players.get(1).setVelY(0);
-			else
-				Game.players.get(0).setVelY(0);
-		}
-		else if (key == KeyEvent.VK_UP)
-		{
-			if (Game.players.size() == 2)
+			if (key == KeyEvent.VK_RIGHT)
 			{
-				Game.players.get(1).setVelY(0);
+				if (Game.players.size() == 2)
+					Game.players.get(1).setVelX(0);
+				else
+					Game.players.get(0).setVelX(0);
 			}
-			else
+			else if (key == KeyEvent.VK_LEFT)
+			{
+				if (Game.players.size() == 2)
+					Game.players.get(1).setVelX(0);
+				else
+					Game.players.get(0).setVelX(0);
+			}
+			else if (key == KeyEvent.VK_DOWN)
+			{
+				if (Game.players.size() == 2)
+					Game.players.get(1).setVelY(0);
+				else
+					Game.players.get(0).setVelY(0);
+			}
+			else if (key == KeyEvent.VK_UP)
+			{
+				if (Game.players.size() == 2)
+				{
+					Game.players.get(1).setVelY(0);
+				}
+				else
+					Game.players.get(0).setVelY(0);
+			}
+			if (key == KeyEvent.VK_D)
+			{
+				Game.players.get(0).setVelX(0);
+			}
+			else if (key == KeyEvent.VK_A)
+			{
+				Game.players.get(0).setVelX(0);
+			}
+			else if (key == KeyEvent.VK_S)
+			{
 				Game.players.get(0).setVelY(0);
-		}
-		if (key == KeyEvent.VK_D)
-		{
-			Game.players.get(0).setVelX(0);
-		}
-		else if (key == KeyEvent.VK_A)
-		{
-			Game.players.get(0).setVelX(0);
-		}
-		else if (key == KeyEvent.VK_S)
-		{
-			Game.players.get(0).setVelY(0);
-		}
-		else if (key == KeyEvent.VK_W)
-		{
-			Game.players.get(0).setVelY(0);
-		}
-		else if (key == KeyEvent.VK_SPACE)
-		{
-			Game.players.get(0).isShooting = false;
-		}
-		else if (key == KeyEvent.VK_ENTER)
-		{
-			if (Game.players.size() == 2)
+			}
+			else if (key == KeyEvent.VK_W)
+			{
+				Game.players.get(0).setVelY(0);
+			}
+			else if (key == KeyEvent.VK_SPACE)
+			{
+				Game.players.get(0).isShooting = false;
+			}
+			else if (key == KeyEvent.VK_ENTER)
+			{
 				Game.players.get(1).isShooting = false;
+			}
 		}
-
 	}
 }
