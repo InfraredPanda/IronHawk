@@ -43,6 +43,9 @@ public class Login
 				JLabel userLabel = new JLabel("Username");
 				userLabel.setBounds(10, 10, 80, 25);
 				panel.add(userLabel);
+				
+				final JLabel errorLabel = new JLabel("Error! Username/Password was incorrect!");
+				errorLabel.setBounds(10, 70, 80, 25);
 
 				JLabel passwordLabel = new JLabel("Password");
 				passwordLabel.setBounds(10, 40, 80, 25);
@@ -72,6 +75,10 @@ public class Login
 								Game.State = Game.STATE.MENU;
 								game.setVisible(true);
 								panel.setVisible(false);
+							}
+							else
+							{
+								panel.add(errorLabel);
 							}
 						}
 					}
