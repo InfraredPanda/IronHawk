@@ -43,9 +43,9 @@ public class Login
 				JLabel userLabel = new JLabel("Username");
 				userLabel.setBounds(10, 10, 80, 25);
 				panel.add(userLabel);
-				
+
 				final JLabel errorLabel = new JLabel("Error! Username/Password was incorrect!");
-				errorLabel.setBounds(10, 70, 80, 25);
+				errorLabel.setBounds(10, 110, 300, 25);
 
 				JLabel passwordLabel = new JLabel("Password");
 				passwordLabel.setBounds(10, 40, 80, 25);
@@ -67,19 +67,28 @@ public class Login
 					@SuppressWarnings("deprecation")
 					public void actionPerformed(ActionEvent arg0)
 					{
+						User foundUser = null;
+
 						for (User user : Game.users)
 						{
 							if (user.getUsername().equals(userNameField.getText()) && user.getPassword().equals(passwordField.getText()))
 							{
-								Game.players.get(0).setUser(user);
-								Game.State = Game.STATE.MENU;
-								game.setVisible(true);
-								panel.setVisible(false);
+								foundUser = user;
+								break;
 							}
-							else
-							{
-								panel.add(errorLabel);
-							}
+						}
+
+						if (foundUser != null)
+						{
+							Game.players.get(0).setUser(foundUser);
+							Game.State = Game.STATE.MENU;
+							game.setVisible(true);
+							panel.setVisible(false);
+						}
+						else
+						{
+							panel.add(errorLabel);
+							panel.updateUI();
 						}
 					}
 
@@ -182,8 +191,8 @@ public class Login
 				game.setVisible(false);
 				// Show changes
 				Game.frame.setVisible(true);
-				
-				//TODO: Replicate fields with different names for Player 2.
+
+				// TODO: Replicate fields with different names for Player 2.
 			}
 		}
 	}
