@@ -14,6 +14,14 @@ public class Menu
 		Font fnt0 = new Font("arial", Font.BOLD, 12);
 		g.setFont(fnt0);
 		g.drawString("Version " + Game.VERSION, 550, 460);
+		if(Login.userLoggedIn){
+			g.drawString("Player 1 Logged In As : " + Game.players.get(0).getUser().getUsername(), 450, 30);
+		}
+		else{
+			g.drawString("No Player is Currently Logged In.", 450, 30);
+		}
 	}
+	
+			
 
 }

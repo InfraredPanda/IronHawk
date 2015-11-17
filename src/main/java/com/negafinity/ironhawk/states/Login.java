@@ -18,6 +18,7 @@ public class Login
 {
 	private Game game;
 	private boolean createJFrame = true;
+	public static boolean userLoggedIn = false;
 
 	public Login(Game game)
 	{
@@ -82,6 +83,7 @@ public class Login
 						{
 							Game.players.get(0).setUser(foundUser);
 							Game.State = Game.STATE.MENU;
+							userLoggedIn = true;
 							game.setVisible(true);
 							panel.setVisible(false);
 						}
@@ -107,11 +109,27 @@ public class Login
 						Game.users.add(user);
 						Game.players.get(0).setUser(user);
 						Game.State = Game.STATE.MENU;
+						userLoggedIn = true;
 						game.setVisible(true);
 						panel.setVisible(false);
 					}
 				});
 				panel.add(registerButton);
+
+				JButton skipButton = new JButton("Skip");
+				skipButton.setBounds(100, 80, 60, 25);
+
+				skipButton.addActionListener(new ActionListener()
+					{
+					public void actionPerformed(ActionEvent arg0)
+					{
+					Game.State = Game.STATE.MENU;
+					game.setVisible(true);
+					panel.setVisible(false);
+					}
+
+				});
+				panel.add(skipButton);
 
 				// Make the game invisible
 				game.setVisible(false);
