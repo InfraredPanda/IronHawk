@@ -18,6 +18,8 @@ public class Login
 {
 	private Game game;
 	private boolean createJFrame = true;
+	public boolean user1Ready = false;
+	public boolean user2Ready = false;
 	public static boolean userLoggedIn = false;
 
 	public Login(Game game)
@@ -120,12 +122,12 @@ public class Login
 				skipButton.setBounds(100, 80, 60, 25);
 
 				skipButton.addActionListener(new ActionListener()
-					{
+				{
 					public void actionPerformed(ActionEvent arg0)
 					{
-					Game.State = Game.STATE.MENU;
-					game.setVisible(true);
-					panel.setVisible(false);
+						Game.State = Game.STATE.GAME;
+						game.setVisible(true);
+						panel.setVisible(false);
 					}
 
 				});
@@ -147,22 +149,46 @@ public class Login
 
 				// Place Components
 				panel.setLayout(null);
-
+				
+				JLabel player1Label = new JLabel("Player 1");
+				player1Label.setBounds(15, 5, 80, 5);
+				panel.add(player1Label);
+				
+				JLabel player2Label = new JLabel("Player 2");
+				player2Label.setBounds(400, 5, 80, 5);
+				panel.add(player2Label);
+				
 				JLabel userLabel = new JLabel("Username");
 				userLabel.setBounds(10, 10, 80, 25);
 				panel.add(userLabel);
+				
+				JLabel userLabel2 = new JLabel("Username");
+				userLabel2.setBounds(400, 10, 80, 25);
+				panel.add(userLabel2);
 
 				JLabel passwordLabel = new JLabel("Password");
 				passwordLabel.setBounds(10, 40, 80, 25);
 				panel.add(passwordLabel);
+				
+				JLabel passwordLabel2 = new JLabel("Password");
+				passwordLabel2.setBounds(400, 40, 80, 25);
+				panel.add(passwordLabel2);
 
 				final JTextField userNameField = new JTextField();
 				userNameField.setBounds(100, 10, 160, 25);
 				panel.add(userNameField);
+				
+				final JTextField userNameField2 = new JTextField();
+				userNameField2.setBounds(400, 10, 160, 25);
+				panel.add(userNameField2);
 
 				final JPasswordField passwordField = new JPasswordField();
 				passwordField.setBounds(100, 40, 160, 25);
 				panel.add(passwordField);
+				
+				final JPasswordField passwordField2 = new JPasswordField();
+				passwordField2.setBounds(400, 40, 160, 25);
+				panel.add(passwordField2);
 
 				JButton loginButton = new JButton("Login");
 				loginButton.setBounds(10, 80, 80, 25);
@@ -177,15 +203,35 @@ public class Login
 							if (user.getUsername().equals(userNameField.getText()) && user.getPassword().equals(passwordField.getText()))
 							{
 								Game.players.get(0).setUser(user);
-								Game.State = Game.STATE.MENU;
-								game.setVisible(true);
-								panel.setVisible(false);
+								user1Ready = true;
 							}
 						}
 					}
 
 				});
+				//boolean to accept both players as completed logins, and display a label for each player to be marked as logged in
 				panel.add(loginButton);
+				
+				JButton loginButton2 = new JButton("Login");
+				loginButton2.setBounds(400, 80, 80, 25);
+				
+				loginButton2.addActionListener(new ActionListener()
+				{
+					@SuppressWarnings("deprecation")
+					public void actionPerformed(ActionEvent arg0)
+					{
+						for (User user : Game.users)
+						{
+							if (user.getUsername().equals(userNameField.getText()) && user.getPassword().equals(passwordField.getText()))
+							{
+								Game.players.get(1).setUser(user);
+								user2Ready = true;
+							}
+						}
+					}
+
+				});
+				panel.add(loginButton2);
 
 				JButton registerButton = new JButton("Register");
 				registerButton.setBounds(180, 80, 90, 25);
@@ -204,6 +250,29 @@ public class Login
 					}
 				});
 				panel.add(registerButton);
+
+				JButton skipButton = new JButton("Skip");
+				skipButton.setBounds(100, 80, 60, 25);
+
+				skipButton.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent arg0)
+					{
+						
+						Game.State = Game.STATE.GAME;
+						game.setVisible(true);
+						panel.setVisible(false);
+					}
+
+				});
+				panel.add(skipButton);
+				
+				if(user1Ready && user2Ready)
+				{
+					userLoggedIn = true;
+					game.setVisible(true);
+					panel.setVisible(false);
+				}
 
 				// Make the game invisible
 				game.setVisible(false);

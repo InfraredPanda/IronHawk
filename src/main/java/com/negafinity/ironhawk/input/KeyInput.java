@@ -177,7 +177,8 @@ public class KeyInput extends KeyAdapter
 			}
 			else if (key == KeyEvent.VK_ENTER)
 			{
-				Game.players.get(1).isShooting = false;
+				if (Game.players.size() == 2)
+					Game.players.get(1).isShooting = false;
 			}
 		}
 	}
