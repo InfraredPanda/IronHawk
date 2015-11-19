@@ -43,7 +43,7 @@ import com.negafinity.ironhawk.utils.BufferedImageLoader;
 import com.negafinity.ironhawk.utils.User;
 
 /**
- * A 2D Game, fight the enemies!
+ * 2D Flight Game made by NEGAFINITY.
  * @author InfraredPanda
  * @author HassanS6000
  */
@@ -57,7 +57,7 @@ public class Game extends Canvas implements Runnable
 	public static final int WIDTH = 320;
 	public static final int HEIGHT = WIDTH / 12 * 9;
 	public static final int SCALE = 2;
-	public final String TITLE = "Iron Hawk";
+	public final String TITLE = "Iron Hawk" +  " " + VERSION;
 	public static final String VERSION = "2.3 Beta";
 
 	private boolean running = false;
@@ -382,11 +382,14 @@ public class Game extends Canvas implements Runnable
 
 				g.setColor(Color.white);
 				g.drawRect(5, 5 + moveFactor, 200, 50);
-
+				
+				if (player.bombCount > 0)
+				{
 				g.setColor(Color.white);
 				g.drawString("Bombs", 500 - moveFactor, 475);
 				g.drawString(String.valueOf(player.bombCount), 575 - moveFactor, 475);
-
+				}
+				
 				if (player.missleCount > 0)
 				{
 					g.setColor(Color.white);
