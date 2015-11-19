@@ -18,10 +18,10 @@ public class Login
 {
 	private Game game;
 	private boolean createJFrame = true;
-	private boolean user1Ready = false;
-	private boolean user2Ready = false;
-	public static boolean user1LoggedIn = false;
-	public static boolean user2LoggedIn = false;
+	public static boolean user1Ready;
+	public static boolean user2Ready;
+	public static boolean user1LoggedIn;
+	public static boolean user2LoggedIn;
 
 	public Login(Game game)
 	{
@@ -139,7 +139,7 @@ public class Login
 				// Show changes
 				Game.frame.setVisible(true);
 			}
-			// IF THERE IS TWO PLAYERS :
+			// IF THERE ARE TWO PLAYERS.
 			else
 			{
 				createJFrame = false;
@@ -178,15 +178,15 @@ public class Login
 
 				final JLabel errorLabel = new JLabel("Error! Username/Password was incorrect!");
 				errorLabel.setBounds(10, 110, 300, 25);
-				
+
 				final JLabel readyLabel1 = new JLabel(" is Ready. Waiting on Player 2.");
 				readyLabel1.setBounds(100, 310, 300, 25);
-				//Game.players.get(0).getUser().getUsername() + 
-				
-				final JLabel readyLabel2 = new JLabel( " is Ready. Waiting on Player 1.");
+				// Game.players.get(0).getUser().getUsername() +
+
+				final JLabel readyLabel2 = new JLabel(" is Ready. Waiting on Player 1.");
 				readyLabel2.setBounds(440, 310, 300, 25);
-				//Game.players.get(1).getUser().getUsername() +
-			
+				// Game.players.get(1).getUser().getUsername() +
+
 				final JTextField userNameField = new JTextField();
 				userNameField.setBounds(100, 25, 160, 25);
 				panel.add(userNameField);
@@ -222,7 +222,7 @@ public class Login
 							else
 							{
 								panel.add(errorLabel);
-								panel.updateUI();	
+								panel.updateUI();
 							}
 						}
 					}
@@ -277,7 +277,7 @@ public class Login
 					@SuppressWarnings("deprecation")
 					public void actionPerformed(ActionEvent evt)
 					{
-						User user = new User(UUID.randomUUID().toString(), userNameField.getText(), passwordField.getText(), Game.getRoundNumber());
+						User user = new User(UUID.randomUUID().toString(), userNameField2.getText(), passwordField2.getText(), Game.getRoundNumber());
 						Game.users.add(user);
 						Game.players.get(1).setUser(user);
 						user2Ready = true;
@@ -311,34 +311,32 @@ public class Login
 
 				});
 				panel.add(skipButton2);
+				
+				JButton readyButton = new JButton("Go!");
+				readyButton.setBounds(290, 195, 60, 25);
 
-				if (user1Ready)
+				readyButton.addActionListener(new ActionListener()
 				{
-					System.out.println("works");
-					panel.add(readyLabel1);
-					panel.updateUI();
-				}
+					public void actionPerformed(ActionEvent arg0)
+					{
+						if(user1Ready && user2Ready)
+						{
+							Game.State = Game.STATE.MENU;
+							game.setVisible(true);
+							panel.setVisible(false);
+						}
+					}
 
-				if (user2Ready)
-				{
-					panel.add(readyLabel2);
-					panel.updateUI();
-				}
-
-				if (user1Ready && user2Ready)
-				{
-					Game.State = Game.STATE.MENU;
-					game.setVisible(true);
-					panel.setVisible(false);
-				}
+				});
+				panel.add(readyButton);
 
 				// Make the game invisible
 				game.setVisible(false);
 				// Show changes
 				Game.frame.setVisible(true);
-
 				// TODO: Replicate fields with different names for Player 2.
 			}
 		}
+		
 	}
 }

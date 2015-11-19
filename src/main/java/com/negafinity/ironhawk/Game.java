@@ -58,7 +58,7 @@ public class Game extends Canvas implements Runnable
 	public static final int HEIGHT = WIDTH / 12 * 9;
 	public static final int SCALE = 2;
 	public final String TITLE = "Iron Hawk";
-	public static final String VERSION = "2.2";
+	public static final String VERSION = "2.3 Beta";
 
 	private boolean running = false;
 	private boolean hasNotBeenCalled = true;
@@ -191,15 +191,15 @@ public class Game extends Canvas implements Runnable
 			public void run()
 			{
 				gameStarting = false;
-				
-				for(Player player : Game.players)
+
+				for (Player player : Game.players)
 				{
-					if(player.getUser() != null && roundNumber > player.getUser().getHighscore())
+					if (player.getUser() != null && roundNumber > player.getUser().getHighscore())
 					{
 						player.getUser().setHighscore(roundNumber);
 					}
 				}
-				
+
 				if (roundNumber != 1)
 					enemyCount = 10;
 				else
@@ -285,7 +285,7 @@ public class Game extends Canvas implements Runnable
 	}
 
 	private void tick()
-	{
+	{	
 		if (State == STATE.GAME)
 		{
 			for (Player player : players)
