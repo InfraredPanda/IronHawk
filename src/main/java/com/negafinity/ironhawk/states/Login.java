@@ -18,9 +18,10 @@ public class Login
 {
 	private Game game;
 	private boolean createJFrame = true;
-	public boolean user1Ready = false;
-	public boolean user2Ready = false;
-	public static boolean userLoggedIn = false;
+	private boolean user1Ready = false;
+	private boolean user2Ready = false;
+	public static boolean user1LoggedIn = false;
+	public static boolean user2LoggedIn = false;
 
 	public Login(Game game)
 	{
@@ -85,7 +86,7 @@ public class Login
 						{
 							Game.players.get(0).setUser(foundUser);
 							Game.State = Game.STATE.MENU;
-							userLoggedIn = true;
+							user1LoggedIn = true;
 							game.setVisible(true);
 							panel.setVisible(false);
 						}
@@ -111,7 +112,7 @@ public class Login
 						Game.users.add(user);
 						Game.players.get(0).setUser(user);
 						Game.State = Game.STATE.MENU;
-						userLoggedIn = true;
+						user1LoggedIn = true;
 						game.setVisible(true);
 						panel.setVisible(false);
 					}
@@ -138,6 +139,7 @@ public class Login
 				// Show changes
 				Game.frame.setVisible(true);
 			}
+			// IF THERE IS TWO PLAYERS :
 			else
 			{
 				createJFrame = false;
@@ -149,49 +151,60 @@ public class Login
 
 				// Place Components
 				panel.setLayout(null);
-				
+
 				JLabel player1Label = new JLabel("Player 1");
-				player1Label.setBounds(15, 5, 80, 5);
+				player1Label.setBounds(100, 5, 80, 20);
 				panel.add(player1Label);
-				
+
 				JLabel player2Label = new JLabel("Player 2");
-				player2Label.setBounds(400, 5, 80, 5);
+				player2Label.setBounds(440, 5, 80, 20);
 				panel.add(player2Label);
-				
+
 				JLabel userLabel = new JLabel("Username");
-				userLabel.setBounds(10, 10, 80, 25);
+				userLabel.setBounds(10, 25, 80, 25);
 				panel.add(userLabel);
-				
+
 				JLabel userLabel2 = new JLabel("Username");
-				userLabel2.setBounds(400, 10, 80, 25);
+				userLabel2.setBounds(350, 25, 80, 25);
 				panel.add(userLabel2);
 
 				JLabel passwordLabel = new JLabel("Password");
-				passwordLabel.setBounds(10, 40, 80, 25);
+				passwordLabel.setBounds(10, 55, 80, 25);
 				panel.add(passwordLabel);
-				
+
 				JLabel passwordLabel2 = new JLabel("Password");
-				passwordLabel2.setBounds(400, 40, 80, 25);
+				passwordLabel2.setBounds(350, 55, 80, 25);
 				panel.add(passwordLabel2);
 
-				final JTextField userNameField = new JTextField();
-				userNameField.setBounds(100, 10, 160, 25);
-				panel.add(userNameField);
+				final JLabel errorLabel = new JLabel("Error! Username/Password was incorrect!");
+				errorLabel.setBounds(10, 110, 300, 25);
 				
+				final JLabel readyLabel1 = new JLabel(" is Ready. Waiting on Player 2.");
+				readyLabel1.setBounds(100, 310, 300, 25);
+				//Game.players.get(0).getUser().getUsername() + 
+				
+				final JLabel readyLabel2 = new JLabel( " is Ready. Waiting on Player 1.");
+				readyLabel2.setBounds(440, 310, 300, 25);
+				//Game.players.get(1).getUser().getUsername() +
+			
+				final JTextField userNameField = new JTextField();
+				userNameField.setBounds(100, 25, 160, 25);
+				panel.add(userNameField);
+
 				final JTextField userNameField2 = new JTextField();
-				userNameField2.setBounds(400, 10, 160, 25);
+				userNameField2.setBounds(440, 25, 160, 25);
 				panel.add(userNameField2);
 
 				final JPasswordField passwordField = new JPasswordField();
-				passwordField.setBounds(100, 40, 160, 25);
+				passwordField.setBounds(100, 55, 160, 25);
 				panel.add(passwordField);
-				
+
 				final JPasswordField passwordField2 = new JPasswordField();
-				passwordField2.setBounds(400, 40, 160, 25);
+				passwordField2.setBounds(440, 55, 160, 25);
 				panel.add(passwordField2);
 
 				JButton loginButton = new JButton("Login");
-				loginButton.setBounds(10, 80, 80, 25);
+				loginButton.setBounds(10, 95, 80, 25);
 
 				loginButton.addActionListener(new ActionListener()
 				{
@@ -203,18 +216,23 @@ public class Login
 							if (user.getUsername().equals(userNameField.getText()) && user.getPassword().equals(passwordField.getText()))
 							{
 								Game.players.get(0).setUser(user);
+								user1LoggedIn = true;
 								user1Ready = true;
+							}
+							else
+							{
+								panel.add(errorLabel);
+								panel.updateUI();	
 							}
 						}
 					}
 
 				});
-				//boolean to accept both players as completed logins, and display a label for each player to be marked as logged in
 				panel.add(loginButton);
-				
+
 				JButton loginButton2 = new JButton("Login");
-				loginButton2.setBounds(400, 80, 80, 25);
-				
+				loginButton2.setBounds(350, 95, 80, 25);
+
 				loginButton2.addActionListener(new ActionListener()
 				{
 					@SuppressWarnings("deprecation")
@@ -225,6 +243,7 @@ public class Login
 							if (user.getUsername().equals(userNameField.getText()) && user.getPassword().equals(passwordField.getText()))
 							{
 								Game.players.get(1).setUser(user);
+								user2LoggedIn = true;
 								user2Ready = true;
 							}
 						}
@@ -234,7 +253,7 @@ public class Login
 				panel.add(loginButton2);
 
 				JButton registerButton = new JButton("Register");
-				registerButton.setBounds(180, 80, 90, 25);
+				registerButton.setBounds(180, 95, 90, 25);
 
 				registerButton.addActionListener(new ActionListener()
 				{
@@ -244,32 +263,71 @@ public class Login
 						User user = new User(UUID.randomUUID().toString(), userNameField.getText(), passwordField.getText(), Game.getRoundNumber());
 						Game.users.add(user);
 						Game.players.get(0).setUser(user);
-						Game.State = Game.STATE.MENU;
-						game.setVisible(true);
-						panel.setVisible(false);
+						user1Ready = true;
+						user1LoggedIn = true;
 					}
 				});
 				panel.add(registerButton);
 
+				JButton registerButton2 = new JButton("Register");
+				registerButton2.setBounds(520, 95, 90, 25);
+
+				registerButton2.addActionListener(new ActionListener()
+				{
+					@SuppressWarnings("deprecation")
+					public void actionPerformed(ActionEvent evt)
+					{
+						User user = new User(UUID.randomUUID().toString(), userNameField.getText(), passwordField.getText(), Game.getRoundNumber());
+						Game.users.add(user);
+						Game.players.get(1).setUser(user);
+						user2Ready = true;
+						user2LoggedIn = true;
+					}
+				});
+				panel.add(registerButton2);
+
 				JButton skipButton = new JButton("Skip");
-				skipButton.setBounds(100, 80, 60, 25);
+				skipButton.setBounds(100, 95, 60, 25);
 
 				skipButton.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent arg0)
 					{
-						
-						Game.State = Game.STATE.GAME;
-						game.setVisible(true);
-						panel.setVisible(false);
+						user1Ready = true;
 					}
 
 				});
 				panel.add(skipButton);
-				
-				if(user1Ready && user2Ready)
+
+				JButton skipButton2 = new JButton("Skip");
+				skipButton2.setBounds(440, 95, 60, 25);
+
+				skipButton2.addActionListener(new ActionListener()
 				{
-					userLoggedIn = true;
+					public void actionPerformed(ActionEvent arg0)
+					{
+						user2Ready = true;
+					}
+
+				});
+				panel.add(skipButton2);
+
+				if (user1Ready)
+				{
+					System.out.println("works");
+					panel.add(readyLabel1);
+					panel.updateUI();
+				}
+
+				if (user2Ready)
+				{
+					panel.add(readyLabel2);
+					panel.updateUI();
+				}
+
+				if (user1Ready && user2Ready)
+				{
+					Game.State = Game.STATE.MENU;
 					game.setVisible(true);
 					panel.setVisible(false);
 				}
