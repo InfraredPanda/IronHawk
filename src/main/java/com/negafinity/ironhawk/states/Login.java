@@ -49,7 +49,7 @@ public class Login
 				panel.add(userLabel);
 
 				final JLabel errorLabel = new JLabel("Error! Username/Password was incorrect!");
-				errorLabel.setBounds(10, 110, 300, 25);
+				errorLabel.setBounds(10, 150, 300, 25);
 
 				JLabel passwordLabel = new JLabel("Password");
 				passwordLabel.setBounds(10, 40, 80, 25);
@@ -177,15 +177,16 @@ public class Login
 				panel.add(passwordLabel2);
 
 				final JLabel errorLabel = new JLabel("Error! Username/Password was incorrect!");
-				errorLabel.setBounds(10, 110, 300, 25);
+				errorLabel.setBounds(10, 150, 300, 25);
+				
+				final JLabel errorLabel2 = new JLabel("Error! Username/Password was incorrect!");
+				errorLabel2.setBounds(350, 150, 300, 25);
 
 				final JLabel readyLabel1 = new JLabel(" is Ready. Waiting on Player 2.");
 				readyLabel1.setBounds(100, 310, 300, 25);
-				// Game.players.get(0).getUser().getUsername() +
 
 				final JLabel readyLabel2 = new JLabel(" is Ready. Waiting on Player 1.");
 				readyLabel2.setBounds(440, 310, 300, 25);
-				// Game.players.get(1).getUser().getUsername() +
 
 				final JTextField userNameField = new JTextField();
 				userNameField.setBounds(100, 25, 160, 25);
@@ -240,11 +241,16 @@ public class Login
 					{
 						for (User user : Game.users)
 						{
-							if (user.getUsername().equals(userNameField.getText()) && user.getPassword().equals(passwordField.getText()))
+							if (user.getUsername().equals(userNameField2.getText()) && user.getPassword().equals(passwordField2.getText()))
 							{
 								Game.players.get(1).setUser(user);
 								user2LoggedIn = true;
 								user2Ready = true;
+							}
+							else
+							{
+								panel.add(errorLabel2);
+								panel.updateUI();
 							}
 						}
 					}
@@ -311,7 +317,7 @@ public class Login
 
 				});
 				panel.add(skipButton2);
-				
+
 				JButton readyButton = new JButton("Go!");
 				readyButton.setBounds(290, 195, 60, 25);
 
@@ -319,9 +325,9 @@ public class Login
 				{
 					public void actionPerformed(ActionEvent arg0)
 					{
-						if(user1Ready && user2Ready)
+						if (user1Ready && user2Ready)
 						{
-							Game.State = Game.STATE.MENU;
+							Game.State = Game.STATE.GAME;
 							game.setVisible(true);
 							panel.setVisible(false);
 						}
@@ -334,9 +340,8 @@ public class Login
 				game.setVisible(false);
 				// Show changes
 				Game.frame.setVisible(true);
-				// TODO: Replicate fields with different names for Player 2.
 			}
 		}
-		
+
 	}
 }
