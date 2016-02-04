@@ -1,12 +1,13 @@
-package com.negafinity.ironhawk.states;
+package com.negafinity.ironhawk.screens;
 
 import com.negafinity.ironhawk.Game;
 
 import java.awt.Font;
 import java.awt.Graphics;
 
-public class Menu
+public class Menu extends Screen
 {
+	@Override
 	public void render(Graphics g, Game game)
 	{
 		g.drawImage(game.ironhawklogo, 0, 0, game);

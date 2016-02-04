@@ -31,14 +31,9 @@ import com.negafinity.ironhawk.entities.Player;
 import com.negafinity.ironhawk.input.KeyInput;
 import com.negafinity.ironhawk.input.MouseInput;
 import com.negafinity.ironhawk.libs.Animation;
-import com.negafinity.ironhawk.states.ChoiceMenu;
-import com.negafinity.ironhawk.states.Controls;
-import com.negafinity.ironhawk.states.GameOver;
-import com.negafinity.ironhawk.states.Help;
-import com.negafinity.ironhawk.states.IronHawk;
-import com.negafinity.ironhawk.states.Login;
-import com.negafinity.ironhawk.states.Menu;
-import com.negafinity.ironhawk.states.Start;
+import com.negafinity.ironhawk.screens.Controls;
+import com.negafinity.ironhawk.screens.IronHawk;
+import com.negafinity.ironhawk.screens.Start;
 import com.negafinity.ironhawk.utils.BufferedImageLoader;
 import com.negafinity.ironhawk.utils.User;
 
@@ -52,95 +47,60 @@ import com.negafinity.ironhawk.utils.User;
 
 public class Game extends Canvas implements Runnable
 {
-	private static Gson gson = new GsonBuilder().create();
+	protected Game()
+	{
+		;
+	}
+
 	private static final long serialVersionUID = 1L;
+
+	private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
+
 	public static final int WIDTH = 320;
 	public static final int HEIGHT = WIDTH / 12 * 9;
 	public static final int SCALE = 2;
-	public final String TITLE = "Iron Hawk" + " " + VERSION;
-	public static final String VERSION = "2.3 Beta";
+	public static final String TITLE = "Iron Hawk";
+	public static final String VERSION = "2.3";
 
 	private boolean running = false;
 	private boolean hasNotBeenCalled = true;
-
 	private Thread thread;
 
-	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-	private BufferedImage spriteSheet = null;
-	private BufferedImage background = null;
-	private BufferedImage player2Sprite = null;
-
 	public static JFrame frame;
-
-	public Image negafinity;
-	public Image ironhawkscreen;
-	public Image controlscreen;
-	public Image ironhawklogo;
-
-	private static BufferedImage icon16;
-	private static BufferedImage icon64;
-
 	public static int enemyCount = 10;
 	public static int roundNumber = 0;
 	public static boolean gameStarting = false;
 	public static int timeToRound = 0;
 	public static ArrayList<Player> players = new ArrayList<>();
-	public static IronHawk ironhawk;
-	public static Controls controls;
 	public static boolean multiplayerEnabled = false;
 
-	private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
+	private static Game game;
+
+	public static ArrayList<User> users = new ArrayList<>();
+	public static RenderManager renderManager;
+	public static ImageManager imageManager;
 
 	public Textures tex;
-
-	private Controller c;
-
-	private Menu menu;
-	private Start start;
-	private Help help;
-	private GameOver gameover;
-	private ChoiceMenu choiceMenu;
-	private Login login;
+	public Controller c;
+	public ScreenManager screenManager;
+	public DataManager dataManager;
 
 	public LinkedList<Entity> entities;
-	public static ArrayList<User> users = new ArrayList<>();
 
-	public static enum STATE
+	public static Game getGame()
 	{
-		MENU, GAME, HELP, GAMEOVER, START, IRONHAWK, CHOICEMENU, CONTROLS, LOGIN
+		return game;
 	}
-
-	public static STATE State = STATE.START;
 
 	public void init()
 	{
-		readUsers();
-		BufferedImageLoader loader = new BufferedImageLoader();
-		try
-		{
-			spriteSheet = loader.loadImage("spriteSheet.png");
-			background = loader.loadImage("background.png");
-			player2Sprite = loader.loadImage("player2Sprite.png");
-			negafinity = loader.loadImage("negafinity.png");
-			ironhawkscreen = loader.loadImage("ironhawkscreen.png");
-			controlscreen = loader.loadImage("controlscreen.png");
-			ironhawklogo = loader.loadImage("ironhawklogo.png");
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-
+		dataManager = new DataManager();
+		dataManager.readUsers();
 		tex = new Textures(this);
 		c = new Controller(tex, this);
-		menu = new Menu();
-		start = new Start();
-		ironhawk = new IronHawk();
-		controls = new Controls();
-		gameover = new GameOver();
-		login = new Login(this);
-		help = new Help();
-		choiceMenu = new ChoiceMenu();
+		screenManager = new ScreenManager();
+
+		//Create Players
 		Player player = new Player(320, 240, tex, c, this);
 		players.add(player);
 		Player player2 = new Player(320, 280, tex, c, this);
@@ -227,7 +187,7 @@ public class Game extends Canvas implements Runnable
 
 	private synchronized void stop()
 	{
-		saveUsers();
+		dataManager.saveUsers();
 
 		if (!running)
 			return;
@@ -269,7 +229,7 @@ public class Game extends Canvas implements Runnable
 				updates++;
 				delta--;
 			}
-			render();
+			renderManager.render();
 			frames++;
 
 			if (System.currentTimeMillis() - timer > 1000)
@@ -286,7 +246,7 @@ public class Game extends Canvas implements Runnable
 
 	private void tick()
 	{	
-		if (State == STATE.GAME)
+		if (screenManager.currentScreen == ScreenManager.STATE.GAME)
 		{
 			for (Player player : players)
 			{
@@ -318,216 +278,18 @@ public class Game extends Canvas implements Runnable
 		}
 	}
 
-	private void render()
-	{
-		BufferStrategy bufferedStrat = this.getBufferStrategy();
-
-		if (bufferedStrat == null)
-		{
-			createBufferStrategy(3);
-			return;
-		}
-
-		Graphics g = bufferedStrat.getDrawGraphics();
-
-		g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
-		g.drawImage(background, 0, 0, this);
-
-		if (State == STATE.GAME)
-		{
-			c.render(g);
-
-			for (Player player : players)
-			{
-				int moveFactor = 0;
-
-				if (players.indexOf(player) > 0)
-				{
-					moveFactor = 120;
-				}
-
-				player.render(g);
-
-				Font fnt0 = new Font("arial", Font.BOLD, 20);
-				g.setFont(fnt0);
-
-				if (player.health / 2 == 0)
-				{
-					g.setColor(Color.red);
-					g.fillRect(5, 5, 200, 50);
-				}
-
-				Color healthBarColor = Color.green;
-
-				if (player.health / 2 <= 100 && player.health / 2 >= 60)
-				{
-					healthBarColor = Color.green;
-				}
-				else if (player.health / 2 >= 40 && player.health / 2 < 60)
-				{
-					healthBarColor = Color.yellow;
-				}
-				else
-				{
-					healthBarColor = Color.red;
-				}
-
-				g.setColor(healthBarColor);
-				g.fillRect(5, 5 + moveFactor, player.health, 50);
-
-				g.setColor(Color.white);
-				g.drawString("Health of Player " + (players.indexOf(player) + 1) + ":", 20, 20 + moveFactor);
-				g.setColor(Color.gray);
-				g.drawString(String.valueOf(player.health / 2), 20, 40 + moveFactor);
-
-				g.setColor(Color.white);
-				g.drawRect(5, 5 + moveFactor, 200, 50);
-				
-				if (player.bombCount > 0)
-				{
-				g.setColor(Color.white);
-				g.drawString("Bombs", 500 - moveFactor, 475);
-				g.drawString(String.valueOf(player.bombCount), 575 - moveFactor, 475);
-				}
-				
-				if (player.missleCount > 0)
-				{
-					g.setColor(Color.white);
-					g.drawString("Missles ", 250 - moveFactor, 475);
-					g.drawString(String.valueOf(player.missleCount), 325 - moveFactor, 475);
-				}
-			}
-
-			g.setColor(Color.white);
-			g.drawString("Round", WIDTH + WIDTH - 80, 20);
-			g.drawString(String.valueOf(roundNumber), WIDTH + WIDTH - 10, 20);
-
-			if (gameStarting)
-			{
-				g.setColor(Color.white);
-				g.drawString("Round Starts In: ", WIDTH - 35, 45);
-				g.drawString(String.valueOf(timeToRound), WIDTH + 125, 45);
-			}
-
-			g.setColor(Color.red);
-			g.drawString("Enemies", WIDTH - 15, 20);
-			g.drawString(String.valueOf(enemyCount), WIDTH + 75, 20);
-		}
-		else if (State == STATE.MENU)
-		{
-			menu.render(g, this);
-		}
-		else if (State == STATE.GAMEOVER)
-		{
-			gameover.render(g);
-		}
-		else if (State == STATE.HELP)
-		{
-			help.render(g);
-		}
-		else if (State == STATE.CONTROLS)
-		{
-			controls.render(g, this);
-		}
-		else if (State == STATE.LOGIN)
-		{
-			login.render(g);
-		}
-		else if (State == STATE.IRONHAWK)
-		{
-			if (start.hasNotBeenCalled)
-			{
-				start.hasNotBeenCalled = false;
-				start.showIronHawkIn10Sec();
-			}
-			ironhawk.render(g, this);
-		}
-		else if (State == STATE.START)
-		{
-			if (start.hasNotBeenCalled)
-			{
-				start.hasNotBeenCalled = false;
-				start.showIronHawkIn10Sec();
-			}
-			start.render(g, this);
-		}
-		else if (State == STATE.CHOICEMENU)
-		{
-			choiceMenu.render(g);
-			g.drawImage(icon64, 55, 200, this);
-			g.drawImage(icon64, 355, 200, this);
-			g.drawImage(player2Sprite, 455, 200, this);
-		}
-		// break
-		g.dispose();
-		bufferedStrat.show();
-	}
-
-	public static void saveUsers()
-	{
-		String json = gson.toJson(users);
-
-		try
-		{
-			FileWriter fileWriter = new FileWriter("IronHawkData.json");
-			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-
-			bufferedWriter.write(json);
-			bufferedWriter.flush();
-			bufferedWriter.close();
-		}
-		catch (IOException e)
-		{
-			System.out.println("Could not save users to JSON file!");
-		}
-	}
-
-	public void readUsers()
-	{
-		String json = null;
-
-		try
-		{
-			json = readFile("IronHawkData.json", StandardCharsets.UTF_8);
-		}
-		catch (IOException e)
-		{
-			System.out.println("Could not read JSON file!");
-		}
-
-		if (json != null)
-			users = new ArrayList<User>(Arrays.asList(gson.fromJson(json, User[].class)));
-	}
-
-	static String readFile(String path, Charset encoding) throws IOException
-	{
-		byte[] encoded = Files.readAllBytes(Paths.get(path));
-		return new String(encoded, encoding);
-	}
-
 	public static void main(String args[])
 	{
-		BufferedImageLoader loader = new BufferedImageLoader();
-
-		try
-		{
-			icon16 = loader.loadImage("16.png");
-			icon64 = loader.loadImage("64.png");
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-
-		Game game = new Game();
-
+		game = new Game();
+		imageManager = new ImageManager();
+		renderManager = new RenderManager(game);
 		game.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		game.setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		game.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 
 		ArrayList<Image> list = new ArrayList<Image>();
-		list.add(icon16);
-		list.add(icon64);
+		list.add(ImageManager.icon16);
+		list.add(ImageManager.icon64);
 		frame = new JFrame(game.TITLE);
 		frame.setIconImages(list);
 		frame.add(game);
@@ -538,11 +300,6 @@ public class Game extends Canvas implements Runnable
 		frame.setVisible(true);
 
 		game.start();
-	}
-
-	public BufferedImage getSpriteSheet()
-	{
-		return spriteSheet;
 	}
 
 	public static int getEnemyCount()

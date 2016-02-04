@@ -1,4 +1,4 @@
-package com.negafinity.ironhawk.states;
+package com.negafinity.ironhawk.screens;
 
 import com.negafinity.ironhawk.Game;
 
@@ -8,12 +8,13 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-public class Help
+public class Help extends Screen
 {
 	public Rectangle backButton = new Rectangle(5, 5, 100, 50);
 	public Rectangle controlsButton = new Rectangle(450, 5, 150, 50);
 
-	public void render(Graphics g)
+	@Override
+	public void render(Graphics g, Game game)
 	{
 		Graphics2D g2d = (Graphics2D) g;
 

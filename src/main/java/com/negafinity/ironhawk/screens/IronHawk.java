@@ -1,4 +1,4 @@
-package com.negafinity.ironhawk.states;
+package com.negafinity.ironhawk.screens;
 
 import com.negafinity.ironhawk.Game;
 import com.negafinity.ironhawk.Game.STATE;
@@ -8,30 +8,36 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class Start
+public class IronHawk extends Screen
 {
 	public boolean hasNotBeenCalled = true;
 
 	private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
 
-	public void showIronHawkIn10Sec()
+	public void showMenuIn10Sec()
 	{
 		Runnable task = new Runnable()
 		{
 			public void run()
 			{
-				if (Game.State == STATE.START)
+				if (Game.State == STATE.IRONHAWK)
 				{
-					Game.State = Game.STATE.IRONHAWK;
+					Game.State = Game.STATE.MENU;
 				}
 			}
 		};
-		worker.schedule(task, (long) 1.75, TimeUnit.SECONDS);
+		worker.schedule(task, 2, TimeUnit.SECONDS);
 	}
 
+	@Override
 	public void render(Graphics g, Game game)
 	{
-		g.drawImage(game.negafinity, 0, 0, game);
+		if (this.hasNotBeenCalled)
+		{
+			showMenuIn10Sec();
+		}
+
+		g.drawImage(game.ironhawkscreen, 0, 0, game);
 	}
 
 }

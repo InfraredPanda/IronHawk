@@ -1,4 +1,4 @@
-package com.negafinity.ironhawk.states;
+package com.negafinity.ironhawk.screens;
 
 import java.awt.Font;
 import java.awt.Graphics;
@@ -7,10 +7,11 @@ import java.awt.Rectangle;
 
 import com.negafinity.ironhawk.Game;
 
-public class Controls
+public class Controls extends Screen
 {
 	public Rectangle backButton = new Rectangle(5, 5, 100, 50);
 
+	@Override
 	public void render(Graphics g, Game game)
 	{
 		g.drawImage(game.controlscreen, 0, 0, game);
