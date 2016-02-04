@@ -1,5 +1,9 @@
 package com.negafinity.ironhawk.screens;
 
+import com.negafinity.ironhawk.Game;
+import com.negafinity.ironhawk.ScreenManager;
+import com.negafinity.ironhawk.utils.User;
+
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,10 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import com.negafinity.ironhawk.Game;
-import com.negafinity.ironhawk.utils.User;
-
-public class Login extends Screen
+public class ScreenLogin extends Screen
 {
 	private boolean createJFrame = true;
 
@@ -81,7 +82,7 @@ public class Login extends Screen
 						if (foundUser != null)
 						{
 							Game.players.get(0).setUser(foundUser);
-							Game.State = Game.STATE.MENU;
+							game.screenManager.currentScreen = ScreenManager.STATE.MENU;
 							user1LoggedIn = true;
 							game.setVisible(true);
 							panel.setVisible(false);
@@ -107,7 +108,7 @@ public class Login extends Screen
 						User user = new User(UUID.randomUUID().toString(), userNameField.getText(), passwordField.getText(), Game.getRoundNumber());
 						Game.users.add(user);
 						Game.players.get(0).setUser(user);
-						Game.State = Game.STATE.MENU;
+						game.screenManager.currentScreen = ScreenManager.STATE.MENU;
 						user1LoggedIn = true;
 						game.setVisible(true);
 						panel.setVisible(false);
@@ -122,7 +123,7 @@ public class Login extends Screen
 				{
 					public void actionPerformed(ActionEvent arg0)
 					{
-						Game.State = Game.STATE.GAME;
+						game.screenManager.currentScreen = ScreenManager.STATE.GAME;
 						game.setVisible(true);
 						panel.setVisible(false);
 					}
@@ -174,7 +175,7 @@ public class Login extends Screen
 
 				final JLabel errorLabel = new JLabel("Error! Username/Password was incorrect!");
 				errorLabel.setBounds(10, 150, 300, 25);
-				
+
 				final JLabel errorLabel2 = new JLabel("Error! Username/Password was incorrect!");
 				errorLabel2.setBounds(350, 150, 300, 25);
 
@@ -323,7 +324,7 @@ public class Login extends Screen
 					{
 						if (user1Ready && user2Ready)
 						{
-							Game.State = Game.STATE.GAME;
+							game.screenManager.currentScreen = ScreenManager.STATE.GAME;
 							game.setVisible(true);
 							panel.setVisible(false);
 						}

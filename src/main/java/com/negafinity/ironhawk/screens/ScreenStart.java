@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class Start extends Screen
+public class ScreenStart extends Screen
 {
 	public boolean hasNotBeenCalled = true;
 
@@ -32,7 +32,7 @@ public class Start extends Screen
 	@Override
 	public void render(Graphics g, Game game)
 	{
-		g.drawImage(game.negafinity, 0, 0, game);
+		g.drawImage(Game.imageManager.negafinity, 0, 0, game);
 	}
 
 }

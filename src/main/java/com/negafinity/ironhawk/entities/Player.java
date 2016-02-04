@@ -1,16 +1,17 @@
 package com.negafinity.ironhawk.entities;
 
+import com.negafinity.ironhawk.Controller;
+import com.negafinity.ironhawk.Game;
+import com.negafinity.ironhawk.Physics;
+import com.negafinity.ironhawk.ScreenManager;
+import com.negafinity.ironhawk.Textures;
+import com.negafinity.ironhawk.libs.Animation;
+import com.negafinity.ironhawk.utils.User;
+
 import java.awt.Graphics;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
-import com.negafinity.ironhawk.Controller;
-import com.negafinity.ironhawk.Game;
-import com.negafinity.ironhawk.Physics;
-import com.negafinity.ironhawk.Textures;
-import com.negafinity.ironhawk.libs.Animation;
-import com.negafinity.ironhawk.utils.User;
 
 public class Player extends Entity
 {
@@ -157,7 +158,7 @@ public class Player extends Entity
 				
 				if(end)
 				{
-					Game.State = Game.STATE.GAMEOVER;
+					game.screenManager.currentScreen = ScreenManager.STATE.GAMEOVER;
 				}
 			}
 		};

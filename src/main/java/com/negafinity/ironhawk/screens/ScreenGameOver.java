@@ -8,7 +8,7 @@ import java.awt.Rectangle;
 
 import com.negafinity.ironhawk.Game;
 
-public class GameOver extends Screen
+public class ScreenGameOver extends Screen
 {
 	public Rectangle playAgain = new Rectangle(Game.WIDTH / 2 + 120, 250, 130, 50);
 	public Rectangle quitButton = new Rectangle(Game.WIDTH / 2 + 120, 350, 100, 50);

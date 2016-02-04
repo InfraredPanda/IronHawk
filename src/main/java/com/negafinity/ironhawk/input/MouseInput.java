@@ -1,13 +1,15 @@
 package com.negafinity.ironhawk.input;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
 import com.negafinity.ironhawk.Controller;
 import com.negafinity.ironhawk.Game;
+import com.negafinity.ironhawk.ScreenManager;
 import com.negafinity.ironhawk.Textures;
 import com.negafinity.ironhawk.entities.Player;
 import com.negafinity.ironhawk.libs.Animation;
+import com.negafinity.ironhawk.screens.ScreenIronHawk;
+
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class MouseInput implements MouseListener
 {
@@ -35,7 +37,7 @@ public class MouseInput implements MouseListener
 		int locY = e.getY();
 
 		// Play Button
-		if (Game.State == Game.STATE.MENU)
+		if (game.screenManager.currentScreen == ScreenManager.STATE.MENU)
 		{
 			if (locX >= 225 && locX <= 430)
 			{
@@ -60,7 +62,7 @@ public class MouseInput implements MouseListener
 		int clickY = e.getY();
 
 		// Play Button
-		if (Game.State == Game.STATE.MENU)
+		if (game.screenManager.currentScreen == ScreenManager.STATE.MENU)
 		{
 			if (clickX >= 225 && clickX <= 430)
 			{
@@ -68,24 +70,25 @@ public class MouseInput implements MouseListener
 				{
 					// Pressed Play
 					// Picking 1 or 2 Players
-					Game.State = Game.STATE.CHOICEMENU;
+					game.screenManager.currentScreen = ScreenManager.STATE.CHOICEMENU;
 					return;
 				}
 			}
 		}
-		if (Game.State == Game.STATE.CHOICEMENU)
+		
+		if (game.screenManager.currentScreen == ScreenManager.STATE.CHOICEMENU)
 		{
 			if (clickX >= 5 && clickX <= 105)
 			{
 				if (clickY >= 5 && clickY <= 55)
 				{
 					// Pressed Back
-					Game.State = Game.STATE.HELP;
+					game.screenManager.currentScreen = ScreenManager.STATE.HELP;
 				}
 			}
 		}
 
-		if (Game.State == Game.STATE.CHOICEMENU)
+		if (game.screenManager.currentScreen == ScreenManager.STATE.CHOICEMENU)
 		{
 			if (clickY < 348 && clickY > 147)
 			{
@@ -99,11 +102,11 @@ public class MouseInput implements MouseListener
 
 					if (Game.players.get(0).getUser() != null)
 					{
-						Game.State = Game.STATE.GAME;
+						game.screenManager.currentScreen = ScreenManager.STATE.GAME;
 					}
 					else
 					{
-						Game.State = Game.STATE.LOGIN;
+						game.screenManager.currentScreen = ScreenManager.STATE.LOGIN;
 					}
 				}
 				else if (clickX < 627)
@@ -112,108 +115,113 @@ public class MouseInput implements MouseListener
 
 					if (Game.players.get(0).getUser() != null && Game.players.get(1).getUser() != null)
 					{
-						Game.State = Game.STATE.GAME;
+						game.screenManager.currentScreen = ScreenManager.STATE.GAME;
 					}
 					else
 					{
-						Game.State = Game.STATE.LOGIN;
+						game.screenManager.currentScreen = ScreenManager.STATE.LOGIN;
 					}
 				}
 			}
 		}
 
-		if (Game.State == Game.STATE.LOGIN)
+		if (game.screenManager.currentScreen == ScreenManager.STATE.LOGIN)
 		{
 			if (clickX >= 5 && clickX <= 105)
 			{
 				if (clickY >= 5 && clickY <= 55)
 				{
 					// Pressed Back
-					Game.State = Game.STATE.CHOICEMENU;
+					game.screenManager.currentScreen = ScreenManager.STATE.CHOICEMENU;
 				}
 			}
 		}
 
-		if (Game.State == Game.STATE.MENU)
+		if (game.screenManager.currentScreen == ScreenManager.STATE.MENU)
 		{
 			if (clickX >= 225 && clickX <= 430)
 			{
 				if (clickY >= 260 && clickY <= 305)
 				{
 					// Pressed Help
-					Game.State = Game.STATE.HELP;
+					game.screenManager.currentScreen = ScreenManager.STATE.HELP;
 				}
 			}
 		}
-		if (Game.State == Game.STATE.MENU)
+		
+		if (game.screenManager.currentScreen == ScreenManager.STATE.MENU)
 		{
 			if (clickX >= 225 && clickX <= 430)
 			{
 				if (clickY >= 320 && clickY <= 375)
 				{
 					// Pressed Quit
-					Game.saveUsers();
+					game.dataManager.saveUsers();
 					System.exit(1);
 				}
 			}
 		}
 
-		if (Game.State == Game.STATE.IRONHAWK)
+		if (game.screenManager.currentScreen == ScreenManager.STATE.IRONHAWK)
 		{
-			if (!(Game.ironhawk.hasNotBeenCalled))
+			ScreenIronHawk ironHawk = (ScreenIronHawk) game.screenManager.screens.get(ScreenManager.STATE.IRONHAWK);
+
+			if (!ironHawk.hasNotBeenCalled)
 			{
-				Game.State = Game.STATE.MENU;
+				game.screenManager.currentScreen = ScreenManager.STATE.MENU;
 			}
 		}
 
-		if (Game.State == Game.STATE.START)
+		if (game.screenManager.currentScreen == ScreenManager.STATE.START)
 		{
-			Game.State = Game.STATE.IRONHAWK;
+			game.screenManager.currentScreen = ScreenManager.STATE.IRONHAWK;
+			ScreenIronHawk ironHawk = (ScreenIronHawk) game.screenManager.screens.get(ScreenManager.STATE.IRONHAWK);
 
-			if (Game.ironhawk.hasNotBeenCalled)
+			if (ironHawk.hasNotBeenCalled)
 			{
-				Game.ironhawk.hasNotBeenCalled = false;
-				Game.ironhawk.showMenuIn10Sec();
+				ironHawk.hasNotBeenCalled = false;
+				ironHawk.showMenuIn10Sec();
 			}
 		}
 
-		if (Game.State == Game.STATE.HELP)
+		if (game.screenManager.currentScreen == ScreenManager.STATE.HELP)
 		{
 			if (clickX >= 5 && clickX <= 105)
 			{
 				if (clickY >= 5 && clickY <= 55)
 				{
 					// Pressed Back
-					Game.State = Game.STATE.MENU;
+					game.screenManager.currentScreen = ScreenManager.STATE.MENU;
 				}
 			}
 		}
 
-		if (Game.State == Game.STATE.HELP)
+		if (game.screenManager.currentScreen == ScreenManager.STATE.HELP)
 		{
 			if (clickX >= 450 && clickX <= 600)
 			{
 				if (clickY >= 5 && clickY <= 55)
 				{
 					// Pressed Back
-					Game.State = Game.STATE.CONTROLS;
+					game.screenManager.currentScreen = ScreenManager.STATE.CONTROLS;
 				}
 			}
 		}
-		if (Game.State == Game.STATE.CONTROLS)
+
+		if (game.screenManager.currentScreen == ScreenManager.STATE.CONTROLS)
 		{
 			if (clickX >= 5 && clickX <= 105)
 			{
 				if (clickY >= 5 && clickY <= 55)
 				{
 					// Pressed Back
-					Game.State = Game.STATE.HELP;
+					game.screenManager.currentScreen = ScreenManager.STATE.HELP;
 				}
 			}
 		}
 
 		// Quit Button
-		if (Game.State == Game.STATE.GAME || Game.State == Game.STATE.GAMEOVER)
+		if (game.screenManager.currentScreen == ScreenManager.STATE.GAME || game.screenManager.currentScreen == ScreenManager.STATE.GAMEOVER)
 		{
 			if (clickX >= Game.WIDTH / 2 + 120 && clickX <= Game.WIDTH / 2 + 220)
 			{
@@ -224,7 +232,8 @@ public class MouseInput implements MouseListener
 				}
 			}
 		}
-		if (Game.State == Game.STATE.GAMEOVER)
+
+		if (game.screenManager.currentScreen == ScreenManager.STATE.GAMEOVER)
 		{
 			if (clickX >= Game.WIDTH / 2 + 120 && clickX <= Game.WIDTH / 2 + 250)
 			{
@@ -252,7 +261,7 @@ public class MouseInput implements MouseListener
 
 					Game.roundNumber = 0;
 					Game.enemyCount = 10;
-					Game.State = Game.STATE.GAME;
+					game.screenManager.currentScreen = ScreenManager.STATE.GAME;
 				}
 			}
 		}

@@ -1,15 +1,16 @@
 package com.negafinity.ironhawk.input;
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
 import com.negafinity.ironhawk.Controller;
 import com.negafinity.ironhawk.Game;
-import com.negafinity.ironhawk.Game.STATE;
+import com.negafinity.ironhawk.ScreenManager;
+import com.negafinity.ironhawk.ScreenManager.STATE;
 import com.negafinity.ironhawk.Textures;
 import com.negafinity.ironhawk.entities.weapons.Bomb;
 import com.negafinity.ironhawk.entities.weapons.Bullet;
 import com.negafinity.ironhawk.entities.weapons.Missile;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class KeyInput extends KeyAdapter
 {
@@ -27,11 +28,13 @@ public class KeyInput extends KeyAdapter
 	public void keyPressed(KeyEvent e)
 	{
 		int key = e.getKeyCode();
+		
 		if (key == KeyEvent.VK_ESCAPE)
 		{
-			Game.State = STATE.MENU;
+			game.screenManager.currentScreen = STATE.MENU;
 		}
-		if (Game.State == STATE.GAME)
+		
+		if (game.screenManager.currentScreen == ScreenManager.STATE.GAME)
 		{
 			if (key == KeyEvent.VK_RIGHT && Game.players.get(0).health > 0)
 			{

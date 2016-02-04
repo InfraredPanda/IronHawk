@@ -22,13 +22,13 @@ public class ScreenManager
 
 	public void initializeScreens()
 	{
-		screens.put(STATE.MENU, new Menu());
-		screens.put(STATE.START, new Start());
-		screens.put(STATE.IRONHAWK, new IronHawk());
-		screens.put(STATE.CONTROLS, new Controls());
-		screens.put(STATE.GAMEOVER, new GameOver());
-		screens.put(STATE.LOGIN, new Login());
-		screens.put(STATE.HELP, new Help());
-		screens.put(STATE.CHOICEMENU, new ChoiceMenu());
+		screens.put(STATE.MENU, new ScreenMenu());
+		screens.put(STATE.START, new ScreenStart());
+		screens.put(STATE.IRONHAWK, new ScreenIronHawk());
+		screens.put(STATE.CONTROLS, new ScreenControls());
+		screens.put(STATE.GAMEOVER, new ScreenGameOver());
+		screens.put(STATE.LOGIN, new ScreenLogin());
+		screens.put(STATE.HELP, new ScreenHelp());
+		screens.put(STATE.CHOICEMENU, new ScreenChoiceMenu());
 	}
 }

@@ -22,7 +22,7 @@ public class Textures
 
 	public Textures(Game game)
 	{
-		ss = new SpriteSheet(game.getSpriteSheet());
+		ss = new SpriteSheet(Game.imageManager.spriteSheet);
 
 		getTextures();
 	}

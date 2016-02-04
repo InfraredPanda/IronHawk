@@ -1,17 +1,17 @@
 package com.negafinity.ironhawk.entities.powerups;
 
+import com.negafinity.ironhawk.Controller;
+import com.negafinity.ironhawk.Game;
+import com.negafinity.ironhawk.Physics;
+import com.negafinity.ironhawk.ScreenManager;
+import com.negafinity.ironhawk.Textures;
+import com.negafinity.ironhawk.entities.Player;
+import com.negafinity.ironhawk.libs.Animation;
+
 import java.awt.Graphics;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
-import com.negafinity.ironhawk.Controller;
-import com.negafinity.ironhawk.Game;
-import com.negafinity.ironhawk.Game.STATE;
-import com.negafinity.ironhawk.Physics;
-import com.negafinity.ironhawk.Textures;
-import com.negafinity.ironhawk.entities.Player;
-import com.negafinity.ironhawk.libs.Animation;
 
 public class RapidFire extends Powerup
 {
@@ -48,7 +48,7 @@ public class RapidFire extends Powerup
 		{
 			public void run()
 			{
-				if (Game.State == STATE.GAME)
+				if (game.screenManager.currentScreen == ScreenManager.STATE.GAME)
 				{
 					target.rapidFire = false;
 				}

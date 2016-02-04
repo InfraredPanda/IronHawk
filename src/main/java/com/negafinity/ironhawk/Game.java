@@ -31,9 +31,9 @@ import com.negafinity.ironhawk.entities.Player;
 import com.negafinity.ironhawk.input.KeyInput;
 import com.negafinity.ironhawk.input.MouseInput;
 import com.negafinity.ironhawk.libs.Animation;
-import com.negafinity.ironhawk.screens.Controls;
-import com.negafinity.ironhawk.screens.IronHawk;
-import com.negafinity.ironhawk.screens.Start;
+import com.negafinity.ironhawk.screens.ScreenControls;
+import com.negafinity.ironhawk.screens.ScreenIronHawk;
+import com.negafinity.ironhawk.screens.ScreenStart;
 import com.negafinity.ironhawk.utils.BufferedImageLoader;
 import com.negafinity.ironhawk.utils.User;
 

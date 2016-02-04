@@ -8,7 +8,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-public class ChoiceMenu extends Screen
+public class ScreenChoiceMenu extends Screen
 {
 	public Rectangle player1Button = new Rectangle(25, 150, 300, 200);
 	public Rectangle player2Button = new Rectangle(325, 150, 300, 200);

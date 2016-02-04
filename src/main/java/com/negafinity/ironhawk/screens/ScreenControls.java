@@ -7,14 +7,14 @@ import java.awt.Rectangle;
 
 import com.negafinity.ironhawk.Game;
 
-public class Controls extends Screen
+public class ScreenControls extends Screen
 {
 	public Rectangle backButton = new Rectangle(5, 5, 100, 50);
 
 	@Override
 	public void render(Graphics g, Game game)
 	{
-		g.drawImage(game.controlscreen, 0, 0, game);
+		g.drawImage(Game.imageManager.controlscreen, 0, 0, game);
 		Graphics2D g2d = (Graphics2D) g;
 		Font fnt0 = new Font("arial", Font.BOLD, 30);
 		g.setFont(fnt0);

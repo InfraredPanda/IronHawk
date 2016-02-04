@@ -1,7 +1,7 @@
 package com.negafinity.ironhawk;
 
 import com.negafinity.ironhawk.entities.Player;
-import com.negafinity.ironhawk.screens.Start;
+import com.negafinity.ironhawk.screens.ScreenStart;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -124,7 +124,7 @@ public class RenderManager
 			case IRONHAWK:
 				screenManager.screens.get(ScreenManager.STATE.IRONHAWK).render(g, game);
 			case START:
-				Start start = (Start) screenManager.screens.get(ScreenManager.STATE.START);
+				ScreenStart start = (ScreenStart) screenManager.screens.get(ScreenManager.STATE.START);
 
 				if (start.hasNotBeenCalled)
 				{
