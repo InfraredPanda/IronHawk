@@ -5,11 +5,11 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 version = '1.0'
 group = "com.negafinity"
-archivesBaseName = "Iron-Hawk"
+archivesBaseName = "IronHawk"
 
 jar {
     manifest {
-        attributes 'Implementation-Title': 'Iron-Hawk',
+        attributes 'Implementation-Title': 'IronHawk',
                    'Implementation-Version': version,
                    'Main-Class': 'com.negafinity.ironhawk.Game'
     }

@@ -1,4 +1,4 @@
-package com.negafinity.ironhawk.states;
+package com.negafinity.ironhawk.screens;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -8,12 +8,13 @@ import java.awt.Rectangle;
 
 import com.negafinity.ironhawk.Game;
 
-public class GameOver
+public class GameOver extends Screen
 {
 	public Rectangle playAgain = new Rectangle(Game.WIDTH / 2 + 120, 250, 130, 50);
 	public Rectangle quitButton = new Rectangle(Game.WIDTH / 2 + 120, 350, 100, 50);
 
-	public void render(Graphics g)
+	@Override
+	public void render(Graphics g, Game game)
 	{
 		Graphics2D g2d = (Graphics2D) g;
 

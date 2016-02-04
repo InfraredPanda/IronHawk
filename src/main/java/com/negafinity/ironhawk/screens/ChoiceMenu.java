@@ -1,4 +1,6 @@
-package com.negafinity.ironhawk.states;
+package com.negafinity.ironhawk.screens;
+
+import com.negafinity.ironhawk.Game;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -6,13 +8,14 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-public class ChoiceMenu
+public class ChoiceMenu extends Screen
 {
 	public Rectangle player1Button = new Rectangle(25, 150, 300, 200);
 	public Rectangle player2Button = new Rectangle(325, 150, 300, 200);
 	public Rectangle backButton = new Rectangle(5, 5, 100, 50);
 
-	public void render(Graphics g)
+	@Override
+	public void render(Graphics g, Game game)
 	{
 		Graphics2D g2d = (Graphics2D) g;
 

@@ -1,4 +1,4 @@
-package com.negafinity.ironhawk.states;
+package com.negafinity.ironhawk.screens;
 
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -14,21 +14,17 @@ import javax.swing.JTextField;
 import com.negafinity.ironhawk.Game;
 import com.negafinity.ironhawk.utils.User;
 
-public class Login
+public class Login extends Screen
 {
-	private Game game;
 	private boolean createJFrame = true;
+
 	public static boolean user1Ready;
 	public static boolean user2Ready;
 	public static boolean user1LoggedIn;
 	public static boolean user2LoggedIn;
 
-	public Login(Game game)
-	{
-		this.game = game;
-	}
-
-	public void render(Graphics g)
+	@Override
+	public void render(Graphics g, Game game)
 	{
 		if (createJFrame)
 		{
