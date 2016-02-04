@@ -1,4 +1,4 @@
-# Iron-Hawk 
+# Iron-Hawk [![Build Status](https://travis-ci.org/NEGAFINITY/IronHawk.svg?branch=master)](https://travis-ci.org/NEGAFINITY/IronHawk)
 Hello, we are NEGAFINITY, the creators of IronHawk. 
 NEGAFINITY is a software development team, owned and run in the Eastern US.
 Iron Hawk is free for all to play, as much as you'd like!
