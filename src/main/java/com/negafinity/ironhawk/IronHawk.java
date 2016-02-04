@@ -35,6 +35,10 @@ import com.negafinity.ironhawk.screens.ScreenControls;
 import com.negafinity.ironhawk.screens.ScreenIronHawk;
 import com.negafinity.ironhawk.screens.ScreenStart;
 import com.negafinity.ironhawk.utils.BufferedImageLoader;
+import com.negafinity.ironhawk.utils.DataManager;
+import com.negafinity.ironhawk.utils.ImageManager;
+import com.negafinity.ironhawk.utils.RenderManager;
+import com.negafinity.ironhawk.utils.ScreenManager;
 import com.negafinity.ironhawk.utils.User;
 
 /**
@@ -45,9 +49,9 @@ import com.negafinity.ironhawk.utils.User;
 // TODO: READING OFF A FILE AND WRITING TO IT FOR HIGH SCORES SKINS MENU, ETC.
 // TODO: BUG LIST: PLAYER 2 REGISTERS AS 1 AFTER DEATH.
 
-public class Game extends Canvas implements Runnable
+public class IronHawk extends Canvas implements Runnable
 {
-	protected Game()
+	protected IronHawk()
 	{
 		;
 	}
@@ -74,7 +78,7 @@ public class Game extends Canvas implements Runnable
 	public static ArrayList<Player> players = new ArrayList<>();
 	public static boolean multiplayerEnabled = false;
 
-	private static Game game;
+	private static IronHawk game;
 
 	public static ArrayList<User> users = new ArrayList<>();
 	public static RenderManager renderManager;
@@ -87,7 +91,7 @@ public class Game extends Canvas implements Runnable
 
 	public LinkedList<Entity> entities;
 
-	public static Game getGame()
+	public static IronHawk getGame()
 	{
 		return game;
 	}
@@ -152,7 +156,7 @@ public class Game extends Canvas implements Runnable
 			{
 				gameStarting = false;
 
-				for (Player player : Game.players)
+				for (Player player : IronHawk.players)
 				{
 					if (player.getUser() != null && roundNumber > player.getUser().getHighscore())
 					{
@@ -280,7 +284,7 @@ public class Game extends Canvas implements Runnable
 
 	public static void main(String args[])
 	{
-		game = new Game();
+		game = new IronHawk();
 		imageManager = new ImageManager();
 		renderManager = new RenderManager(game);
 		game.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
@@ -309,7 +313,7 @@ public class Game extends Canvas implements Runnable
 
 	public static void setEnemyCount(int enemyCount)
 	{
-		Game.enemyCount = enemyCount;
+		IronHawk.enemyCount = enemyCount;
 	}
 
 	public static int getRoundNumber()
@@ -319,6 +323,6 @@ public class Game extends Canvas implements Runnable
 
 	public static void setRound(int roundNumber)
 	{
-		Game.roundNumber = roundNumber;
+		IronHawk.roundNumber = roundNumber;
 	}
 }

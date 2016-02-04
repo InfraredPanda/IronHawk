@@ -7,7 +7,7 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
 import com.negafinity.ironhawk.Controller;
-import com.negafinity.ironhawk.Game;
+import com.negafinity.ironhawk.IronHawk;
 import com.negafinity.ironhawk.Textures;
 import com.negafinity.ironhawk.libs.Animation;
 
@@ -19,10 +19,10 @@ public class Entity
 	public String name;
 	public Animation anim;
 	public Controller c;
-	public Game game;
+	public IronHawk game;
 	public Textures tex;
 
-	public Entity(double x, double y, Textures tex, Controller c, Game game)
+	public Entity(double x, double y, Textures tex, Controller c, IronHawk game)
 	{
 		this.x = x;
 		this.y = y;

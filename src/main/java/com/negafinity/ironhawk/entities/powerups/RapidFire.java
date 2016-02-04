@@ -1,12 +1,12 @@
 package com.negafinity.ironhawk.entities.powerups;
 
 import com.negafinity.ironhawk.Controller;
-import com.negafinity.ironhawk.Game;
+import com.negafinity.ironhawk.IronHawk;
 import com.negafinity.ironhawk.Physics;
-import com.negafinity.ironhawk.ScreenManager;
 import com.negafinity.ironhawk.Textures;
 import com.negafinity.ironhawk.entities.Player;
 import com.negafinity.ironhawk.libs.Animation;
+import com.negafinity.ironhawk.utils.ScreenManager;
 
 import java.awt.Graphics;
 import java.util.concurrent.Executors;
@@ -17,7 +17,7 @@ public class RapidFire extends Powerup
 {
 	private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
 
-	public RapidFire(double x, double y, Textures tex, Controller c, Game game)
+	public RapidFire(double x, double y, Textures tex, Controller c, IronHawk game)
 	{
 		super(x, y, tex, c, game);
 
@@ -30,7 +30,7 @@ public class RapidFire extends Powerup
 	{
 		super.render(g);
 
-		for (Player player : Game.players)
+		for (Player player : IronHawk.players)
 		{
 			if (Physics.collision(this, player))
 			{

@@ -6,7 +6,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import com.negafinity.ironhawk.Controller;
-import com.negafinity.ironhawk.Game;
+import com.negafinity.ironhawk.IronHawk;
 import com.negafinity.ironhawk.Physics;
 import com.negafinity.ironhawk.Textures;
 import com.negafinity.ironhawk.entities.Entity;
@@ -18,7 +18,7 @@ public class Powerup extends Entity
 	private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
 	public Animation animEffect;
 
-	public Powerup(double x, double y, Textures tex, Controller c, Game game)
+	public Powerup(double x, double y, Textures tex, Controller c, IronHawk game)
 	{
 		super(x, y, tex, c, game);
 
@@ -30,12 +30,12 @@ public class Powerup extends Entity
 	{
 		super.render(g);
 
-		for (Player player : Game.players)
+		for (Player player : IronHawk.players)
 		{
 			if (Physics.collision(this, player))
 			{
 				c.removeEntity(this);
-				if (Game.players.size() == 2 && Game.players.get(1) == player)
+				if (IronHawk.players.size() == 2 && IronHawk.players.get(1) == player)
 				{
 					this.animEffect = new Animation(5, tex.player2[0], tex.player2[2]);
 				}
@@ -55,7 +55,7 @@ public class Powerup extends Entity
 			{
 				if (target.anim.equals(animEffect))
 				{
-					if (Game.players.size() == 2 && target == Game.players.get(1))
+					if (IronHawk.players.size() == 2 && target == IronHawk.players.get(1))
 					{
 						target.defaultAnim = new Animation(5, tex.player2[0], tex.player2[1]);
 					}

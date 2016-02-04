@@ -1,6 +1,14 @@
-package com.negafinity.ironhawk;
+package com.negafinity.ironhawk.utils;
 
-import com.negafinity.ironhawk.screens.*;
+import com.negafinity.ironhawk.screens.Screen;
+import com.negafinity.ironhawk.screens.ScreenChoiceMenu;
+import com.negafinity.ironhawk.screens.ScreenControls;
+import com.negafinity.ironhawk.screens.ScreenGameOver;
+import com.negafinity.ironhawk.screens.ScreenHelp;
+import com.negafinity.ironhawk.screens.ScreenIronHawk;
+import com.negafinity.ironhawk.screens.ScreenLogin;
+import com.negafinity.ironhawk.screens.ScreenMenu;
+import com.negafinity.ironhawk.screens.ScreenStart;
 
 import java.util.HashMap;
 

@@ -6,15 +6,15 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-import com.negafinity.ironhawk.Game;
+import com.negafinity.ironhawk.IronHawk;
 
 public class ScreenGameOver extends Screen
 {
-	public Rectangle playAgain = new Rectangle(Game.WIDTH / 2 + 120, 250, 130, 50);
-	public Rectangle quitButton = new Rectangle(Game.WIDTH / 2 + 120, 350, 100, 50);
+	public Rectangle playAgain = new Rectangle(IronHawk.WIDTH / 2 + 120, 250, 130, 50);
+	public Rectangle quitButton = new Rectangle(IronHawk.WIDTH / 2 + 120, 350, 100, 50);
 
 	@Override
-	public void render(Graphics g, Game game)
+	public void render(Graphics g, IronHawk game)
 	{
 		Graphics2D g2d = (Graphics2D) g;
 
@@ -29,9 +29,9 @@ public class ScreenGameOver extends Screen
 		g.drawString("Again!", playAgain.x + 19, playAgain.y + 30);
 		g2d.draw(playAgain);
 
-		if (Game.players.size() == 1)
+		if (IronHawk.players.size() == 1)
 		{
-			g.drawString("Your score was " + Game.getRoundNumber() + "! Your highscore is " + Game.players.get(0).getUser().getHighscore(), 5, 150);
+			g.drawString("Your score was " + IronHawk.getRoundNumber() + "! Your highscore is " + IronHawk.players.get(0).getUser().getHighscore(), 5, 150);
 		}
 		else
 		{

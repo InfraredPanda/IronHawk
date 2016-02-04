@@ -1,14 +1,13 @@
-package com.negafinity.ironhawk;
+package com.negafinity.ironhawk.utils;
 
-import com.negafinity.ironhawk.utils.BufferedImageLoader;
+import com.negafinity.ironhawk.IronHawk;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class ImageManager
 {
-	public BufferedImage image = new BufferedImage(Game.WIDTH, Game.HEIGHT, BufferedImage.TYPE_INT_RGB);
+	public BufferedImage image = new BufferedImage(IronHawk.WIDTH, IronHawk.HEIGHT, BufferedImage.TYPE_INT_RGB);
 	public BufferedImage spriteSheet;
 	public BufferedImage background;
 	public BufferedImage player2Sprite;

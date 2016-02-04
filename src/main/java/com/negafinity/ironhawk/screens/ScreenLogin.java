@@ -1,7 +1,7 @@
 package com.negafinity.ironhawk.screens;
 
-import com.negafinity.ironhawk.Game;
-import com.negafinity.ironhawk.ScreenManager;
+import com.negafinity.ironhawk.IronHawk;
+import com.negafinity.ironhawk.utils.ScreenManager;
 import com.negafinity.ironhawk.utils.User;
 
 import java.awt.Graphics;
@@ -25,18 +25,18 @@ public class ScreenLogin extends Screen
 	public static boolean user2LoggedIn;
 
 	@Override
-	public void render(Graphics g, Game game)
+	public void render(Graphics g, IronHawk game)
 	{
 		if (createJFrame)
 		{
-			if (Game.players.size() == 1)
+			if (IronHawk.players.size() == 1)
 			{
 				createJFrame = false;
 
 				// Create JPanel
 				final JPanel panel = new JPanel();
 				// Add panel to frame
-				Game.frame.add(panel);
+				IronHawk.frame.add(panel);
 
 				// Place Components
 				panel.setLayout(null);
@@ -70,7 +70,7 @@ public class ScreenLogin extends Screen
 					{
 						User foundUser = null;
 
-						for (User user : Game.users)
+						for (User user : IronHawk.users)
 						{
 							if (user.getUsername().equals(userNameField.getText()) && user.getPassword().equals(passwordField.getText()))
 							{
@@ -81,7 +81,7 @@ public class ScreenLogin extends Screen
 
 						if (foundUser != null)
 						{
-							Game.players.get(0).setUser(foundUser);
+							IronHawk.players.get(0).setUser(foundUser);
 							game.screenManager.currentScreen = ScreenManager.STATE.MENU;
 							user1LoggedIn = true;
 							game.setVisible(true);
@@ -105,9 +105,9 @@ public class ScreenLogin extends Screen
 					@SuppressWarnings("deprecation")
 					public void actionPerformed(ActionEvent evt)
 					{
-						User user = new User(UUID.randomUUID().toString(), userNameField.getText(), passwordField.getText(), Game.getRoundNumber());
-						Game.users.add(user);
-						Game.players.get(0).setUser(user);
+						User user = new User(UUID.randomUUID().toString(), userNameField.getText(), passwordField.getText(), IronHawk.getRoundNumber());
+						IronHawk.users.add(user);
+						IronHawk.players.get(0).setUser(user);
 						game.screenManager.currentScreen = ScreenManager.STATE.MENU;
 						user1LoggedIn = true;
 						game.setVisible(true);
@@ -134,7 +134,7 @@ public class ScreenLogin extends Screen
 				// Make the game invisible
 				game.setVisible(false);
 				// Show changes
-				Game.frame.setVisible(true);
+				IronHawk.frame.setVisible(true);
 			}
 			// IF THERE ARE TWO PLAYERS.
 			else
@@ -144,7 +144,7 @@ public class ScreenLogin extends Screen
 				// Create JPanel
 				final JPanel panel = new JPanel();
 				// Add panel to frame
-				Game.frame.add(panel);
+				IronHawk.frame.add(panel);
 
 				// Place Components
 				panel.setLayout(null);
@@ -209,11 +209,11 @@ public class ScreenLogin extends Screen
 					@SuppressWarnings("deprecation")
 					public void actionPerformed(ActionEvent arg0)
 					{
-						for (User user : Game.users)
+						for (User user : IronHawk.users)
 						{
 							if (user.getUsername().equals(userNameField.getText()) && user.getPassword().equals(passwordField.getText()))
 							{
-								Game.players.get(0).setUser(user);
+								IronHawk.players.get(0).setUser(user);
 								user1LoggedIn = true;
 								user1Ready = true;
 							}
@@ -236,11 +236,11 @@ public class ScreenLogin extends Screen
 					@SuppressWarnings("deprecation")
 					public void actionPerformed(ActionEvent arg0)
 					{
-						for (User user : Game.users)
+						for (User user : IronHawk.users)
 						{
 							if (user.getUsername().equals(userNameField2.getText()) && user.getPassword().equals(passwordField2.getText()))
 							{
-								Game.players.get(1).setUser(user);
+								IronHawk.players.get(1).setUser(user);
 								user2LoggedIn = true;
 								user2Ready = true;
 							}
@@ -263,9 +263,9 @@ public class ScreenLogin extends Screen
 					@SuppressWarnings("deprecation")
 					public void actionPerformed(ActionEvent evt)
 					{
-						User user = new User(UUID.randomUUID().toString(), userNameField.getText(), passwordField.getText(), Game.getRoundNumber());
-						Game.users.add(user);
-						Game.players.get(0).setUser(user);
+						User user = new User(UUID.randomUUID().toString(), userNameField.getText(), passwordField.getText(), IronHawk.getRoundNumber());
+						IronHawk.users.add(user);
+						IronHawk.players.get(0).setUser(user);
 						user1Ready = true;
 						user1LoggedIn = true;
 					}
@@ -280,9 +280,9 @@ public class ScreenLogin extends Screen
 					@SuppressWarnings("deprecation")
 					public void actionPerformed(ActionEvent evt)
 					{
-						User user = new User(UUID.randomUUID().toString(), userNameField2.getText(), passwordField2.getText(), Game.getRoundNumber());
-						Game.users.add(user);
-						Game.players.get(1).setUser(user);
+						User user = new User(UUID.randomUUID().toString(), userNameField2.getText(), passwordField2.getText(), IronHawk.getRoundNumber());
+						IronHawk.users.add(user);
+						IronHawk.players.get(1).setUser(user);
 						user2Ready = true;
 						user2LoggedIn = true;
 					}
@@ -336,7 +336,7 @@ public class ScreenLogin extends Screen
 				// Make the game invisible
 				game.setVisible(false);
 				// Show changes
-				Game.frame.setVisible(true);
+				IronHawk.frame.setVisible(true);
 			}
 		}
 

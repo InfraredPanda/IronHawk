@@ -1,11 +1,11 @@
 package com.negafinity.ironhawk.entities;
 
 import com.negafinity.ironhawk.Controller;
-import com.negafinity.ironhawk.Game;
+import com.negafinity.ironhawk.IronHawk;
 import com.negafinity.ironhawk.Physics;
-import com.negafinity.ironhawk.ScreenManager;
 import com.negafinity.ironhawk.Textures;
 import com.negafinity.ironhawk.libs.Animation;
+import com.negafinity.ironhawk.utils.ScreenManager;
 import com.negafinity.ironhawk.utils.User;
 
 import java.awt.Graphics;
@@ -30,7 +30,7 @@ public class Player extends Entity
 
 	private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
 
-	public Player(double x, double y, Textures tex, Controller c, Game game)
+	public Player(double x, double y, Textures tex, Controller c, IronHawk game)
 	{
 		super(x, y, tex, c, game);
 
@@ -144,11 +144,11 @@ public class Player extends Entity
 				boolean end = true;
 				int i = 0;
 
-				while (end && i < Game.players.size())
+				while (end && i < IronHawk.players.size())
 				{
 					c.removeEntity(p);
 
-					if (Game.players.get(i) != null && Game.players.get(i).health > 0)
+					if (IronHawk.players.get(i) != null && IronHawk.players.get(i).health > 0)
 					{
 						end = false;
 					}

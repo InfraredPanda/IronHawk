@@ -9,7 +9,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import com.negafinity.ironhawk.Controller;
-import com.negafinity.ironhawk.Game;
+import com.negafinity.ironhawk.IronHawk;
 import com.negafinity.ironhawk.Physics;
 import com.negafinity.ironhawk.Textures;
 import com.negafinity.ironhawk.entities.weapons.Warhead;
@@ -26,7 +26,7 @@ public class Bomber extends Enemy
 	public boolean hasBeenRotatedRight = false;
 	public boolean hasBeenRotatedLeft = false;
 
-	public Bomber(double x, double y, Textures tex, Controller c, Game game, int enemyHealth)
+	public Bomber(double x, double y, Textures tex, Controller c, IronHawk game, int enemyHealth)
 	{
 		super(x, y, tex, c, game, enemyHealth);
 
@@ -61,7 +61,7 @@ public class Bomber extends Enemy
 			}
 		}
 
-		for (Player player : Game.players)
+		for (Player player : IronHawk.players)
 		{
 			if (Physics.collision(this, player))
 			{
@@ -75,7 +75,7 @@ public class Bomber extends Enemy
 	{
 		double currentDistance = Double.MAX_VALUE;
 
-		for (Player player : Game.players)
+		for (Player player : IronHawk.players)
 		{
 			double distance = Math.sqrt((this.x - player.x) * (this.x - player.x) + (this.y - player.y) * (this.y - player.y));
 
@@ -102,7 +102,7 @@ public class Bomber extends Enemy
 		g.fillRect(5, 60, this.enemyHealth / 2, 50);
 
 		g.setColor(Color.black);
-		g.drawString(" Boss Health", Game.WIDTH / 2 - 160, 90);
+		g.drawString(" Boss Health", IronHawk.WIDTH / 2 - 160, 90);
 
 		g.setColor(Color.gray);
 		g.drawString(String.valueOf(this.enemyHealth), 20, 110);

@@ -1,6 +1,6 @@
 package com.negafinity.ironhawk.screens;
 
-import com.negafinity.ironhawk.Game;
+import com.negafinity.ironhawk.IronHawk;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -14,14 +14,14 @@ public class ScreenHelp extends Screen
 	public Rectangle controlsButton = new Rectangle(450, 5, 150, 50);
 
 	@Override
-	public void render(Graphics g, Game game)
+	public void render(Graphics g, IronHawk game)
 	{
 		Graphics2D g2d = (Graphics2D) g;
 
 		Font fnt0 = new Font("arial", Font.BOLD, 30);
 		g.setFont(fnt0);
 		g.setColor(Color.WHITE);
-		g.drawString("Help Menu", Game.WIDTH / 2 + 100, 50);
+		g.drawString("Help Menu", IronHawk.WIDTH / 2 + 100, 50);
 
 		Font fnt1 = new Font("arial", Font.BOLD, 30);
 		g.setFont(fnt1);

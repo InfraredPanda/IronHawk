@@ -1,7 +1,7 @@
 package com.negafinity.ironhawk.screens;
 
-import com.negafinity.ironhawk.Game;
-import com.negafinity.ironhawk.ScreenManager;
+import com.negafinity.ironhawk.IronHawk;
+import com.negafinity.ironhawk.utils.ScreenManager;
 
 import java.awt.Graphics;
 import java.util.concurrent.Executors;
@@ -20,9 +20,9 @@ public class ScreenStart extends Screen
 		{
 			public void run()
 			{
-				if (Game.getGame().screenManager.currentScreen == ScreenManager.STATE.START)
+				if (IronHawk.getGame().screenManager.currentScreen == ScreenManager.STATE.START)
 				{
-					Game.getGame().screenManager.currentScreen = ScreenManager.STATE.IRONHAWK;
+					IronHawk.getGame().screenManager.currentScreen = ScreenManager.STATE.IRONHAWK;
 				}
 			}
 		};
@@ -30,9 +30,9 @@ public class ScreenStart extends Screen
 	}
 
 	@Override
-	public void render(Graphics g, Game game)
+	public void render(Graphics g, IronHawk game)
 	{
-		g.drawImage(Game.imageManager.negafinity, 0, 0, game);
+		g.drawImage(IronHawk.imageManager.negafinity, 0, 0, game);
 	}
 
 }

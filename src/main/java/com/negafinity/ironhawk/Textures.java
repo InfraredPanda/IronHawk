@@ -20,9 +20,9 @@ public class Textures
 
 	private SpriteSheet ss;
 
-	public Textures(Game game)
+	public Textures(IronHawk game)
 	{
-		ss = new SpriteSheet(Game.imageManager.spriteSheet);
+		ss = new SpriteSheet(IronHawk.imageManager.spriteSheet);
 
 		getTextures();
 	}

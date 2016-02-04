@@ -1,12 +1,12 @@
 package com.negafinity.ironhawk.input;
 
 import com.negafinity.ironhawk.Controller;
-import com.negafinity.ironhawk.Game;
-import com.negafinity.ironhawk.ScreenManager;
+import com.negafinity.ironhawk.IronHawk;
 import com.negafinity.ironhawk.Textures;
 import com.negafinity.ironhawk.entities.Player;
 import com.negafinity.ironhawk.libs.Animation;
 import com.negafinity.ironhawk.screens.ScreenIronHawk;
+import com.negafinity.ironhawk.utils.ScreenManager;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -14,10 +14,10 @@ import java.awt.event.MouseListener;
 public class MouseInput implements MouseListener
 {
 	private Controller c;
-	private Game game;
+	private IronHawk game;
 	private Textures tex;
 
-	public MouseInput(Controller c, Game game, Textures tex)
+	public MouseInput(Controller c, IronHawk game, Textures tex)
 	{
 		this.c = c;
 		this.game = game;
@@ -92,15 +92,15 @@ public class MouseInput implements MouseListener
 		{
 			if (clickY < 348 && clickY > 147)
 			{
-				if (clickX <= Game.WIDTH / 2 + 160 && clickX >= 20)
+				if (clickX <= IronHawk.WIDTH / 2 + 160 && clickX >= 20)
 				{
 					// Picked SP
-					if (Game.players.size() == 2)
+					if (IronHawk.players.size() == 2)
 					{
-						Game.players.remove(1);
+						IronHawk.players.remove(1);
 					}
 
-					if (Game.players.get(0).getUser() != null)
+					if (IronHawk.players.get(0).getUser() != null)
 					{
 						game.screenManager.currentScreen = ScreenManager.STATE.GAME;
 					}
@@ -111,9 +111,9 @@ public class MouseInput implements MouseListener
 				}
 				else if (clickX < 627)
 				{
-					Game.multiplayerEnabled = true;
+					IronHawk.multiplayerEnabled = true;
 
-					if (Game.players.get(0).getUser() != null && Game.players.get(1).getUser() != null)
+					if (IronHawk.players.get(0).getUser() != null && IronHawk.players.get(1).getUser() != null)
 					{
 						game.screenManager.currentScreen = ScreenManager.STATE.GAME;
 					}
@@ -223,7 +223,7 @@ public class MouseInput implements MouseListener
 		// Quit Button
 		if (game.screenManager.currentScreen == ScreenManager.STATE.GAME || game.screenManager.currentScreen == ScreenManager.STATE.GAMEOVER)
 		{
-			if (clickX >= Game.WIDTH / 2 + 120 && clickX <= Game.WIDTH / 2 + 220)
+			if (clickX >= IronHawk.WIDTH / 2 + 120 && clickX <= IronHawk.WIDTH / 2 + 220)
 			{
 				if (clickY >= 350 && clickY <= 400)
 				{
@@ -235,32 +235,32 @@ public class MouseInput implements MouseListener
 
 		if (game.screenManager.currentScreen == ScreenManager.STATE.GAMEOVER)
 		{
-			if (clickX >= Game.WIDTH / 2 + 120 && clickX <= Game.WIDTH / 2 + 250)
+			if (clickX >= IronHawk.WIDTH / 2 + 120 && clickX <= IronHawk.WIDTH / 2 + 250)
 			{
 				if (clickY >= 250 && clickY <= 300)
 				{
 					// Pressed Play Again
 					game.entities.clear();
-					Game.players.clear();
+					IronHawk.players.clear();
 
-					if (Game.multiplayerEnabled)
+					if (IronHawk.multiplayerEnabled)
 					{
 						Player player = new Player(200, 200, tex, c, game);
 						player.anim = player.defaultAnim;
 						Player player2 = new Player(250, 200, tex, c, game);
 						player2.anim = new Animation(5, tex.player2[0], tex.player2[1]);
 
-						Game.players.add(player);
-						Game.players.add(player2);
+						IronHawk.players.add(player);
+						IronHawk.players.add(player2);
 					}
 					else
 					{
 						Player player = new Player(200, 200, tex, c, game);
-						Game.players.add(player);
+						IronHawk.players.add(player);
 					}
 
-					Game.roundNumber = 0;
-					Game.enemyCount = 10;
+					IronHawk.roundNumber = 0;
+					IronHawk.enemyCount = 10;
 					game.screenManager.currentScreen = ScreenManager.STATE.GAME;
 				}
 			}

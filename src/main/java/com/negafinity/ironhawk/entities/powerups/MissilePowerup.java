@@ -3,7 +3,7 @@ package com.negafinity.ironhawk.entities.powerups;
 import java.awt.Graphics;
 
 import com.negafinity.ironhawk.Controller;
-import com.negafinity.ironhawk.Game;
+import com.negafinity.ironhawk.IronHawk;
 import com.negafinity.ironhawk.Physics;
 import com.negafinity.ironhawk.Textures;
 import com.negafinity.ironhawk.entities.Player;
@@ -11,7 +11,7 @@ import com.negafinity.ironhawk.libs.Animation;
 
 public class MissilePowerup extends Powerup
 {
-	public MissilePowerup(double x, double y, Textures tex, Controller c, Game game)
+	public MissilePowerup(double x, double y, Textures tex, Controller c, IronHawk game)
 	{
 		super(x, y, tex, c, game);
 
@@ -24,7 +24,7 @@ public class MissilePowerup extends Powerup
 	{
 		super.render(g);
 
-		for (Player player : Game.players)
+		for (Player player : IronHawk.players)
 		{
 			if (Physics.collision(this, player))
 			{

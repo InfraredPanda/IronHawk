@@ -1,24 +1,24 @@
 package com.negafinity.ironhawk.input;
 
 import com.negafinity.ironhawk.Controller;
-import com.negafinity.ironhawk.Game;
-import com.negafinity.ironhawk.ScreenManager;
-import com.negafinity.ironhawk.ScreenManager.STATE;
+import com.negafinity.ironhawk.IronHawk;
 import com.negafinity.ironhawk.Textures;
 import com.negafinity.ironhawk.entities.weapons.Bomb;
 import com.negafinity.ironhawk.entities.weapons.Bullet;
 import com.negafinity.ironhawk.entities.weapons.Missile;
+import com.negafinity.ironhawk.utils.ScreenManager;
+import com.negafinity.ironhawk.utils.ScreenManager.STATE;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class KeyInput extends KeyAdapter
 {
-	private Game game;
+	private IronHawk game;
 	private Controller c;
 	private Textures tex;
 
-	public KeyInput(Game game, Controller c, Textures tex)
+	public KeyInput(IronHawk game, Controller c, Textures tex)
 	{
 		this.game = game;
 		this.c = c;
@@ -36,152 +36,152 @@ public class KeyInput extends KeyAdapter
 		
 		if (game.screenManager.currentScreen == ScreenManager.STATE.GAME)
 		{
-			if (key == KeyEvent.VK_RIGHT && Game.players.get(0).health > 0)
+			if (key == KeyEvent.VK_RIGHT && IronHawk.players.get(0).health > 0)
 			{
-				if (Game.players.size() == 2)
-					Game.players.get(1).setVelX(5);
+				if (IronHawk.players.size() == 2)
+					IronHawk.players.get(1).setVelX(5);
 				else
-					Game.players.get(0).setVelX(5);
+					IronHawk.players.get(0).setVelX(5);
 			}
-			else if (key == KeyEvent.VK_LEFT && Game.players.get(0).health > 0)
+			else if (key == KeyEvent.VK_LEFT && IronHawk.players.get(0).health > 0)
 			{
-				if (Game.players.size() == 2)
-					Game.players.get(1).setVelX(-5);
+				if (IronHawk.players.size() == 2)
+					IronHawk.players.get(1).setVelX(-5);
 				else
-					Game.players.get(0).setVelX(-5);
+					IronHawk.players.get(0).setVelX(-5);
 			}
-			else if (key == KeyEvent.VK_UP && Game.players.get(0).health > 0)
+			else if (key == KeyEvent.VK_UP && IronHawk.players.get(0).health > 0)
 			{
-				if (Game.players.size() == 2)
-					Game.players.get(1).setVelY(-5);
+				if (IronHawk.players.size() == 2)
+					IronHawk.players.get(1).setVelY(-5);
 				else
-					Game.players.get(0).setVelY(-5);
+					IronHawk.players.get(0).setVelY(-5);
 			}
-			else if (key == KeyEvent.VK_DOWN && Game.players.get(0).health > 0)
+			else if (key == KeyEvent.VK_DOWN && IronHawk.players.get(0).health > 0)
 			{
-				if (Game.players.size() == 2)
-					Game.players.get(1).setVelY(5);
+				if (IronHawk.players.size() == 2)
+					IronHawk.players.get(1).setVelY(5);
 				else
-					Game.players.get(0).setVelY(5);
+					IronHawk.players.get(0).setVelY(5);
 			}
-			else if (key == KeyEvent.VK_D && Game.players.get(0).health > 0)
+			else if (key == KeyEvent.VK_D && IronHawk.players.get(0).health > 0)
 			{
-				Game.players.get(0).setVelX(5);
+				IronHawk.players.get(0).setVelX(5);
 			}
-			else if (key == KeyEvent.VK_A && Game.players.get(0).health > 0)
+			else if (key == KeyEvent.VK_A && IronHawk.players.get(0).health > 0)
 			{
-				Game.players.get(0).setVelX(-5);
+				IronHawk.players.get(0).setVelX(-5);
 			}
-			else if (key == KeyEvent.VK_S && Game.players.get(0).health > 0)
+			else if (key == KeyEvent.VK_S && IronHawk.players.get(0).health > 0)
 			{
-				Game.players.get(0).setVelY(5);
+				IronHawk.players.get(0).setVelY(5);
 			}
-			else if (key == KeyEvent.VK_W && Game.players.get(0).health > 0)
+			else if (key == KeyEvent.VK_W && IronHawk.players.get(0).health > 0)
 			{
-				Game.players.get(0).setVelY(-5);
+				IronHawk.players.get(0).setVelY(-5);
 			}
-			else if (key == KeyEvent.VK_SPACE && !Game.players.get(0).isShooting && Game.players.get(0).health > 0)
+			else if (key == KeyEvent.VK_SPACE && !IronHawk.players.get(0).isShooting && IronHawk.players.get(0).health > 0)
 			{
-				if (!Game.players.get(0).rapidFire)
+				if (!IronHawk.players.get(0).rapidFire)
 				{
-					Game.players.get(0).isShooting = true;
+					IronHawk.players.get(0).isShooting = true;
 				}
-				c.addEntity(new Bullet(Game.players.get(0).getX(), Game.players.get(0).getY(), tex, c, game, Game.players.get(0)));
+				c.addEntity(new Bullet(IronHawk.players.get(0).getX(), IronHawk.players.get(0).getY(), tex, c, game, IronHawk.players.get(0)));
 			}
-			else if (key == KeyEvent.VK_ENTER && !Game.players.get(1).isShooting && Game.players.get(1).health > 0)
+			else if (key == KeyEvent.VK_ENTER && !IronHawk.players.get(1).isShooting && IronHawk.players.get(1).health > 0)
 			{
-				if (Game.players.size() == 2)
+				if (IronHawk.players.size() == 2)
 				{
-					if (Game.players.get(1).rapidFire)
+					if (IronHawk.players.get(1).rapidFire)
 					{
-						Game.players.get(1).isShooting = true;
+						IronHawk.players.get(1).isShooting = true;
 					}
 				}
-				c.addEntity(new Bullet(Game.players.get(1).getX(), Game.players.get(1).getY(), tex, c, game, Game.players.get(1)));
+				c.addEntity(new Bullet(IronHawk.players.get(1).getX(), IronHawk.players.get(1).getY(), tex, c, game, IronHawk.players.get(1)));
 			}
-			else if (key == KeyEvent.VK_B && Game.players.get(0).bombCount > 0)
+			else if (key == KeyEvent.VK_B && IronHawk.players.get(0).bombCount > 0)
 			{
-				c.addEntity(new Bomb(Game.players.get(0).getX(), Game.players.get(0).getY(), tex, c, game, Game.players.get(0)));
-				Game.players.get(0).bombCount--;
+				c.addEntity(new Bomb(IronHawk.players.get(0).getX(), IronHawk.players.get(0).getY(), tex, c, game, IronHawk.players.get(0)));
+				IronHawk.players.get(0).bombCount--;
 			}
-			else if (key == KeyEvent.VK_M && Game.players.get(0).missleCount > 0)
+			else if (key == KeyEvent.VK_M && IronHawk.players.get(0).missleCount > 0)
 			{
-				c.addEntity(new Missile(Game.players.get(0).getX(), Game.players.get(0).getY(), tex, c, game, Game.players.get(0)));
-				Game.players.get(0).missleCount--;
+				c.addEntity(new Missile(IronHawk.players.get(0).getX(), IronHawk.players.get(0).getY(), tex, c, game, IronHawk.players.get(0)));
+				IronHawk.players.get(0).missleCount--;
 			}
-			else if (key == KeyEvent.VK_SHIFT && Game.players.get(1).missleCount > 0)
+			else if (key == KeyEvent.VK_SHIFT && IronHawk.players.get(1).missleCount > 0)
 			{
-				c.addEntity(new Missile(Game.players.get(1).getX(), Game.players.get(1).getY(), tex, c, game, Game.players.get(1)));
-				Game.players.get(1).missleCount--;
+				c.addEntity(new Missile(IronHawk.players.get(1).getX(), IronHawk.players.get(1).getY(), tex, c, game, IronHawk.players.get(1)));
+				IronHawk.players.get(1).missleCount--;
 			}
-			else if (key == KeyEvent.VK_CONTROL && Game.players.get(1).bombCount > 0)
+			else if (key == KeyEvent.VK_CONTROL && IronHawk.players.get(1).bombCount > 0)
 			{
-				c.addEntity(new Bomb(Game.players.get(1).getX(), Game.players.get(1).getY(), tex, c, game, Game.players.get(1)));
-				Game.players.get(1).bombCount--;
+				c.addEntity(new Bomb(IronHawk.players.get(1).getX(), IronHawk.players.get(1).getY(), tex, c, game, IronHawk.players.get(1)));
+				IronHawk.players.get(1).bombCount--;
 			}
 		}
 	}
 
 	public void keyReleased(KeyEvent e)
 	{
-		if (Game.players.size() != 0)
+		if (IronHawk.players.size() != 0)
 		{
 			int key = e.getKeyCode();
 
 			if (key == KeyEvent.VK_RIGHT)
 			{
-				if (Game.players.size() == 2)
-					Game.players.get(1).setVelX(0);
+				if (IronHawk.players.size() == 2)
+					IronHawk.players.get(1).setVelX(0);
 				else
-					Game.players.get(0).setVelX(0);
+					IronHawk.players.get(0).setVelX(0);
 			}
 			else if (key == KeyEvent.VK_LEFT)
 			{
-				if (Game.players.size() == 2)
-					Game.players.get(1).setVelX(0);
+				if (IronHawk.players.size() == 2)
+					IronHawk.players.get(1).setVelX(0);
 				else
-					Game.players.get(0).setVelX(0);
+					IronHawk.players.get(0).setVelX(0);
 			}
 			else if (key == KeyEvent.VK_DOWN)
 			{
-				if (Game.players.size() == 2)
-					Game.players.get(1).setVelY(0);
+				if (IronHawk.players.size() == 2)
+					IronHawk.players.get(1).setVelY(0);
 				else
-					Game.players.get(0).setVelY(0);
+					IronHawk.players.get(0).setVelY(0);
 			}
 			else if (key == KeyEvent.VK_UP)
 			{
-				if (Game.players.size() == 2)
+				if (IronHawk.players.size() == 2)
 				{
-					Game.players.get(1).setVelY(0);
+					IronHawk.players.get(1).setVelY(0);
 				}
 				else
-					Game.players.get(0).setVelY(0);
+					IronHawk.players.get(0).setVelY(0);
 			}
 			if (key == KeyEvent.VK_D)
 			{
-				Game.players.get(0).setVelX(0);
+				IronHawk.players.get(0).setVelX(0);
 			}
 			else if (key == KeyEvent.VK_A)
 			{
-				Game.players.get(0).setVelX(0);
+				IronHawk.players.get(0).setVelX(0);
 			}
 			else if (key == KeyEvent.VK_S)
 			{
-				Game.players.get(0).setVelY(0);
+				IronHawk.players.get(0).setVelY(0);
 			}
 			else if (key == KeyEvent.VK_W)
 			{
-				Game.players.get(0).setVelY(0);
+				IronHawk.players.get(0).setVelY(0);
 			}
 			else if (key == KeyEvent.VK_SPACE)
 			{
-				Game.players.get(0).isShooting = false;
+				IronHawk.players.get(0).isShooting = false;
 			}
 			else if (key == KeyEvent.VK_ENTER)
 			{
-				if (Game.players.size() == 2)
-					Game.players.get(1).isShooting = false;
+				if (IronHawk.players.size() == 2)
+					IronHawk.players.get(1).isShooting = false;
 			}
 		}
 	}

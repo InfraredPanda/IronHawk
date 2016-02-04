@@ -1,7 +1,7 @@
 package com.negafinity.ironhawk.entities;
 
 import com.negafinity.ironhawk.Controller;
-import com.negafinity.ironhawk.Game;
+import com.negafinity.ironhawk.IronHawk;
 import com.negafinity.ironhawk.Physics;
 import com.negafinity.ironhawk.Textures;
 
@@ -12,7 +12,7 @@ public class Enemy extends Entity
 	public int speed;
 	public int enemyHealth;
 
-	public Enemy(double x, double y, Textures tex, Controller c, Game game, int enemyHealth)
+	public Enemy(double x, double y, Textures tex, Controller c, IronHawk game, int enemyHealth)
 	{
 		super(x, y, tex, c, game);
 
@@ -29,7 +29,7 @@ public class Enemy extends Entity
 		y += speed;
 		applySpeedMultiplier();
 
-		for (Player player : Game.players)
+		for (Player player : IronHawk.players)
 		{
 			if (Physics.collision(this, player))
 			{
@@ -46,7 +46,7 @@ public class Enemy extends Entity
 
 	public void applySpeedMultiplier()
 	{
-		if (y > (Game.HEIGHT * Game.SCALE))
+		if (y > (IronHawk.HEIGHT * IronHawk.SCALE))
 		{
 			Random r = new Random();
 			speed = r.nextInt(5) + 1;

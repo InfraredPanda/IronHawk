@@ -19,9 +19,9 @@ public class Controller
 {
 	private LinkedList<Entity> entities = new LinkedList<Entity>();
 	private Textures tex;
-	private Game game;
+	private IronHawk game;
 
-	public Controller(Textures tex, Game game)
+	public Controller(Textures tex, IronHawk game)
 	{
 		this.tex = tex;
 		this.game = game;
@@ -156,7 +156,7 @@ public class Controller
 			}
 		}
 
-		Game.setEnemyCount(enemies);
+		IronHawk.setEnemyCount(enemies);
 	}
 
 	public void render(Graphics g)

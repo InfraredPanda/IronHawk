@@ -5,7 +5,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import com.negafinity.ironhawk.Controller;
-import com.negafinity.ironhawk.Game;
+import com.negafinity.ironhawk.IronHawk;
 import com.negafinity.ironhawk.Physics;
 import com.negafinity.ironhawk.Textures;
 import com.negafinity.ironhawk.entities.Enemy;
@@ -19,7 +19,7 @@ public class Bomb extends Weapon
 
 	private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
 
-	public Bomb(double x, double y, Textures tex, Controller c, Game game, Entity firer)
+	public Bomb(double x, double y, Textures tex, Controller c, IronHawk game, Entity firer)
 	{
 		super(x, y, tex, c, game, firer);
 

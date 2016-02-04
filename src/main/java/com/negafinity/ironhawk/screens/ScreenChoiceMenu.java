@@ -1,6 +1,6 @@
 package com.negafinity.ironhawk.screens;
 
-import com.negafinity.ironhawk.Game;
+import com.negafinity.ironhawk.IronHawk;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -15,7 +15,7 @@ public class ScreenChoiceMenu extends Screen
 	public Rectangle backButton = new Rectangle(5, 5, 100, 50);
 
 	@Override
-	public void render(Graphics g, Game game)
+	public void render(Graphics g, IronHawk game)
 	{
 		Graphics2D g2d = (Graphics2D) g;
 

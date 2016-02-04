@@ -1,8 +1,8 @@
-package com.negafinity.ironhawk;
+package com.negafinity.ironhawk.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.negafinity.ironhawk.utils.User;
+import com.negafinity.ironhawk.IronHawk;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -20,7 +20,7 @@ public class DataManager
 
 	public void saveUsers()
 	{
-		String json = gson.toJson(Game.users);
+		String json = gson.toJson(IronHawk.users);
 
 		try
 		{
@@ -51,7 +51,7 @@ public class DataManager
 		}
 
 		if (json != null)
-			Game.users = new ArrayList<User>(Arrays.asList(gson.fromJson(json, User[].class)));
+			IronHawk.users = new ArrayList<User>(Arrays.asList(gson.fromJson(json, User[].class)));
 	}
 
 	private static String readFile(String path, Charset encoding) throws IOException

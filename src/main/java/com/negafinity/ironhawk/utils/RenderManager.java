@@ -1,16 +1,20 @@
-package com.negafinity.ironhawk;
+package com.negafinity.ironhawk.utils;
 
+import com.negafinity.ironhawk.Controller;
+import com.negafinity.ironhawk.IronHawk;
 import com.negafinity.ironhawk.entities.Player;
 import com.negafinity.ironhawk.screens.ScreenStart;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 public class RenderManager
 {
-	private Game game;
+	private IronHawk game;
 
-	public RenderManager(Game game)
+	public RenderManager(IronHawk game)
 	{
 		this.game = game;
 	}
@@ -28,19 +32,19 @@ public class RenderManager
 		}
 
 		Graphics g = bufferedStrat.getDrawGraphics();
-		g.drawImage(Game.imageManager.image, 0, 0, game.getWidth(), game.getHeight(), game);
-		g.drawImage(Game.imageManager.background, 0, 0, game);
+		g.drawImage(IronHawk.imageManager.image, 0, 0, game.getWidth(), game.getHeight(), game);
+		g.drawImage(IronHawk.imageManager.background, 0, 0, game);
 
 		switch (screenManager.currentScreen)
 		{
 			case GAME:
 				c.render(g);
 
-				for (Player player : Game.players)
+				for (Player player : IronHawk.players)
 				{
 					int moveFactor = 0;
 
-					if (Game.players.indexOf(player) > 0)
+					if (IronHawk.players.indexOf(player) > 0)
 					{
 						moveFactor = 120;
 					}
@@ -75,7 +79,7 @@ public class RenderManager
 					g.fillRect(5, 5 + moveFactor, player.health, 50);
 
 					g.setColor(Color.white);
-					g.drawString("Health of Player " + (Game.players.indexOf(player) + 1) + ":", 20, 20 + moveFactor);
+					g.drawString("Health of Player " + (IronHawk.players.indexOf(player) + 1) + ":", 20, 20 + moveFactor);
 					g.setColor(Color.gray);
 					g.drawString(String.valueOf(player.health / 2), 20, 40 + moveFactor);
 
@@ -98,19 +102,19 @@ public class RenderManager
 				}
 
 				g.setColor(Color.white);
-				g.drawString("Round", Game.WIDTH + Game.WIDTH - 80, 20);
-				g.drawString(String.valueOf(Game.roundNumber), Game.WIDTH + Game.WIDTH - 10, 20);
+				g.drawString("Round", IronHawk.WIDTH + IronHawk.WIDTH - 80, 20);
+				g.drawString(String.valueOf(IronHawk.roundNumber), IronHawk.WIDTH + IronHawk.WIDTH - 10, 20);
 
-				if (Game.gameStarting)
+				if (IronHawk.gameStarting)
 				{
 					g.setColor(Color.white);
-					g.drawString("Round Starts In: ", Game.WIDTH - 35, 45);
-					g.drawString(String.valueOf(Game.timeToRound), Game.WIDTH + 125, 45);
+					g.drawString("Round Starts In: ", IronHawk.WIDTH - 35, 45);
+					g.drawString(String.valueOf(IronHawk.timeToRound), IronHawk.WIDTH + 125, 45);
 				}
 
 				g.setColor(Color.red);
-				g.drawString("Enemies", Game.WIDTH - 15, 20);
-				g.drawString(String.valueOf(Game.enemyCount), Game.WIDTH + 75, 20);
+				g.drawString("Enemies", IronHawk.WIDTH - 15, 20);
+				g.drawString(String.valueOf(IronHawk.enemyCount), IronHawk.WIDTH + 75, 20);
 			case MENU:
 				screenManager.screens.get(ScreenManager.STATE.MENU).render(g, game);
 			case GAMEOVER:
@@ -137,7 +141,7 @@ public class RenderManager
 				screenManager.screens.get(ScreenManager.STATE.CHOICEMENU).render(g, game);
 				g.drawImage(ImageManager.icon64, 55, 200, game);
 				g.drawImage(ImageManager.icon64, 355, 200, game);
-				g.drawImage(Game.imageManager.player2Sprite, 455, 200, game);
+				g.drawImage(IronHawk.imageManager.player2Sprite, 455, 200, game);
 				// break
 				g.dispose();
 				bufferedStrat.show();
