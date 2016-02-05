@@ -86,6 +86,7 @@ public class ScreenLogin extends Screen
 							user1LoggedIn = true;
 							game.setVisible(true);
 							panel.setVisible(false);
+							game.requestFocus();
 						}
 						else
 						{
