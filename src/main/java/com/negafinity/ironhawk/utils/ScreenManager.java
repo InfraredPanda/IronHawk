@@ -25,7 +25,7 @@ public class ScreenManager
 	public ScreenManager()
 	{
 		this.initializeScreens();
-		this.currentScreen = STATE.MENU;
+		this.currentScreen = STATE.START;
 	}
 
 	public void initializeScreens()

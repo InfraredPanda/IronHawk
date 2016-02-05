@@ -1,45 +1,26 @@
 package com.negafinity.ironhawk;
 
+import com.negafinity.ironhawk.entities.Entity;
+import com.negafinity.ironhawk.entities.Player;
+import com.negafinity.ironhawk.input.KeyInput;
+import com.negafinity.ironhawk.input.MouseInput;
+import com.negafinity.ironhawk.libs.Animation;
+import com.negafinity.ironhawk.utils.DataManager;
+import com.negafinity.ironhawk.utils.ImageManager;
+import com.negafinity.ironhawk.utils.RenderManager;
+import com.negafinity.ironhawk.utils.ScreenManager;
+import com.negafinity.ironhawk.utils.User;
+
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.negafinity.ironhawk.entities.Entity;
-import com.negafinity.ironhawk.entities.Player;
-import com.negafinity.ironhawk.input.KeyInput;
-import com.negafinity.ironhawk.input.MouseInput;
-import com.negafinity.ironhawk.libs.Animation;
-import com.negafinity.ironhawk.screens.ScreenControls;
-import com.negafinity.ironhawk.screens.ScreenIronHawk;
-import com.negafinity.ironhawk.screens.ScreenStart;
-import com.negafinity.ironhawk.utils.BufferedImageLoader;
-import com.negafinity.ironhawk.utils.DataManager;
-import com.negafinity.ironhawk.utils.ImageManager;
-import com.negafinity.ironhawk.utils.RenderManager;
-import com.negafinity.ironhawk.utils.ScreenManager;
-import com.negafinity.ironhawk.utils.User;
 
 /**
  * 2D Flight Game made by NEGAFINITY.
@@ -213,7 +194,6 @@ public class IronHawk extends Canvas implements Runnable
 	public void run()
 	{
 		init();
-
 		long lastTime = System.nanoTime();
 		final double amountOfTicks = 60.0;
 		double ns = 1000000000 / amountOfTicks;

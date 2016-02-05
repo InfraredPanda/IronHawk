@@ -22,7 +22,6 @@ public class RenderManager
 	public void render()
 	{
 		Controller c = game.c;
-		ScreenManager screenManager = game.screenManager;
 		BufferStrategy bufferedStrat = game.getBufferStrategy();
 
 		if (bufferedStrat == null)
@@ -35,7 +34,7 @@ public class RenderManager
 		g.drawImage(IronHawk.imageManager.image, 0, 0, game.getWidth(), game.getHeight(), game);
 		g.drawImage(IronHawk.imageManager.background, 0, 0, game);
 
-		switch (screenManager.currentScreen)
+		switch (game.screenManager.currentScreen)
 		{
 			case GAME:
 				c.render(g);
@@ -115,20 +114,9 @@ public class RenderManager
 				g.setColor(Color.red);
 				g.drawString("Enemies", IronHawk.WIDTH - 15, 20);
 				g.drawString(String.valueOf(IronHawk.enemyCount), IronHawk.WIDTH + 75, 20);
-			case MENU:
-				screenManager.screens.get(ScreenManager.STATE.MENU).render(g, game);
-			case GAMEOVER:
-				screenManager.screens.get(ScreenManager.STATE.GAMEOVER).render(g, game);
-			case HELP:
-				screenManager.screens.get(ScreenManager.STATE.HELP).render(g, game);
-			case CONTROLS:
-				screenManager.screens.get(ScreenManager.STATE.CONTROLS).render(g, game);
-			case LOGIN:
-				screenManager.screens.get(ScreenManager.STATE.LOGIN).render(g, game);
-			case IRONHAWK:
-				screenManager.screens.get(ScreenManager.STATE.IRONHAWK).render(g, game);
+				break;
 			case START:
-				ScreenStart start = (ScreenStart) screenManager.screens.get(ScreenManager.STATE.START);
+				ScreenStart start = (ScreenStart) game.screenManager.screens.get(game.screenManager.currentScreen);
 
 				if (start.hasNotBeenCalled)
 				{
@@ -136,15 +124,20 @@ public class RenderManager
 					start.showIronHawkIn10Sec();
 				}
 
-				screenManager.screens.get(ScreenManager.STATE.START).render(g, game);
+				game.screenManager.screens.get(game.screenManager.currentScreen).render(g, game);
+				break;
 			case CHOICEMENU:
-				screenManager.screens.get(ScreenManager.STATE.CHOICEMENU).render(g, game);
+				game.screenManager.screens.get(game.screenManager.currentScreen).render(g, game);
 				g.drawImage(ImageManager.icon64, 55, 200, game);
 				g.drawImage(ImageManager.icon64, 355, 200, game);
 				g.drawImage(IronHawk.imageManager.player2Sprite, 455, 200, game);
-				// break
-				g.dispose();
-				bufferedStrat.show();
+				break;
+			default:
+				game.screenManager.screens.get(game.screenManager.currentScreen).render(g, game);
+				break;
 		}
+		
+		g.dispose();
+		bufferedStrat.show();
 	}
 }
