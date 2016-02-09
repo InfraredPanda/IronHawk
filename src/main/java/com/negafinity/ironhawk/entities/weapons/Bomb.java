@@ -10,7 +10,6 @@ import com.negafinity.ironhawk.Physics;
 import com.negafinity.ironhawk.Textures;
 import com.negafinity.ironhawk.entities.Enemy;
 import com.negafinity.ironhawk.entities.Entity;
-import com.negafinity.ironhawk.entities.Player;
 import com.negafinity.ironhawk.libs.Animation;
 
 public class Bomb extends Weapon

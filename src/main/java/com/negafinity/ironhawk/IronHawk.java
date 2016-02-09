@@ -44,7 +44,7 @@ public class IronHawk extends Canvas implements Runnable
 	public static final int WIDTH = 320;
 	public static final int HEIGHT = WIDTH / 12 * 9;
 	public static final int SCALE = 2;
-	public static final String TITLE = "Iron Hawk";
+	public final String TITLE = "Iron Hawk";
 	public static final String VERSION = "2.3";
 
 	private boolean running = false;
